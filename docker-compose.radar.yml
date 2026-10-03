@@ -1,0 +1,30 @@
+# Stack isolada do spike radar.
+#
+# Uso (a partir da raiz deste worktree):
+#   docker compose -p plane-radar -f docker-compose-local.yml -f docker-compose.radar.yml up -d --build
+#   docker compose -p plane-radar -f docker-compose-local.yml -f docker-compose.radar.yml down -v
+#
+# O "-p plane-radar" e o que garante o isolamento: rede e volumes ganham esse prefixo,
+# entao o Postgres daqui NAO e o mesmo da arvore principal. Migrations rodam sem tocar
+# na baseline. As portas abaixo so evitam colisao no host; dentro da rede os servicos
+# continuam se enxergando como plane-db:5432, plane-redis:6379, etc.
+#
+# A tag "!override" e obrigatoria: sem ela o Compose SOMA as portas a lista do arquivo
+# base em vez de substituir, e os containers tentam bindar 5432/9000/8000 de novo.
+services:
+  plane-db:
+    ports: !override
+      - "5434:5432"
+
+  plane-redis:
+    ports: !override
+      - "6380:6379"
+
+  plane-minio:
+    ports: !override
+      - "9001:9000"
+      - "9091:9090"
+
+  api:
+    ports: !override
+      - "8001:8000"
