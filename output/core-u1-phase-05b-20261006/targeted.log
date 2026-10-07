@@ -1,0 +1,76 @@
+ Container radar-core-u1-phase05b-test-redis-1 Running 
+ Container radar-core-u1-phase05b-test-mq-1 Running 
+ Container radar-core-u1-phase05b-test-minio-1 Running 
+ Container radar-core-u1-phase05b-test-db-1 Running 
+ Container radar-core-u1-phase05b-test-db-1 Waiting 
+ Container radar-core-u1-phase05b-test-redis-1 Waiting 
+ Container radar-core-u1-phase05b-test-mq-1 Waiting 
+ Container radar-core-u1-phase05b-test-minio-1 Waiting 
+ Container radar-core-u1-phase05b-test-redis-1 Healthy 
+ Container radar-core-u1-phase05b-test-minio-1 Healthy 
+ Container radar-core-u1-phase05b-test-mq-1 Healthy 
+ Container radar-core-u1-phase05b-test-db-1 Healthy 
+ Container radar-core-u1-phase05b-api-tests-run-71f7dd668f34 Creating 
+ Container radar-core-u1-phase05b-api-tests-run-71f7dd668f34 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 22 items
+
+plane/radar/tests/test_core_u1_phase05b.py::test_overdue_delegation_without_due_date_matches_today_object_and_runtime Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_exact_instants_date_semantics_timezone_and_conflicting_deadlines PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_assignment_projection_follows_relations_and_property_without_changing_terms PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_reviews_page_and_replay_have_no_unbounded_json_and_keep_evidence_actor_and_versions PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_measurements_are_paged_and_current_projection_uses_active_canonical_values PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_legacy_backfill_dry_run_and_apply_preserve_raw_precision_sources_and_unknown_authorship PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_partial_legacy_payloads_missing_times_keep_unknowns_and_migrate_each_history_item PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_legacy_conflicts_are_reported_and_roll_back_everything[foreign_reference] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_legacy_conflicts_are_reported_and_roll_back_everything[invalid_kind_data] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_legacy_conflicts_are_reported_and_roll_back_everything[conflicting_current] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_legacy_conflicts_are_reported_and_roll_back_everything[changed_archive] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_reconciled_archive_no_longer_accepts_old_writer_changes_and_new_operations_do_not_dual_write PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_historical_access_after_retirement_remains_scoped_and_guest_cannot_backfill PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_records_validate_before_persisting[review-payload0] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_records_validate_before_persisting[measurement-payload1] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_records_validate_before_persisting[delegation-payload2] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_current_and_paged_reads_never_select_unbounded_archive_or_provenance FAILED
+plane/radar/tests/test_core_u1_phase05b.py::test_backfill_export_preserves_acceptance_evidence_and_original_offsets PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_backfill_reviewed_plan_changes_when_current_facts_change PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_typed_history_rejects_naive_instants_and_unproven_accepted_state[delegation-payload0] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_typed_history_rejects_naive_instants_and_unproven_accepted_state[delegation-payload1] PASSED
+plane/radar/tests/test_core_u1_phase05b.py::test_typed_history_rejects_naive_instants_and_unproven_accepted_state[review-payload2] PASSED
+
+=================================== FAILURES ===================================
+__ test_current_and_paged_reads_never_select_unbounded_archive_or_provenance ___
+
+runtime = ((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-... Object object (4cacab35-e121-4c28-9498-2eec2ca44d71)>, <Object: Object object (090caebb-ad57-4a03-a049-2f03f33d8f39)>)
+
+    def test_current_and_paged_reads_never_select_unbounded_archive_or_provenance(runtime):
+        from django.db import connection
+        from django.test.utils import CaptureQueriesContext
+    
+        ctx = runtime[0]
+        action, _, _ = delegation(runtime)
+        with CaptureQueriesContext(connection) as queries:
+            assert operation_projection(action)["operation_data"]["assignment"]
+            assert len(history_page(ctx[3], action, limit=1)["items"]) == 1
+        selected = [
+            query["sql"].split(" FROM ")[0] for query in queries.captured_queries if query["sql"].startswith("SELECT")
+        ]
+        assert not any('"source_data"' in sql or '"changes"' in sql or '"data"' in sql for sql in selected)
+>       assert len(queries) <= 7
+E       assert 10 <= 7
+E        +  where 10 = len(<django.test.utils.CaptureQueriesContext object at 0xffff7fc56d20>)
+
+plane/radar/tests/test_core_u1_phase05b.py:361: AssertionError
+------- generated xml file: /code/output/core-u1-phase-05b-targeted.xml --------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_core_u1_phase05b.py::test_current_and_paged_reads_never_select_unbounded_archive_or_provenance
+======================== 1 failed, 21 passed in 15.91s =========================
+

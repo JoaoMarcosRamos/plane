@@ -1,0 +1,7 @@
+$ react-router typegen && tsc --noEmit
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+The plugin "vite-tsconfig-paths" is detected. Vite now supports tsconfig paths resolution natively via the resolve.tsconfigPaths option. You can remove the plugin and set resolve.tsconfigPaths: true in your Vite config instead.
+(node:51586) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)

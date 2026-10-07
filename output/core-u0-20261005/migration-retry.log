@@ -1,0 +1,4 @@
+ Container radar-core-u0-test-api-tests-run-5bcfee04fe73 Creating 
+ Container radar-core-u0-test-api-tests-run-5bcfee04fe73 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+{"legacy_types_backfilled": 2, "custom_type_preserved": true, "identities_preserved": true, "reverse_forward_passed": true}

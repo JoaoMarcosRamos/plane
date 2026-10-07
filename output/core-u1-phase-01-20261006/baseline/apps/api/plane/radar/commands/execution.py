@@ -1,0 +1,531 @@
+"""One authenticated, transactional entry point for every RADAR domain writer."""
+
+import hashlib
+import json
+import math
+from dataclasses import asdict, replace
+from datetime import timedelta
+from typing import Callable
+from uuid import UUID, uuid4
+
+from django.apps import apps
+from django.db import transaction
+from django.utils import timezone
+from rest_framework.exceptions import APIException, NotFound, PermissionDenied, ValidationError
+
+from plane.db.models import User, Workspace, WorkspaceMember
+from plane.radar.models import (
+    ActorGrant,
+    CommandApproval,
+    CommandExecution,
+    DomainEvent,
+    Object,
+    ObjectType,
+    PropertyDefinition,
+    Provenance,
+    RelationType,
+)
+from plane.radar.mutation import MutationContext, current_mutation, json_value
+from plane.radar.ontology.schema import load_schema
+from .actor import Actor
+from .inputs import CommandInput, INPUTS
+from .rules import implementation_contract
+
+
+class CommandConflict(APIException):
+    status_code = 409
+    default_code = "revision_conflict"
+
+
+class ApprovalRequired(APIException):
+    status_code = 409
+    default_code = "approval_required"
+
+
+def _hash(value) -> str:
+    try:
+        encoded = json.dumps(json_value(value), sort_keys=True, separators=(",", ":"), allow_nan=False)
+    except (TypeError, ValueError) as exc:
+        raise ValidationError("Use finite, JSON-compatible values.") from exc
+    return hashlib.sha256(encoded.encode()).hexdigest()
+
+
+def schema_fingerprint(workspace) -> str:
+    """Approval binds to the effective workspace schema, including local defaults."""
+    return _hash(
+        {
+            "rules": implementation_contract(),
+            "types": list(
+                ObjectType.objects.filter(workspace=workspace).order_by("pk").values("id", "key", "is_active", "rules")
+            ),
+            "properties": list(
+                PropertyDefinition.objects.filter(workspace=workspace)
+                .order_by("pk")
+                .values("id", "object_type_id", "key", "value_type", "config", "is_required", "is_active")
+            ),
+            "relations": list(
+                RelationType.objects.filter(workspace=workspace)
+                .order_by("pk")
+                .values(
+                    "id",
+                    "key",
+                    "source_types",
+                    "target_types",
+                    "allowed_pairs",
+                    "cardinality",
+                    "allow_self",
+                    "is_active",
+                )
+            ),
+        }
+    )
+
+
+def _effect_preview(context):
+    """Preview uses symbolic new IDs: rolled-back rows are never presented as facts."""
+    aliases = {
+        change["id"]: f"$new:{change['model']}:{index}"
+        for index, change in enumerate(context.changes.values())
+        if change["before"] is None
+    }
+
+    def symbolic(value, key=None):
+        if isinstance(value, dict):
+            return {k: symbolic(v, k) for k, v in value.items()}
+        if isinstance(value, list):
+            return [symbolic(v) for v in value]
+        if value is not None and key in {"created_at", "updated_at", "deleted_at", "completed_at", "decided_at"}:
+            return "$server_timestamp"
+        return aliases.get(value, value) if isinstance(value, str) else value
+
+    return {
+        "preview_only": True,
+        "changes": symbolic(list(context.changes.values())),
+        "events": [{"event_type": name, "payload": symbolic(json_value(payload))} for name, payload in context.events],
+    }
+
+
+def command_envelope(execution: CommandExecution) -> dict:
+    """Replay only client command fields; stored authority metadata stays server-owned."""
+    fields = set(CommandInput().fields)
+    return {key: value for key, value in execution.envelope.items() if key in fields}
+
+
+def validate_actor(actor: Actor) -> None:
+    if not isinstance(actor, Actor) or actor.actor_type not in {"human", "agent", "system", "integration"}:
+        raise PermissionDenied("An explicit registered actor is required.")
+    for field in ("actor_id", "correlation_id"):
+        if not isinstance(getattr(actor, field), UUID):
+            raise PermissionDenied(f"Actor {field} must be a UUID.")
+    for field in ("run_id", "approval_id", "on_behalf_of"):
+        value = getattr(actor, field)
+        if value is not None and not isinstance(value, UUID):
+            raise PermissionDenied(f"Actor {field} must be a UUID.")
+    if not isinstance(actor.reason, str) or not actor.reason.strip():
+        raise PermissionDenied("Actor reason is required.")
+    if not isinstance(actor.source, str) or not actor.source.strip() or len(actor.source) > 255:
+        raise PermissionDenied("Actor source is required (up to 255 characters).")
+    if not hasattr(actor.timestamp, "tzinfo") or timezone.is_naive(actor.timestamp):
+        raise PermissionDenied("Actor timestamp must include a timezone.")
+    if actor.timestamp > timezone.now():
+        # Tolerate transport latency and small clock skew, never accept future observations.
+        if actor.timestamp > timezone.now() + timedelta(seconds=30):
+            raise PermissionDenied("Actor timestamp is in the future.")
+    if actor.confidence is not None and (
+        type(actor.confidence) not in (int, float)
+        or not math.isfinite(actor.confidence)
+        or not 0 <= actor.confidence <= 1
+    ):
+        raise ValidationError({"confidence": "Use a finite number between 0 and 1."})
+    if actor.actor_type == "agent" and actor.run_id is None:
+        raise PermissionDenied("Agent actors require a run_id.")
+    if not isinstance(actor.metadata, dict):
+        raise ValidationError("Actor metadata must be a JSON object.")
+    _hash(actor.metadata)
+
+
+def _human_member(actor: Actor, workspace: Workspace, *, write=True) -> None:
+    roles = [15, 20] if write else [5, 15, 20]
+    if (
+        actor.actor_type != "human"
+        or not User.objects.filter(pk=actor.actor_id, is_active=True, is_bot=False).exists()
+        or not WorkspaceMember.objects.filter(
+            workspace=workspace, member_id=actor.actor_id, role__in=roles, is_active=True
+        ).exists()
+    ):
+        raise PermissionDenied("Active workspace membership does not permit this operation.")
+
+
+def authorize(actor: Actor, workspace: Workspace, command_name: str, *, read=False) -> ActorGrant | None:
+    validate_actor(actor)
+    from plane.radar.collaboration import COLLABORATION_COMMANDS
+
+    if command_name in COLLABORATION_COMMANDS and actor.actor_type != "human":
+        raise PermissionDenied("MVP collaboration commands are human-only.")
+    if not Workspace.objects.filter(pk=workspace.pk).exists():
+        raise NotFound("Workspace not found.")
+    if actor.actor_type == "human":
+        _human_member(actor, workspace, write=not read)
+        return None
+    if read or command_name not in INPUTS:
+        raise PermissionDenied("Schema/control commands require a human actor.")
+    grant = ActorGrant.objects.filter(
+        workspace=workspace, actor_type=actor.actor_type, actor_id=actor.actor_id, is_active=True
+    ).first()
+    if grant is None or command_name not in grant.commands:
+        raise PermissionDenied("No grant for this actor and command in this workspace.")
+    _human_member(replace(actor, actor_type="human", actor_id=grant.delegator_id), workspace)
+    if actor.on_behalf_of is not None and actor.on_behalf_of != grant.delegator_id:
+        raise PermissionDenied("The actor does not represent this delegator.")
+    return grant
+
+
+def _versions(workspace: Workspace, expected: dict, refs: set[UUID]) -> dict:
+    try:
+        normalized = {UUID(str(key)): value for key, value in expected.items()}
+    except (TypeError, ValueError, AttributeError) as exc:
+        raise ValidationError({"expected_versions": "Keys must be Object UUIDs."}) from exc
+    objects = list(Object.objects.select_for_update().filter(workspace=workspace, pk__in=refs).order_by("pk"))
+    if {obj.pk for obj in objects} != refs:
+        raise NotFound("Object not found in this workspace.")
+    if set(normalized) != refs or any(type(v) is not int or v < 1 for v in normalized.values()):
+        raise ValidationError({"expected_versions": "Provide exactly the referenced Object versions (integers >= 1)."})
+    for obj in objects:
+        if obj.version != normalized[obj.pk]:
+            raise CommandConflict({"code": "revision_conflict", "object_id": str(obj.pk)})
+    return {str(obj.pk): obj.version for obj in objects}
+
+
+def _flush(context: MutationContext, command_id: UUID, outcome: str, extra=None) -> tuple[Provenance, list]:
+    actor = context.actor
+    metadata = {
+        "actor": json_value(asdict(actor)),
+        "schema_version": load_schema()["version"],
+        "ontology_sha256": load_schema()["sha256"],
+        "rules_contract": implementation_contract(),
+        **(extra or {}),
+    }
+    provenance = Provenance.objects.create(
+        workspace_id=context.workspace_id,
+        command_id=command_id,
+        command_name=context.command_name,
+        actor_type=actor.actor_type,
+        actor_id=actor.actor_id,
+        reason=actor.reason,
+        source=actor.source,
+        correlation_id=actor.correlation_id,
+        run_id=actor.run_id,
+        approval_id=actor.approval_id,
+        confidence=actor.confidence,
+        context=json_value(metadata),
+        changes=list(context.changes.values()),
+        outcome=outcome,
+    )
+    context.provenance_id = provenance.pk
+    try:
+        for (label, pk), change in context.changes.items():
+            model = apps.get_model(label)
+            fields = {"last_provenance_id": provenance.pk}
+            if change["before"] is None:
+                fields["created_provenance_id"] = provenance.pk
+            model.all_objects.filter(pk=pk).update(**fields)
+    finally:
+        context.provenance_id = None
+    events = []
+    versions_before = {
+        change["id"]: change["before"]["version"]
+        for change in context.changes.values()
+        if change["model"] == "radar.Object" and change["before"] is not None
+    }
+    versions_after = {
+        change["id"]: change["after"]["version"]
+        for change in context.changes.values()
+        if change["model"] == "radar.Object"
+    }
+    for event_type, payload in context.events:
+        event = DomainEvent.objects.create(
+            workspace_id=context.workspace_id,
+            execution_id=command_id,
+            provenance=provenance,
+            event_type=event_type,
+            payload=json_value(
+                {
+                    "command_id": command_id,
+                    "correlation_id": actor.correlation_id,
+                    "actor": asdict(actor),
+                    "provenance_id": provenance.pk,
+                    **payload,
+                    "causation_id": metadata.get("proposal_id") or command_id,
+                    "versions_before": versions_before,
+                    "versions_after": versions_after,
+                }
+            ),
+        )
+        events.append(str(event.pk))
+    return provenance, events
+
+
+def emit(name: str, payload: dict) -> None:
+    context = current_mutation.get()
+    if context is None:
+        raise RuntimeError("Domain events require a command context.")
+    context.events.append((name, payload))
+
+
+@transaction.atomic
+def run_internal(*, actor: Actor, workspace: Workspace, name: str, operation: Callable, read=False):
+    """Audited human schema/control command; not an agent tool or a public raw writer."""
+    parent = current_mutation.get()
+    if parent is not None:
+        if parent.actor != actor or parent.workspace_id != workspace.pk:
+            raise PermissionDenied("Nested commands must preserve their Actor and workspace.")
+        return operation()
+    authorize(actor, workspace, name, read=read)
+    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    context = MutationContext(actor, workspace.pk, name)
+    token = current_mutation.set(context)
+    try:
+        result = operation()
+        _validate_bound_relations(context)
+        if context.changes:
+            emit(name, {"affected_ids": [change["id"] for change in context.changes.values()]})
+            _flush(context, uuid4(), "executed")
+        return result
+    finally:
+        current_mutation.reset(token)
+
+
+def _result(context, execution, data, provenance, events, before):
+    created = [change["id"] for change in context.changes.values() if change["before"] is None]
+    object_ids = {pk for label, pk in context.changes if label == "radar.Object"}
+    after = {str(obj.pk): obj.version for obj in Object.objects.filter(pk__in=object_ids)}
+    return json_value(
+        {
+            "command_id": execution.pk,
+            "status": "executed" if context.changes else "noop",
+            "code": None,
+            "correlation_id": context.actor.correlation_id,
+            "created_ids": created,
+            "affected_ids": [change["id"] for change in context.changes.values()],
+            "versions_before": before,
+            "versions_after": after,
+            "event_ids": events,
+            "provenance_id": provenance.pk,
+            "approval_id": context.actor.approval_id,
+            "proposal_id": execution.envelope.get("proposal_id"),
+            "findings": data.pop("findings", []),
+            "data": data,
+        }
+    )
+
+
+@transaction.atomic
+def execute_command(*, actor: Actor, workspace: Workspace, envelope: dict, upload=None) -> dict:
+    """Actor is authenticated by the caller, never reconstructed from arbitrary JSON."""
+    from .handlers import dispatch, references, check_grant, requires_human_review
+
+    validate_actor(actor)
+    parent = current_mutation.get()
+    if parent is not None and (parent.actor != actor or parent.workspace_id != workspace.pk):
+        raise PermissionDenied("Nested commands must preserve their Actor and workspace.")
+    parsed = CommandInput(data=json_value(envelope))
+    parsed.is_valid(raise_exception=True)
+    request = parsed.validated_data
+    name = request["command_name"]
+    if name not in INPUTS:
+        raise ValidationError({"command_name": "Unknown command."})
+    if request.get("workspace_id", workspace.pk) != workspace.pk:
+        raise NotFound("Workspace not found.")
+    if request["reason"].strip() != actor.reason.strip():
+        raise ValidationError({"reason": "Must match the authenticated Actor context."})
+    assertion = request["assertion"]
+    confidence = assertion.get("confidence", actor.confidence)
+    if actor.confidence is not None and "confidence" in assertion and actor.confidence != confidence:
+        raise ValidationError({"confidence": "Actor and assertion must agree."})
+    approval_id = request.get("approval_id", actor.approval_id)
+    if actor.approval_id is not None and approval_id != actor.approval_id:
+        raise ValidationError({"approval_id": "Actor and command must agree."})
+    actor = replace(actor, confidence=confidence, approval_id=approval_id)
+    grant = authorize(actor, workspace, name)
+    # A workspace lock also serializes changes to grants, schema and approval authority.
+    # Object locks below still enforce exact revisions. No lock spans another workspace.
+    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    grant = authorize(actor, workspace, name)
+    if grant is not None and actor.on_behalf_of is None:
+        actor = replace(actor, on_behalf_of=grant.delegator_id)
+    serializer = INPUTS[name](data=request["input"])
+    serializer.is_valid(raise_exception=True)
+    data = serializer.validated_data
+    intent = {key: value for key, value in request.items() if key not in {"approval_id", "workspace_id"}}
+    intent["input"] = data
+    intent["ontology_sha256"] = load_schema()["sha256"]
+    intent["actor_scope"] = {
+        "source": actor.source,
+        "run_id": actor.run_id,
+        "on_behalf_of": actor.on_behalf_of,
+        "confidence": actor.confidence,
+        **({"metadata": actor.metadata} if actor.metadata else {}),
+    }
+    execution = CommandExecution.objects.filter(
+        workspace=workspace,
+        actor_type=actor.actor_type,
+        actor_id=actor.actor_id,
+        idempotency_key=request["idempotency_key"],
+    ).first()
+    if execution is not None and execution.status == "pending_approval":
+        if execution.envelope.get("rules_contract") != implementation_contract():
+            raise CommandConflict({"code": "approval_stale"})
+    if execution is None or "rules_contract" in execution.envelope:
+        intent["rules_contract"] = (
+            execution.envelope["rules_contract"] if execution is not None else implementation_contract()
+        )
+    intent_hash = _hash(intent)
+    if execution is not None:
+        if execution.intent_hash != intent_hash:
+            raise CommandConflict({"code": "idempotency_conflict"})
+        if execution.status in {"executed", "noop"}:
+            check_grant(workspace, grant, name, data, references(workspace, name, data))
+            return execution.result
+        if execution.status == "rejected":
+            raise PermissionDenied("This intention was rejected; submit a new proposal.")
+    else:
+        execution = CommandExecution.objects.create(
+            workspace=workspace,
+            actor_type=actor.actor_type,
+            actor_id=actor.actor_id,
+            idempotency_key=request["idempotency_key"],
+            intent_hash=intent_hash,
+            command_name=name,
+            envelope=json_value(
+                {**request, "schema_hash": schema_fingerprint(workspace), "rules_contract": implementation_contract()}
+            ),
+            actor_context=json_value(asdict(actor)),
+        )
+    if request.get("proposal_id"):
+        proposal = CommandExecution.objects.filter(
+            pk=request["proposal_id"], workspace=workspace, actor_type="agent", status="rejected"
+        ).first()
+        if proposal is None or actor.actor_type != "human":
+            raise ValidationError(
+                {"proposal_id": "Human takeover requires a retired agent proposal in this workspace."}
+            )
+    refs = references(workspace, name, data) | set(assertion["evidence_ids"])
+    before = _versions(workspace, request["expected_versions"], refs)
+    check_grant(workspace, grant, name, data, refs)
+    if execution.status == "pending_approval" and actor.approval_id is None:
+        return execution.result
+    context = MutationContext(actor, workspace.pk, name, upload=upload)
+    token = current_mutation.set(context)
+    try:
+        approval = None
+        needed = requires_human_review(workspace, actor, grant, name, data)
+        if needed:
+            if execution.envelope["schema_hash"] != schema_fingerprint(workspace):
+                raise CommandConflict({"code": "approval_stale"})
+            # Exercise the exact handler under a savepoint; invalid commands never become approvable.
+            with transaction.atomic():
+                dispatch(workspace, name, data)
+                _validate_bound_relations(context)
+                preview = _effect_preview(context)
+                transaction.set_rollback(True)
+            context = MutationContext(actor, workspace.pk, name)
+            current_mutation.set(context)
+            approval, _ = CommandApproval.objects.get_or_create(
+                execution=execution,
+                defaults={
+                    "workspace": workspace,
+                    "intent_hash": intent_hash,
+                    "policy_version": grant.policy_version if grant else 1,
+                    "expires_at": timezone.now() + timedelta(minutes=30),
+                },
+            )
+            if actor.approval_id is None:
+                if approval.status == "rejected":
+                    raise PermissionDenied("Command approval was rejected.")
+                emit("CommandApprovalRequested", {"approval_id": approval.pk, "command_id": execution.pk})
+                provenance, events = _flush(
+                    context,
+                    execution.pk,
+                    "pending_approval",
+                    {
+                        "intent_hash": intent_hash,
+                        "input": data,
+                        "assertion": assertion,
+                        "expected_versions": before,
+                        "schema_hash": execution.envelope["schema_hash"],
+                    },
+                )
+                result = json_value(
+                    {
+                        "command_id": execution.pk,
+                        "status": "pending_approval",
+                        "code": "approval_required",
+                        "correlation_id": actor.correlation_id,
+                        "created_ids": [],
+                        "affected_ids": [],
+                        "versions_before": {},
+                        "versions_after": {},
+                        "event_ids": events,
+                        "provenance_id": provenance.pk,
+                        "approval_id": approval.pk,
+                        "proposal_id": execution.pk if actor.actor_type == "agent" else None,
+                        "findings": [],
+                        "data": {"effect_plan": preview},
+                    }
+                )
+                execution.status, execution.result = "pending_approval", result
+                execution.save(update_fields=["status", "result"])
+                return result
+            if (
+                approval.pk != actor.approval_id
+                or approval.status != "approved"
+                or approval.intent_hash != intent_hash
+                or approval.expires_at <= timezone.now()
+                or approval.policy_version != (grant.policy_version if grant else 1)
+            ):
+                raise CommandConflict({"code": "approval_stale"})
+            reviewer = replace(actor, actor_type="human", actor_id=approval.approver_id)
+            _human_member(reviewer, workspace)
+        elif actor.approval_id is not None:
+            raise ValidationError({"approval_id": "This command does not require an execution approval."})
+        data_result = dispatch(workspace, name, data)
+        _validate_bound_relations(context)
+        if approval is not None:
+            approval.status = "consumed"
+            approval.save(update_fields=["status", "updated_at"])
+        outcome = "executed" if context.changes else "noop"
+        provenance, events = _flush(
+            context,
+            execution.pk,
+            outcome,
+            {
+                "intent_hash": intent_hash,
+                "input": data,
+                "assertion": assertion,
+                "expected_versions": before,
+                "grant_id": str(grant.pk) if grant else None,
+                "policy_version": grant.policy_version if grant else 1,
+                "approver_id": str(approval.approver_id) if approval else None,
+                "proposal_id": request.get("proposal_id"),
+                "initiator": execution.actor_context,
+                "schema_hash": schema_fingerprint(workspace),
+                "decision_approval_id": data_result.get("decision_approval_id"),
+            },
+        )
+        result = _result(context, execution, data_result, provenance, events, before)
+        execution.status, execution.result = result["status"], result
+        execution.save(update_fields=["status", "result"])
+        return result
+    finally:
+        current_mutation.reset(token)
+
+
+def _validate_bound_relations(context: MutationContext) -> None:
+    from plane.radar.models import RuntimeObjectIdentity
+    from .primitives_semantic import validate_required_relations
+
+    ids = context.created_objects | context.touched | {pk for label, pk in context.changes if label == "radar.Object"}
+    for identity in RuntimeObjectIdentity.objects.filter(
+        workspace_id=context.workspace_id, object_id__in=ids
+    ).select_related("object__object_type", "object__workspace"):
+        validate_required_relations(identity.object, context=identity.context)

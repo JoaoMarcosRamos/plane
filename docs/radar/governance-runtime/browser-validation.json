@@ -1,0 +1,93 @@
+{
+  "method": "Observed Playwright CLI interactions with assertions after reload; DB verified separately by verify_persistence.py.",
+  "workspace": "radar-governance-zero",
+  "navigation": [
+    {
+      "source": "objective",
+      "target": "project",
+      "source_url": "/radar-governance-zero/radar/objects/050be699-1b34-4fd7-b713-bd62318d33bb/",
+      "target_url": "/radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/",
+      "result": "PASS"
+    },
+    {
+      "source": "project",
+      "target": "objective",
+      "source_url": "/radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/",
+      "target_url": "/radar-governance-zero/radar/objects/050be699-1b34-4fd7-b713-bd62318d33bb/",
+      "result": "PASS"
+    },
+    {
+      "source": "project",
+      "target": "decision",
+      "source_url": "/radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/",
+      "target_url": "/radar-governance-zero/radar/objects/469b3513-8370-4a5b-a3b0-51f6a03f4ed6/",
+      "result": "PASS"
+    },
+    {
+      "source": "decision",
+      "target": "project",
+      "source_url": "/radar-governance-zero/radar/objects/469b3513-8370-4a5b-a3b0-51f6a03f4ed6/",
+      "target_url": "/radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/",
+      "result": "PASS"
+    },
+    {
+      "source": "decision",
+      "target": "action",
+      "source_url": "/radar-governance-zero/radar/objects/469b3513-8370-4a5b-a3b0-51f6a03f4ed6/",
+      "target_url": "/radar-governance-zero/radar/objects/e2eb8963-4f14-4191-831b-d03000e0842e/",
+      "result": "PASS"
+    },
+    {
+      "source": "action",
+      "target": "decision",
+      "source_url": "/radar-governance-zero/radar/objects/e2eb8963-4f14-4191-831b-d03000e0842e/",
+      "target_url": "/radar-governance-zero/radar/objects/469b3513-8370-4a5b-a3b0-51f6a03f4ed6/",
+      "result": "PASS"
+    },
+    {
+      "source": "objective",
+      "target": "risk",
+      "source_url": "/radar-governance-zero/radar/objects/050be699-1b34-4fd7-b713-bd62318d33bb/",
+      "target_url": "/radar-governance-zero/radar/objects/1d84203c-29a2-4922-bc04-5f4275fb2d24/",
+      "result": "PASS"
+    },
+    {
+      "source": "risk",
+      "target": "objective",
+      "source_url": "/radar-governance-zero/radar/objects/1d84203c-29a2-4922-bc04-5f4275fb2d24/",
+      "target_url": "/radar-governance-zero/radar/objects/050be699-1b34-4fd7-b713-bd62318d33bb/",
+      "result": "PASS"
+    }
+  ],
+  "edits": {
+    "objective.progress": 25,
+    "project.description": "Sandbox controlado para validar a Governança de IA",
+    "decision.rationale": "Acesso centralizado e licenciamento governado para o Sandbox IA",
+    "action.due_date": "2026-11-03",
+    "risk.likelihood": 4,
+    "risk.score": 16
+  },
+  "checks": {
+    "five_objects_edit_save_refresh": "PASS",
+    "four_edges_forward_reverse": "PASS",
+    "foreign_object_no_properties": "PASS",
+    "anonymous_deep_link_redirect": "PASS",
+    "generic_type_ui_create_edit_refresh": "PASS"
+  },
+  "network": {
+    "issue_api_requests": 0,
+    "project_list_requests": 6,
+    "radar_api_requests": 179
+  },
+  "screenshots": [
+    "output/playwright/radar-governance/01-objective.png",
+    "output/playwright/radar-governance/02-project.png",
+    "output/playwright/radar-governance/03-decision.png",
+    "output/playwright/radar-governance/04-action.png",
+    "output/playwright/radar-governance/05-risk.png",
+    "output/playwright/radar-governance/06-generic-type.png",
+    "output/playwright/radar-governance/07-isolation.png",
+    "output/playwright/radar-governance/08-plane-baseline.png"
+  ],
+  "scope": "The graph was created through the opt-in command; properties and link navigation were exercised through the UI. Historical 0.4 tests cover relation picker add/remove."
+}

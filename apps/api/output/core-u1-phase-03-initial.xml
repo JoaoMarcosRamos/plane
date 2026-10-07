@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="2.471" timestamp="2026-10-06T18:58:04.551357+00:00" hostname="be134ae7662d"><testcase classname="plane.radar.tests.test_commands" name="test_all_mutations_capture_complete_provenance_and_atomic_events" time="0.649" /><testcase classname="plane.radar.tests.test_commands" name="test_agent_pending_accept_execute_preserves_both_actors_and_is_idempotent" time="0.502" /><testcase classname="plane.radar.tests.test_commands" name="test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[agent]" time="0.433" /><testcase classname="plane.radar.tests.test_commands" name="test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[system]" time="0.286" /><testcase classname="plane.radar.tests.test_commands" name="test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[integration]" time="0.291" /><testcase classname="plane.radar.tests.test_commands" name="test_decision_approval_taken_action_and_completion_workflow" time="0.146"><failure message="TypeError: dispatch() got an unexpected keyword argument 'content'">ready = (&lt;User: radar-unit &lt;radar-unit@plane.local&gt;&gt;, &lt;User: radar-second &lt;radar-second@plane.local&gt;&gt;, &lt;User: radar-outsider-u..., 18, 58, 6, 836990, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_decision_approval_taken_action_and_completion_workflow(ready):
+        ctx = ready
+&gt;       decision, document, person = decision_with_evidence(ctx)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_commands.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:128: in decision_with_evidence
+    decision = create(
+plane/radar/tests/test_commands.py:81: in create
+    return create_object(
+plane/radar/commands/objects.py:34: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:42: in invoke
+    plan = plan_command(actor=actor, workspace=workspace, name=name, data=serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/effects.py:139: in plan_command
+    return resolve(capability.planner)(actor=actor, workspace=workspace, capability=capability, data=data, refs=refs, upload=upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/effects.py:124: in plan_handler
+    capability.execute(workspace, data)
+plane/radar/commands/capabilities.py:58: in execute
+    return resolve(self.handler)(workspace, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = &lt;Workspace: RADAR&gt;
+data = {'object_type_id': UUID('5bc40d3e-65c0-4812-9f36-df492045ac23'), 'properties': {'context': 'Sandbox governance', 'decision': 'Use enterprise licenses', 'rationale': 'Centralized control'}, 'title': 'decision'}
+
+    def _create_object(workspace, data):
+        specialized, payload = _special_input(workspace, data)
+        if specialized:
+&gt;           return dispatch(workspace, specialized, payload, content=data.get("content"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: dispatch() got an unexpected keyword argument 'content'
+
+plane/radar/commands/handlers.py:311: TypeError</failure></testcase></testsuite></testsuites>

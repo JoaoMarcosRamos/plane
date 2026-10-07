@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "delivery": "Core U1 phase 3B/3C",
+  "completed_findings": [
+    "C02",
+    "C01"
+  ],
+  "phase_3_status": "completed",
+  "findings_balance": {
+    "fixed": 15,
+    "pending": 8,
+    "pending_u1": [
+      "C03",
+      "C13",
+      "C18",
+      "C19",
+      "C20",
+      "C21"
+    ],
+    "pending_u2": [
+      "C14",
+      "C23"
+    ]
+  },
+  "baseline": {
+    "cases": 403,
+    "passed": 399,
+    "skipped": 4,
+    "failed": 0,
+    "errors": 0
+  },
+  "backend_final": {
+    "cases": 456,
+    "passed": 452,
+    "skipped": 4,
+    "failed": 0,
+    "errors": 0,
+    "new_cases": 53
+  },
+  "backend_directed_contracts": {
+    "cases": 98,
+    "passed": 98,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0,
+    "includes_actual_cos_adapter": true
+  },
+  "migration_0013": {
+    "migration": "0013_type_descriptors",
+    "seeded_types_installed": 11,
+    "invariants_preserved": true,
+    "installed_base_updated_for_managed_ids": true,
+    "schema_revision": {
+      "before": 3,
+      "forward": 4,
+      "reverse": 5,
+      "reapplied": 6
+    },
+    "package_hash_unchanged_until_explicit_upgrade": true,
+    "preexisting_local_lifecycle_preserved_on_forward": true,
+    "unknown_type_untouched": true,
+    "empty_workspace_without_state": true,
+    "fact_version_and_state_preserved": {
+      "version": 7,
+      "status": "in_progress"
+    },
+    "live_effective_schema_valid": true,
+    "live_upgrade_plan_without_changes_or_conflicts": true,
+    "reverse_strips_sections_including_local": true,
+    "reverse_forward_passed": true
+  },
+  "frontend": {
+    "passed": 115,
+    "files": 16,
+    "new_cases": 0
+  },
+  "workspace_check": {
+    "successful": 56,
+    "total": 56
+  },
+  "python_style": "passed",
+  "migration_check": "no_structural_changes",
+  "adjusted_existing_tests": [
+    "test_core_u0.py::test_pending_approval_is_bound_to_effective_rules (revision compared with RULES_REVISION)",
+    "test_commands.py::test_generic_specialized_creation_checks_parameter_reference_versions_and_scope (references moved to parameters)"
+  ],
+  "limits": {
+    "browser_tested": false,
+    "published_environment_tested": false,
+    "deployed": false,
+    "new_structural_migration": false,
+    "new_data_migration": "0013_type_descriptors",
+    "production_stack_modified": false,
+    "cos_sources_modified": false,
+    "cos_repository_tests_reexecuted": false,
+    "ux_changed": false,
+    "reexecution_counts_not_added": true
+  }
+}

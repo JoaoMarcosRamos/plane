@@ -1,0 +1,14 @@
+$ vitest run --config vitest.radar.config.ts
+
+ RUN  v4.1.11 /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web
+
+(node:58706) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  8 passed (8)
+      Tests  58 passed (58)
+   Start at  19:13:53
+   Duration  5.55s (transform 11.20s, setup 0ms, import 15.64s, tests 504ms, environment 4ms)
+

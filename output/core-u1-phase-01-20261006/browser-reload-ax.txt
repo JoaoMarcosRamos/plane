@@ -1,0 +1,121 @@
+Browser tab: 1881978231, Title: "RADAR collaboration fixture", URL: "http://127.0.0.1:3038/u1-phase01-browser/radar/objects/27319e87-3e53-4af1-9488-225dfbddbe17".
+1 AXWebArea RADAR collaboration fixture, URL: 127.0.0.1:3038/u1-phase01-browser/radar/objects/27319e87-3e53-4af1-9488-225dfbddbe17
+	2 container root
+		3 link Description: All objects, Value: 127.0.0.1:3038/u1-phase01-browser/radar/objects/
+		4 container
+			5 text Objective
+			6 text Title
+			7 text field (settable) Title, Value: U1 integration authorship reviewed by human, ID: radar-edit-title
+			8 heading Content, Value: 2
+				9 text Content
+			10 text <p></p>
+			11 definition list
+				12 container Created by
+					13 text Created by
+				14 text Integration: 7ff06ba0-6515-49bc-a537-03e2afb98691
+				15 container Updated by
+					16 text Updated by
+				17 text Human: Author
+				18 container Version
+					19 text Version
+				20 text 2
+			21 button (disabled) Save changes
+		22 container
+			23 container Properties
+				24 heading Properties, Value: 2, ID: radar-properties-heading
+					25 text Properties
+				26 container
+					27 text Description
+					28 text entry area (settable) Description, ID: radar-property-description
+					29 text Saved
+					30 button (disabled) Save Description
+				31 container
+					32 text Due date
+					33 date field (settable) Due date, ID: radar-property-due_date
+						34 container
+							35 stepper
+							36 stepper
+							37 stepper
+						38 pop up button Mostrar seletor de datas
+					39 text Not set
+					40 button Save Due date
+				41 container
+					42 text Outcome
+					43 text entry area (settable) Outcome, ID: radar-property-outcome
+					44 text Saved
+					45 button (disabled) Save Outcome
+				46 container
+					47 text Priority
+					48 combo box (collapsed) Priority, Value: Medium, ID: radar-property-priority, Secondary Actions: Expand
+						49 text Medium
+					50 text Saved
+					51 button (disabled) Save Priority
+				52 container
+					53 text Progress
+					54 stepper (settable, integer) Progress, Value: 0, ID: radar-property-progress
+					55 text Saved
+					56 button (disabled) Save Progress
+				57 container
+					58 text Start date
+					59 date field (settable) Start date, ID: radar-property-start_date
+						60 container
+							61 stepper
+							62 stepper
+							63 stepper
+						64 pop up button Mostrar seletor de datas
+					65 text Not set
+					66 button Save Start date
+				67 container
+					68 text Status
+					69 combo box (collapsed) Status, Value: Draft, ID: radar-property-status, Secondary Actions: Expand
+						70 text Draft
+					71 text Saved
+					72 button (disabled) Save Status
+				73 container
+					74 text Timeframe
+					75 combo box (collapsed) Timeframe, Value: Short term, ID: radar-property-timeframe, Secondary Actions: Expand
+						76 text Short term
+					77 text Saved
+					78 button (disabled) Save Timeframe
+			79 container Relations
+				80 heading Relations, Value: 2, ID: radar-relations-heading
+					81 text Relations
+				82 button Add relation
+				83 text No outgoing relations.
+			84 container Backlinks
+				85 heading Backlinks, Value: 2, ID: radar-backlinks-heading
+					86 text Backlinks
+				87 text No incoming relations.
+		88 container Collaboration
+			89 heading Collaboration, Value: 2, ID: radar-collaboration-heading
+				90 text Collaboration
+			91 button Reload
+			92 heading Comments, Value: 3
+				93 text Comments
+			94 text No comments yet.
+			95 container
+				96 text New comment
+				97 text entry area (settable) New comment, ID: radar-comment-draft
+				98 button (disabled) Add comment
+			99 heading Attachments, Value: 3
+				100 text Attachments
+			101 text Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+			102 text No attachments yet.
+			103 container
+				104 text Supporting file
+				105 button Supporting file, ID: radar-attachment-file
+				106 text Choose a nonempty file. A failed request keeps your selection for retry.
+				107 button (disabled) Upload attachment
+			108 heading Activity, Value: 3
+				109 text Activity
+			110 content list
+				111 container
+					112 text Update Object  ·  executed human :  2b55f01f-ac46-431c-8b0d-f4e67ac58958  ·
+					113 text 06/10/2026, 08:28:51
+					114 text Update object  ·  radar.session-api
+				115 container
+					116 text Create Object  ·  executed integration :  7ff06ba0-6515-49bc-a537-03e2afb98691  ·
+					117 text 06/10/2026, 08:21:59
+					118 text Create authored browser fixture  ·  fixture.browser.integration
+
+The focused UI element is 1 AXWebArea RADAR collaboration fixture, URL: 127.0.0.1:3038/u1-phase01-browser/radar/objects/27319e87-3e53-4af1-9488-225dfbddbe17

@@ -1,0 +1,24 @@
+{
+  "workspace": "radar-projects",
+  "project": "701c6334-fb54-4914-a67c-96a96164a2cc",
+  "issue": "87ee0439-49dd-46c3-b6c0-fa2c83512dbb",
+  "actor": "fc5f4640-ea13-4959-9996-d5862d7555d0",
+  "last_login": "2026-10-03T17:31:43.430652+00:00",
+  "description_html": "<p class=\"editor-paragraph-block\" data-id=\"9d8d7542-c948-40a5-a84a-ae2419d42362\">Descrição salva pelo editor original do Plane na auditoria da Fase 0.6.</p>",
+  "comments": [
+    {
+      "comment_html": "<p class=\"editor-paragraph-block\" data-id=\"19253aab-a26e-4437-9b02-c52b396288fe\">Comentário de regressão: shell e colaboração Plane preservados.</p>"
+    }
+  ],
+  "uploaded_attachments": 0,
+  "checks": {
+    "password_login": "PASS",
+    "workspace_project_work_item": "PASS",
+    "editor_save_and_refresh": "PASS",
+    "comment_save_and_refresh": "PASS",
+    "attachment_txt_attempt": "HTTP 400 Bad Request; valid-file round trip not verified",
+    "valid_attachment_round_trip": "NOT VERIFIED"
+  },
+  "scope": "Regression of unchanged Plane routes in spike stack; not a new checkout of pristine radar-baseline.",
+  "attachment_environment_caveat": "Isolated API still advertises AWS_S3_ENDPOINT_URL localhost:9000, the original stack port; isolate upload configuration before a valid-file retry."
+}

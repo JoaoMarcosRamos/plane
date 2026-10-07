@@ -1,0 +1,4 @@
+### Result
+173. [GET] http://127.0.0.1:3056/api/workspaces/c18-browser-21c27b5e/radar/today/?timezone=America%2FBahia => [200] OK
+
+Note: 190 static requests not shown, run with --static option to see them.

@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "delivery": "Core U1 phase 5A",
+  "finding": "C19",
+  "radar": {
+    "total": 519,
+    "passed": 516,
+    "skipped": 3,
+    "failures": 0,
+    "errors": 0
+  },
+  "plane_boundary": {
+    "total": 2,
+    "passed": 2,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "new_cases": {
+    "total": 38,
+    "passed": 38,
+    "skipped": 0,
+    "failures": 0,
+    "errors": 0
+  },
+  "frontend": {
+    "passed": 132,
+    "files": 18
+  },
+  "workspace_check": {
+    "successful_tasks": 56,
+    "total_tasks": 56
+  },
+  "cos_production_adapter": {
+    "passed": true,
+    "transport": "httpx.MockTransport to real Django APIClient/PostgreSQL"
+  },
+  "python_style": "passed",
+  "migration_check": "no structural changes",
+  "migration": {
+    "migration": "0015_type_runtime",
+    "forward_reverse_reapply": true,
+    "idempotent": true,
+    "managed_type_count": 11,
+    "custom_type_disabled_by_default": true,
+    "explicit_local_opt_out_preserved_on_forward": true,
+    "installed_base_updated_without_conflicts": true,
+    "existing_fact_version_and_content_preserved": true,
+    "identity_and_timestamps_preserved": true,
+    "schema_revision": [5, 6, 7, 8],
+    "package_hash_unchanged_until_explicit_upgrade": true,
+    "reverse_removes_descriptors_requires_export": true
+  },
+  "remaining_u1": ["C18", "C13"],
+  "remaining_u2": ["C14", "C23"],
+  "browser": "No changed UI flow; phase 4 screenshots remain historical",
+  "published_environment": "Not activated",
+  "cos_repository": "Read-only, unchanged",
+  "initial_baseline": "Inconclusive; process overlapped edits. Superseded by final clean-process regression."
+}

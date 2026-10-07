@@ -1,0 +1,64 @@
+ Network radar-core-u1-phase03bc_test_env Creating 
+ Network radar-core-u1-phase03bc_test_env Creating 
+ Network radar-core-u1-phase03bc_test_env Created 
+ Network radar-core-u1-phase03bc_test_env Created 
+ Container radar-core-u1-phase03bc-test-redis-1 Creating 
+ Container radar-core-u1-phase03bc-test-mq-1 Creating 
+ Container radar-core-u1-phase03bc-test-minio-1 Creating 
+ Container radar-core-u1-phase03bc-test-db-1 Creating 
+ Container radar-core-u1-phase03bc-test-redis-1 Created 
+ Container radar-core-u1-phase03bc-test-minio-1 Created 
+ Container radar-core-u1-phase03bc-test-db-1 Created 
+ Container radar-core-u1-phase03bc-test-mq-1 Created 
+ Container radar-core-u1-phase03bc-test-db-1 Starting 
+ Container radar-core-u1-phase03bc-test-redis-1 Starting 
+ Container radar-core-u1-phase03bc-test-minio-1 Starting 
+ Container radar-core-u1-phase03bc-test-mq-1 Starting 
+ Container radar-core-u1-phase03bc-test-db-1 Started 
+ Container radar-core-u1-phase03bc-test-redis-1 Started 
+ Container radar-core-u1-phase03bc-test-minio-1 Started 
+ Container radar-core-u1-phase03bc-test-mq-1 Started 
+ Container radar-core-u1-phase03bc-test-db-1 Waiting 
+ Container radar-core-u1-phase03bc-test-redis-1 Waiting 
+ Container radar-core-u1-phase03bc-test-mq-1 Waiting 
+ Container radar-core-u1-phase03bc-test-minio-1 Waiting 
+ Container radar-core-u1-phase03bc-test-redis-1 Healthy 
+ Container radar-core-u1-phase03bc-test-db-1 Healthy 
+ Container radar-core-u1-phase03bc-test-minio-1 Healthy 
+ Container radar-core-u1-phase03bc-test-mq-1 Healthy 
+ Container radar-core-u1-phase03bc-api-tests-run-37a3b3e1db30 Creating 
+ Container radar-core-u1-phase03bc-api-tests-run-37a3b3e1db30 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 403 items
+
+plane/radar/tests/test_agent_config.py .....................s
+plane/radar/tests/test_agent_runtime.py ......s.......
+plane/radar/tests/test_collaboration.py ..........................
+plane/radar/tests/test_commands.py ..................
+plane/radar/tests/test_context_bounds.py ...
+plane/radar/tests/test_core.py .........................................
+plane/radar/tests/test_core_u0.py .................................
+plane/radar/tests/test_core_u1_phase01.py ..................
+plane/radar/tests/test_core_u1_phase02.py ....................................
+plane/radar/tests/test_core_u1_phase03.py ...........................................
+plane/radar/tests/test_governance.py ............
+plane/radar/tests/test_risk_review.py ........................s..
+plane/radar/tests/test_runtime_contract.py ...........s...
+plane/radar/tests/test_runtime_provision.py .
+plane/radar/tests/test_semantic.py ......................................................................
+plane/radar/tests/test_today.py .........
+plane/radar/tests/test_collaboration.py ..
+plane/radar/tests/test_commands.py .
+plane/radar/tests/test_core.py ..
+plane/radar/tests/test_semantic.py .....
+plane/radar/tests/test_session_transport.py .....
+
+------- generated xml file: /code/output/core-u1-phase-03bc-baseline.xml -------
+================== 399 passed, 4 skipped in 216.44s (0:03:36) ==================
+exit=0

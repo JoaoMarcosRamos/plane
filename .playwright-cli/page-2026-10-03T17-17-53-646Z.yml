@@ -1,0 +1,39 @@
+- generic [ref=e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=e3]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - link [ref=e7] [cursor=pointer]:
+          - /url: /
+          - img [ref=e8]
+        - generic [ref=e16]:
+          - generic [ref=e17]: New to Plane?
+          - link "Sign up" [ref=e18] [cursor=pointer]:
+            - /url: /sign-up/
+      - generic [ref=e20]:
+        - generic [ref=e21]:
+          - generic [ref=e22]: Work in all dimensions.
+          - generic [ref=e23]: Welcome back to Plane.
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - text: Email
+            - textbox "Email" [active] [ref=e28]:
+              - /placeholder: name@company.com
+          - button "Continue" [disabled] [ref=e29]:
+            - generic [ref=e30]: Continue
+        - paragraph [ref=e32]:
+          - text: By signing in, you understand and agree to our
+          - link "Terms of Service" [ref=e33] [cursor=pointer]:
+            - /url: https://plane.so/legals/terms-and-conditions/
+          - text: and
+          - link "Privacy Policy" [ref=e34] [cursor=pointer]:
+            - /url: https://plane.so/legals/privacy-policy/
+          - text: .
+      - generic [ref=e35]:
+        - generic [ref=e36]: Join 10,000+ teams building with Plane
+        - generic [ref=e37]:
+          - img [ref=e39]
+          - img [ref=e43]
+          - img [ref=e46]
+          - img [ref=e55]

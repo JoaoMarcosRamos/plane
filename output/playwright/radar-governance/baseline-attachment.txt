@@ -1,0 +1,2 @@
+Arquivo de teste da auditoria local da Fase 0.6.
+Valida o upload e a leitura de anexos do Plane original.

@@ -1,0 +1,59 @@
+/**
+ * Copyright (c) 2023-present Plane Software, Inc. and contributors
+ * SPDX-License-Identifier: AGPL-3.0-only
+ * See the LICENSE file for details.
+ */
+
+import { observer } from "mobx-react";
+import { useParams } from "next/navigation";
+// components
+import { RichTextEditor } from "@/components/editor/rich-text";
+// hooks
+import { useWorkspace } from "@/hooks/store/use-workspace";
+// services
+import { WorkspaceService } from "@/services/workspace.service";
+
+const workspaceService = new WorkspaceService();
+
+// Uploads are out of scope for the shell spike; the image extension is disabled below, so these only
+// guard against a paste/drop path that still reaches the handler.
+const rejectFileOperation = async (): Promise<string> => {
+  throw new Error("File uploads are not part of the RADAR shell spike.");
+};
+
+type Props = {
+  id: string;
+  initialValue?: string;
+  placeholder?: string;
+  onChange?: (html: string) => void;
+};
+
+/**
+ * Plane's non-collaborative rich text editor, mounted without a project: mentions search the workspace
+ * roster and content lives only in the caller's local state.
+ */
+export const RadarSpikeNotesEditor = observer(function RadarSpikeNotesEditor(props: Props) {
+  const { id, initialValue = "<p></p>", placeholder, onChange } = props;
+  const { workspaceSlug } = useParams();
+  const { currentWorkspace } = useWorkspace();
+
+  if (!workspaceSlug || !currentWorkspace) return null;
+
+  return (
+    <RichTextEditor
+      id={id}
+      editable
+      initialValue={initialValue}
+      workspaceSlug={workspaceSlug.toString()}
+      workspaceId={currentWorkspace.id}
+      disabledExtensions={["image"]}
+      dragDropEnabled
+      placeholder={placeholder ?? "Write here. Select text to format, type / for blocks, @ to mention a member."}
+      onChange={(_json, html) => onChange?.(html)}
+      searchMentionCallback={async (payload) => await workspaceService.searchEntity(workspaceSlug.toString(), payload)}
+      uploadFile={rejectFileOperation}
+      duplicateFile={rejectFileOperation}
+      containerClassName="min-h-[140px] rounded-md border border-subtle px-1 pt-2"
+    />
+  );
+});

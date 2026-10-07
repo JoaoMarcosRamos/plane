@@ -1,0 +1,11 @@
+### Result
+{"nonmemberUI":"PASS","apiStatus":403}
+### Ran Playwright code
+```js
+await (async (page) => { await page.getByRole("heading",{name:"Workspace not found",exact:true}).waitFor(); if (await page.getByTestId("radar-version").count()) throw new Error("Object exposed to nonmember"); const status = await page.evaluate(async () => (await fetch("http://localhost:8001/api/workspaces/radar-other/radar/objects/8b79f670-fc63-48df-b511-184c1823621d/",{credentials:"include"})).status); if (status !== 403) throw new Error("Nonmember API not denied"); return {nonmemberUI:"PASS", apiStatus:status}; })(page);
+```
+### Page
+- Page URL: http://localhost:3000/radar-other/radar/objects/8b79f670-fc63-48df-b511-184c1823621d/
+- Console: 14 errors, 25 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-03T14-52-35-933Z.log#L73-L85

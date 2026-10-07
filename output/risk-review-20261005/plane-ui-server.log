@@ -1,0 +1,114 @@
+ Container radar-risk-review-tests-test-db-1 Running 
+ Container radar-risk-review-tests-test-redis-1 Running 
+ Container radar-risk-review-tests-test-mq-1 Running 
+ Container radar-risk-review-tests-test-minio-1 Running 
+ Container radar-risk-review-tests-test-db-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Waiting 
+ Container radar-risk-review-tests-test-mq-1 Waiting 
+ Container radar-risk-review-tests-test-minio-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Healthy 
+ Container radar-risk-review-tests-test-minio-1 Healthy 
+ Container radar-risk-review-tests-test-mq-1 Healthy 
+ Container radar-risk-review-tests-test-db-1 Healthy 
+ Container radar-risk-review-tests-api-tests-run-2ca2ddae1528 Creating 
+ Container radar-risk-review-tests-api-tests-run-2ca2ddae1528 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+ISOLATED_REVIEW_SERVER_READY
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 3
+172.22.0.1 - - [05/Oct/2026 11:05:13] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 26
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:05:13] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 750
+POST - /api/workspaces/risk-review-browser/radar/agent-runtime/runs/ of Queries: 45
+172.22.0.1 - - [05/Oct/2026 11:05:46] "POST /api/workspaces/risk-review-browser/radar/agent-runtime/runs/ HTTP/1.1" 202 202
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:05:46] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 655
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:05:46] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 575
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 205
+172.22.0.1 - - [05/Oct/2026 11:05:47] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1727
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 26
+172.22.0.1 - - [05/Oct/2026 11:05:48] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1856
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:05:48] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 681
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/2c352208-1972-43a0-ab93-dfd857c24641/resolve/ of Queries: 121
+172.22.0.1 - - [05/Oct/2026 11:06:36] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/2c352208-1972-43a0-ab93-dfd857c24641/resolve/ HTTP/1.1" 200 1349
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:06:36] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 693
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 26
+172.22.0.1 - - [05/Oct/2026 11:06:36] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1943
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/6cc247c5-1a31-41bc-a339-45e30b73e082/resolve/ of Queries: 45
+Conflict: /api/workspaces/risk-review-browser/radar/risk-reviews/6cc247c5-1a31-41bc-a339-45e30b73e082/resolve/
+172.22.0.1 - - [05/Oct/2026 11:06:42] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/6cc247c5-1a31-41bc-a339-45e30b73e082/resolve/ HTTP/1.1" 409 79
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:09:10] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 691
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 26
+172.22.0.1 - - [05/Oct/2026 11:09:11] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1887
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 26
+172.22.0.1 - - [05/Oct/2026 11:09:28] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1916
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:09:29] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 711
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/6cc247c5-1a31-41bc-a339-45e30b73e082/resolve/ of Queries: 139
+172.22.0.1 - - [05/Oct/2026 11:10:13] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/6cc247c5-1a31-41bc-a339-45e30b73e082/resolve/ HTTP/1.1" 200 1462
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:10:14] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 666
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 28
+172.22.0.1 - - [05/Oct/2026 11:10:14] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 2195
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/1bf65714-5162-4106-94e9-c863baaf3ce4/resolve/ of Queries: 139
+172.22.0.1 - - [05/Oct/2026 11:10:46] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/1bf65714-5162-4106-94e9-c863baaf3ce4/resolve/ HTTP/1.1" 200 1474
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:10:46] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 673
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 30
+172.22.0.1 - - [05/Oct/2026 11:10:46] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 2524
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/3e8a19bf-0aa0-4c07-8e84-c8d681d933c7/resolve/ of Queries: 178
+172.22.0.1 - - [05/Oct/2026 11:11:10] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/3e8a19bf-0aa0-4c07-8e84-c8d681d933c7/resolve/ HTTP/1.1" 200 1657
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 30
+172.22.0.1 - - [05/Oct/2026 11:11:10] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 2852
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:11:10] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 762
+POST - /api/workspaces/risk-review-browser/radar/agent-runtime/runs/ of Queries: 46
+172.22.0.1 - - [05/Oct/2026 11:12:58] "POST /api/workspaces/risk-review-browser/radar/agent-runtime/runs/ HTTP/1.1" 202 201
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:12:58] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 796
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 48
+172.22.0.1 - - [05/Oct/2026 11:12:58] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 2910
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 199
+172.22.0.1 - - [05/Oct/2026 11:12:58] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 1869
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 53
+172.22.0.1 - - [05/Oct/2026 11:12:59] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 3373
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:12:59] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 737
+POST - /api/workspaces/risk-review-browser/radar/risk-reviews/3893bf02-0d41-4448-a29e-8cf72b155879/resolve/ of Queries: 43
+172.22.0.1 - - [05/Oct/2026 11:13:57] "POST /api/workspaces/risk-review-browser/radar/risk-reviews/3893bf02-0d41-4448-a29e-8cf72b155879/resolve/ HTTP/1.1" 200 1617
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:13:57] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 709
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 53
+172.22.0.1 - - [05/Oct/2026 11:13:57] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 3462
+GET - /api/workspaces/risk-review-browser/radar/agent-config/ of Queries: 21
+172.22.0.1 - - [05/Oct/2026 11:29:12] "GET /api/workspaces/risk-review-browser/radar/agent-config/ HTTP/1.1" 200 790
+GET - /api/workspaces/risk-review-browser/radar/risk-reviews/ of Queries: 53
+172.22.0.1 - - [05/Oct/2026 11:29:13] "GET /api/workspaces/risk-review-browser/radar/risk-reviews/ HTTP/1.1" 200 3458
+GET - /api/workspaces/risk-review-browser/radar/objects/4fd0187c-01d1-4e1c-8f1b-ba5aabed1e2d/properties/ of Queries: 116
+172.22.0.1 - - [05/Oct/2026 11:29:43] "GET /api/workspaces/risk-review-browser/radar/objects/4fd0187c-01d1-4e1c-8f1b-ba5aabed1e2d/properties/ HTTP/1.1" 200 1197
+GET - /api/workspaces/risk-review-browser/radar/objects/4fd0187c-01d1-4e1c-8f1b-ba5aabed1e2d/relations/ of Queries: 9
+172.22.0.1 - - [05/Oct/2026 11:29:43] "GET /api/workspaces/risk-review-browser/radar/objects/4fd0187c-01d1-4e1c-8f1b-ba5aabed1e2d/relations/ HTTP/1.1" 200 715
+GET - /api/workspaces/risk-review-browser/radar/objects/ of Queries: 3
+172.22.0.1 - - [05/Oct/2026 11:29:43] "GET /api/workspaces/risk-review-browser/radar/objects/ HTTP/1.1" 200 838
+GET - /api/workspaces/risk-review-browser/radar/relation-types/ of Queries: 109
+172.22.0.1 - - [05/Oct/2026 11:29:44] "GET /api/workspaces/risk-review-browser/radar/relation-types/ HTTP/1.1" 200 2389
+GET - /api/workspaces/risk-review-browser/radar/property-definitions/ of Queries: 109
+172.22.0.1 - - [05/Oct/2026 11:29:44] "GET /api/workspaces/risk-review-browser/radar/property-definitions/ HTTP/1.1" 200 3918
+GET - /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/relations/ of Queries: 9
+172.22.0.1 - - [05/Oct/2026 11:30:12] "GET /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/relations/ HTTP/1.1" 200 842
+GET - /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/properties/ of Queries: 116
+172.22.0.1 - - [05/Oct/2026 11:30:12] "GET /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/properties/ HTTP/1.1" 200 1332
+GET - /api/workspaces/risk-review-browser/radar/property-definitions/ of Queries: 109
+172.22.0.1 - - [05/Oct/2026 11:30:13] "GET /api/workspaces/risk-review-browser/radar/property-definitions/ HTTP/1.1" 200 3989
+GET - /api/workspaces/risk-review-browser/radar/relation-types/ of Queries: 109
+172.22.0.1 - - [05/Oct/2026 11:30:13] "GET /api/workspaces/risk-review-browser/radar/relation-types/ HTTP/1.1" 200 2418
+GET - /api/workspaces/risk-review-browser/radar/objects/ of Queries: 3
+172.22.0.1 - - [05/Oct/2026 11:30:13] "GET /api/workspaces/risk-review-browser/radar/objects/ HTTP/1.1" 200 861
+GET - /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/relations/ of Queries: 9
+172.22.0.1 - - [05/Oct/2026 11:30:13] "GET /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/relations/ HTTP/1.1" 200 867
+GET - /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/properties/ of Queries: 116
+172.22.0.1 - - [05/Oct/2026 11:30:13] "GET /api/workspaces/risk-review-browser/radar/objects/c154ed67-27c1-4413-8aca-b4bdf69f08b9/properties/ HTTP/1.1" 200 1337
+

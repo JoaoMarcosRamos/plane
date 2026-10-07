@@ -1,0 +1,55 @@
+ Container radar-risk-review-tests-test-db-1 Running 
+ Container radar-risk-review-tests-test-redis-1 Running 
+ Container radar-risk-review-tests-test-mq-1 Running 
+ Container radar-risk-review-tests-test-minio-1 Running 
+ Container radar-risk-review-tests-test-db-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Waiting 
+ Container radar-risk-review-tests-test-mq-1 Waiting 
+ Container radar-risk-review-tests-test-minio-1 Waiting 
+ Container radar-risk-review-tests-test-minio-1 Healthy 
+ Container radar-risk-review-tests-test-redis-1 Healthy 
+ Container radar-risk-review-tests-test-db-1 Healthy 
+ Container radar-risk-review-tests-test-mq-1 Healthy 
+ Container radar-risk-review-tests-api-tests-run-f7b639548d53 Creating 
+ Container radar-risk-review-tests-api-tests-run-f7b639548d53 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+{
+  "action_count": 1,
+  "action_title": "Confirmar prazo de licenciamento do Sandbox IA",
+  "threatens_count": 1,
+  "mitigates_count": 1,
+  "runtime_identity": true,
+  "rejection_provenance": "de25a5af-04f5-4931-a9a4-c2abd9bac6a7",
+  "proposal_statuses": [
+    {
+      "component": "relation",
+      "revision": 1,
+      "execution__status": "executed"
+    },
+    {
+      "component": "action",
+      "revision": 1,
+      "execution__status": "rejected"
+    },
+    {
+      "component": "action",
+      "revision": 2,
+      "execution__status": "rejected"
+    },
+    {
+      "component": "action",
+      "revision": 3,
+      "execution__status": "executed"
+    },
+    {
+      "component": "relation",
+      "revision": 1,
+      "execution__status": "pending_approval"
+    },
+    {
+      "component": "action",
+      "revision": 1,
+      "execution__status": "rejected"
+    }
+  ]
+}

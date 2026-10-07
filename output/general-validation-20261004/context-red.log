@@ -1,0 +1,71 @@
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 3 items
+
+plane/radar/tests/test_context_bounds.py FF.
+
+=================================== FAILURES ===================================
+_______ test_context_property_budget_counts_only_authorized_fields[42-1] _______
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 22, 27, 40, 177313, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+hidden_count = 42, visible_count = 1
+
+    @pytest.mark.parametrize("hidden_count,visible_count", [(42, 1), (0, 20), (0, 21)])
+    def test_context_property_budget_counts_only_authorized_fields(context, hidden_count, visible_count):
+        obj = create(context)
+        allowed = []
+        for index in range(hidden_count + visible_count):
+            key = f"field_{index}"
+            definition = PropertyDefinition.objects.create(
+                workspace=obj.workspace, object_type=obj.object_type, key=key, name=key, value_type="string"
+            )
+            PropertyValue.objects.create(
+                id=UUID(int=index + 1), workspace=obj.workspace, object=obj, definition=definition, value=key
+            )
+            if index >= hidden_count:
+                allowed.append(key)
+        snapshot = load_context(Object.objects.filter(pk=obj.pk), SimpleNamespace(fields=allowed), [obj.pk])
+        properties = snapshot["objects"][0]["properties"]
+>       assert properties == {key: key for key in allowed[:20]}
+E       AssertionError: assert {} == {'field_42': 'field_42'}
+E         
+E         Right contains 1 more item:
+E         {'field_42': 'field_42'}
+E         Use -v to get more diff
+
+plane/radar/tests/test_context_bounds.py:31: AssertionError
+_______ test_context_property_budget_counts_only_authorized_fields[0-20] _______
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 22, 27, 44, 328428, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+hidden_count = 0, visible_count = 20
+
+    @pytest.mark.parametrize("hidden_count,visible_count", [(42, 1), (0, 20), (0, 21)])
+    def test_context_property_budget_counts_only_authorized_fields(context, hidden_count, visible_count):
+        obj = create(context)
+        allowed = []
+        for index in range(hidden_count + visible_count):
+            key = f"field_{index}"
+            definition = PropertyDefinition.objects.create(
+                workspace=obj.workspace, object_type=obj.object_type, key=key, name=key, value_type="string"
+            )
+            PropertyValue.objects.create(
+                id=UUID(int=index + 1), workspace=obj.workspace, object=obj, definition=definition, value=key
+            )
+            if index >= hidden_count:
+                allowed.append(key)
+        snapshot = load_context(Object.objects.filter(pk=obj.pk), SimpleNamespace(fields=allowed), [obj.pk])
+        properties = snapshot["objects"][0]["properties"]
+        assert properties == {key: key for key in allowed[:20]}
+>       assert snapshot["truncated"] is (visible_count > 20)
+E       assert True is (20 > 20)
+
+plane/radar/tests/test_context_bounds.py:32: AssertionError
+- generated xml file: /code/output/general-validation-20261004/context-red.xml -
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_context_bounds.py::test_context_property_budget_counts_only_authorized_fields[42-1]
+FAILED plane/radar/tests/test_context_bounds.py::test_context_property_budget_counts_only_authorized_fields[0-20]
+========================= 2 failed, 1 passed in 32.31s =========================

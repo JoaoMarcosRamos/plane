@@ -1,0 +1,295 @@
+{
+  "stage": "0.4 — Semantic UI",
+  "result": "PASS WITH CAVEATS",
+  "validated_at": "2026-10-03T17:07:15.625451+00:00",
+  "workspace": "radar-ui-zero",
+  "plane_projects": 0,
+  "actor": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+  "objects": [
+    {
+      "id": "da813984-868b-4eb7-8cc9-5946a2e53094",
+      "type": "person",
+      "title": "UI — Responsável",
+      "version": 3,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "type": "decision",
+      "title": "UI — Decisão de licenças",
+      "version": 6,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "type": "risk",
+      "title": "UI — Risco de atraso",
+      "version": 4,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "c5d64c3f-1d8e-4e13-acd7-3d0e24fae264",
+      "type": "project",
+      "title": "UI — Sandbox IA",
+      "version": 4,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "type": "objective",
+      "title": "UI — Governança de IA",
+      "version": 11,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    }
+  ],
+  "properties": [
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "status",
+      "value": "active",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "description",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "outcome",
+      "value": "Governança de IA validada",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "timeframe",
+      "value": "short_term",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "priority",
+      "value": "medium",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "start_date",
+      "value": "2026-10-03",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "due_date",
+      "value": "2026-10-30",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "a1a8418c-126d-4c09-88e9-f9922de7d4fa",
+      "key": "progress",
+      "value": 25,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "c5d64c3f-1d8e-4e13-acd7-3d0e24fae264",
+      "key": "status",
+      "value": "draft",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "c5d64c3f-1d8e-4e13-acd7-3d0e24fae264",
+      "key": "description",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "status",
+      "value": "proposed",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "context",
+      "value": "Contexto preservado após falha de rede",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "rationale",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "decision",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "decided_at",
+      "value": "2026-10-03T16:45:00.000Z",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "d1229a1e-ac1c-4824-ae37-fed20e61f579",
+      "key": "consequences",
+      "value": [
+        "Licenças governadas",
+        "Acompanhamento mensal"
+      ],
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "status",
+      "value": "identified",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "description",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "likelihood",
+      "value": 4,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "impact",
+      "value": 5,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "score",
+      "value": 20,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "key": "response_strategy",
+      "value": "reduce",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "da813984-868b-4eb7-8cc9-5946a2e53094",
+      "key": "status",
+      "value": "active",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "da813984-868b-4eb7-8cc9-5946a2e53094",
+      "key": "role",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "da813984-868b-4eb7-8cc9-5946a2e53094",
+      "key": "team",
+      "value": "",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "object": "da813984-868b-4eb7-8cc9-5946a2e53094",
+      "key": "timezone",
+      "value": "America/Bahia",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    }
+  ],
+  "relations": [
+    {
+      "id": "a900d144-cea4-45d7-8a0e-5f0f351b360a",
+      "key": "advances",
+      "source": "c5d64c3f-1d8e-4e13-acd7-3d0e24fae264",
+      "target": "a1a8418c-126d-4c09-88e9-f9922de7d4fa"
+    },
+    {
+      "id": "cfc1622c-3903-47ac-a0ec-829f8022587b",
+      "key": "threatens",
+      "source": "00002a45-5eaa-42b2-913b-04b1629720b4",
+      "target": "a1a8418c-126d-4c09-88e9-f9922de7d4fa"
+    }
+  ],
+  "removed_relations": [
+    {
+      "id": "4d9de23d-e2a6-4779-a2f7-fe5affd79bd9",
+      "key": "owned_by",
+      "deleted_at": "2026-10-03T16:47:16.348512+00:00"
+    }
+  ],
+  "guest_role": 5,
+  "browser_checks": [
+    "typed_fields_save_and_hard_refresh",
+    "date_invariant_rejection",
+    "local_numeric_range_error_and_correction",
+    "drafts_preserved_during_other_field_mutation",
+    "incoming_relation_creation",
+    "forward_and_backlink_navigation",
+    "duplicate_and_outgoing_cardinality_filter",
+    "relation_remove_cancel_then_confirm",
+    "derived_risk_score_refresh",
+    "string_list_and_datetime_round_trip",
+    "property_clear_and_recreate",
+    "network_failure_preserves_draft_then_retry",
+    "guest_read_only",
+    "anonymous_redirect",
+    "foreign_workspace_object_unavailable",
+    "initial_load_503_then_retry",
+    "stale_semantic_refresh_503_retry_enabled",
+    "corrected_outcome_persisted_after_hard_refresh"
+  ],
+  "checks": {
+    "frontend_unit_tests": 42,
+    "frontend_types": "PASS",
+    "frontend_format": "PASS",
+    "radar_strict_lint": "PASS",
+    "web_lint": {
+      "errors": 0,
+      "warnings": 538
+    },
+    "git_diff_check": "PASS"
+  },
+  "limitations": [
+    "upstream shell hydration and MobX warnings persist",
+    "incoming source cardinality ultimately validated by backend",
+    "0.5 complete scenario and 0.6 Go/No-Go pending"
+  ]
+}

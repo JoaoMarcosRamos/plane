@@ -1,0 +1,123 @@
+{
+  "source": "/Users/joaomarcosramos/Documents/Github/JMR_Personal-CoS",
+  "destination": "/Users/joaomarcosramos/Documents/Github/COS_AGENT_V2",
+  "stage": "/private/tmp/cos-agent-v2-relocation.mqjmgwhz",
+  "head": "471ddd86358ffcdd80ae61ccfff867876835dd06",
+  "files": [
+    {
+      "path": ".env.example",
+      "tracked": true,
+      "sha256": "5afe7a687cf3a9765a3ff2f44c55215975121127b03f91334c882c60feb1cc9d",
+      "baseline_sha256": "8b8b5781a59d8152c7cc7726a57018aab2f3a7004092fed5fe1ab2e121741d08",
+      "prepared_sha256": "5afe7a687cf3a9765a3ff2f44c55215975121127b03f91334c882c60feb1cc9d"
+    },
+    {
+      "path": "app/application/telegram.py",
+      "tracked": true,
+      "sha256": "302dd10bcc79313feb08af3bc79206d51a2b3414080109f98320c4f6b72b6c33",
+      "baseline_sha256": "87b7e07b31acc326aec32b715cfcf7731c3289dad64aac1ab843cc4b79c3a8f0",
+      "prepared_sha256": "302dd10bcc79313feb08af3bc79206d51a2b3414080109f98320c4f6b72b6c33"
+    },
+    {
+      "path": "app/config.py",
+      "tracked": true,
+      "sha256": "59ab9dbbee2d2918b7a3b0b2db7ac02d7d636c3a2e6524530f276f5f3383f60c",
+      "baseline_sha256": "4b5bfb3c3beaf3546c44150d4e9c718171b383af90dbf0b5b50d1f4ffee314ec",
+      "prepared_sha256": "59ab9dbbee2d2918b7a3b0b2db7ac02d7d636c3a2e6524530f276f5f3383f60c"
+    },
+    {
+      "path": "app/database/radar_operations.py",
+      "tracked": true,
+      "sha256": "6fc86f0a25d4dc4c7e8b933f06adf8ec0123948483bf7608d1c87001f3595467",
+      "baseline_sha256": "b09d452e1fb4e2ffa6f8cf39d19c92b7c01b39ab167c336828c9d5470d84d576",
+      "prepared_sha256": "6fc86f0a25d4dc4c7e8b933f06adf8ec0123948483bf7608d1c87001f3595467"
+    },
+    {
+      "path": "app/database/schema.py",
+      "tracked": true,
+      "sha256": "8f555e9c3ecd27bec75ce13d0a609aa25c23df66b91ed0e5a5a312394f2eb9ed",
+      "baseline_sha256": "212ae431148e57182a36ab0271bcd2b1794ca5dc5bb1305219e3fadbf8504936",
+      "prepared_sha256": "8f555e9c3ecd27bec75ce13d0a609aa25c23df66b91ed0e5a5a312394f2eb9ed"
+    },
+    {
+      "path": "app/services/radar_service.py",
+      "tracked": true,
+      "sha256": "a86c4aed416b2c78fe46455eb370c5f352d263b8ebc67f00f30f3df30b6ae2dc",
+      "baseline_sha256": "d6dbb56beb629c3373d7e518476911a55a9c385c87babc773eda96849f8e243a",
+      "prepared_sha256": "a86c4aed416b2c78fe46455eb370c5f352d263b8ebc67f00f30f3df30b6ae2dc"
+    },
+    {
+      "path": "app/tools/dependencies.py",
+      "tracked": true,
+      "sha256": "9e3e59ae32779c7e6eefdb692dcc9d90a581af68c9035d15297c74895f9449d4",
+      "baseline_sha256": "d3ab31c0a827539db7e832bba310ea70dfcb6ae288bc70784ca26e17c6c9f905",
+      "prepared_sha256": "9e3e59ae32779c7e6eefdb692dcc9d90a581af68c9035d15297c74895f9449d4"
+    },
+    {
+      "path": "app/tools/radar.py",
+      "tracked": true,
+      "sha256": "a711d444cf4168d2f536e2c9fdb23c476985ce097965e8f76c34345aec4f14c3",
+      "baseline_sha256": "e0d53124e8dc71467b56f86e0a2d8d2e2ee23992b064e43393dfe5e9f8fba41e",
+      "prepared_sha256": "a711d444cf4168d2f536e2c9fdb23c476985ce097965e8f76c34345aec4f14c3"
+    },
+    {
+      "path": "tests/integration/test_radar_approval_flow.py",
+      "tracked": true,
+      "sha256": "9dc8a2aa1ad13ba9973b8b8097dd08a9f43e145e40ec3f194fc1c741961564de",
+      "baseline_sha256": "44414424f779c959ae23aac35bea93dd94fa068a720e2272ff6117382a1a2ace",
+      "prepared_sha256": "9dc8a2aa1ad13ba9973b8b8097dd08a9f43e145e40ec3f194fc1c741961564de"
+    },
+    {
+      "path": "tests/unit/test_migrations.py",
+      "tracked": true,
+      "sha256": "8fa1d7453a6e0d43122ea24573111bacb552e64134065f7b1abf4b9a2c0c84d1",
+      "baseline_sha256": "b2684d6625d63e9356dd819c79935726da911ad12d9c9db82f7749320621cfea",
+      "prepared_sha256": "8fa1d7453a6e0d43122ea24573111bacb552e64134065f7b1abf4b9a2c0c84d1"
+    },
+    {
+      "path": "app/integrations/radar_commands.py",
+      "tracked": false,
+      "sha256": "fcf7bfb49fe6613f4c5842f4c5a32effbdd0c9b1ac2cba03d5a34c817b564600",
+      "baseline_sha256": null,
+      "prepared_sha256": "fcf7bfb49fe6613f4c5842f4c5a32effbdd0c9b1ac2cba03d5a34c817b564600"
+    },
+    {
+      "path": "docs/development/RADAR_COMMAND_LAYER.md",
+      "tracked": false,
+      "sha256": "d4f75efb4d472647b4157d29e4d4272470d195eadc16cf53adf3b2d0f3b3fd94",
+      "baseline_sha256": null,
+      "prepared_sha256": "e425fffe00cf29430485b535a86a0d81cd8e9bbeb3a51a34c290eee1d8420012"
+    },
+    {
+      "path": "migrations/versions/20261004_0013_radar_command_context.py",
+      "tracked": false,
+      "sha256": "cfa916e2e9d1fd6e830c9e7c60c1f79ab7bb7f8333f6ab9f4528ffefd7599c5c",
+      "baseline_sha256": null,
+      "prepared_sha256": "cfa916e2e9d1fd6e830c9e7c60c1f79ab7bb7f8333f6ab9f4528ffefd7599c5c"
+    },
+    {
+      "path": "tests/unit/test_radar_command_runtime.py",
+      "tracked": false,
+      "sha256": "67e148d5e02e438dd7d530559b372694594b1d8040e58e850dda6420337c0a07",
+      "baseline_sha256": null,
+      "prepared_sha256": "67e148d5e02e438dd7d530559b372694594b1d8040e58e850dda6420337c0a07"
+    }
+  ],
+  "extra_destination_files": [
+    {
+      "path": "docs/index.html",
+      "before_sha256": "19042c4ad2d7b411843bcf0de42656cdb2fd67d82325ce9e382db5a2d75c6caa",
+      "prepared_sha256": "bc515218a6804d3043a9929ae625da634263ec8c714652aa39df6c44abc28231"
+    },
+    {
+      "path": "TASK_LIST.md",
+      "before_sha256": "fb1459a8389b81d24c9e65217d6c42a35664c99e8df52bb716ef0bc3fd16a898",
+      "prepared_sha256": "a49f59f7af145c36de0bf21dc901952b7ac8287faa444382005f82ca019735dd"
+    },
+    {
+      "path": "docs/development/042-radar-command-layer.html",
+      "before_sha256": null,
+      "prepared_sha256": "a3f32a15b5c2b1a6f8b399f14de9e64e9f43ef8e34f8e305b26d45539604088b"
+    }
+  ]
+}

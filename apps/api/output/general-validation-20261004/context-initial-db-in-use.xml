@@ -1,0 +1,922 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="3" failures="0" skipped="0" tests="3" time="26.340" timestamp="2026-10-04T22:25:27.545575+00:00" hostname="805d3720df08"><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[42-1]" time="8.728"><error message="failed on setup with &quot;SystemExit: 2&quot;">self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff92696240&gt;
+sql = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff92696240&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918eed50&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.DuplicateDatabase: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: DuplicateDatabase
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+&gt;               self._execute_create_test_db(cursor, test_db_params, keepdb)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/creation.py:46: in _execute_create_test_db
+    super()._execute_create_test_db(cursor, parameters, keepdb)
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:190: in _execute_create_test_db
+    cursor.execute("CREATE DATABASE %(dbname)s %(suffix)s" % parameters)
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918eed50&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.ProgrammingError: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ProgrammingError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff92696240&gt;
+sql = 'DROP DATABASE "test_plane_context_validation"', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff92696240&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918eed50&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.ObjectInUse: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ObjectInUse
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+&gt;                       cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918eed50&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.OperationalError: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: OperationalError
+
+During handling of the above exception, another exception occurred:
+
+request = &lt;SubRequest '_django_db_marker' for &lt;Function test_context_property_budget_counts_only_authorized_fields[42-1]&gt;&gt;
+
+    @pytest.fixture(autouse=True)
+    def _django_db_marker(request: pytest.FixtureRequest) -&gt; None:
+        """Implement the django_db marker, internal to pytest-django."""
+        marker = request.node.get_closest_marker("django_db")
+        if marker:
+&gt;           request.getfixturevalue("_django_db_helper")
+
+/usr/local/lib/python3.12/site-packages/pytest_django/plugin.py:566: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/pytest_django/fixtures.py:186: in django_db_setup
+    db_cfg = setup_databases(
+/usr/local/lib/python3.12/site-packages/django/test/utils.py:204: in setup_databases
+    connection.creation.create_test_db(
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:62: in create_test_db
+    self._create_test_db(verbosity, autoclobber, keepdb)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+                        cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+                        self._execute_create_test_db(cursor, test_db_params, keepdb)
+                    except Exception as e:
+                        self.log("Got an error recreating the test database: %s" % e)
+&gt;                       sys.exit(2)
+E                       SystemExit: 2
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:232: SystemExit</error></testcase><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[0-20]" time="5.656"><error message="failed on setup with &quot;SystemExit: 2&quot;">self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff926388f0&gt;
+sql = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff926388f0&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918ef1d0&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.DuplicateDatabase: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: DuplicateDatabase
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+&gt;               self._execute_create_test_db(cursor, test_db_params, keepdb)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/creation.py:46: in _execute_create_test_db
+    super()._execute_create_test_db(cursor, parameters, keepdb)
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:190: in _execute_create_test_db
+    cursor.execute("CREATE DATABASE %(dbname)s %(suffix)s" % parameters)
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918ef1d0&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.ProgrammingError: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ProgrammingError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff926388f0&gt;
+sql = 'DROP DATABASE "test_plane_context_validation"', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff926388f0&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918ef1d0&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.ObjectInUse: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ObjectInUse
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+&gt;                       cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918ef1d0&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.OperationalError: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: OperationalError
+
+During handling of the above exception, another exception occurred:
+
+request = &lt;SubRequest '_django_db_marker' for &lt;Function test_context_property_budget_counts_only_authorized_fields[0-20]&gt;&gt;
+
+    @pytest.fixture(autouse=True)
+    def _django_db_marker(request: pytest.FixtureRequest) -&gt; None:
+        """Implement the django_db marker, internal to pytest-django."""
+        marker = request.node.get_closest_marker("django_db")
+        if marker:
+&gt;           request.getfixturevalue("_django_db_helper")
+
+/usr/local/lib/python3.12/site-packages/pytest_django/plugin.py:566: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/pytest_django/fixtures.py:186: in django_db_setup
+    db_cfg = setup_databases(
+/usr/local/lib/python3.12/site-packages/django/test/utils.py:204: in setup_databases
+    connection.creation.create_test_db(
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:62: in create_test_db
+    self._create_test_db(verbosity, autoclobber, keepdb)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+                        cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+                        self._execute_create_test_db(cursor, test_db_params, keepdb)
+                    except Exception as e:
+                        self.log("Got an error recreating the test database: %s" % e)
+&gt;                       sys.exit(2)
+E                       SystemExit: 2
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:232: SystemExit</error></testcase><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[0-21]" time="6.072"><error message="failed on setup with &quot;SystemExit: 2&quot;">self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff9261c380&gt;
+sql = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff9261c380&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918edf10&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.DuplicateDatabase: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: DuplicateDatabase
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+&gt;               self._execute_create_test_db(cursor, test_db_params, keepdb)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:204: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/postgresql/creation.py:46: in _execute_create_test_db
+    super()._execute_create_test_db(cursor, parameters, keepdb)
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:190: in _execute_create_test_db
+    cursor.execute("CREATE DATABASE %(dbname)s %(suffix)s" % parameters)
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918edf10&gt;
+query = 'CREATE DATABASE "test_plane_context_validation" ', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.ProgrammingError: database "test_plane_context_validation" already exists
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ProgrammingError
+
+During handling of the above exception, another exception occurred:
+
+self = &lt;django.db.backends.utils.CursorWrapper object at 0xffff9261c380&gt;
+sql = 'DROP DATABASE "test_plane_context_validation"', params = None
+ignored_wrapper_args = (False, {'connection': &lt;DatabaseWrapper vendor='postgresql' alias='__no_db__'&gt;, 'cursor': &lt;django.db.backends.utils.CursorWrapper object at 0xffff9261c380&gt;})
+
+    def _execute(self, sql, params, *ignored_wrapper_args):
+        # Raise a warning during app initialization (stored_app_configs is only
+        # ever set during testing).
+        if not apps.ready and not apps.stored_app_configs:
+            warnings.warn(self.APPS_NOT_READY_WARNING_MSG, category=RuntimeWarning)
+        self.db.validate_no_broken_transaction()
+        with self.db.wrap_database_errors:
+            if params is None:
+                # params default might be backend specific.
+&gt;               return self.cursor.execute(sql)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918edf10&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           psycopg.errors.ObjectInUse: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: ObjectInUse
+
+The above exception was the direct cause of the following exception:
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+&gt;                       cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:228: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:79: in execute
+    return self._execute_with_wrappers(
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:92: in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:100: in _execute
+    with self.db.wrap_database_errors:
+/usr/local/lib/python3.12/site-packages/django/db/utils.py:91: in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+/usr/local/lib/python3.12/site-packages/django/db/backends/utils.py:103: in _execute
+    return self.cursor.execute(sql)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.base.Cursor [closed] [BAD] at 0xffff918edf10&gt;
+query = 'DROP DATABASE "test_plane_context_validation"', params = None
+
+    def execute(
+        self,
+        query: Query,
+        params: Params | None = None,
+        *,
+        prepare: bool | None = None,
+        binary: bool | None = None,
+    ) -&gt; Self:
+        """
+        Execute a query or command to the database.
+        """
+        try:
+            with self._conn.lock:
+                self._conn.wait(
+                    self._execute_gen(query, params, prepare=prepare, binary=binary)
+                )
+        except e._NO_TRACEBACK as ex:
+&gt;           raise ex.with_traceback(None)
+E           django.db.utils.OperationalError: database "test_plane_context_validation" is being accessed by other users
+E           DETAIL:  There is 1 other session using the database.
+
+/usr/local/lib/python3.12/site-packages/psycopg/cursor.py:117: OperationalError
+
+During handling of the above exception, another exception occurred:
+
+request = &lt;SubRequest '_django_db_marker' for &lt;Function test_context_property_budget_counts_only_authorized_fields[0-21]&gt;&gt;
+
+    @pytest.fixture(autouse=True)
+    def _django_db_marker(request: pytest.FixtureRequest) -&gt; None:
+        """Implement the django_db marker, internal to pytest-django."""
+        marker = request.node.get_closest_marker("django_db")
+        if marker:
+&gt;           request.getfixturevalue("_django_db_helper")
+
+/usr/local/lib/python3.12/site-packages/pytest_django/plugin.py:566: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/pytest_django/fixtures.py:186: in django_db_setup
+    db_cfg = setup_databases(
+/usr/local/lib/python3.12/site-packages/django/test/utils.py:204: in setup_databases
+    connection.creation.create_test_db(
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:62: in create_test_db
+    self._create_test_db(verbosity, autoclobber, keepdb)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = &lt;django.db.backends.postgresql.creation.DatabaseCreation object at 0xffff92a81f70&gt;
+verbosity = 0, autoclobber = True, keepdb = False
+
+    def _create_test_db(self, verbosity, autoclobber, keepdb=False):
+        """
+        Internal implementation - create the test db tables.
+        """
+        test_database_name = self._get_test_db_name()
+        test_db_params = {
+            "dbname": self.connection.ops.quote_name(test_database_name),
+            "suffix": self.sql_table_creation_suffix(),
+        }
+        # Create the test database and connect to it.
+        with self._nodb_cursor() as cursor:
+            try:
+                self._execute_create_test_db(cursor, test_db_params, keepdb)
+            except Exception as e:
+                # if we want to keep the db, then no need to do any of the below,
+                # just return and skip it all.
+                if keepdb:
+                    return test_database_name
+    
+                self.log("Got an error creating the test database: %s" % e)
+                if not autoclobber:
+                    confirm = input(
+                        "Type 'yes' if you would like to try deleting the test "
+                        "database '%s', or 'no' to cancel: " % test_database_name
+                    )
+                if autoclobber or confirm == "yes":
+                    try:
+                        if verbosity &gt;= 1:
+                            self.log(
+                                "Destroying old test database for alias %s..."
+                                % (
+                                    self._get_database_display_str(
+                                        verbosity, test_database_name
+                                    ),
+                                )
+                            )
+                        cursor.execute("DROP DATABASE %(dbname)s" % test_db_params)
+                        self._execute_create_test_db(cursor, test_db_params, keepdb)
+                    except Exception as e:
+                        self.log("Got an error recreating the test database: %s" % e)
+&gt;                       sys.exit(2)
+E                       SystemExit: 2
+
+/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py:232: SystemExit</error></testcase></testsuite></testsuites>

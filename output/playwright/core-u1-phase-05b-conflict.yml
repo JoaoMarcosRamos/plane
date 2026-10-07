@@ -1,0 +1,185 @@
+- generic [ref=f1e3]:
+  - link "All objects" [ref=f1e4] [cursor=pointer]:
+    - /url: /c18-browser-21c27b5e/radar/objects/
+  - generic [ref=f1e6]:
+    - paragraph [ref=f1e7]: Action
+    - generic [ref=f1e8]:
+      - generic [ref=f1e10]:
+        - text: Title
+        - generic [aria-hidden] [ref=f1e11]: "*"
+      - textbox "Title" [ref=f1e14]: Revisar prazos divergentes
+    - generic [ref=f1e16]:
+      - generic [ref=f1e17]:
+        - generic [ref=f1e18]: Description
+        - textbox "Description" [ref=f1e22]: Both sources stay explicit
+      - generic [ref=f1e23]:
+        - generic [ref=f1e24]: Saved
+        - button "Save Description" [disabled] [ref=f1e26]:
+          - generic [ref=f1e27]: Save
+    - generic [ref=f1e28]:
+      - heading "Notes" [level=2] [ref=f1e29]
+      - paragraph [ref=f1e30]: Complementary notes. The main narrative is description.
+      - generic:
+        - paragraph
+    - generic [ref=f1e31]:
+      - term [ref=f1e32]: Created by
+      - definition [ref=f1e33]: "Human: c18-admin-eaba0ac6"
+      - term [ref=f1e34]: Updated by
+      - definition [ref=f1e35]: "Human: c18-admin-eaba0ac6"
+      - term [ref=f1e36]: Version
+      - definition [ref=f1e37]: "2"
+    - button "Save title and notes" [disabled] [ref=f1e38]
+  - generic [ref=f1e40]:
+    - region [ref=f1e41]:
+      - heading "Actions" [level=2] [ref=f1e42]
+      - list [ref=f1e43]:
+        - listitem [ref=f1e44]:
+          - generic [ref=f1e45]: Complete action → Done
+          - generic [ref=f1e47]:
+            - generic [ref=f1e48]: Outcome
+            - textbox "Outcome" [ref=f1e52]
+          - generic [ref=f1e53]:
+            - generic [ref=f1e54]: Evidence
+            - combobox "Evidence" [ref=f1e55] [cursor=pointer]:
+              - generic "Select…" [ref=f1e56]
+            - textbox [aria-hidden] [ref=f1e60]
+          - button "Review Complete action → Done" [ref=f1e62] [cursor=pointer]:
+            - generic [ref=f1e63]: Review
+    - region [ref=f1e64]:
+      - heading "Execution" [level=2] [ref=f1e65]
+      - generic [ref=f1e66]:
+        - generic [ref=f1e67]:
+          - generic [ref=f1e68]:
+            - generic [ref=f1e69]: Status
+            - combobox "Status" [ref=f1e70] [cursor=pointer]:
+              - generic "Todo" [ref=f1e71]
+            - textbox [aria-hidden] [ref=f1e75]: todo
+          - generic [ref=f1e76]:
+            - generic [ref=f1e77]: Saved
+            - button "Save Status" [disabled] [ref=f1e79]:
+              - generic [ref=f1e80]: Save
+        - generic [ref=f1e81]:
+          - generic [ref=f1e82]:
+            - generic [ref=f1e83]: Next step
+            - textbox "Next step" [ref=f1e87]
+          - generic [ref=f1e88]:
+            - generic [ref=f1e89]: Saved
+            - button "Save Next step" [disabled] [ref=f1e91]:
+              - generic [ref=f1e92]: Save
+        - generic [ref=f1e93]:
+          - generic [ref=f1e94]:
+            - generic [ref=f1e95]: Priority
+            - combobox "Priority" [ref=f1e96] [cursor=pointer]:
+              - generic "Medium" [ref=f1e97]
+            - textbox [aria-hidden] [ref=f1e101]: medium
+          - generic [ref=f1e102]:
+            - generic [ref=f1e103]: Saved
+            - button "Save Priority" [disabled] [ref=f1e105]:
+              - generic [ref=f1e106]: Save
+        - generic [ref=f1e107]:
+          - generic [ref=f1e108]:
+            - generic [ref=f1e109]: Due date
+            - textbox "Due date" [ref=f1e113]: 2026-10-08
+          - generic [ref=f1e114]:
+            - generic [ref=f1e115]: Saved
+            - generic [ref=f1e116]:
+              - button "Clear Due date" [ref=f1e117] [cursor=pointer]:
+                - generic [ref=f1e118]: Clear
+              - button "Save Due date" [disabled] [ref=f1e119]:
+                - generic [ref=f1e120]: Save
+        - generic [ref=f1e121]:
+          - generic [ref=f1e122]:
+            - generic [ref=f1e123]: Completed at
+            - textbox "Completed at" [disabled] [ref=f1e127]
+          - paragraph [ref=f1e128]: Recorded by Complete action when the transition happens.
+          - generic [ref=f1e129]: Not set
+    - region [ref=f1e131]:
+      - heading "Other properties" [level=2] [ref=f1e132]
+      - generic [ref=f1e134]:
+        - generic [ref=f1e135]:
+          - generic [ref=f1e136]: Delegation deadline
+          - textbox "Delegation deadline" [ref=f1e140]: 2026-10-06T19:41
+        - generic [ref=f1e141]:
+          - generic [ref=f1e142]: Saved
+          - generic [ref=f1e143]:
+            - button "Clear Delegation deadline" [ref=f1e144] [cursor=pointer]:
+              - generic [ref=f1e145]: Clear
+            - button "Save Delegation deadline" [disabled] [ref=f1e146]:
+              - generic [ref=f1e147]: Save
+    - region [ref=f1e148]:
+      - generic [ref=f1e149]:
+        - heading "Relations" [level=2] [ref=f1e150]
+        - button "Add relation" [ref=f1e151] [cursor=pointer]
+      - list [ref=f1e153]:
+        - listitem [ref=f1e154]:
+          - generic [aria-hidden] [ref=f1e155]: →
+          - generic [ref=f1e156]: Assigned to
+          - link "Executor C18" [ref=f1e157] [cursor=pointer]:
+            - /url: /c18-browser-21c27b5e/radar/objects/69c004fd-1578-4832-8452-fbc799295f82/
+          - generic [ref=f1e158]: Person
+          - button "Remove Assigned to relation with Executor C18" [ref=f1e159] [cursor=pointer]:
+            - generic [ref=f1e160]: Remove
+    - region [ref=f1e161]:
+      - heading "Backlinks" [level=2] [ref=f1e162]
+      - list
+      - paragraph [ref=f1e163]: No incoming relations.
+  - region [ref=f1e164]:
+    - generic [ref=f1e165]:
+      - heading "Collaboration" [level=2] [ref=f1e166]
+      - button "Reload" [ref=f1e167] [cursor=pointer]
+    - generic [ref=f1e169]:
+      - heading "Comments" [level=3] [ref=f1e170]
+      - paragraph [ref=f1e171]: No comments yet.
+      - generic [ref=f1e172]:
+        - generic [ref=f1e173]:
+          - generic [ref=f1e175]:
+            - text: New comment
+            - generic [aria-hidden] [ref=f1e176]: "*"
+          - textbox "New comment" [ref=f1e179]
+        - button "Add comment" [disabled] [ref=f1e180]
+    - generic [ref=f1e182]:
+      - heading "Attachments" [level=3] [ref=f1e183]
+      - paragraph [ref=f1e184]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+      - paragraph [ref=f1e185]: No attachments yet.
+      - generic [ref=f1e186]:
+        - generic [ref=f1e187]: Supporting file
+        - button "Supporting file" [ref=f1e188]
+        - paragraph [ref=f1e189]: Choose a nonempty file. A failed request keeps your selection for retry.
+        - button "Upload attachment" [disabled] [ref=f1e190]
+    - generic [ref=f1e192]:
+      - heading "Activity" [level=3] [ref=f1e193]
+      - list [ref=f1e194]:
+        - listitem [ref=f1e195]:
+          - paragraph [ref=f1e196]: Delegate Action · executed
+          - paragraph [ref=f1e197]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=f1e198]: 06/10/2026, 20:41:31
+          - paragraph [ref=f1e199]: C18 browser fixture · fixture.browser
+        - listitem [ref=f1e200]:
+          - paragraph [ref=f1e201]: Bind Fixture Identity · executed
+          - paragraph [ref=f1e202]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=f1e203]: 06/10/2026, 20:41:31
+          - paragraph [ref=f1e204]: C18 browser fixture · fixture.browser
+        - listitem [ref=f1e205]:
+          - paragraph [ref=f1e206]: Create Object · executed
+          - paragraph [ref=f1e207]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=f1e208]: 06/10/2026, 20:41:30
+          - paragraph [ref=f1e209]: C18 browser fixture · fixture.browser
+  - region "Histórico operacional" [ref=f1e210]:
+    - generic [ref=f1e211]:
+      - heading "Histórico operacional" [level=2] [ref=f1e212]
+      - button "Atualizar histórico" [ref=f1e213] [cursor=pointer]
+    - alert [ref=f1e215]: "Prazos divergentes: data 08/10/2026; delegação 06/10/2026, 19:41:31 · America/Bahia"
+    - paragraph [ref=f1e216]: "Executores correntes: Executor C18"
+    - generic [ref=f1e217]:
+      - generic [ref=f1e218]: Filtrar histórico
+      - combobox "Filtrar histórico" [ref=f1e219] [cursor=pointer]:
+        - generic "Todos" [ref=f1e220]
+      - textbox [aria-hidden] [ref=f1e224]: all
+    - list [ref=f1e225]:
+      - listitem [ref=f1e226]:
+        - paragraph [ref=f1e227]: Delegação · 06/10/2026, 19:41:31 · 1 executor(es)
+        - paragraph [ref=f1e228]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:31
+        - paragraph [ref=f1e229]: Registrado por command · Object v2

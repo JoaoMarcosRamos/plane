@@ -1,0 +1,18 @@
+{
+  "migration": "0016_operational_history",
+  "upgrade_preserves_archive_and_timestamps": true,
+  "no_automatic_fact_backfill": true,
+  "custom_due_at_definition_preserved": true,
+  "installed_base_updated_without_conflicts": true,
+  "schema_revision": [
+    5,
+    6
+  ],
+  "forward_idempotent": true,
+  "reviewed_backfill_idempotent": true,
+  "raw_offset_and_microseconds_preserved": true,
+  "unknown_original_authorship_preserved": true,
+  "identity_preserved": true,
+  "streaming_cli_export_verified": true,
+  "destructive_reverse_blocked_and_history_preserved": true
+}

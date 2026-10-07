@@ -1,0 +1,546 @@
+diff --git a/.env.example b/.env.example
+index 20a85be..122bb15 100644
+--- a/.env.example
++++ b/.env.example
+@@ -58,6 +58,11 @@ AGENT_IDENTICAL_TOOL_CALL_BUDGET=2
+ # configured path; Core, rules and policies come from the pinned radar-vault
+ # package and never from this repository's legacy ontology/ copy.
+ RADAR_ENABLED=false
++RADAR_BACKEND=vault
++# Use command-layer for PostgreSQL RADAR; bind identities and issue a host token first.
++# The URL includes /api/workspaces/<slug>/radar/runtime/v1/.
++RADAR_COMMAND_URL=
++RADAR_COMMAND_TOKEN=
+ RADAR_VAULT_PATH=/data/radar-vault
+ RADAR_CONTEXT=company:radar-pilot
+ RADAR_PERSON_ID=
+diff --git a/app/application/telegram.py b/app/application/telegram.py
+index d1191f4..32778eb 100644
+--- a/app/application/telegram.py
++++ b/app/application/telegram.py
+@@ -415,6 +415,24 @@ async def fulfil_telegram_update(
+                 if pending_radar is not None:
+                     decision = _approval_decision(text)
+                     if decision is False:
++                        if pending_radar.execution_context is not None:
++                            radar_service().execute_saved_operation(
++                                operation=pending_radar.operation,
++                                target_id=pending_radar.target_id,
++                                expected_revision=pending_radar.expected_revision,
++                                parameters=pending_radar.parameters,
++                                idempotency_key=pending_radar.idempotency_key,
++                                execution_context=pending_radar.execution_context,
++                                approval_source=RadarMessageSource.from_telegram(
++                                    update_id=update_id,
++                                    chat_id=chat_id,
++                                    message_id=incoming.message_id,
++                                    author_id=user_id,
++                                    timestamp=incoming.timestamp,
++                                    text=text,
++                                ).metadata(),
++                                approve=False,
++                            )
+                         radar_operations.reject(pending_radar)
+                         reply = "Certo, descartei a proposta RADAR. Nenhum registro foi alterado."
+                         await progress.aclose()
+@@ -431,6 +449,21 @@ async def fulfil_telegram_update(
+                                 expected_revision=pending_radar.expected_revision,
+                                 parameters=pending_radar.parameters,
+                                 idempotency_key=pending_radar.idempotency_key,
++                                **(
++                                    {
++                                        "execution_context": pending_radar.execution_context,
++                                        "approval_source": RadarMessageSource.from_telegram(
++                                            update_id=update_id,
++                                            chat_id=chat_id,
++                                            message_id=incoming.message_id,
++                                            author_id=user_id,
++                                            timestamp=incoming.timestamp,
++                                            text=text,
++                                        ).metadata(),
++                                    }
++                                    if pending_radar.execution_context is not None
++                                    else {}
++                                ),
+                             )
+                             radar_operations.finish(pending_radar, result)
+                             reply = radar_execution_reply(result, pending_radar)
+@@ -484,7 +517,36 @@ async def fulfil_telegram_update(
+                             expected_revision=recoverable_radar.expected_revision,
+                             parameters=recoverable_radar.parameters,
+                             idempotency_key=recoverable_radar.idempotency_key,
++                            **(
++                                {
++                                    "execution_context": recoverable_radar.execution_context,
++                                    "approval_source": RadarMessageSource.from_telegram(
++                                        update_id=update_id,
++                                        chat_id=chat_id,
++                                        message_id=incoming.message_id,
++                                        author_id=user_id,
++                                        timestamp=incoming.timestamp,
++                                        text=text,
++                                    ).metadata(),
++                                }
++                                if recoverable_radar.execution_context is not None
++                                else {}
++                            ),
+                         )
++                        if (
++                            recoverable_radar.execution_context is not None
++                            and result.get("status") != "executed"
++                        ):
++                            # A blocked reconciliation cannot prove that the original commit failed.
++                            # Preserve uncertainty until the same receipt can be checked successfully.
++                            result = {
++                                "status": "failed",
++                                "code": "persistence_failure",
++                                "created_ids": [],
++                                "target_id": None,
++                                "revision": None,
++                                "operation_id": None,
++                            }
+                         radar_operations.finish(recoverable_radar, result)
+                         reply = radar_execution_reply(result, recoverable_radar)
+                     else:
+diff --git a/app/config.py b/app/config.py
+index ac26b96..8d976d6 100644
+--- a/app/config.py
++++ b/app/config.py
+@@ -15,8 +15,10 @@ name ``ANTHROPIC_API_KEY``, ``OPENAI_API_KEY`` or any other key to pass it on.
+ Docker and the VPS are unaffected by a ``.env`` left in the image.
+ """
+ 
++from typing import Literal
++
+ from dotenv import load_dotenv
+-from pydantic import AliasChoices, Field
++from pydantic import AliasChoices, Field, SecretStr
+ from pydantic_settings import BaseSettings, SettingsConfigDict
+ 
+ ENV_FILE = ".env"
+@@ -102,6 +104,9 @@ class Settings(BaseSettings):
+     # compatibility preflight. Every value participates in the gate so a
+     # half-configured install degrades without touching the package or vault.
+     radar_enabled: bool = False
++    radar_backend: Literal["vault", "command-layer"] = "vault"
++    radar_command_url: str | None = None
++    radar_command_token: SecretStr | None = None
+     radar_vault_path: str | None = None
+     radar_context: str | None = None
+     radar_person_id: str | None = None
+@@ -152,9 +157,19 @@ class Settings(BaseSettings):
+         principal. The model never supplies that identity, person or context.
+         """
+ 
++        backend_config = (
++            all(
++                (
++                    self.radar_command_url,
++                    self.radar_command_token and self.radar_command_token.get_secret_value(),
++                )
++            )
++            if self.radar_backend == "command-layer"
++            else bool(self.radar_vault_path)
++        )
+         return self.radar_enabled and all(
+             (
+-                self.radar_vault_path,
++                backend_config,
+                 self.radar_context,
+                 self.radar_person_id,
+                 self.telegram_allowed_user_id,
+diff --git a/app/database/radar_operations.py b/app/database/radar_operations.py
+index 607eccf..07f6461 100644
+--- a/app/database/radar_operations.py
++++ b/app/database/radar_operations.py
+@@ -55,6 +55,7 @@ class RadarOperationProposal:
+     source_context: dict[str, object] | None = None
+     intent_fingerprint: str | None = None
+     override_of: str | None = None
++    execution_context: dict[str, object] | None = None
+ 
+ 
+ @dataclass(frozen=True)
+@@ -100,6 +101,7 @@ class RadarOperationRepository:
+         context: str = "",
+         source_context: Mapping[str, object] | None = None,
+         dedup_window_seconds: int = 86_400,
++        execution_context: Mapping[str, object] | None = None,
+     ) -> RadarOperationProposal | RadarIntentDuplicate:
+         """Persist a proposal, or a non-executable duplicate with one-use override."""
+ 
+@@ -127,6 +129,7 @@ class RadarOperationRepository:
+             intent_fingerprint=fingerprint,
+             ttl_seconds=ttl_seconds,
+             now=now,
++            execution_context=execution_context,
+         )
+         try:
+             with self._engine.begin() as connection:
+@@ -292,6 +295,7 @@ class RadarOperationRepository:
+                 ttl_seconds=ttl_seconds,
+                 now=now,
+                 override_of=str(row.matched_proposal_id),
++                execution_context=payload.get("execution_context"),
+             )
+             connection.execute(pending_radar_operations.insert().values(**values))
+             changed = connection.execute(
+@@ -461,6 +465,7 @@ def _proposal_values(
+     ttl_seconds: int,
+     now: datetime,
+     override_of: str | None = None,
++    execution_context: Mapping[str, object] | None = None,
+ ) -> dict[str, object]:
+     proposal_id = str(uuid4())
+     return {
+@@ -472,7 +477,10 @@ def _proposal_values(
+         "target_id": target_id,
+         "expected_revision": expected_revision,
+         "parameters": dict(parameters),
+-        "idempotency_key": f"radar:{proposal_id}",
++        "idempotency_key": str(execution_context["idempotency_key"])
++        if execution_context
++        else f"radar:{proposal_id}",
++        "execution_context": dict(execution_context) if execution_context else None,
+         "summary": dict(summary),
+         "source_context": dict(source_context),
+         "intent_version": INTENT_FINGERPRINT_VERSION,
+@@ -545,6 +553,7 @@ def _stage_duplicate(
+                 "expected_revision",
+                 "parameters",
+                 "source_context",
++                "execution_context",
+             )
+         },
+         "summary": dict(matched["summary"]),
+@@ -591,6 +600,9 @@ def _proposal(values: Mapping[str, object]) -> RadarOperationProposal:
+             else None
+         ),
+         override_of=str(values["override_of"]) if values.get("override_of") else None,
++        execution_context=dict(values["execution_context"])
++        if isinstance(values.get("execution_context"), dict)
++        else None,
+     )
+ 
+ 
+diff --git a/app/database/schema.py b/app/database/schema.py
+index c72fab6..2daedf5 100644
+--- a/app/database/schema.py
++++ b/app/database/schema.py
+@@ -123,6 +123,7 @@ pending_radar_operations = Table(
+     Column("expected_revision", Integer, nullable=False),
+     Column("parameters", JSON, nullable=False),
+     Column("idempotency_key", String(96), nullable=False, unique=True),
++    Column("execution_context", JSON),
+     Column("summary", JSON, nullable=False),
+     Column("source_context", JSON, nullable=False, server_default=text("'{}'")),
+     Column("intent_version", String(16)),
+diff --git a/app/services/radar_service.py b/app/services/radar_service.py
+index 029267f..b987207 100644
+--- a/app/services/radar_service.py
++++ b/app/services/radar_service.py
+@@ -768,6 +768,11 @@ class RadarService:
+             "target_id": normalized_target,
+             "expected_revision": _mutation_revision(prepared.get("expected_revision")),
+             "parameters": normalized_parameters,
++            **(
++                {"execution_context": prepared["execution_context"]}
++                if prepared.get("execution_context")
++                else {}
++            ),
+             # This is a display-only snapshot.  Execution ignores it and
+             # consumes only the canonical fields above, while Telegram can
+             # ask an informed question without exposing ids or revisions.
+@@ -858,9 +863,16 @@ class RadarService:
+         expected_revision: int,
+         parameters: dict[str, object],
+         idempotency_key: str,
++        execution_context: dict[str, object] | None = None,
++        approval_source: dict[str, object] | None = None,
++        approve: bool = True,
+     ) -> dict[str, object]:
+         """Execute exactly one stored proposal after current reauthorization."""
+ 
++        if (getattr(self.runtime, "backend", None) == "command-layer") != (
++            execution_context is not None
++        ):
++            return _safe_mutation_result("rejected", "write_package_incompatible")
+         try:
+             self._ensure_integrity()
+         except RadarQueryError as exc:
+@@ -878,17 +890,43 @@ class RadarService:
+                 expected_revision=expected_revision,
+                 parameters=parameters,
+                 idempotency_key=idempotency_key,
++                **(
++                    {
++                        "execution_context": execution_context,
++                        "approval_source": approval_source,
++                        "approve": approve,
++                    }
++                    if getattr(self.runtime, "backend", None) == "command-layer"
++                    else {}
++                ),
++            )
++        except RadarQueryError as exc:
++            return _safe_mutation_result(
++                "failed"
++                if exc.code == "persistence_failure"
++                else "conflict"
++                if exc.code in {"revision_conflict", "idempotency_conflict", "approval_stale"}
++                else "rejected",
++                exc.code,
+             )
+         except Exception as exc:  # noqa: BLE001 - no raw package message crosses to Telegram/audit
+             error = _mutation_error(exc)
+             return _safe_mutation_result("rejected", error.code)
+         if not isinstance(raw, dict):
+             return _safe_mutation_result("failed", "invalid_response")
+-        return _safe_result_projection(raw)
++        projected = _safe_result_projection(raw)
++        if (
++            getattr(self.runtime, "backend", None) == "command-layer"
++            and projected["code"] == "invalid_response"
++        ):
++            return _safe_mutation_result("failed", "persistence_failure")
++        return projected
+ 
+     def _write_agent_tools(self) -> object:
+         """Build a fresh non-agent principal for each prepare/approval step."""
+ 
++        if getattr(self.runtime, "backend", None) == "command-layer":
++            return self.runtime
+         principal = build_principal(
+             telegram_user_id=self.telegram_user_id,
+             person_id=self.person_id,
+@@ -936,6 +974,10 @@ class RadarService:
+ 
+         try:
+             self.runtime.ensure_current()
++        except RadarQueryError:
++            if getattr(self.runtime, "backend", None) == "command-layer":
++                raise
++            raise RadarQueryError("vault_changed_invalid") from None
+         except Exception:  # noqa: BLE001 - the adapter already discarded private diagnostics
+             raise RadarQueryError("vault_changed_invalid") from None
+ 
+@@ -943,6 +985,8 @@ class RadarService:
+ def _mutation_error(exc: Exception) -> RadarQueryError:
+     """Classify package preparation failures without retaining their prose."""
+ 
++    if isinstance(exc, RadarQueryError):
++        return exc
+     if type(exc).__name__ == "AuthorizationError":
+         return RadarQueryError(_safe_package_mutation_code(exc, fallback="not_authorized"))
+     if isinstance(exc, ValueError):
+diff --git a/app/tools/dependencies.py b/app/tools/dependencies.py
+index e2c8269..f393d47 100644
+--- a/app/tools/dependencies.py
++++ b/app/tools/dependencies.py
+@@ -224,6 +224,27 @@ def _create_radar_service() -> RadarService:
+     # importing radar_vault at all.
+     from app.services.radar_service import create_radar_service
+ 
++    if settings.radar_backend == "command-layer":
++        from app.integrations.radar_commands import RadarCommandRuntime
++        from app.services.radar_service import RadarService
++
++        assert settings.radar_command_url and settings.radar_command_token
++        runtime = RadarCommandRuntime(
++            base_url=settings.radar_command_url,
++            token=settings.radar_command_token.get_secret_value(),
++            context=settings.radar_context or "",
++            person_id=settings.radar_person_id or "",
++            allowed_tbox_versions=settings.radar_allowed_tbox_version_set,
++        )
++        return RadarService(
++            runtime=runtime,
++            context=settings.radar_context or "",
++            person_id=settings.radar_person_id or "",
++            telegram_user_id=settings.telegram_allowed_user_id or 0,
++            write_operations=settings.radar_write_operation_set
++            if settings.radar_writes_enabled
++            else frozenset(),
++        )
+     assert settings.radar_vault_path is not None
+     assert settings.radar_context is not None
+     assert settings.radar_person_id is not None
+diff --git a/app/tools/radar.py b/app/tools/radar.py
+index 3e7c43b..0b74016 100644
+--- a/app/tools/radar.py
++++ b/app/tools/radar.py
+@@ -392,7 +392,7 @@ def _propose(operation: str, target_id: str | None, parameters: dict[str, object
+     if source is not None:
+         if operation == "capture_issue":
+             parameters["source"] = source.evidence_source()
+-        elif operation == "record_measurement":
++        elif operation == "record_measurement" and "evidence_id" not in parameters:
+             parameters.update(
+                 evidence_source=source.evidence_source(),
+                 evidence_text=source.text,
+@@ -417,10 +417,17 @@ def _propose(operation: str, target_id: str | None, parameters: dict[str, object
+             expected_revision=int(prepared["expected_revision"]),
+             parameters=dict(prepared["parameters"]),
+             summary=summary,
+-            ttl_seconds=settings.radar_approval_ttl_seconds,
++            ttl_seconds=min(settings.radar_approval_ttl_seconds, 1800)
++            if prepared.get("execution_context")
++            else settings.radar_approval_ttl_seconds,
+             context=str(prepared["context"]),
+             source_context=source.metadata() if source is not None else {},
+             dedup_window_seconds=settings.radar_intent_dedup_window_seconds,
++            **(
++                {"execution_context": prepared["execution_context"]}
++                if prepared.get("execution_context")
++                else {}
++            ),
+         )
+     except ActiveRadarProposalError:
+         return failure(
+diff --git a/tests/integration/test_radar_approval_flow.py b/tests/integration/test_radar_approval_flow.py
+index 1e9910d..1847203 100644
+--- a/tests/integration/test_radar_approval_flow.py
++++ b/tests/integration/test_radar_approval_flow.py
+@@ -97,6 +97,127 @@ def _update(update_id: int, text: str) -> dict[str, object]:
+     }
+ 
+ 
++@pytest.mark.asyncio
++@pytest.mark.parametrize("decision", ["sim", "não"])
++async def test_command_receipt_and_confirmation_source_are_preserved(monkeypatch, stores, decision):
++    from datetime import UTC, datetime
++    from uuid import uuid4
++
++    threads, thread_id, proposals, updates = stores
++    receipt = {
++        "backend": "command-layer",
++        "command_id": str(uuid4()),
++        "idempotency_key": f"radar:{uuid4()}",
++        "intent_hash": "a" * 64,
++    }
++    proposal = proposals.create(
++        thread_id=thread_id,
++        telegram_user_id=42,
++        operation="review",
++        target_id="ACT-20260912-ABC123",
++        expected_revision=1,
++        parameters={"assessment": "Reviewed", "evidence_id": "DOC-20260912-ABC123"},
++        summary={
++            "version": 2,
++            "operation": "review",
++            "target": {"title": "Action", "type": "action"},
++        },
++        ttl_seconds=300,
++        execution_context=receipt,
++    )
++    executor = FakeRadarExecutor()
++    configure_radar_service(executor, report=RadarPreflightReport(state="ready"))
++    monkeypatch.setattr(settings, "telegram_allowed_user_id", 42)
++    monkeypatch.setattr(settings, "radar_writes_enabled", True)
++    monkeypatch.setattr(settings, "telegram_rich_messages_enabled", False)
++    update = _update(8301, decision)
++    update["message"].update(message_id=11, date=int(datetime.now(UTC).timestamp()))
++
++    def forbidden_agent(*args, **kwargs):
++        raise AssertionError("confirmation must not invoke the model")
++
++    try:
++        result = await process_telegram_update(
++            update,
++            client=FakeTelegram(),
++            agent_runner=forbidden_agent,
++            repository=updates,
++            conversation_repository=threads,
++            radar_repository=proposals,
++        )
++    finally:
++        close_radar_service()
++    assert result.status == "processed" and len(executor.calls) == 1
++    call = executor.calls[0]
++    assert (
++        call["execution_context"] == receipt and call["idempotency_key"] == proposal.idempotency_key
++    )
++    assert call["approval_source"]["author"] == "telegram:42"
++    assert (
++        call["approval_source"]["update_id"] == 8301 and call["approval_source"]["message_id"] == 11
++    )
++    assert call.get("approve", True) is (decision == "sim")
++
++
++@pytest.mark.asyncio
++async def test_blocked_command_reconciliation_stays_uncertain(monkeypatch, stores):
++    from datetime import UTC, datetime
++    from uuid import uuid4
++
++    threads, thread_id, proposals, updates = stores
++    receipt = {
++        "backend": "command-layer",
++        "command_id": str(uuid4()),
++        "idempotency_key": f"radar:{uuid4()}",
++        "intent_hash": "a" * 64,
++    }
++    proposal = proposals.create(
++        thread_id=thread_id,
++        telegram_user_id=42,
++        operation="review",
++        target_id="ACT-20260912-ABC123",
++        expected_revision=1,
++        parameters={"assessment": "Reviewed", "evidence_id": "DOC-20260912-ABC123"},
++        summary={
++            "version": 2,
++            "operation": "review",
++            "target": {"title": "Action", "type": "action"},
++        },
++        ttl_seconds=300,
++        execution_context=receipt,
++    )
++    assert proposals.claim_approval(proposal)
++    proposals.finish(proposal, {"status": "failed", "code": "persistence_failure"})
++    executor = FakeRadarExecutor(result={"status": "rejected", "code": "not_authorized"})
++    configure_radar_service(executor, report=RadarPreflightReport(state="ready"))
++    monkeypatch.setattr(settings, "telegram_allowed_user_id", 42)
++    monkeypatch.setattr(settings, "radar_writes_enabled", True)
++    monkeypatch.setattr(settings, "telegram_rich_messages_enabled", False)
++    update = _update(8302, "sim")
++    update["message"].update(message_id=12, date=int(datetime.now(UTC).timestamp()))
++
++    def forbidden_agent(*args, **kwargs):
++        raise AssertionError("reconciliation must not call a model")
++
++    try:
++        await process_telegram_update(
++            update,
++            client=FakeTelegram(),
++            agent_runner=forbidden_agent,
++            repository=updates,
++            conversation_repository=threads,
++            radar_repository=proposals,
++        )
++    finally:
++        close_radar_service()
++    restored = proposals.recoverable(thread_id=thread_id, telegram_user_id=42)
++    assert restored is not None and restored.status == "uncertain"
++    assert (
++        restored.execution_context == receipt
++        and restored.idempotency_key == receipt["idempotency_key"]
++    )
++
++
+ @pytest.mark.asyncio
+ async def test_yes_executes_the_saved_payload_once_without_invoking_the_agent(
+     monkeypatch: pytest.MonkeyPatch, stores
+diff --git a/tests/unit/test_migrations.py b/tests/unit/test_migrations.py
+index 5c20991..4f18ec8 100644
+--- a/tests/unit/test_migrations.py
++++ b/tests/unit/test_migrations.py
+@@ -32,6 +32,10 @@ def test_fresh_database_upgrades_to_head_without_live_schema_import(
+     try:
+         agent_run_columns = {column["name"] for column in schema.get_columns("agent_runs")}
+         assert {"origin", "metrics"} <= agent_run_columns
++        proposal_columns = {
++            column["name"] for column in schema.get_columns("pending_radar_operations")
++        }
++        assert "execution_context" in proposal_columns
+         assert {
+             "agent_memories",
+             "agent_runs",

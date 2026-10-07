@@ -1,0 +1,4 @@
+### Ran Playwright code
+```js
+await (async (page) => { const result = await page.evaluate(async () => { const [object, user, projects] = await Promise.all([fetch("http://localhost:8001/api/workspaces/radar-zero/radar/objects/8b79f670-fc63-48df-b511-184c1823621d/", { credentials: "include" }).then(r => r.json()), fetch("http://localhost:8001/api/users/me/", { credentials: "include" }).then(r => r.json()), fetch("http://localhost:8001/api/workspaces/radar-zero/projects/", { credentials: "include" }).then(r => r.json())]); return {object, userId: user.id, projectCount: projects.length}; }); if (result.object.version !== 1 || result.object.created_by !== result.userId || result.object.updated_by !== result.userId || result.object.object_type_detail.key !== "objective" || result.projectCount !== 0) throw new Error("Create audit mismatch"); console.log(JSON.stringify(result)); })(page);
+```

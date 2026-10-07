@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Relatório da Fase 1 RADAR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+/* Layout: technical dossier. Sticky contents rail on wide screens; one reading column (~72ch) with figures widening to the column. */
+:root {
+  --bg: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #15202b;
+  --ink-2: #465563;
+  --ink-3: #66737f;
+  --line: #d8dfe5;
+  --line-soft: #e8edf1;
+  --agent: #1f6fb2;
+  --agent-soft: #e4eff8;
+  --human: #b5651d;
+  --human-soft: #f8ece0;
+  --ok: #2e7d4f;
+  --ok-soft: #e2f1e7;
+  --crit: #b3261e;
+  --font-display: "IBM Plex Sans Condensed", "Arial Narrow", "Helvetica Neue", sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f151a; --surface: #161d24; --ink: #e4ebf1; --ink-2: #a8b5c1; --ink-3: #8593a0;
+    --line: #2b3641; --line-soft: #212b34; --agent: #4a96d4; --agent-soft: #17324a;
+    --human: #c2772c; --human-soft: #3a2714; --ok: #5fb383; --ok-soft: #173826; --crit: #e5736b;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f151a; --surface: #161d24; --ink: #e4ebf1; --ink-2: #a8b5c1; --ink-3: #8593a0;
+  --line: #2b3641; --line-soft: #212b34; --agent: #4a96d4; --agent-soft: #17324a;
+  --human: #c2772c; --human-soft: #3a2714; --ok: #5fb383; --ok-soft: #173826; --crit: #e5736b;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 15.5px/1.62 var(--font-body);
+  padding-inline: max(16px, 3vw);
+  padding-block: 0 72px;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--agent); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 2px solid var(--agent); outline-offset: 2px; }
+code, .mono { font-family: var(--font-mono); font-size: 0.86em; }
+code { background: var(--line-soft); padding: 0.08em 0.36em; border-radius: 4px; overflow-wrap: anywhere; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.12; margin: 0; }
+h1 { font-size: clamp(34px, 5.4vw, 52px); font-weight: 600; letter-spacing: -0.01em; }
+h2 { font-size: clamp(26px, 3.4vw, 32px); font-weight: 600; }
+h3 { font-size: 22px; font-weight: 600; }
+h4 { font: 600 16px/1.3 var(--font-body); margin: 0; }
+p { margin: 0; }
+.eyebrow { font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+
+.layout { max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; }
+main { min-width: 0; display: flex; flex-direction: column; gap: 72px; }
+.prose { max-width: 72ch; display: flex; flex-direction: column; gap: 14px; }
+.prose ul, .prose ol { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; }
+
+/* Contents rail */
+.toc { padding-block: 24px 0; }
+.toc h2 { font: 600 12px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 10px; }
+.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 24px; }
+.toc li { break-inside: avoid; }
+.toc a { display: block; padding: 4px 0; color: var(--ink-2); text-decoration: none; font-size: 14px; }
+.toc a:hover { color: var(--ink); }
+.toc .sub a { padding-left: 14px; font-family: var(--font-mono); font-size: 13px; }
+@media (min-width: 1100px) {
+  .layout { grid-template-columns: 200px minmax(0, 1fr); gap: 56px; }
+  .toc { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 0px); align-self: start; max-height: 100vh; overflow-y: auto; padding-block: 56px 24px; }
+  .toc ol { columns: 1; }
+  .toc a { border-left: 2px solid var(--line); padding-left: 12px; }
+  .toc .sub a { padding-left: 26px; }
+  .toc a:hover { border-left-color: var(--ink-3); }
+}
+
+/* Masthead */
+.masthead { padding-block: 56px 8px; display: flex; flex-direction: column; gap: 18px; border-bottom: 1px solid var(--line); padding-bottom: 32px; }
+.lead { font-size: 18px; line-height: 1.55; color: var(--ink-2); max-width: 64ch; }
+.meta { display: flex; flex-wrap: wrap; gap: 8px 28px; margin: 0; }
+.meta div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.meta dt { font: 500 11px/1.4 var(--font-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+.meta dd { margin: 0; font-size: 14px; }
+
+section { display: flex; flex-direction: column; gap: 22px; scroll-margin-top: 24px; }
+.section-head { display: flex; flex-direction: column; gap: 8px; }
+
+/* Delivery status grid */
+.phases { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.phases li { background: var(--surface); padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.phases .id { font: 500 13px/1 var(--font-mono); color: var(--ink-3); }
+.phases .name { font-weight: 600; line-height: 1.3; }
+.pill { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font: 500 12px/1 var(--font-mono); padding: 5px 9px; border-radius: 999px; border: 1px solid transparent; }
+.pill.ok { color: var(--ok); background: var(--ok-soft); }
+.pill.partial { color: var(--ink-2); border-color: var(--line); }
+.pill .glyph { font-size: 10px; }
+
+.verdict { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 22px; }
+@media (min-width: 860px) { .verdict { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); } }
+.verdict h3 { font-size: 20px; margin-bottom: 8px; }
+.figures { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.figures div { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; align-items: baseline; border-bottom: 1px solid var(--line-soft); padding-bottom: 8px; }
+.figures dt { font: 600 22px/1 var(--font-display); }
+.figures dd { margin: 0; font-size: 14px; color: var(--ink-2); }
+.note { font-size: 13px; color: var(--ink-3); }
+
+/* Figures and diagrams */
+.fig { margin: 0; display: flex; flex-direction: column; gap: 10px; }
+.frame { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 14px; overflow-x: auto; }
+.frame svg { display: block; width: 100%; height: auto; min-width: 640px; }
+.fig figcaption { font-size: 13.5px; color: var(--ink-2); max-width: 78ch; }
+
+.dg { color: var(--ink-3); font-family: var(--font-body); }
+.dg text { fill: var(--ink); font-size: 12px; }
+.dg .t { font-weight: 600; font-size: 13px; }
+.dg .s { fill: var(--ink-3); font-size: 11px; }
+.dg .m { fill: var(--ink-2); font-size: 11px; }
+.dg .lbl { fill: var(--ink-2); font-size: 11.5px; paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+.dg .box { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.dg .panel { fill: var(--bg); stroke: var(--ink-3); stroke-width: 1.2; }
+.dg .strong { stroke: var(--ink); stroke-width: 1.8; }
+.dg .human { stroke: var(--human); stroke-width: 1.8; }
+.dg .agent { stroke: var(--agent); stroke-width: 1.8; }
+.dg .ok { stroke: var(--ok); stroke-width: 1.8; }
+.dg .crit { stroke: var(--crit); stroke-width: 1.8; }
+.dg .state { stroke: var(--ink-3); stroke-width: 1.4; }
+.dg .dashed { stroke-dasharray: 5 4; }
+.dg .edge { fill: none; stroke: var(--ink-3); stroke-width: 1.4; }
+.dg .edge.human { stroke: var(--human); }
+.dg .edge.agent { stroke: var(--agent); }
+.dg .life { stroke: var(--line); stroke-width: 1.2; stroke-dasharray: 3 4; }
+.dg .mk-ink { fill: var(--ink-3); }
+.dg .mk-human { fill: var(--human); }
+.dg .mk-agent { fill: var(--agent); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; }
+.legend i { display: inline-block; width: 18px; height: 0; border-top: 2px solid var(--ink-3); }
+.legend i.h { border-top-color: var(--human); }
+.legend i.a { border-top-color: var(--agent); }
+.legend i.d { border-top-style: dashed; border-top-color: var(--agent); }
+
+/* Screenshots */
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); gap: 22px; }
+.shot { margin: 0; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.shots.single { grid-template-columns: minmax(0, 560px); }
+.shots.three { grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+@media (min-width: 700px) { .shots.phone-pair { grid-template-columns: minmax(0, 2.2fr) minmax(0, 1fr); } }
+.shot.wide { grid-column: 1 / -1; }
+.shot-open { all: unset; cursor: zoom-in; display: block; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; background: var(--surface); }
+.shot-open:focus-visible { outline: 2px solid var(--agent); outline-offset: 2px; }
+.shot-open img { width: 100%; height: auto; }
+.shot.crop .shot-open img { aspect-ratio: 4 / 3; object-fit: cover; object-position: var(--pos, 50% 0%); }
+.shot.tall .shot-open img { aspect-ratio: 3 / 4; object-fit: cover; object-position: var(--pos, 50% 0%); }
+.shot figcaption { font-size: 13.5px; color: var(--ink-2); }
+.src { display: inline-block; font: 500 11px/1.4 var(--font-mono); letter-spacing: 0.03em; padding: 2px 6px; border-radius: 4px; margin-right: 6px; vertical-align: 1px; }
+.src.real { color: var(--agent); background: var(--agent-soft); }
+.src.fixture { color: var(--ink-2); background: var(--line-soft); }
+.step { font: 600 12px/1 var(--font-mono); color: var(--human); margin-right: 6px; }
+
+/* Delivery blocks */
+.delivery { display: flex; flex-direction: column; gap: 18px; padding-top: 28px; border-top: 1px solid var(--line); scroll-margin-top: 24px; }
+.delivery-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+.delivery-head .id { font: 600 15px/1 var(--font-mono); color: var(--ink-3); }
+.facts { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 6px; max-width: 72ch; }
+.tests { font-size: 14px; color: var(--ink-2); border-left: 2px solid var(--line); padding-left: 12px; max-width: 72ch; }
+.tests strong { color: var(--ink); font-weight: 600; }
+.formula { font: 500 14px/1.6 var(--font-mono); background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; max-width: 72ch; overflow-x: auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips code { background: var(--surface); border: 1px solid var(--line); padding: 3px 7px; }
+.chips code.agent { border-color: var(--agent); }
+
+/* Tables */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th { text-align: left; font: 600 12.5px/1.3 var(--font-body); color: var(--ink-2); padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--line-soft); }
+td { padding: 9px 12px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.mono { font-family: var(--font-mono); font-size: 13px; }
+
+/* Charts */
+.charts { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
+.chart h4 { margin-bottom: 4px; }
+.chart .sub { font-size: 13px; color: var(--ink-3); margin-bottom: 8px; }
+.ch { display: block; width: 100%; height: auto; min-width: 600px; font-family: var(--font-mono); }
+.ch text { fill: var(--ink-3); font-size: 12px; }
+.ch .cat { fill: var(--ink-2); }
+.ch .val { fill: var(--ink); font-weight: 500; }
+.ch .grid { stroke: var(--line-soft); stroke-width: 1; }
+.ch .base { stroke: var(--line); stroke-width: 1; }
+.ch .bar { fill: var(--agent); transition: opacity 0.12s; }
+.ch .bar.dim { opacity: 0.45; }
+.ch .hit { fill: transparent; cursor: default; }
+.ch .hit:focus-visible { outline: none; stroke: var(--agent); stroke-width: 1.5; }
+.tip { position: fixed; z-index: 10; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); max-width: 280px; }
+details.data { font-size: 14px; }
+details.data summary { cursor: pointer; color: var(--agent); }
+details.data .table-wrap { margin-top: 10px; }
+
+/* Lightbox */
+dialog.viewer { border: 1px solid var(--line); border-radius: 10px; padding: 0; background: var(--surface); color: var(--ink); max-width: min(1280px, 96vw); width: 96vw; max-height: 94vh; }
+dialog.viewer::backdrop { background: rgba(8, 12, 16, 0.72); }
+.viewer-body { display: flex; flex-direction: column; gap: 10px; padding: 12px; max-height: 94vh; }
+.viewer-bar { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.viewer-bar p { font-size: 14px; color: var(--ink-2); }
+.viewer-bar button { font: 500 13px/1 var(--font-body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 12px; cursor: pointer; }
+.viewer-img { overflow: auto; min-height: 0; }
+.viewer-img img { margin: 0 auto; }
+
+footer { border-top: 1px solid var(--line); padding-top: 20px; font-size: 13px; color: var(--ink-3); max-width: 78ch; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <nav class="toc" aria-label="Conteúdo">
+    <h2>Conteúdo</h2>
+    <ol>
+      <li><a href="#situacao">Situação</a></li>
+      <li><a href="#loop">O loop</a></li>
+      <li><a href="#arquitetura">Arquitetura</a></li>
+      <li><a href="#workflows">Workflows</a></li>
+      <li><a href="#entregas">Entregas</a></li>
+      <li class="sub"><a href="#e11">1.1 · 1.2</a></li>
+      <li class="sub"><a href="#e13">1.3</a></li>
+      <li class="sub"><a href="#e14">1.4</a></li>
+      <li class="sub"><a href="#e15">1.5</a></li>
+      <li class="sub"><a href="#e16">1.6</a></li>
+      <li class="sub"><a href="#e17">1.7</a></li>
+      <li class="sub"><a href="#e18">1.8</a></li>
+      <li><a href="#testes">Testes</a></li>
+      <li><a href="#pendencias">Antes do piloto</a></li>
+      <li><a href="#fontes">Fontes</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="masthead">
+      <p class="eyebrow">RADAR · Fase 1 · MVP Human–Agent Loop</p>
+      <h1>Relatório da Fase 1</h1>
+      <p class="lead">Humano e agente operando sobre o mesmo estado gerencial. Este relatório reúne o que foi construído no Plane e no COS_AGENT_V2, como as partes se conectam, quais workflows foram implementados e como cada um foi verificado, até o teste ponta a ponta da 1.8 no shell real.</p>
+      <dl class="meta">
+        <div><dt>Data</dt><dd>05/10/2026</dd></div>
+        <div><dt>Repositórios</dt><dd>Plane (worktree <span class="mono">radar-phase-0-spike</span>) e COS_AGENT_V2</dd></div>
+        <div><dt>Ambiente</dt><dd>Local, sem commit e sem deploy</dd></div>
+        <div><dt>Core normativo</dt><dd>3.2.0 · <span class="mono">8ea1a14a…fd6ab7</span></dd></div>
+      </dl>
+    </header>
+
+    <section id="situacao" aria-labelledby="h-situacao">
+      <div class="section-head">
+        <h2 id="h-situacao">Situação das entregas</h2>
+      </div>
+      <ul class="phases">
+        <li><span class="id">1.1</span><span class="name">Command Layer comum</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.2</span><span class="name">Provenance, propostas e approvals</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.3</span><span class="name">Agent Runtime (Deep Agents)</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.4</span><span class="name">Agent Config</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.5</span><span class="name">Risk Review e revisão humana</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.6</span><span class="name">Today</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído</span></li>
+        <li><span class="id">1.7</span><span class="name">Colaboração mínima</span><span class="pill ok"><span class="glyph" aria-hidden="true">●</span>Concluído · upload pela UI pendente</span></li>
+        <li><span class="id">1.8</span><span class="name">E2E e piloto do loop</span><span class="pill partial"><span class="glyph" aria-hidden="true">◐</span>E2E concluído · piloto pendente</span></li>
+      </ul>
+      <div class="verdict">
+        <div class="prose">
+          <h3>Veredito técnico</h3>
+          <p>O loop <span class="mono">Human → State → Agent → Suggestion → Human → State</span> funciona no shell real do Plane, com login, backend, runtime CoS e PostgreSQL juntos, e deixa trilha auditável completa: quem sugeriu, quem aprovou, por quê, com que confiança e a partir de qual execução.</p>
+          <p>A utilidade para gestores ainda não foi medida. Falta o piloto, e a ativação num ambiente escolhido depende dos passos listados em <a href="#pendencias">Antes do piloto</a>. Nada foi publicado.</p>
+        </div>
+        <div>
+          <dl class="figures">
+            <div><dt>68/68</dt><dd>verificações na execução limpa do E2E 1.8</dd></div>
+            <div><dt>972</dt><dd>testes backend (272 RADAR + 700 Plane) com migrations reais</dd></div>
+            <div><dt>1.184</dt><dd>testes CoS; 9 avaliações com provider real desativadas</dd></div>
+            <div><dt>92</dt><dd>testes frontend RADAR</dd></div>
+            <div><dt>56/56</dt><dd>tarefas de check do monorepo (tipos, lint, format)</dd></div>
+          </dl>
+          <p class="note">Backend: regressão após a correção da 1.8. CoS, frontend e monorepo: bancada de 05/10, sem mudanças posteriores nessas partes.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="loop" aria-labelledby="h-loop">
+      <div class="section-head prose">
+        <h2 id="h-loop">O loop que a Fase 1 prova</h2>
+        <p>O agente não ganha um caminho próprio de escrita. Ele lê um recorte autorizado do estado e propõe. A mudança só acontece quando um humano aceita, e o aceite executa a mesma operação de domínio que o humano usaria, pelo mesmo Command Layer. A provenance guarda os dois atores.</p>
+      </div>
+      <figure class="fig">
+        <div class="frame">
+          <svg class="dg" viewBox="0 0 1000 200" role="img" aria-label="Loop em seis etapas: humano cria Objects, o estado fica no PostgreSQL, o agente analisa um snapshot, a sugestão fica pendente sem escrita, o humano aceita, edita ou rejeita, e o estado muda pela mesma operação com provenance dos dois atores.">
+            <defs>
+              <marker id="lp-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker>
+            </defs>
+            <rect class="box human" x="22" y="24" width="136" height="60" rx="8"/>
+            <rect class="box state" x="186" y="24" width="136" height="60" rx="8"/>
+            <rect class="box agent" x="350" y="24" width="136" height="60" rx="8"/>
+            <rect class="box agent dashed" x="514" y="24" width="136" height="60" rx="8"/>
+            <rect class="box human" x="678" y="24" width="136" height="60" rx="8"/>
+            <rect class="box state" x="842" y="24" width="136" height="60" rx="8"/>
+            <g text-anchor="middle">
+              <text class="t" x="90" y="50">Humano</text><text class="s" x="90" y="68">cria e edita</text>
+              <text class="t" x="254" y="50">Estado</text><text class="s" x="254" y="68">PostgreSQL mestre</text>
+              <text class="t" x="418" y="50">Agente</text><text class="s" x="418" y="68">Risk Review no CoS</text>
+              <text class="t" x="582" y="50">Sugestão</text><text class="s" x="582" y="68">inferência + evidência</text>
+              <text class="t" x="746" y="50">Humano</text><text class="s" x="746" y="68">Accept · Edit · Reject</text>
+              <text class="t" x="910" y="50">Estado</text><text class="s" x="910" y="68">mesma operação</text>
+              <text class="m" x="90" y="106">CreateObject</text><text class="m" x="90" y="122">RegisterRisk</text>
+              <text class="m" x="254" y="106">Object · Relation</text><text class="m" x="254" y="122">versão por Object</text>
+              <text class="m" x="418" y="106">snapshot autorizado</text><text class="m" x="418" y="122">sem tools de escrita</text>
+              <text class="m" x="582" y="106">pending_approval</text><text class="m" x="582" y="122">nenhuma escrita</text>
+              <text class="m" x="746" y="106">CommandApproval</text><text class="m" x="746" y="122">com rationale</text>
+              <text class="m" x="910" y="106">execute_command</text><text class="m" x="910" y="122">provenance dupla</text>
+            </g>
+            <g class="edge" marker-end="url(#lp-ink)">
+              <line x1="158" y1="54" x2="184" y2="54"/>
+              <line x1="322" y1="54" x2="348" y2="54"/>
+              <line x1="486" y1="54" x2="512" y2="54"/>
+              <line x1="650" y1="54" x2="676" y2="54"/>
+              <line x1="814" y1="54" x2="840" y2="54"/>
+            </g>
+            <path class="edge dashed" d="M978,54 H990 V166 H418 V138" marker-end="url(#lp-ink)"/>
+            <text class="lbl" x="704" y="186" text-anchor="middle">a próxima revisão lê o estado novo</text>
+          </svg>
+        </div>
+        <figcaption>Cada etapa do loop e o mecanismo que a implementa. Âmbar marca ações humanas e azul, o agente. A sugestão é tracejada porque é inferência sem efeito no domínio até o aceite.</figcaption>
+      </figure>
+    </section>
+
+    <section id="arquitetura" aria-labelledby="h-arq">
+      <div class="section-head prose">
+        <h2 id="h-arq">Arquitetura</h2>
+        <p>Três processos e um banco. O navegador fala apenas com o Plane, por sessão. O Plane é dono do domínio, das permissões e das aprovações, e chama o CoS servidor a servidor. O CoS executa o Deep Agents sobre o snapshot que recebe e devolve uma análise; por esse caminho ele não escreve no domínio.</p>
+      </div>
+      <figure class="fig">
+        <div class="frame">
+          <svg class="dg" viewBox="0 0 1000 606" role="img" aria-label="Arquitetura: navegador com o shell do Plane chama a API Django por sessão; a API tem views de sessão, fachada de runtime, Risk Review, Today e colaboração, todas escrevendo pelo Command Layer no PostgreSQL; a fachada chama o COS_AGENT_V2 por Bearer; o canal Telegram do CoS usa o port runtime/v1.">
+            <defs>
+              <marker id="ar-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="ar-human" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-human" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="ar-agent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-agent" d="M0,0 L10,5 L0,10 z"/></marker>
+            </defs>
+            <!-- Browser -->
+            <rect class="panel human" x="20" y="30" width="230" height="310" rx="12"/>
+            <text class="t" x="36" y="56">Navegador</text>
+            <text class="s" x="36" y="74">shell Plane · :3000</text>
+            <g>
+              <rect class="box" x="36" y="92" width="198" height="34" rx="6"/><text x="48" y="113">Login e sessão do Plane</text>
+              <rect class="box" x="36" y="134" width="198" height="34" rx="6"/><text x="48" y="155">Objects · Object Page</text>
+              <rect class="box" x="36" y="176" width="198" height="34" rx="6"/><text x="48" y="197">Risk Review · Today</text>
+              <rect class="box" x="36" y="218" width="198" height="34" rx="6"/><text x="48" y="239">Agent config · Colaboração</text>
+              <rect class="box" x="36" y="260" width="198" height="34" rx="6"/><text x="48" y="281">Store MobX por workspace</text>
+              <rect class="box" x="36" y="302" width="198" height="34" rx="6"/><text x="48" y="323">RadarService (HTTP)</text>
+            </g>
+            <!-- Plane API -->
+            <rect class="panel" x="330" y="30" width="330" height="310" rx="12"/>
+            <text class="t" x="346" y="56">Plane API</text>
+            <text class="s" x="346" y="74">Django · app plane.radar · :8001</text>
+            <rect class="box" x="346" y="92" width="145" height="48" rx="6"/><text class="t" x="356" y="112">Views de sessão</text><text class="s" x="356" y="129">membership · Actor</text>
+            <rect class="box agent" x="499" y="92" width="145" height="48" rx="6"/><text class="t" x="509" y="112">Fachada runtime</text><text class="s" x="509" y="129">binding · snapshot</text>
+            <rect class="box" x="346" y="148" width="145" height="48" rx="6"/><text class="t" x="356" y="168">Risk Review</text><text class="s" x="356" y="185">prepara · resolve</text>
+            <rect class="box" x="499" y="148" width="145" height="48" rx="6"/><text class="t" x="509" y="168">Today · Colaboração</text><text class="s" x="509" y="185">leituras e commands</text>
+            <rect class="box strong" x="346" y="204" width="298" height="60" rx="6"/><text class="t" x="362" y="229">Command Layer · execute_command</text><text class="s" x="362" y="248">envelope → grant → versões → approval → commit</text>
+            <rect class="box" x="346" y="272" width="298" height="48" rx="6"/><text class="t" x="362" y="292">Port runtime/v1</text><text class="s" x="362" y="309">credencial do CoS · prepare · resolve</text>
+            <!-- CoS -->
+            <rect class="panel agent" x="740" y="30" width="240" height="310" rx="12"/>
+            <text class="t" x="756" y="56">COS_AGENT_V2</text>
+            <text class="s" x="756" y="74">FastAPI · :8940</text>
+            <rect class="box" x="756" y="92" width="208" height="48" rx="6"/><text class="t" x="766" y="112">/agent-runtime/v1</text><text class="s" x="766" y="129">Bearer · contrato 1.0</text>
+            <rect class="box" x="756" y="148" width="208" height="48" rx="6"/><text class="t" x="766" y="168">DeepAgentsAdapter</text><text class="s" x="766" y="185">ledger radar_agent_runs</text>
+            <rect class="box" x="756" y="204" width="208" height="60" rx="6"/><text class="t" x="766" y="229">Executor de produto</text><text class="s" x="766" y="248">sem tools, memória ou arquivos</text>
+            <rect class="box" x="756" y="272" width="208" height="48" rx="6"/><text class="t" x="766" y="292">Modelo</text><text class="s" x="766" y="309">scripted ou Anthropic</text>
+            <rect class="box" x="740" y="380" width="240" height="50" rx="8"/><text class="t" x="756" y="401">Canal Telegram do CoS</text><text class="s" x="756" y="419">4 operações de domínio</text>
+            <!-- PostgreSQL -->
+            <path class="box state" d="M330,424 A165,14 0 0,1 660,424 V576 A165,14 0 0,1 330,576 Z"/>
+            <path class="edge" d="M330,424 A165,14 0 0,0 660,424"/>
+            <text class="t" x="346" y="462">PostgreSQL · fonte de verdade</text>
+            <text class="m" x="346" y="484">Object · PropertyValue · Relation</text>
+            <text class="m" x="346" y="503">CommandExecution · CommandApproval</text>
+            <text class="m" x="346" y="522">Provenance · DomainEvent (outbox)</text>
+            <text class="m" x="346" y="541">RuntimeCredential · AgentRuntimeRun</text>
+            <text class="m" x="346" y="560">AgentConfiguration · RiskReview · comentários</text>
+            <!-- Edges -->
+            <line class="edge human" x1="250" y1="116" x2="344" y2="116" marker-end="url(#ar-human)"/>
+            <text class="lbl" x="290" y="106" text-anchor="middle">HTTP</text>
+            <text class="lbl" x="290" y="134" text-anchor="middle">sessão</text>
+            <line class="edge agent" x1="644" y1="116" x2="754" y2="116" marker-end="url(#ar-agent)"/>
+            <text class="lbl" x="700" y="106" text-anchor="middle">POST runs</text>
+            <text class="lbl" x="700" y="134" text-anchor="middle">status</text>
+            <line class="edge" x1="495" y1="340" x2="495" y2="408" marker-end="url(#ar-ink)"/>
+            <text class="lbl" x="507" y="370">1 transação:</text>
+            <text class="lbl" x="507" y="386">domínio + provenance + outbox</text>
+            <path class="edge agent dashed" d="M740,405 H700 V296 H646" marker-end="url(#ar-agent)"/>
+            <text class="lbl" x="706" y="356">prepare</text>
+            <text class="lbl" x="706" y="372">resolve</text>
+          </svg>
+        </div>
+        <div class="legend"><span><i class="h"></i>chamada iniciada pelo humano</span><span><i class="a"></i>chamada do agente / runtime</span><span><i class="d"></i>canal Telegram do CoS</span></div>
+        <figcaption>Componentes e chamadas. O canal Telegram usa um port separado, autenticado por credencial própria do CoS, e também termina no Command Layer. Todas as escritas, de qualquer origem, convergem para <code>execute_command</code>.</figcaption>
+      </figure>
+      <div class="prose">
+        <h3>Fronteiras de confiança</h3>
+        <ul>
+          <li>O navegador nunca escolhe Actor, grant, workspace de escrita ou envelope. A API deriva tudo da sessão e do vínculo do usuário com o agente.</li>
+          <li>A chave Plane → CoS fica só nos servidores. O banco guarda apenas o hash das credenciais de runtime.</li>
+          <li>O modelo vê somente o snapshot autorizado: até 10 raízes, 21 Objects, 40 Relations e 30.000 caracteres, já filtrado por tipos e campos permitidos.</li>
+          <li>Toda mutação grava domínio, provenance e evento de outbox na mesma transação PostgreSQL. Falha reverte tudo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="workflows" aria-labelledby="h-wf">
+      <div class="section-head prose">
+        <h2 id="h-wf">Workflows implementados</h2>
+        <p>Humano e agente enviam o mesmo envelope de command. A diferença está na política: o humano com permissão executa direto; o agente sempre para em <code>pending_approval</code>, com a prévia calculada em savepoint e nenhuma linha de domínio gravada.</p>
+      </div>
+      <figure class="fig">
+        <div class="frame">
+          <svg class="dg" viewBox="0 0 860 270" role="img" aria-label="Ciclo de um command: envelope, validação, e então executed para humano com permissão, ou pending_approval para agente; Accept leva a executed com approval consumida; Reject leva a rejected; versão alterada leva a 409 conflict e Edit cria nova intenção pendente.">
+            <defs>
+              <marker id="cl-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="cl-human" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-human" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="cl-agent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-agent" d="M0,0 L10,5 L0,10 z"/></marker>
+            </defs>
+            <rect class="box state" x="16" y="110" width="140" height="50" rx="8"/><text class="t" x="30" y="131">Envelope</text><text class="s" x="30" y="148">UI, API ou adaptador</text>
+            <rect class="box state" x="190" y="110" width="160" height="50" rx="8"/><text class="t" x="204" y="131">Validação</text><text class="s" x="204" y="148">schema · grant · versões</text>
+            <rect class="box ok" x="400" y="20" width="170" height="50" rx="8"/><text class="t" x="414" y="41">executed</text><text class="s" x="414" y="58">ou noop, sem aprovação</text>
+            <rect class="box agent dashed" x="400" y="110" width="170" height="50" rx="8"/><text class="t" x="414" y="131">pending_approval</text><text class="s" x="414" y="148">prévia em savepoint</text>
+            <rect class="box ok" x="640" y="110" width="200" height="50" rx="8"/><text class="t" x="654" y="131">executed</text><text class="s" x="654" y="148">approval consumida no commit</text>
+            <rect class="box state" x="640" y="200" width="200" height="50" rx="8"/><text class="t" x="654" y="221">rejected</text><text class="s" x="654" y="238">rationale, sem escrita</text>
+            <rect class="box crit" x="400" y="200" width="170" height="50" rx="8"/><text class="t" x="414" y="221">409 conflict</text><text class="s" x="414" y="238">versões mudaram</text>
+            <line class="edge" x1="156" y1="135" x2="188" y2="135" marker-end="url(#cl-ink)"/>
+            <path class="edge human" d="M270,110 V45 H398" marker-end="url(#cl-human)"/>
+            <text class="lbl" x="278" y="84">humano</text>
+            <line class="edge agent" x1="350" y1="135" x2="398" y2="135" marker-end="url(#cl-agent)"/>
+            <text class="lbl" x="374" y="126" text-anchor="middle">agente</text>
+            <line class="edge human" x1="570" y1="135" x2="638" y2="135" marker-end="url(#cl-human)"/>
+            <text class="lbl" x="604" y="126" text-anchor="middle">Accept</text>
+            <path class="edge human" d="M540,160 V225 H638" marker-end="url(#cl-human)"/>
+            <text class="lbl" x="598" y="217" text-anchor="middle">Reject</text>
+            <line class="edge" x1="455" y1="160" x2="455" y2="198" marker-end="url(#cl-ink)"/>
+            <path class="edge human" d="M400,225 H372 V150 H398" marker-end="url(#cl-human)"/>
+            <text class="lbl" x="366" y="196" text-anchor="end">Edit</text>
+          </svg>
+        </div>
+        <div class="legend"><span><i class="h"></i>decisão humana</span><span><i class="a"></i>proposta do agente</span><span><i></i>sistema</span></div>
+        <figcaption>Estados de <code>CommandExecution</code> e da <code>CommandApproval</code> associada. A approval é de uso único e expira em 30 minutos. Um conflito de versão exige nova intenção por Edit: não há rebase automático.</figcaption>
+      </figure>
+
+      <div class="prose">
+        <h3>Envelope comum</h3>
+        <p>Campos que o cliente envia, e campos que o servidor deriva da autenticação. Campos desconhecidos são rejeitados.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Enviado pelo cliente</th><th scope="col">Derivado pelo servidor (Actor)</th></tr></thead>
+          <tbody>
+            <tr><td class="mono">command_name · command_version</td><td class="mono">actor_type · actor_id</td></tr>
+            <tr><td class="mono">idempotency_key</td><td class="mono">source · correlation_id</td></tr>
+            <tr><td class="mono">expected_versions {UUID → versão}</td><td class="mono">run_id · on_behalf_of</td></tr>
+            <tr><td class="mono">reason · input</td><td class="mono">approval_id (aprovação persistida)</td></tr>
+            <tr><td class="mono">assertion {kind, evidence_ids, confidence}</td><td class="mono">confidence (inferências do agente)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <figure class="fig" id="sequencia">
+        <div class="prose">
+          <h3>Risk Review de ponta a ponta</h3>
+          <p>O fluxo do prompt 1.8 como foi executado no shell real. Os números são os passos do prompt.</p>
+        </div>
+        <div class="frame">
+          <svg class="dg" viewBox="0 0 1000 612" role="img" aria-label="Sequência: humano cria Risk, Objective e Project; administrador vincula ao contexto; humano inicia Risk Review; a API monta o snapshot e chama o CoS; o CoS devolve JSON validado; a API prepara propostas pendentes; o humano aceita; a aprovação humana e o command do agente são executados no mesmo commit com provenance; a Object Page mostra a relação e a ação.">
+            <defs>
+              <marker id="sq-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-ink" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="sq-human" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-human" d="M0,0 L10,5 L0,10 z"/></marker>
+              <marker id="sq-agent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="mk-agent" d="M0,0 L10,5 L0,10 z"/></marker>
+            </defs>
+            <g text-anchor="middle">
+              <rect class="box state" x="8" y="14" width="124" height="44" rx="8"/><text class="t" x="70" y="33">Administrador</text><text class="s" x="70" y="49">CLI</text>
+              <rect class="box human" x="158" y="14" width="124" height="44" rx="8"/><text class="t" x="220" y="33">Humano</text><text class="s" x="220" y="49">navegador</text>
+              <rect class="box state" x="368" y="14" width="124" height="44" rx="8"/><text class="t" x="430" y="33">Plane API</text><text class="s" x="430" y="49">sessão</text>
+              <rect class="box strong" x="578" y="14" width="124" height="44" rx="8"/><text class="t" x="640" y="33">Command Layer</text><text class="s" x="640" y="49">PostgreSQL</text>
+              <rect class="box agent" x="798" y="14" width="124" height="44" rx="8"/><text class="t" x="860" y="33">COS_AGENT_V2</text><text class="s" x="860" y="49">Deep Agents</text>
+            </g>
+            <line class="life" x1="70" y1="58" x2="70" y2="604"/>
+            <line class="life" x1="220" y1="58" x2="220" y2="604"/>
+            <line class="life" x1="430" y1="58" x2="430" y2="604"/>
+            <line class="life" x1="640" y1="58" x2="640" y2="604"/>
+            <line class="life" x1="860" y1="58" x2="860" y2="604"/>
+            <g text-anchor="middle">
+              <line class="edge human" x1="220" y1="96" x2="638" y2="96" marker-end="url(#sq-human)"/><text class="lbl" x="430" y="89">1 · cria Risk, Objective e Project</text>
+              <line class="edge" x1="70" y1="134" x2="638" y2="134" marker-end="url(#sq-ink)"/><text class="lbl" x="355" y="127">2 · vincula os três ao contexto do agente</text>
+              <line class="edge human" x1="220" y1="172" x2="428" y2="172" marker-end="url(#sq-human)"/><text class="lbl" x="325" y="165">3 · Run Risk Review</text>
+              <line class="edge agent" x1="430" y1="232" x2="858" y2="232" marker-end="url(#sq-agent)"/><text class="lbl" x="645" y="225">snapshot ≤ 21 Objects · Bearer</text>
+              <line class="edge human" x1="220" y1="300" x2="428" y2="300" marker-end="url(#sq-human)"/><text class="lbl" x="325" y="293">4 · Check review</text>
+              <line class="edge agent" x1="430" y1="326" x2="858" y2="326" marker-end="url(#sq-agent)"/><text class="lbl" x="645" y="319">status</text>
+              <line class="edge agent dashed" x1="860" y1="352" x2="432" y2="352" marker-end="url(#sq-agent)"/><text class="lbl" x="645" y="345">completed + risk_review</text>
+              <line class="edge" x1="430" y1="384" x2="638" y2="384" marker-end="url(#sq-ink)"/><text class="lbl" x="535" y="377">prévia → pending_approval</text>
+              <line class="edge dashed" x1="430" y1="418" x2="222" y2="418" marker-end="url(#sq-ink)"/><text class="lbl" x="325" y="411">5 · Accept · Edit · Reject</text>
+              <line class="edge human" x1="220" y1="456" x2="428" y2="456" marker-end="url(#sq-human)"/><text class="lbl" x="325" y="449">6 · Accept + rationale</text>
+              <line class="edge human" x1="430" y1="490" x2="638" y2="490" marker-end="url(#sq-human)"/><text class="lbl" x="535" y="483">7 · aprovação humana</text>
+              <line class="edge agent" x1="430" y1="518" x2="638" y2="518" marker-end="url(#sq-agent)"/><text class="lbl" x="535" y="511">command do agente</text>
+              <line class="edge human" x1="220" y1="588" x2="638" y2="588" marker-end="url(#sq-human)"/><text class="lbl" x="430" y="581">9 · Object Page: Threatens · Mitigated by</text>
+            </g>
+            <text class="lbl" x="440" y="204">binding_for + load_context</text>
+            <text class="lbl" x="850" y="266" text-anchor="end">Deep Agents → JSON validado</text>
+            <text class="lbl" x="650" y="552">8 · provenance + evento, 1 commit</text>
+          </svg>
+        </div>
+        <figcaption>Sequência da execução limpa (workspace <span class="mono">radar-e2e-clean</span>). O passo 2 é administrativo: Objects criados pela UI só entram no contexto do agente depois de um vínculo explícito.</figcaption>
+      </figure>
+
+      <div class="prose"><h3>Outros workflows</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Workflow</th><th scope="col">Como funciona</th><th scope="col">Onde foi verificado</th></tr></thead>
+          <tbody>
+            <tr><td>Run do agente (1.3)</td><td><span class="mono">queued → running → completed</span>; <span class="mono">pause_requested → interrupted → resume</span>; <span class="mono">cancel</span>; lease expirado vira <span class="mono">unknown</span>. Um resultado salvo é republicado sem nova chamada ao modelo.</td><td>13 testes da fachada e ciclo HTTP real Plane → CoS</td></tr>
+            <tr><td>Configuração do agente (1.4)</td><td>Quatro blocos versionados por vínculo. Editar invalida runs antigos com <span class="mono">409 authorization_stale</span>.</td><td>22 testes; HTTP com e sem configuração; formulário em fixture</td></tr>
+            <tr><td>Today (1.6)</td><td>Quatro filas lidas do PostgreSQL com regras explícitas e o fuso do navegador. Só links; nenhuma mutação.</td><td>9 testes backend; navegador em fixture (desktop, mobile, vazio, erro)</td></tr>
+            <tr><td>Colaboração (1.7)</td><td>Seis commands human-only para comentários e anexos, cada item com revisão própria. Anexo privado de até 2 MiB gravado atomicamente no PostgreSQL; activity lida da provenance.</td><td>28 testes backend; upload HTTP multipart real; navegador em fixture</td></tr>
+            <tr><td>Canal Telegram do CoS</td><td><span class="mono">CaptureIssue</span>, <span class="mono">DelegateAction</span>, <span class="mono">ReviewObject</span> e <span class="mono">RecordMeasurement</span> são preparados como pendência. O "sim" do autor autenticado executa o envelope salvo, sem chamar o modelo.</td><td>Teste de contrato entre os repositórios e suíte CoS</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="entregas" aria-labelledby="h-entregas">
+      <div class="section-head prose">
+        <h2 id="h-entregas">O que foi construído, etapa por etapa</h2>
+        <p>As capturas marcadas <span class="src real">Shell real</span> vêm do E2E da 1.8, com login e shell completos. As marcadas <span class="src fixture">Fixture</span> vêm das entregas 1.4 a 1.7, que usaram componentes e stores de produto num preview com autenticação de teste. Clique numa captura para ampliar.</p>
+      </div>
+
+      <article class="delivery" id="e11">
+        <div class="delivery-head"><span class="id">1.1 · 1.2</span><h3>Command Layer, provenance e approvals</h3></div>
+        <div class="prose">
+          <p>Um único dispatcher, <code>execute_command</code>, atende UI, API e adaptadores. Nenhum deles escreve direto em Object, PropertyValue ou Relation. A integração com o CoS e a colaboração ampliaram o mesmo catálogo, sem uma segunda camada.</p>
+        </div>
+        <div class="chips" aria-label="Catálogo de commands">
+          <code>CreateObject</code><code>UpdateObject</code><code>LinkObjects</code><code>UnlinkObjects</code><code>CreateAction</code><code>CompleteAction</code><code>RegisterRisk</code><code>CreateDecision</code><code>ApproveDecision · só humano</code><code>AddEvidence</code><code class="agent">CaptureIssue</code><code class="agent">DelegateAction</code><code class="agent">ReviewObject</code><code class="agent">RecordMeasurement</code><code>Add/Edit/DeleteComment</code><code>Add/Rename/DeleteAttachment</code>
+        </div>
+        <ul class="facts">
+          <li>Idempotência por workspace, ator e chave, com hash da intenção. Retry devolve o resultado salvo; payload diferente com a mesma chave é conflito.</li>
+          <li><code>expected_versions</code> obrigatório para todo Object lido ou alterado. Locks em ordem de UUID; um incremento de versão por Object e command.</li>
+          <li>Provenance append-only com Actor, reason, source, correlation, run, approval, confidence, diff e eventos.</li>
+          <li><code>CommandApproval</code> de uso único (<span class="mono">pending → approved → consumed</span>), revalidada sob lock e com expiração de 30 minutos.</li>
+          <li>Outbox transacional (<code>DomainEvent</code>) no mesmo commit. O publisher ainda não existe.</li>
+          <li>Os quatro commands do CoS chegam pelo port <code>runtime/v1</code>, autenticado por credencial cujo hash fica no banco; o agente sempre precisa de aprovação.</li>
+        </ul>
+        <p class="tests">Testes na entrega: <strong>149 backend</strong> e <strong>49 frontend</strong>, com migrations reais no PostgreSQL de teste.</p>
+      </article>
+
+      <article class="delivery" id="e13">
+        <div class="delivery-head"><span class="id">1.3</span><h3>Agent Runtime</h3></div>
+        <div class="prose">
+          <p>O Plane ganhou uma fachada de runtime que autentica a sessão, resolve o vínculo do usuário com o agente, monta o snapshot autorizado e chama o CoS com um token servidor a servidor. No CoS, o <code>DeepAgentsAdapter</code> implementa <span class="mono">run</span>, <span class="mono">stream</span>, <span class="mono">invoke_skill</span>, <span class="mono">load_context</span>, <span class="mono">interrupt</span>, <span class="mono">resume</span> e <span class="mono">cancel</span> sobre um ledger próprio. Nenhum tipo do LangGraph atravessa o contrato.</p>
+        </div>
+        <ul class="facts">
+          <li>O executor de produto não tem tools de escrita, memória pessoal, filesystem nem subagentes.</li>
+          <li>Pausa cooperativa: se a inferência já começou, o resultado é guardado sem ser publicado como conclusão.</li>
+          <li>Cada acesso revalida usuário, membership, Person, grant e vínculo. Mudança de autoridade ou contexto exige nova intenção.</li>
+        </ul>
+        <p class="tests">Testes na entrega: <strong>177 backend RADAR</strong> (13 da fachada) e <strong>95 CoS</strong> selecionados, com ciclo HTTP real entre processos e modelo determinístico.</p>
+      </article>
+
+      <article class="delivery" id="e14">
+        <div class="delivery-head"><span class="id">1.4</span><h3>Agent Config</h3></div>
+        <div class="prose">
+          <p>Cada vínculo tem uma configuração JSON versionada com quatro blocos: Identity/Soul, Role, Policies e Permissions. Policies fica fixo em <code>read_only</code> e <code>require_human_approval</code>. Permissions só restringe; a cada execução o backend recalcula a interseção com o grant vigente, então um <code>*</code> salvo antes de uma redução do grant não devolve a autoridade antiga.</p>
+        </div>
+        <p class="formula">autoridade efetiva = grant vigente ∩ permissions da configuração ∩ contexto do vínculo ∩ object_ids</p>
+        <div class="shots single">
+          <figure class="shot tall" style="--pos: 50% 0%">
+            <button type="button" class="shot-open" data-caption="Agent configuration: quatro blocos, versão 2, commands e campos restritos ao teto do grant.">
+              <img src="{{IMG:config}}" alt="Formulário Agent configuration com Identity, Role, Policies e Permissions salvos na versão 2">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.4</span>Configuração salva na versão 2. A tela lembra que a execução é somente leitura e que mudanças no domínio exigem aprovação humana.</figcaption>
+          </figure>
+        </div>
+        <p class="tests">Testes na entrega: <strong>199 backend RADAR</strong>, <strong>67 CoS</strong> selecionados e <strong>58 frontend</strong>.</p>
+      </article>
+
+      <article class="delivery" id="e15">
+        <div class="delivery-head"><span class="id">1.5</span><h3>Risk Review e revisão humana</h3></div>
+        <div class="prose">
+          <p>A primeira e única skill de produto, <code>risk_review</code>, devolve JSON fechado com um resumo e até cinco sugestões. Cada sugestão traz explanation, uma relação <span class="mono">Risk threatens Objective/Project</span>, uma ação mitigadora opcional, confidence e evidências com citação literal de título, conteúdo ou propriedade. CoS e Plane validam fontes, versões e citações.</p>
+        </div>
+        <ul class="facts">
+          <li>Preparar a revisão roda os handlers reais em savepoint e desfaz: a prévia existe, o domínio não muda.</li>
+          <li>Relação e ação são aprovações independentes.</li>
+          <li>Accept executa o envelope salvo, sem chamar o modelo de novo. Edit salva uma nova intenção que exige outro Accept. Reject registra rationale e provenance, sem escrita.</li>
+        </ul>
+        <div class="shots single">
+          <figure class="shot crop" style="--pos: 50% 58%">
+            <button type="button" class="shot-open" data-caption="Histórico de revisão na 1.5: revisões 1 e 2 da ação substituídas por Edit, revisão 3 aceita; relação aplicada separadamente.">
+              <img src="{{IMG:review_fixture}}" alt="Histórico de Risk Review com revisões de uma ação sugerida e a relação aplicada">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.5</span>Histórico de uma ação sugerida: duas revisões substituídas por Edit e a terceira aceita, sempre marcada como "Original inference".</figcaption>
+          </figure>
+        </div>
+        <p class="tests">Testes na entrega: <strong>229 backend RADAR</strong> (27 de Risk Review), <strong>1.182 CoS</strong> e <strong>72 frontend</strong>.</p>
+      </article>
+
+      <article class="delivery" id="e16">
+        <div class="delivery-head"><span class="id">1.6</span><h3>Today</h3></div>
+        <div class="prose">
+          <p>Tela de atenção gerencial com quatro filas: riscos relevantes (score ≥ 15 ou revisão vencida), decisões propostas, ações vencidas e sugestões do Risk Review aguardando o próprio usuário. Cada item leva à Object Page ou à proposta específica. Today não aprova nada.</p>
+        </div>
+        <div class="shots phone-pair">
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Today em desktop: as quatro filas com motivo e link.">
+              <img src="{{IMG:today_desktop}}" alt="Tela Today com risco de score 20, decisão pendente, ação vencida e sugestão aguardando aprovação">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.6</span>Risco com score 20/25, decisão proposta, ação vencida em 02/10 e uma sugestão aguardando aprovação.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Today em 390 × 844, sem overflow horizontal.">
+              <img src="{{IMG:today_mobile}}" alt="Tela Today em largura de celular">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.6</span>Mesma tela a 390 px, em coluna única.</figcaption>
+          </figure>
+        </div>
+        <p class="tests">Testes na entrega: <strong>234 backend</strong> únicos e <strong>77 frontend</strong>.</p>
+      </article>
+
+      <article class="delivery" id="e17">
+        <div class="delivery-head"><span class="id">1.7</span><h3>Colaboração mínima</h3></div>
+        <div class="prose">
+          <p>Comentários em texto simples, anexos privados e activity por Object, com backend próprio do RADAR; nenhum model ou endpoint de Issue guarda o domínio. Os seis commands são human-only: editar exige autoria, excluir exige autoria ou admin. Comentários e anexos têm revisão própria e não alteram <code>Object.version</code>.</p>
+        </div>
+        <ul class="facts">
+          <li>Anexo de 1 byte a 2 MiB, tamanho e SHA-256 calculados no servidor, gravado no PostgreSQL junto com metadados, provenance e evento.</li>
+          <li>Download força tratamento como arquivo (<span class="mono">attachment</span>, <span class="mono">nosniff</span>, <span class="mono">no-store</span>) e confere hash antes de servir.</li>
+          <li>Activity mostra command, autor, data, motivo e origem a partir da provenance real.</li>
+        </ul>
+        <div class="shots">
+          <figure class="shot crop" style="--pos: 50% 82%">
+            <button type="button" class="shot-open" data-caption="Object Page com comentário editado, anexo renomeado e activity.">
+              <img src="{{IMG:collab_author}}" alt="Object Page com seção Collaboration: comentário, anexo licenciamento.txt e activity">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.7</span>Comentário editado, anexo <span class="mono">licenciamento.txt</span> com download, rename e remoção.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Activity derivada da provenance, incluindo a remoção do anexo por outro usuário (admin).">
+              <img src="{{IMG:collab_activity}}" alt="Lista de activity com Delete Attachment, Rename Attachment, Add Attachment, Edit Comment, Add Comment e Create Object">
+            </button>
+            <figcaption><span class="src fixture">Fixture · 1.7</span>Activity lida da provenance: a remoção do anexo aparece com o admin como autor.</figcaption>
+          </figure>
+        </div>
+        <p class="tests">Testes na entrega: <strong>263 backend RADAR</strong> (28 de colaboração) e <strong>92 frontend</strong>. Upload pela UI não foi homologado.</p>
+      </article>
+
+      <article class="delivery" id="e18">
+        <div class="delivery-head"><span class="id">1.8</span><h3>E2E da simbiose</h3></div>
+        <div class="prose">
+          <p>Primeira execução do loop com navegador, login real do Plane, API, runtime CoS e PostgreSQL juntos, sem fixture de UI e sem autenticação simulada. Um script Playwright reproduz a sequência inteira com um comando e confere o banco ao final. A execução limpa teve <strong>68 de 68</strong> verificações aprovadas.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot wide">
+            <button type="button" class="shot-open" data-caption="Depois do login real: shell completo do Plane com App Rail, workspace e sidebar RADAR.">
+              <img src="{{IMG:shell_today}}" alt="Shell do Plane com sidebar RADAR e tela Today vazia">
+            </button>
+            <figcaption><span class="src real">Shell real</span>Login por e-mail e senha abre o RADAR no shell completo do Plane.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passo 1: o Risk criado pelo humano na UI, versão 1.">
+              <img src="{{IMG:e2e_created}}" alt="Object Page do Risk Licenciamento pode atrasar, versão 1">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passo 1</span>Risk criado pelo diálogo de criação, com descrição e propriedades padrão.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passos 2 e 3: agente e três Objects de contexto selecionados.">
+              <img src="{{IMG:e2e_context}}" alt="Risk Review com agente RADAR Copilot e três Objects marcados">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passos 2–3</span>Os Objects vinculados pelo administrador aparecem como contexto selecionável.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passos 4 e 5: sugestões com explicação, confiança, prévia e controles.">
+              <img src="{{IMG:e2e_proposals}}" alt="Cartões de sugestão do Risk Review com confiança e evidências">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passos 4–5</span>Sugestões com explicação, confiança de 80%, prévia do efeito e Accept, Edit e Reject.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passo 6: relação aplicada; a ação irmã pede Edit por conflito de versão.">
+              <img src="{{IMG:e2e_conflict}}" alt="Relação aplicada e mensagem de conflito na ação">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passo 6</span>Relação aplicada. A ação irmã recebe 409 e a UI orienta a salvar uma nova proposta por Edit.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passo 9: Object Page do Risk com Threatens e Mitigated by.">
+              <img src="{{IMG:e2e_risk_page}}" alt="Object Page do Risk com relação Threatens Implantar Governança de IA e backlink Mitigated by Validar licenciamento de IA">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passo 9</span>Risk com <span class="mono">Threatens → Implantar Governança de IA</span> e backlink <span class="mono">Mitigated by</span> da nova Action.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Passo 9: Action criada pelo aceite, com Mitigates para o Risk.">
+              <img src="{{IMG:e2e_action_page}}" alt="Object Page da Action Validar licenciamento de IA com relação Mitigates">
+            </button>
+            <figcaption><span class="src real">Shell real</span><span class="step">Passo 9</span>A Action criada pelo aceite, com <span class="mono">Mitigates → Licenciamento pode atrasar</span>.</figcaption>
+          </figure>
+        </div>
+
+        <div class="prose">
+          <h4>Passo 8 · provenance no PostgreSQL</h4>
+          <p>Valores reais da relação aceita na execução limpa. Cada command aceito tem duas linhas: <span class="mono">pending_approval</span> (agente, sem aprovação) e <span class="mono">executed</span> (com <span class="mono">approval_id</span>).</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Campo pedido no prompt</th><th scope="col">Valor registrado</th></tr></thead>
+            <tbody>
+              <tr><td>agente</td><td class="mono">actor_type=agent · actor_id=0df93f51… (agente do vínculo)</td></tr>
+              <tr><td>humano</td><td class="mono">on_behalf_of=44bd8c7c… · approval_id=73873879… → aprovador 44bd8c7c…, status consumed</td></tr>
+              <tr><td>reason</td><td>"O licenciamento pode atrasar 'Implantar Governança de IA'. Esta é uma inferência para revisão humana."</td></tr>
+              <tr><td>source</td><td class="mono">radar.skill.risk_review</td></tr>
+              <tr><td>run_id</td><td class="mono">2376944f… (também correlation_id)</td></tr>
+              <tr><td>confidence</td><td class="mono">0.8</td></tr>
+              <tr><td>eventos</td><td class="mono">CommandApprovalRequested · ObjectLinked</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="prose"><h4>Rejection, permissão e idempotência</h4></div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th scope="col">Caso</th><th scope="col">Resultado</th></tr></thead>
+            <tbody>
+              <tr><td>Reject da segunda sugestão, relação e ação</td><td><span class="mono">rejected</span> com rationale; nenhuma relação com o Project nem Action extra</td></tr>
+              <tr><td>Aceitar depois de rejeitar</td><td><span class="mono">409 proposal_closed</span></td></tr>
+              <tr><td>Membro sem vínculo com o agente</td><td>Lê o Risk; não vê reviews alheios; iniciar run ou resolver proposta alheia → 404</td></tr>
+              <tr><td>Guest</td><td>Sem controle de Run; iniciar run → 403</td></tr>
+              <tr><td>Fora do workspace / anônimo</td><td>Shell mostra "Workspace not found"; API → 403 / 401</td></tr>
+              <tr><td>Admin retira <span class="mono">CreateAction</span> com proposta pendente</td><td>Accept → <span class="mono">409 authorization_stale</span>; Run desabilitado; restaurar o grant não reativa a proposta</td></tr>
+              <tr><td>Replay do start com a mesma <span class="mono">Idempotency-Key</span></td><td>Mesmo <span class="mono">run_id</span>; um run no banco</td></tr>
+              <tr><td>Preparar o mesmo run duas vezes; repetir Accept e Reject</td><td>Mesmas propostas; resultado salvo, sem segunda escrita</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="shots three">
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Membro sem vínculo: nenhum agente e nenhum review de outra pessoa.">
+              <img src="{{IMG:e2e_member}}" alt="Risk Review para membro sem agente vinculado">
+            </button>
+            <figcaption><span class="src real">Shell real</span>Membro sem vínculo: a tela orienta a pedir provisionamento a um administrador.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Usuário fora do workspace: Workspace not found.">
+              <img src="{{IMG:e2e_outsider}}" alt="Tela Workspace not found para usuário de fora">
+            </button>
+            <figcaption><span class="src real">Shell real</span>Usuário de outro workspace não vê o Risk.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Grant reduzido: Run desabilitado e reviews sob autoridade antiga ocultos.">
+              <img src="{{IMG:e2e_revoked}}" alt="Risk Review com aviso de permissão insuficiente do agente">
+            </button>
+            <figcaption><span class="src real">Shell real</span>Sem <span class="mono">CreateAction</span>, a tela pede ajuste do grant e esconde reviews feitos sob a autoridade anterior.</figcaption>
+          </figure>
+        </div>
+
+        <div class="prose">
+          <h4>Provider real</h4>
+          <p>Uma execução com <code>anthropic:claude-sonnet-4-6</code>, configurado no CoS, sobre o estado já alterado pelo fluxo. A saída passou pela validação do CoS e do Plane: duas sugestões (0,95 para o Objective, 0,88 para o Sandbox IA) com citações literais de título e propriedades. O humano aceitou a ameaça ao Sandbox IA e rejeitou as duas ações.</p>
+          <p>O modelo reconheceu que a relação com o Objective já existia e a sugeriu mesmo assim; aceitar consumiu a aprovação sem mudar o domínio. Uma das ações só repetia a própria relação. Uma execução comprova o loop com o provider, não mede qualidade.</p>
+        </div>
+        <div class="shots">
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Resumo e sugestão gerados pelo modelo real, com referências às versões do snapshot.">
+              <img src="{{IMG:prov_proposals}}" alt="Risk Review com resumo e sugestão gerados pelo provider real">
+            </button>
+            <figcaption><span class="src real">Shell real · provider</span>Resumo e sugestão do modelo real, citando IDs e versões do snapshot.</figcaption>
+          </figure>
+          <figure class="shot">
+            <button type="button" class="shot-open" data-caption="Risk depois das decisões sobre o provider: duas ameaças, cada uma uma vez.">
+              <img src="{{IMG:prov_after}}" alt="Object Page do Risk com Threatens Implantar Governança de IA e Threatens Sandbox IA">
+            </button>
+            <figcaption><span class="src real">Shell real · provider</span>Risk com as duas ameaças, cada uma registrada uma única vez.</figcaption>
+          </figure>
+        </div>
+
+        <div class="prose">
+          <h4>Correção encontrada pelo E2E</h4>
+          <p>O web (:3000) e a API (:8001) são origens diferentes. O preflight CORS não liberava <code>Idempotency-Key</code> nem os headers <code>X-Radar-*</code>, e a primeira criação de Object no shell real falhou com "Network Error". As fixtures das fases anteriores eram same-origin e não expunham o problema. A correção libera os cinco headers no bloco RADAR de <code>settings/common.py</code>, com teste de regressão do preflight.</p>
+        </div>
+        <p class="tests">Na entrega: <strong>68/68</strong> verificações E2E e regressão backend <strong>972/972</strong> (272 RADAR, incluindo 5 de CORS, e 700 Plane).</p>
+      </article>
+    </section>
+
+    <section id="testes" aria-labelledby="h-testes">
+      <div class="section-head prose">
+        <h2 id="h-testes">Evolução e cobertura dos testes</h2>
+        <p>Quantos testes cada entrega registrou como aprovados. As suítes se sobrepõem: cada barra é a regressão completa daquele momento, então os números não se somam.</p>
+      </div>
+      <div class="frame charts">
+        <div class="chart">
+          <h4>Testes backend RADAR aprovados</h4>
+          <p class="sub">Regressão completa da app <span class="mono">plane.radar</span> em cada entrega</p>
+          {{CHART:backend}}
+        </div>
+        <div class="chart">
+          <h4>Testes frontend RADAR aprovados</h4>
+          <p class="sub">Services, stores e componentes RADAR (vitest)</p>
+          {{CHART:frontend}}
+        </div>
+        <details class="data">
+          <summary>Ver os dados em tabela</summary>
+          <div class="table-wrap">{{CHART:table}}</div>
+        </details>
+      </div>
+
+      <div class="prose"><h3>Bancada final</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Suíte</th><th scope="col" class="num">Resultado</th><th scope="col">Observação</th></tr></thead>
+          <tbody>
+            <tr><td>Backend RADAR + Plane, banco vazio com migrations</td><td class="num">972/972</td><td>Integrações HTTP Plane → CoS ativas; zero skipped</td></tr>
+            <tr><td>CoS completo, PostgreSQL dedicado</td><td class="num">1.184</td><td>9 avaliações com provider real desativadas por custo</td></tr>
+            <tr><td>Frontend RADAR (vitest)</td><td class="num">92/92</td><td>14 arquivos</td></tr>
+            <tr><td>TypeScript, OxLint estrito, Oxfmt</td><td class="num">ok</td><td>64 arquivos RADAR, zero warnings</td></tr>
+            <tr><td>Monorepo <span class="mono">turbo run check</span></td><td class="num">56/56</td><td>Tipos, lint e format de todos os pacotes</td></tr>
+            <tr><td>Django check, migrations, Ruff</td><td class="num">ok</td><td>Sem migrations pendentes</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="prose"><h3>Verificações do E2E limpo por grupo</h3></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Grupo</th><th scope="col" class="num">Verificações</th><th scope="col">O que confere</th></tr></thead>
+          <tbody>
+            <tr><td>Login e criação</td><td class="num">2</td><td>Sign-in real e três Objects criados pela UI</td></tr>
+            <tr><td>Vínculo administrativo</td><td class="num">3</td><td>CLI vinculou Risk, Objective e Project ao contexto</td></tr>
+            <tr><td>Revisão</td><td class="num">6</td><td>Run com <span class="mono">risk_review</span>, raízes corretas, THREATENS + ação, três controles</td></tr>
+            <tr><td>Decisões</td><td class="num">7</td><td>Accept, 409 orientado, Edit (revisão 2), Accept, Reject, ameaça rejeitada ausente, bloqueio pós-rejeição</td></tr>
+            <tr><td>Idempotência</td><td class="num">4</td><td>Replay do start, prepare duplo, Accept e Reject repetidos</td></tr>
+            <tr><td>Object Page</td><td class="num">5</td><td>Relação, backlink, Action, Objective e reload</td></tr>
+            <tr><td>PostgreSQL</td><td class="num">29</td><td>Contagens, provenance completa, aprovação consumida, eventos</td></tr>
+            <tr><td>Permissões</td><td class="num">12</td><td>Membro, guest, outsider, anônimo e grant reduzido</td></tr>
+            <tr><td><strong>Total</strong></td><td class="num"><strong>68</strong></td><td>Execução única, workspace limpo</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="pendencias" aria-labelledby="h-pend">
+      <div class="section-head prose">
+        <h2 id="h-pend">O que falta antes do piloto</h2>
+        <p>Itens encontrados pelo E2E ou herdados das entregas. Nenhum bloqueia a tese técnica; todos afetam a ativação ou a experiência do piloto.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Tema</th><th scope="col">Situação</th><th scope="col">Tratamento</th></tr></thead>
+          <tbody>
+            <tr><td>Ativação</td><td>O CLI de provisionamento não concede <span class="mono">CreateAction</span>, exigido pelo Risk Review</td><td>Estender o grant pelo controle existente, como no E2E</td></tr>
+            <tr><td>Contexto do agente</td><td>Cada Object criado pela UI precisa de vínculo administrativo por CLI</td><td>Decidir um fluxo administrativo na UI para o piloto</td></tr>
+            <tr><td>Revisão</td><td>Aceitar a relação torna a ação irmã obsoleta (409 → Edit → Accept)</td><td>Mantido por decisão; um Edit por par aceito</td></tr>
+            <tr><td>Revisão</td><td>Cartão da ação aparece antes do da relação</td><td>Ajuste de UX pendente</td></tr>
+            <tr><td>Revisão</td><td>Sugestão de relação já existente mostra "Applied successfully"</td><td>Sinalizar "já registrada"; domínio já está protegido</td></tr>
+            <tr><td>Qualidade</td><td>Rejeições não voltam ao agente; uma ação do modelo repetia a relação</td><td>Sem memória até a Fase 4; avaliar no piloto</td></tr>
+            <tr><td>Object Page</td><td>"Created by" mostra UUID; o agente não vem pré-selecionado</td><td>Ajustes menores</td></tr>
+            <tr><td>Colaboração</td><td>Upload pela UI, quotas, retenção e backup não homologados</td><td>Homologar no ambiente escolhido</td></tr>
+            <tr><td>Eventos</td><td>Outbox gravada, sem publisher nem consumidores</td><td>Fora do slice atual</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="prose">
+        <h3>Passos para ativar um ambiente</h3>
+        <ol>
+          <li>Atualizar Plane e CoS juntos, incluindo a liberação CORS dos headers RADAR.</li>
+          <li>Aplicar as migrations RADAR 0001–0010 no Plane e <span class="mono">alembic upgrade head</span> no CoS.</li>
+          <li>Configurar <span class="mono">RADAR_AGENT_RUNTIME_URL</span> e a mesma chave nos dois serviços, só no servidor.</li>
+          <li>Provisionar Person, PersonIdentity, vínculo de canal <span class="mono">plane</span>, grant com <span class="mono">LinkObjects</span> e <span class="mono">CreateAction</span>, e os vínculos dos Objects.</li>
+          <li>Rodar o piloto com gestores reais e medir utilidade e qualidade do provider em mais execuções.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="fontes" aria-labelledby="h-fontes">
+      <div class="section-head prose">
+        <h2 id="h-fontes">Documentos e evidências</h2>
+        <p>Caminhos relativos a <span class="mono">docs/radar/</span> no worktree do Plane.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Documento</th><th scope="col">Conteúdo</th></tr></thead>
+          <tbody>
+            <tr><td><a href="COMMAND_LAYER.md">COMMAND_LAYER.md</a></td><td>Contrato comum, catálogo, provenance e approvals (1.1/1.2)</td></tr>
+            <tr><td><a href="COS_INTEGRATION.md">COS_INTEGRATION.md</a></td><td>Port runtime/v1, operações do CoS e provisionamento</td></tr>
+            <tr><td><a href="AGENT_RUNTIME.md">AGENT_RUNTIME.md</a></td><td>Fachada, contrato 1.0, estados e ativação (1.3)</td></tr>
+            <tr><td><a href="AGENT_CONFIG.md">AGENT_CONFIG.md</a></td><td>Quatro blocos, autoridade e versões (1.4)</td></tr>
+            <tr><td><a href="RISK_REVIEW.md">RISK_REVIEW.md</a></td><td>Skill, propostas e Accept/Edit/Reject (1.5)</td></tr>
+            <tr><td><a href="TODAY.md">TODAY.md</a></td><td>Filas e critérios (1.6)</td></tr>
+            <tr><td><a href="COLLABORATION.md">COLLABORATION.md</a></td><td>Comentários, anexos e activity (1.7)</td></tr>
+            <tr><td><a href="E2E_SYMBIOSIS.md">E2E_SYMBIOSIS.md</a></td><td>E2E, achados e correção de CORS (1.8)</td></tr>
+            <tr><td><a href="../../output/e2e-symbiosis-20261005/README.md">output/e2e-symbiosis-20261005</a></td><td>Script E2E, logs, screenshots e evidência de banco</td></tr>
+            <tr><td><a href="../../output/phase1-bench-20261005/README.md">output/phase1-bench-20261005</a></td><td>Bancada de testes da Fase 1</td></tr>
+            <tr><td><a href="NEXT_PHASE_READINESS.md">NEXT_PHASE_READINESS.md</a></td><td>Situação por etapa e gates do piloto</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      Gerado em 05/10/2026 a partir dos documentos e evidências do repositório por <span class="mono">output/phase1-report-20261005/build_report.py</span>. Contagens de entregas anteriores são históricas e não se somam. Capturas de fixture usam componentes de produto com autenticação de teste; as de shell real vêm do E2E 1.8.
+    </footer>
+  </main>
+</div>
+
+<div class="tip" id="tip" hidden></div>
+<dialog class="viewer" id="viewer" aria-label="Captura ampliada">
+  <div class="viewer-body">
+    <div class="viewer-bar"><p id="viewer-caption"></p><button type="button" id="viewer-close">Fechar</button></div>
+    <div class="viewer-img"><img id="viewer-img" alt=""></div>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  const viewer = document.getElementById("viewer");
+  const viewerImg = document.getElementById("viewer-img");
+  const viewerCaption = document.getElementById("viewer-caption");
+  document.querySelectorAll(".shot-open").forEach((button) => {
+    button.addEventListener("click", () => {
+      const img = button.querySelector("img");
+      viewerImg.src = img.src;
+      viewerImg.alt = img.alt;
+      viewerCaption.textContent = button.dataset.caption || img.alt;
+      if (typeof viewer.showModal === "function") viewer.showModal();
+    });
+  });
+  document.getElementById("viewer-close").addEventListener("click", () => viewer.close());
+  viewer.addEventListener("click", (event) => { if (event.target === viewer) viewer.close(); });
+
+  const tip = document.getElementById("tip");
+  const place = (x, y) => {
+    const width = tip.offsetWidth, height = tip.offsetHeight;
+    tip.style.left = Math.max(8, Math.min(window.innerWidth - width - 8, x + 14)) + "px";
+    tip.style.top = Math.max(8, y - height - 12) + "px";
+  };
+  document.querySelectorAll(".ch").forEach((chart) => {
+    const bars = chart.querySelectorAll(".bar");
+    const show = (hit, x, y) => {
+      tip.textContent = hit.dataset.tip;
+      tip.hidden = false;
+      bars.forEach((bar) => bar.classList.toggle("dim", bar.dataset.i !== hit.dataset.i));
+      place(x, y);
+    };
+    const hide = () => { tip.hidden = true; bars.forEach((bar) => bar.classList.remove("dim")); };
+    chart.querySelectorAll(".hit").forEach((hit) => {
+      hit.addEventListener("pointermove", (event) => show(hit, event.clientX, event.clientY));
+      hit.addEventListener("pointerleave", hide);
+      hit.addEventListener("focus", () => { const box = hit.getBoundingClientRect(); show(hit, box.left + box.width / 2, box.top + 20); });
+      hit.addEventListener("blur", hide);
+    });
+  });
+})();
+</script>
+</body>
+</html>

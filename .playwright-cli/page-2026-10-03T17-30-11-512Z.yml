@@ -1,0 +1,205 @@
+- generic [active] [ref=e1]:
+  - region "Notifications" [ref=e296]:
+    - dialog "Property saved" [ref=e420]:
+      - img [ref=e422]
+      - heading "Property saved" [level=2] [ref=e426]
+      - button [ref=e428] [cursor=pointer]:
+        - img [ref=e430]
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button "Open workspace switcher" [ref=e310] [cursor=pointer]:
+          - generic [ref=e10]:
+            - generic [ref=e11]: R
+            - heading "RADAR Audit — Generic Type" [level=4] [ref=e311]
+          - img [ref=e13]
+        - button [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+          - textbox "Search commands..." [ref=e312]
+        - generic [ref=e23]:
+          - link [ref=e24] [cursor=pointer]:
+            - /url: /radar-audit-generic/notifications/
+            - img [ref=e27]
+          - button "Help" [ref=e313] [cursor=pointer]:
+            - img [ref=e31]
+          - link "Star us on GitHub" [ref=e314] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - img [ref=e34]
+            - generic [ref=e35]: Star us on GitHub
+          - button "Open user menu" [ref=e315] [cursor=pointer]:
+            - img "radar-tester" [ref=e316]:
+              - generic [ref=e41]: R
+      - generic [ref=e42]:
+        - generic [ref=e46]:
+          - link "Projects" [ref=e317] [cursor=pointer]:
+            - /url: /radar-audit-generic/
+            - img [ref=e49]
+            - generic [ref=e52]: Projects
+          - link "RADAR" [ref=e318] [cursor=pointer]:
+            - /url: /radar-audit-generic/radar/
+            - img [ref=e55]
+            - generic [ref=e62]: RADAR
+          - link "Settings" [ref=e319] [cursor=pointer]:
+            - /url: /radar-audit-generic/settings/
+            - img [ref=e66]
+            - generic [ref=e68]: Settings
+        - generic [ref=e71]:
+          - complementary "Main sidebar" [ref=e320]:
+            - complementary [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e76]:
+                  - generic [ref=e77]: RADAR
+                  - button "Collapse sidebar" [ref=e321] [cursor=pointer]:
+                    - img [ref=e81]
+                - generic [ref=e84]:
+                  - navigation "RADAR" [ref=e322]:
+                    - link "Today" [ref=e323] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/today/
+                      - generic [ref=e88]:
+                        - img [ref=e89]
+                        - paragraph [ref=e91]: Today
+                    - link "Objects" [ref=e324] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/objects/
+                      - generic [ref=e94]:
+                        - img [ref=e95]
+                        - paragraph [ref=e97]: Objects
+                    - link "Decisions" [ref=e325] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/decisions/
+                      - generic [ref=e100]:
+                        - img [ref=e101]
+                        - paragraph [ref=e103]: Decisions
+                    - link "Risks" [ref=e326] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/risks/
+                      - generic [ref=e106]:
+                        - img [ref=e107]
+                        - paragraph [ref=e109]: Risks
+                  - navigation "RADAR spike" [ref=e327]:
+                    - link "Spike Components" [ref=e328] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/spike/
+                      - generic [ref=e114]:
+                        - img [ref=e115]
+                        - paragraph [ref=e117]: Spike Components
+                - button "Open paid plans' modal" [ref=e329] [cursor=pointer]:
+                  - generic [ref=e120]: Community
+              - separator "Resize sidebar" [ref=e330]
+          - complementary "Sidebar peek view":
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: RADAR
+                    - generic:
+                      - button "Collapse sidebar":
+                        - generic:
+                          - img
+                - generic:
+                  - generic:
+                    - navigation "RADAR":
+                      - link "Today":
+                        - /url: /radar-audit-generic/radar/today/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Today
+                      - link "Objects":
+                        - /url: /radar-audit-generic/radar/objects/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Objects
+                      - link "Decisions":
+                        - /url: /radar-audit-generic/radar/decisions/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Decisions
+                      - link "Risks":
+                        - /url: /radar-audit-generic/radar/risks/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Risks
+                    - navigation "RADAR spike":
+                      - link "Spike Components":
+                        - /url: /radar-audit-generic/radar/spike/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Spike Components
+                - generic:
+                  - button "Open paid plans' modal":
+                    - generic: Community
+              - separator "Resize sidebar"
+          - main [ref=e122]:
+            - navigation "Breadcrumb" [ref=e337]:
+              - list [ref=e338]:
+                - listitem [ref=e339]:
+                  - link "RADAR" [ref=e340] [cursor=pointer]:
+                    - /url: /radar-audit-generic/radar/
+                    - generic [ref=e341]:
+                      - img [ref=e343]
+                      - generic [ref=e350]: RADAR
+                - listitem [ref=e351]:
+                  - img [ref=e352]
+                - listitem [ref=e354]:
+                  - link "Objects" [ref=e355] [cursor=pointer]:
+                    - /url: /radar-audit-generic/radar/objects/
+                    - generic [ref=e357]: Objects
+                - listitem [ref=e358]:
+                  - img [ref=e359]
+                - listitem [ref=e361]:
+                  - generic [ref=e363]: Object
+            - generic [ref=e366]:
+              - link "All objects" [ref=e367] [cursor=pointer]:
+                - /url: /radar-audit-generic/radar/objects/
+              - generic [ref=e369]:
+                - paragraph [ref=e370]: Audit probe
+                - generic [ref=e371]:
+                  - generic [ref=e373]:
+                    - text: Title
+                    - generic [ref=e374]: "*"
+                  - textbox "Title" [ref=e377]: Prova de tipo genérico — Fase 0.6
+                - generic [ref=e378]:
+                  - heading "Content" [level=2] [ref=e379]
+                  - generic [ref=e383]:
+                    - paragraph [ref=e385]: Write here. Select text to format, type / for blocks, @ to mention a member.
+                    - generic:
+                      - button:
+                        - generic:
+                          - img
+                        - generic:
+                          - img
+                - generic [ref=e386]:
+                  - term [ref=e387]: Created by
+                  - definition [ref=e388]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=e389]: Updated by
+                  - definition [ref=e390]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=e391]: Version
+                  - definition [ref=e392]: "2"
+                - button "Save changes" [disabled] [ref=e393]:
+                  - generic [ref=e394]: Save changes
+              - generic [ref=e395]:
+                - region "Properties" [ref=e396]:
+                  - heading "Properties" [level=2] [ref=e397]
+                  - generic [ref=e399]:
+                    - generic [ref=e400]:
+                      - generic [ref=e402]: Reading
+                      - spinbutton "Reading" [ref=e405]: "42"
+                    - generic [ref=e406]:
+                      - generic [ref=e407]: Saved
+                      - generic [ref=e408]:
+                        - button "Clear Reading" [ref=e432] [cursor=pointer]:
+                          - generic [ref=e433]: Clear
+                        - button "Save Reading" [disabled] [ref=e409]:
+                          - generic [ref=e410]: Save
+                - region "Relations" [ref=e411]:
+                  - generic [ref=e412]:
+                    - heading "Relations" [level=2] [ref=e413]
+                    - button "Add relation" [ref=e414] [cursor=pointer]:
+                      - generic [ref=e415]: Add relation
+                  - list
+                  - paragraph [ref=e416]: No outgoing relations.
+                - region "Backlinks" [ref=e417]:
+                  - heading "Backlinks" [level=2] [ref=e418]
+                  - list
+                  - paragraph [ref=e419]: No incoming relations.

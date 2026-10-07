@@ -1,0 +1,27 @@
+ Container radar-risk-review-tests-test-minio-1 Running 
+ Container radar-risk-review-tests-test-db-1 Running 
+ Container radar-risk-review-tests-test-redis-1 Running 
+ Container radar-risk-review-tests-test-mq-1 Running 
+ Container radar-risk-review-tests-test-mq-1 Waiting 
+ Container radar-risk-review-tests-test-minio-1 Waiting 
+ Container radar-risk-review-tests-test-db-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Healthy 
+ Container radar-risk-review-tests-test-db-1 Healthy 
+ Container radar-risk-review-tests-test-mq-1 Healthy 
+ Container radar-risk-review-tests-test-minio-1 Healthy 
+ Container radar-risk-review-tests-api-tests-run-8b122e663d04 Creating 
+ Container radar-risk-review-tests-api-tests-run-8b122e663d04 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 24 items
+
+plane/radar/tests/test_risk_review.py ........................
+
+------------ generated xml file: /code/output/risk-review-tests.xml ------------
+======================== 24 passed in 87.85s (0:01:27) =========================

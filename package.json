@@ -13,12 +13,13 @@
     "fix": "turbo run fix",
     "fix:format": "turbo run fix:format",
     "fix:lint": "turbo run fix:lint",
-    "check": "turbo run check",
+    "check": "pnpm check:radar-contracts && turbo run check",
     "check:lint": "turbo run check:lint",
     "check:format": "turbo run check:format",
     "check:types": "turbo run check:types",
     "prepare": "husky",
-    "doctor": "npx react-doctor@latest"
+    "doctor": "npx react-doctor@latest",
+    "check:radar-contracts": "python3 scripts/check-radar-contracts.py"
   },
   "devDependencies": {
     "husky": "catalog:",

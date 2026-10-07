@@ -1,0 +1,190 @@
+ Container radar-core-u1-01-test-test-db-1 Running 
+ Container radar-core-u1-01-test-test-redis-1 Running 
+ Container radar-core-u1-01-test-test-mq-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Running 
+ Container radar-core-u1-01-test-test-db-1 Waiting 
+ Container radar-core-u1-01-test-test-redis-1 Waiting 
+ Container radar-core-u1-01-test-test-mq-1 Waiting 
+ Container radar-core-u1-01-test-test-minio-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Healthy 
+ Container radar-core-u1-01-test-test-redis-1 Healthy 
+ Container radar-core-u1-01-test-test-mq-1 Healthy 
+ Container radar-core-u1-01-test-test-minio-1 Healthy 
+ Container radar-core-u1-01-test-api-tests-run-7dfb105aa6a0 Creating 
+ Container radar-core-u1-01-test-api-tests-run-7dfb105aa6a0 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+plane/radar/api/runtime_views.py:20:121: E501 Line too long (129 > 120)
+   |
+18 | from plane.radar.commands.actor import Actor
+19 | from plane.radar.commands.control import review_command
+20 | from plane.radar.commands.execution import require_human_membership, authorize, execute_command, validate_actor, command_envelope
+   |                                                                                                                         ^^^^^^^^^ E501
+21 | from plane.radar.commands.handlers import references, check_grant
+22 | from plane.radar.commands.queries import effective_values
+   |
+
+plane/radar/commands/control.py:8:121: E501 Line too long (139 > 120)
+   |
+ 6 | …
+ 7 | …dExecution, PersonIdentity
+ 8 | …sions, authorize, CommandConflict, emit, run_internal, schema_fingerprint
+   |                                                        ^^^^^^^^^^^^^^^^^^^ E501
+ 9 | …
+10 | …
+   |
+
+plane/radar/commands/control.py:42:121: E501 Line too long (131 > 120)
+   |
+40 |         if actor_type not in {"agent", "system", "integration"} or not isinstance(actor_id, UUID):
+41 |             raise ValidationError("Register a nonhuman UUID principal of a declared type.")
+42 |         if not commands or set(commands) - set(INPUTS) or {"ApproveDecision", "InitializeObjectProperties"}.intersection(commands):
+   |                                                                                                                         ^^^^^^^^^^^ E501
+43 |             raise ValidationError("Grant only known commands; Decision approval is human-only.")
+44 |         if not object_types or not fields or not all(isinstance(v, str) for v in [*object_types, *fields]):
+   |
+
+plane/radar/commands/handlers.py:30:121: E501 Line too long (121 > 120)
+   |
+28 | from .rules import ORDINARY_TRANSITIONS, effective_invariants
+29 | from .context import command_context, command_actor, command_user_id
+30 | from .queries import lookup_object, effective_values, decision_evidence_ids, current_decision_approval, validate_evidence
+   |                                                                                                                         ^ E501
+31 | from .results import object_result, relation_result, property_snapshot_result
+   |
+
+plane/radar/commands/handlers.py:296:121: E501 Line too long (121 > 120)
+    |
+294 |     emit(
+295 |         "ObjectCreated",
+296 |         {"object_id": obj.pk, "object_type_id": selected.pk, "version": 1, "property_keys": list(effective_values(obj))},
+    |                                                                                                                         ^ E501
+297 |     )
+298 |     return obj
+    |
+
+plane/radar/commands/handlers.py:313:121: E501 Line too long (126 > 120)
+    |
+311 |     if kind.key == "supersedes":
+312 |         raise ValidationError("Decision replacement requires a dedicated workflow.")
+313 |     if kind.key == "creates" and source.object_type.key == "decision" and effective_values(source).get("status") != "decided":
+    |                                                                                                                         ^^^^^^ E501
+314 |         raise ValidationError("Only a decided Decision can originate an Action.")
+315 |     existing = Relation.objects.filter(workspace=workspace, relation_type=kind, source=source, target=target).first()
+    |
+
+plane/radar/commands/handlers.py:342:121: E501 Line too long (121 > 120)
+    |
+340 |         raise ValidationError({"status": "Use the initial status, then a guarded update."})
+341 |     return object_result(
+342 |         create_typed_object(workspace, selected.key, data["title"], data["properties"], data.get("content"), selected.pk)
+    |                                                                                                                         ^ E501
+343 |     )
+    |
+
+plane/radar/commands/handlers.py:553:121: E501 Line too long (121 > 120)
+    |
+551 |         evidence_versions[str(pk)], snapshots[str(pk)] = evidence.version, _snapshot(evidence)
+552 |     existing = current_decision_approval(workspace, obj)
+553 |     if existing and existing.approver_id == command_actor().actor_id and existing.evidence_versions == evidence_versions:
+    |                                                                                                                         ^ E501
+554 |         return {**object_result(obj), "decision_approval_id": str(existing.pk)}
+555 |     snapshot, reviewed = _snapshot(obj), obj.version
+    |
+
+plane/radar/commands/operations.py:151:121: E501 Line too long (123 > 120)
+    |
+149 |         raise PermissionDenied("Delegation requires the owner or a configured context manager.")
+150 |     executors = [
+151 |         lookup_object(workspace, pk, {"person"}) for pk in dict.fromkeys(data.get("executor_ids") or [data["executor_id"]])
+    |                                                                                                                         ^^^ E501
+152 |     ]
+153 |     for edge in Relation.objects.filter(
+    |
+
+plane/radar/commands/results.py:156:121: E501 Line too long (124 > 120)
+    |
+155 | def property_value_result(item: PropertyValue) -> PropertyValueResult:
+156 |     return {**audit_result(item), "object": str(item.object_id), "definition": str(item.definition_id), "value": item.value}
+    |                                                                                                                         ^^^^ E501
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:22:121: E501 Line too long (137 > 120)
+   |
+20 | …sult, property_snapshot_result
+21 | …ommand
+22 | …tion, PropertyValue, CommandExecution, DomainEvent, Provenance, Relation
+   |                                                         ^^^^^^^^^^^^^^^^^ E501
+23 | …
+24 | …
+   |
+
+plane/radar/tests/test_core_u1_phase01.py:122:40: E702 Multiple statements on one line (semicolon)
+    |
+120 |     obj, target = create(seeded), create(seeded)
+121 |     object_payload = dict(snapshot(obj))
+122 |     object_payload.pop("created_actor"); object_payload.pop("updated_actor")
+    |                                        ^ E702
+123 |     assert object_data(obj) == object_payload
+124 |     kind = fixture_write(lambda: __import__('plane.radar.models', fromlist=['RelationType']).RelationType.objects.create(
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:124:121: E501 Line too long (121 > 120)
+    |
+122 |     object_payload.pop("created_actor"); object_payload.pop("updated_actor")
+123 |     assert object_data(obj) == object_payload
+124 |     kind = fixture_write(lambda: __import__('plane.radar.models', fromlist=['RelationType']).RelationType.objects.create(
+    |                                                                                                                         ^ E501
+125 |         workspace=seeded[3], key="u1_relation", forward_label="links", reverse_label="linked by",
+126 |         source_types=["objective"], target_types=["objective"], cardinality="0..n"))
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:127:121: E501 Line too long (125 > 120)
+    |
+125 |         workspace=seeded[3], key="u1_relation", forward_label="links", reverse_label="linked by",
+126 |         source_types=["objective"], target_types=["objective"], cardinality="0..n"))
+127 |     edge = fixture_write(lambda: Relation.objects.create(workspace=seeded[3], relation_type=kind, source=obj, target=target))
+    |                                                                                                                         ^^^^^ E501
+128 |     assert relation_result(edge) == dict(RelationSerializer(edge).data)
+129 |     with transaction.atomic():
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:131:40: E702 Multiple statements on one line (semicolon)
+    |
+129 |     with transaction.atomic():
+130 |         http = property_snapshot(seeded[3], obj.pk)
+131 |     http["object"].pop("created_actor"); http["object"].pop("updated_actor")
+    |                                        ^ E702
+132 |     assert property_snapshot_result(obj) == http
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:160:25: E702 Multiple statements on one line (semicolon)
+    |
+158 |     obj = create(seeded)
+159 |     add_default(seeded, obj)
+160 |     client = APIClient(); client.force_authenticate(seeded[0])
+    |                         ^ E702
+161 |     headers = {"HTTP_IDEMPOTENCY_KEY": "http-defaults", "HTTP_X_RADAR_EXPECTED_VERSIONS": '{"%s":1}' % obj.pk}
+162 |     path = url(seeded[3], f"objects/{obj.pk}/properties/")
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:172:25: E702 Multiple statements on one line (semicolon)
+    |
+171 | def test_trusted_defaults_caller_reuses_saved_versions_when_only_key_is_supplied(seeded):
+172 |     obj = create(seeded); add_default(seeded, obj)
+    |                         ^ E702
+173 |     kwargs = dict(actor=seeded[5], workspace=seeded[3], object_id=obj.pk, idempotency_key="trusted-defaults")
+174 |     first = initialize_object_properties(**kwargs)
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:201:121: E501 Line too long (125 > 120)
+    |
+199 |     obj = create(seeded)
+200 |     actor = approved_agent(seeded, actor_type, requires_approval=False)
+201 |     fixture_write(lambda: ActorGrant.objects.filter(actor_id=actor.actor_id).update(commands=["InitializeObjectProperties"]))
+    |                                                                                                                         ^^^^^ E501
+202 |     before = counts()
+203 |     with pytest.raises(PermissionDenied):
+    |
+
+Found 22 errors (4 fixed, 18 remaining).
+

@@ -1,0 +1,1298 @@
+{
+  "version": "3.2.0",
+  "source": "JMR_RADAR_ONTOLOGY/ontology/core.yaml",
+  "sha256": "8ea1a14a17c25ff1e6a4945bf75f51982b7ce2243b3509df18a5f74a3bfd6ab7",
+  "object_types": {
+    "objective": {
+      "label": "Objective",
+      "prefix": "OBJ",
+      "layer": "direction",
+      "directory": "10_Objectives",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa o mesmo resultado pretendido no mesmo contexto gerencial e horizonte; uma alteração de título ou alias não cria novo objetivo.",
+      "status": {
+        "vocabulary": "objective_status",
+        "default": "draft",
+        "terminal": [
+          "achieved",
+          "cancelled"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "outcome": {
+          "type": "string",
+          "default": ""
+        },
+        "timeframe": {
+          "type": "enum",
+          "vocabulary": "timeframe",
+          "default": "short_term"
+        },
+        "priority": {
+          "type": "enum",
+          "vocabulary": "priority",
+          "default": "medium"
+        },
+        "start_date": {
+          "type": "date",
+          "required": false
+        },
+        "due_date": {
+          "type": "date",
+          "required": false
+        },
+        "progress": {
+          "type": "number",
+          "min": 0,
+          "max": 100,
+          "default": 0
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "project": {
+      "label": "Project",
+      "prefix": "PRJ",
+      "directory": "25_Projects",
+      "layer": "management",
+      "identity": "ID imutável do mesmo registro gerencial no mesmo contexto.",
+      "status": {
+        "vocabulary": "project_status",
+        "default": "draft",
+        "terminal": [
+          "done",
+          "cancelled"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "due_date": {
+          "type": "date"
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "decision": {
+      "label": "Decision",
+      "prefix": "DEC",
+      "layer": "management",
+      "directory": "40_Decisions",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa o mesmo ato de escolha no mesmo contexto; uma decisão que substitui outra é uma nova instância ligada por supersedes.",
+      "status": {
+        "vocabulary": "decision_status",
+        "default": "proposed",
+        "terminal": [
+          "superseded",
+          "revoked"
+        ]
+      },
+      "attributes": {
+        "context": {
+          "type": "string",
+          "default": ""
+        },
+        "rationale": {
+          "type": "string",
+          "default": ""
+        },
+        "decision": {
+          "type": "string",
+          "default": ""
+        },
+        "decided_at": {
+          "type": "datetime",
+          "required": false
+        },
+        "consequences": {
+          "type": "string_list",
+          "default": []
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "action": {
+      "label": "Action",
+      "prefix": "ACT",
+      "layer": "management",
+      "directory": "30_Actions",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa o mesmo compromisso executável no mesmo contexto; mudar estado, prazo ou redação do próximo passo não cria uma nova ação.",
+      "status": {
+        "vocabulary": "action_status",
+        "default": "todo",
+        "terminal": [
+          "done",
+          "cancelled"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "next_step": {
+          "type": "string",
+          "default": ""
+        },
+        "priority": {
+          "type": "enum",
+          "vocabulary": "priority",
+          "default": "medium"
+        },
+        "due_date": {
+          "type": "date",
+          "required": false
+        },
+        "completed_at": {
+          "type": "datetime",
+          "required": false
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "risk": {
+      "label": "Risk",
+      "prefix": "RSK",
+      "layer": "management",
+      "directory": "50_Risks",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa o mesmo evento incerto no mesmo contexto impactado, não apenas a mesma descrição genérica de risco.",
+      "status": {
+        "vocabulary": "risk_status",
+        "default": "identified",
+        "terminal": [
+          "closed"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "likelihood": {
+          "type": "integer",
+          "min": 1,
+          "max": 5,
+          "default": 3
+        },
+        "impact": {
+          "type": "integer",
+          "min": 1,
+          "max": 5,
+          "default": 3
+        },
+        "score": {
+          "type": "integer",
+          "min": 1,
+          "max": 25,
+          "default": 9
+        },
+        "response_strategy": {
+          "type": "enum",
+          "vocabulary": "response_strategy",
+          "default": "reduce"
+        },
+        "review_date": {
+          "type": "date",
+          "required": false
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "person": {
+      "label": "Person",
+      "prefix": "PER",
+      "layer": "people",
+      "directory": "70_People",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, usar o identificador organizacional ou e-mail quando disponível; na ausência, nome normalizado combinado com o contexto organizacional.",
+      "status": {
+        "vocabulary": "person_status",
+        "default": "active",
+        "terminal": [
+          "inactive"
+        ]
+      },
+      "attributes": {
+        "role": {
+          "type": "string",
+          "default": ""
+        },
+        "team": {
+          "type": "string",
+          "default": ""
+        },
+        "email": {
+          "type": "email",
+          "required": false
+        },
+        "timezone": {
+          "type": "string",
+          "default": "America/Bahia"
+        }
+      }
+    },
+    "document": {
+      "label": "Document",
+      "prefix": "DOC",
+      "layer": "evidence",
+      "directory": "95_Documents",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa o mesmo documento lógico ou linhagem de versão; cópias do mesmo artefato ou caminhos alternativos não criam novas entidades.",
+      "status": {
+        "vocabulary": "document_status",
+        "default": "draft",
+        "terminal": [
+          "archived"
+        ]
+      },
+      "attributes": {
+        "document_type": {
+          "type": "enum",
+          "vocabulary": "document_type",
+          "default": "note"
+        },
+        "summary": {
+          "type": "string",
+          "default": ""
+        },
+        "uri": {
+          "type": "uri",
+          "required": false
+        },
+        "source_system": {
+          "type": "string",
+          "default": "local"
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "case": {
+      "label": "Case",
+      "prefix": "CAS",
+      "directory": "22_Cases",
+      "layer": "management",
+      "identity": "ID imutável do mesmo registro gerencial no mesmo contexto.",
+      "status": {
+        "vocabulary": "case_status",
+        "default": "open",
+        "terminal": [
+          "closed"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "management_item": {
+      "label": "ManagementItem",
+      "prefix": "MIT",
+      "layer": "management",
+      "directory": "20_ManagementItems",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa a mesma unidade de atenção gerencial no mesmo contexto, independentemente de variações de redação ou título.",
+      "status": {
+        "vocabulary": "management_item_status",
+        "default": "inbox",
+        "terminal": [
+          "done",
+          "archived"
+        ]
+      },
+      "attributes": {
+        "kind": {
+          "type": "enum",
+          "vocabulary": "management_item_kind",
+          "default": "issue"
+        },
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "context": {
+          "type": "string",
+          "default": ""
+        },
+        "priority": {
+          "type": "enum",
+          "vocabulary": "priority",
+          "default": "medium"
+        },
+        "due_date": {
+          "type": "date",
+          "required": false
+        },
+        "next_review": {
+          "type": "date",
+          "required": false
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "indicator": {
+      "label": "Indicator",
+      "prefix": "IND",
+      "layer": "direction",
+      "directory": "60_Indicators",
+      "identity": "O ID imutável é a chave canônica. Para resolução de duplicatas, representa a mesma medida, unidade, escopo e fórmula; novas medições atualizam o indicador e não criam outro indicador.",
+      "status": {
+        "vocabulary": "indicator_status",
+        "default": "active",
+        "terminal": [
+          "retired"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        },
+        "unit": {
+          "type": "string",
+          "default": "count"
+        },
+        "direction": {
+          "type": "enum",
+          "vocabulary": "indicator_direction",
+          "default": "increase"
+        },
+        "cadence": {
+          "type": "enum",
+          "vocabulary": "cadence",
+          "default": "monthly"
+        },
+        "baseline": {
+          "type": "number",
+          "default": 0
+        },
+        "current": {
+          "type": "number",
+          "default": 0
+        },
+        "target": {
+          "type": "number",
+          "default": 0
+        },
+        "measured_at": {
+          "type": "datetime",
+          "required": false
+        },
+        "formula": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    },
+    "commitment": {
+      "label": "Commitment",
+      "prefix": "CMT",
+      "directory": "35_Commitments",
+      "layer": "management",
+      "identity": "ID imutável do mesmo registro gerencial no mesmo contexto.",
+      "status": {
+        "vocabulary": "commitment_status",
+        "default": "proposed",
+        "terminal": [
+          "superseded"
+        ]
+      },
+      "attributes": {
+        "description": {
+          "type": "string",
+          "default": ""
+        }
+      },
+      "implements": [
+        "ReviewableItem"
+      ]
+    }
+  },
+  "link_types": {
+    "owned_by": {
+      "description": "Responsabilidade direta pela entidade.",
+      "domain": [
+        "objective",
+        "management_item",
+        "action",
+        "risk",
+        "indicator",
+        "project",
+        "case",
+        "commitment",
+        "learning",
+        "routine",
+        "decision"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..1",
+      "inverse": "owns",
+      "id": "owned_by",
+      "name": "owned_by",
+      "roles": {
+        "source": "owned_by",
+        "target": "owns"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "reports_to": {
+      "description": "Relação hierárquica entre pessoas.",
+      "domain": [
+        "person"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..1",
+      "inverse": "manages",
+      "id": "reports_to",
+      "name": "reports_to",
+      "roles": {
+        "source": "reports_to",
+        "target": "manages"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "advances": {
+      "description": "A entidade contribui para um objetivo.",
+      "domain": [
+        "management_item",
+        "action",
+        "decision",
+        "risk",
+        "indicator",
+        "project"
+      ],
+      "codomain": [
+        "objective"
+      ],
+      "cardinality": "0..n",
+      "inverse": "advanced_by",
+      "id": "advances",
+      "name": "advances",
+      "roles": {
+        "source": "advances",
+        "target": "advanced_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "addresses": {
+      "description": "A entidade trata um item de gestão.",
+      "domain": [
+        "action",
+        "decision",
+        "risk",
+        "feedback"
+      ],
+      "codomain": [
+        "management_item",
+        "case"
+      ],
+      "cardinality": "0..n",
+      "inverse": "addressed_by",
+      "id": "addresses",
+      "name": "addresses",
+      "roles": {
+        "source": "addresses",
+        "target": "addressed_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "mitigates": {
+      "description": "Uma ação reduz ou controla um risco.",
+      "domain": [
+        "action"
+      ],
+      "codomain": [
+        "risk"
+      ],
+      "cardinality": "0..n",
+      "inverse": "mitigated_by",
+      "id": "mitigates",
+      "name": "mitigates",
+      "roles": {
+        "source": "mitigates",
+        "target": "mitigated_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "depends_on": {
+      "description": "Dependência necessária para avanço ou conclusão.",
+      "domain": [
+        "objective",
+        "management_item",
+        "action"
+      ],
+      "codomain": [
+        "objective",
+        "management_item",
+        "action"
+      ],
+      "cardinality": "0..n",
+      "inverse": "required_by",
+      "id": "depends_on",
+      "name": "depends_on",
+      "roles": {
+        "source": "depends_on",
+        "target": "required_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "informed_by": {
+      "description": "Fundamentos de uma decisão: evidência, contexto ou aprendizado reutilizado.",
+      "domain": [
+        "decision"
+      ],
+      "codomain": [
+        "document",
+        "feedback",
+        "indicator",
+        "meeting",
+        "learning"
+      ],
+      "cardinality": "0..n",
+      "inverse": "informs",
+      "id": "informed_by",
+      "name": "informed_by",
+      "roles": {
+        "source": "informed_by",
+        "target": "informs"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "made_by": {
+      "description": "Pessoas que tomaram ou aprovaram uma decisão.",
+      "domain": [
+        "decision"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..n",
+      "inverse": "made",
+      "id": "made_by",
+      "name": "made_by",
+      "roles": {
+        "source": "made_by",
+        "target": "made"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "authored_by": {
+      "description": "Autoria de feedback ou documento.",
+      "domain": [
+        "feedback",
+        "document"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..1",
+      "inverse": "authored",
+      "id": "authored_by",
+      "name": "authored_by",
+      "roles": {
+        "source": "authored_by",
+        "target": "authored"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "documents": {
+      "description": "O documento registra ou referencia outras entidades.",
+      "domain": [
+        "document"
+      ],
+      "codomain": [
+        "objective",
+        "management_item",
+        "decision",
+        "risk",
+        "meeting",
+        "indicator"
+      ],
+      "cardinality": "0..n",
+      "inverse": "documented_by",
+      "id": "documents",
+      "name": "documents",
+      "roles": {
+        "source": "documents",
+        "target": "documented_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "supersedes": {
+      "description": "Uma decisão substitui uma decisão anterior.",
+      "domain": [
+        "decision"
+      ],
+      "codomain": [
+        "decision"
+      ],
+      "cardinality": "0..n",
+      "inverse": "superseded_by",
+      "id": "supersedes",
+      "name": "supersedes",
+      "roles": {
+        "source": "supersedes",
+        "target": "superseded_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "relates_to": {
+      "description": "Relação genérica; usar apenas quando nenhuma relação específica servir.",
+      "domain": [
+        "*"
+      ],
+      "codomain": [
+        "*"
+      ],
+      "cardinality": "0..n",
+      "inverse": "related_to",
+      "id": "relates_to",
+      "name": "relates_to",
+      "roles": {
+        "source": "relates_to",
+        "target": "related_to"
+      },
+      "constraints": {
+        "self_link": true
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "assigned_to": {
+      "description": "Executor proposto de uma ação. Vários executores são admitidos; a responsabilidade final permanece em owned_by, que é 0..1.",
+      "domain": [
+        "action"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..n",
+      "inverse": "executes",
+      "id": "assigned_to",
+      "name": "assigned_to",
+      "roles": {
+        "source": "assigned_to",
+        "target": "executes"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "contains": {
+      "description": "contains",
+      "domain": [
+        "case",
+        "project"
+      ],
+      "codomain": [
+        "management_item",
+        "risk",
+        "decision",
+        "action"
+      ],
+      "cardinality": "0..n",
+      "inverse": "contained_in",
+      "id": "contains",
+      "name": "contains",
+      "roles": {
+        "source": "contains",
+        "target": "contained_in"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "threatens": {
+      "description": "threatens",
+      "domain": [
+        "risk"
+      ],
+      "codomain": [
+        "objective",
+        "project"
+      ],
+      "cardinality": "0..n",
+      "inverse": "threatened_by",
+      "id": "threatens",
+      "name": "threatens",
+      "roles": {
+        "source": "threatens",
+        "target": "threatened_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "blocks": {
+      "description": "blocks",
+      "domain": [
+        "management_item"
+      ],
+      "codomain": [
+        "action",
+        "project"
+      ],
+      "cardinality": "0..n",
+      "inverse": "blocked_by",
+      "id": "blocks",
+      "name": "blocks",
+      "roles": {
+        "source": "blocks",
+        "target": "blocked_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "creates": {
+      "description": "creates",
+      "domain": [
+        "decision",
+        "management_item"
+      ],
+      "codomain": [
+        "action",
+        "risk"
+      ],
+      "cardinality": "0..n",
+      "inverse": "created_by",
+      "allowed_pairs": [
+        [
+          "decision",
+          "action"
+        ],
+        [
+          "management_item",
+          "risk"
+        ]
+      ],
+      "id": "creates",
+      "name": "creates",
+      "roles": {
+        "source": "creates",
+        "target": "created_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "evidences": {
+      "description": "evidences",
+      "domain": [
+        "document"
+      ],
+      "codomain": [
+        "management_item",
+        "case",
+        "indicator"
+      ],
+      "cardinality": "0..n",
+      "inverse": "evidenced_by",
+      "id": "evidences",
+      "name": "evidences",
+      "roles": {
+        "source": "evidences",
+        "target": "evidenced_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "verifies": {
+      "description": "verifies",
+      "domain": [
+        "document"
+      ],
+      "codomain": [
+        "action"
+      ],
+      "cardinality": "0..n",
+      "inverse": "verified_by",
+      "id": "verifies",
+      "name": "verifies",
+      "roles": {
+        "source": "verifies",
+        "target": "verified_by"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "commits_to": {
+      "description": "Vincula um compromisso à única ação cujos termos foram aceitos.",
+      "domain": [
+        "commitment"
+      ],
+      "codomain": [
+        "action"
+      ],
+      "cardinality": "1..1",
+      "inverse": "has_commitment",
+      "id": "commits_to",
+      "name": "commits_to",
+      "roles": {
+        "source": "commits_to",
+        "target": "has_commitment"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "requires_consultation": {
+      "description": "Declara que uma pessoa precisa ser consultada antes da decisão ou da conclusão. Registra a obrigação, não afirma que a consulta ocorreu.",
+      "domain": [
+        "decision",
+        "action",
+        "management_item",
+        "project"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..n",
+      "inverse": "consulted_on",
+      "id": "requires_consultation",
+      "name": "requires_consultation",
+      "roles": {
+        "source": "requires_consultation",
+        "target": "consulted_on"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    },
+    "requires_notification": {
+      "description": "Declara que uma pessoa precisa ser informada do resultado. Registra a obrigação, não afirma que a comunicação ocorreu nem que houve entrega externa.",
+      "domain": [
+        "decision",
+        "action",
+        "management_item",
+        "project"
+      ],
+      "codomain": [
+        "person"
+      ],
+      "cardinality": "0..n",
+      "inverse": "notified_of",
+      "id": "requires_notification",
+      "name": "requires_notification",
+      "roles": {
+        "source": "requires_notification",
+        "target": "notified_of"
+      },
+      "constraints": {
+        "self_link": false
+      },
+      "provenance": "link metadata: actor, operation_id, created_at",
+      "context": "same scope for persisted links",
+      "validation": [
+        "domain",
+        "codomain",
+        "cardinality",
+        "existing_target",
+        "scope"
+      ]
+    }
+  },
+  "vocabularies": {
+    "objective_status": [
+      "draft",
+      "active",
+      "on_hold",
+      "achieved",
+      "cancelled"
+    ],
+    "management_item_status": [
+      "inbox",
+      "triaged",
+      "planned",
+      "in_progress",
+      "waiting",
+      "done",
+      "archived"
+    ],
+    "action_status": [
+      "todo",
+      "in_progress",
+      "waiting",
+      "done",
+      "cancelled"
+    ],
+    "decision_status": [
+      "proposed",
+      "decided",
+      "superseded",
+      "revoked"
+    ],
+    "risk_status": [
+      "identified",
+      "monitoring",
+      "mitigating",
+      "accepted",
+      "closed"
+    ],
+    "indicator_status": [
+      "active",
+      "paused",
+      "retired"
+    ],
+    "person_status": [
+      "active",
+      "inactive"
+    ],
+    "meeting_status": [
+      "planned",
+      "held",
+      "cancelled"
+    ],
+    "feedback_status": [
+      "new",
+      "reviewed",
+      "accepted",
+      "rejected",
+      "archived"
+    ],
+    "document_status": [
+      "draft",
+      "active",
+      "archived"
+    ],
+    "timeframe": [
+      "short_term",
+      "mid_term",
+      "long_term"
+    ],
+    "priority": [
+      "low",
+      "medium",
+      "high",
+      "critical"
+    ],
+    "management_item_kind": [
+      "issue",
+      "opportunity",
+      "question",
+      "request",
+      "idea"
+    ],
+    "response_strategy": [
+      "avoid",
+      "reduce",
+      "transfer",
+      "accept"
+    ],
+    "indicator_direction": [
+      "increase",
+      "decrease",
+      "maintain"
+    ],
+    "cadence": [
+      "daily",
+      "weekly",
+      "monthly",
+      "quarterly",
+      "yearly"
+    ],
+    "feedback_sentiment": [
+      "positive",
+      "neutral",
+      "negative",
+      "mixed"
+    ],
+    "feedback_channel": [
+      "one_to_one",
+      "meeting",
+      "survey",
+      "email",
+      "chat",
+      "other"
+    ],
+    "document_type": [
+      "note",
+      "reference",
+      "report",
+      "policy",
+      "specification",
+      "minutes"
+    ],
+    "project_status": [
+      "draft",
+      "active",
+      "on_hold",
+      "done",
+      "cancelled"
+    ],
+    "case_status": [
+      "open",
+      "reviewing",
+      "closed"
+    ],
+    "commitment_status": [
+      "proposed",
+      "confirmed",
+      "superseded"
+    ],
+    "learning_status": [
+      "captured",
+      "reviewed"
+    ],
+    "routine_status": [
+      "active",
+      "paused",
+      "retired"
+    ]
+  },
+  "invariants": [
+    {
+      "kind": "ordered_dates",
+      "class": "objective",
+      "first": "start_date",
+      "second": "due_date"
+    },
+    {
+      "kind": "product",
+      "class": "risk",
+      "result": "score",
+      "factors": [
+        "likelihood",
+        "impact"
+      ]
+    }
+  ]
+}

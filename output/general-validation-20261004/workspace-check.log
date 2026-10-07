@@ -1,0 +1,967 @@
+$ turbo run check
+• turbo 2.10.11
+
+   • Packages in scope: @plane/blocks, @plane/codemods, @plane/constants, @plane/decorators, @plane/editor, @plane/hooks, @plane/i18n, @plane/logger, @plane/services, @plane/shared-state, @plane/tailwind-config, @plane/types, @plane/typescript-config, @plane/utils, admin, live, space, web
+   • Running check in 18 packages
+   • Remote caching disabled, using shared worktree cache
+
+@plane/types:check:lint: cache miss, executing 9fa1dd11248b485c
+@plane/decorators:check:format: cache miss, executing 56650f43e2d774b1
+web:check:format: cache miss, executing 5ee58436d8de72ed
+@plane/i18n:check:lint: cache miss, executing abfb6647e3c9937f
+@plane/logger:check:format: cache miss, executing 8046999d91a501dd
+@plane/decorators:check:lint: cache miss, executing ead3d742c8658377
+@plane/types:check:format: cache miss, executing 94316889c74ccd8a
+@plane/i18n:check:format: cache miss, executing 56654a1082f05a38
+@plane/logger:check:lint: cache miss, executing a00231c33d91446d
+space:check:lint: cache miss, executing 2de7528e5e7040fb
+web:check:format: $ oxfmt --check .
+@plane/i18n:check:format: $ oxfmt --check .
+@plane/logger:check:format: $ oxfmt --check .
+@plane/logger:check:lint: $ oxlint --max-warnings=0 .
+@plane/decorators:check:format: $ oxfmt --check .
+@plane/types:check:lint: $ oxlint --max-warnings=1 .
+@plane/decorators:check:lint: $ oxlint --max-warnings=3 .
+space:check:lint: $ oxlint --max-warnings=676 .
+@plane/i18n:check:lint: $ oxlint --max-warnings=9 .
+@plane/types:check:format: $ oxfmt --check .
+@plane/i18n:check:lint: 
+@plane/i18n:check:lint:   ! eslint-plugin-import(no-named-as-default-member): "i18n" also has a named export "createInstance"
+@plane/i18n:check:lint:     ,-[src/core/instance.ts:16:43]
+@plane/i18n:check:lint:  15 | 
+@plane/i18n:check:lint:  16 | export const i18nInstance: I18nInstance = i18n.createInstance();
+@plane/i18n:check:lint:     :                                           ^^^^^^^^^^^^^^^^^^^
+@plane/i18n:check:lint:  17 | 
+@plane/i18n:check:lint:     `----
+@plane/i18n:check:lint:   help: Check if you meant to write `import { createInstance } from "i18next"`
+@plane/i18n:check:lint: 
+@plane/i18n:check:lint:   ! eslint-plugin-unicorn(no-array-sort): Use `Array#toSorted()` instead of `Array#sort()`.
+@plane/i18n:check:lint:     ,-[scripts/generate-types.ts:86:6]
+@plane/i18n:check:lint:  85 |     .filter((file) => file.endsWith(".json"))
+@plane/i18n:check:lint:  86 |     .sort();
+@plane/i18n:check:lint:     :      ^^^^
+@plane/i18n:check:lint:  87 | 
+@plane/i18n:check:lint:     `----
+@plane/i18n:check:lint:   help: `Array#sort()` mutates the original array. Use `Array#toSorted()` to return a new sorted array without modifying the original.
+@plane/i18n:check:lint: 
+@plane/i18n:check:lint:   ! eslint-plugin-unicorn(no-array-sort): Use `Array#toSorted()` instead of `Array#sort()`.
+@plane/i18n:check:lint:      ,-[scripts/generate-types.ts:136:35]
+@plane/i18n:check:lint:  135 |   // Detect path conflicts
+@plane/i18n:check:lint:  136 |   const sortedKeys = [...allKeys].sort();
+@plane/i18n:check:lint:      :                                   ^^^^
+@plane/i18n:check:lint:  137 |   const pathConflicts = detectPathConflicts(sortedKeys);
+@plane/i18n:check:lint:      `----
+@plane/i18n:check:lint:   help: `Array#sort()` mutates the original array. Use `Array#toSorted()` to return a new sorted array without modifying the original.
+@plane/i18n:check:lint: 
+@plane/i18n:check:lint: Found 3 warnings and 0 errors.
+@plane/i18n:check:lint: Finished in 318ms on 15 files with 93 rules using 10 threads.
+@plane/types:check:lint: 
+@plane/types:check:lint:   ! eslint-plugin-unicorn(no-empty-file): Empty files are not allowed.
+@plane/types:check:lint:    ,-[src/issues/issue_subscription.ts:1:1]
+@plane/types:check:lint:  1 | ,-> /**
+@plane/types:check:lint:  2 | |    * Copyright (c) 2023-present Plane Software, Inc. and contributors
+@plane/types:check:lint:  3 | `->  * SPDX-License-Identifier: AGPL-3.0-only
+@plane/types:check:lint:  4 |      * See the LICENSE file for details.
+@plane/types:check:lint:    `----
+@plane/types:check:lint:   help: Delete this file or add some code to it.
+@plane/types:check:lint: 
+@plane/types:check:lint: Found 1 warning and 0 errors.
+@plane/types:check:lint: Finished in 180ms on 119 files with 93 rules using 10 threads.
+ WARNING  IO error: Operation not permitted (os error 1)
+ WARNING  IO error: Operation not permitted (os error 1)
+@plane/utils:check:lint: cache miss, executing 2355c2cc55ef6566
+@plane/services:check:format: cache miss, executing 0cb6e771985b161c
+@plane/decorators:check:lint: 
+@plane/decorators:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+@plane/decorators:check:lint:    ,-[src/websocket.ts:7:1]
+@plane/decorators:check:lint:  6 | 
+@plane/decorators:check:lint:  7 | import "reflect-metadata";
+@plane/decorators:check:lint:    : ^^^^^^^^^^^^^^^^^^^^^^^^^^
+@plane/decorators:check:lint:  8 | 
+@plane/decorators:check:lint:    `----
+@plane/decorators:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+@plane/decorators:check:lint: 
+@plane/decorators:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+@plane/decorators:check:lint:     ,-[src/controller.ts:10:1]
+@plane/decorators:check:lint:   9 | 
+@plane/decorators:check:lint:  10 | import "reflect-metadata";
+@plane/decorators:check:lint:     : ^^^^^^^^^^^^^^^^^^^^^^^^^^
+@plane/decorators:check:lint:  11 | 
+@plane/decorators:check:lint:     `----
+@plane/decorators:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+@plane/decorators:check:lint: 
+@plane/decorators:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+@plane/decorators:check:lint:    ,-[src/rest.ts:7:1]
+@plane/decorators:check:lint:  6 | 
+@plane/decorators:check:lint:  7 | import "reflect-metadata";
+@plane/decorators:check:lint:    : ^^^^^^^^^^^^^^^^^^^^^^^^^^
+@plane/decorators:check:lint:  8 | import type { RequestHandler } from "express";
+@plane/decorators:check:lint:    `----
+@plane/decorators:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+@plane/decorators:check:lint: 
+@plane/decorators:check:lint: Found 3 warnings and 0 errors.
+@plane/decorators:check:lint: Finished in 734ms on 4 files with 93 rules using 10 threads.
+@plane/logger:check:lint: Found 0 warnings and 0 errors.
+@plane/logger:check:lint: Finished in 570ms on 3 files with 93 rules using 10 threads.
+ WARNING  IO error: Operation not permitted (os error 1)
+live:check:format: cache miss, executing 033af1a591c95218
+live:check:lint: cache miss, executing 7319c9a85300ed7b
+ WARNING  IO error: Operation not permitted (os error 1)
+@plane/i18n:check:format: Checking formatting...
+@plane/i18n:check:format: 
+@plane/decorators:check:format: Checking formatting...
+@plane/decorators:check:format: 
+web:check:format: Checking formatting...
+web:check:format: 
+@plane/logger:check:format: Checking formatting...
+@plane/logger:check:format: 
+@plane/types:check:format: Checking formatting...
+@plane/types:check:format: 
+@plane/types:check:format: All matched files use the correct format.
+@plane/types:check:format: Finished in 15999ms on 122 files using 10 threads.
+@plane/logger:check:format: All matched files use the correct format.
+@plane/logger:check:format: Finished in 19072ms on 7 files using 10 threads.
+@plane/shared-state:check:format: cache miss, executing ab2d47434faeea12
+ WARNING  IO error: Operation not permitted (os error 1)
+admin:check:format: cache miss, executing e26ccd288b8e1983
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+space:check:lint:     ,-[components/issues/issue-layouts/list/headers/group-by-card.tsx:23:7]
+space:check:lint:  22 |         <>
+space:check:lint:  23 | ,->       <div
+space:check:lint:  24 | |           className="group/list-header relative flex w-full shrink-0 items-center gap-2 px-2 py-1 py-1.5 hover:bg-layer-transparent-hover"
+space:check:lint:  25 | |           onClick={() => toggleListGroup(groupID)}
+space:check:lint:  26 | |           role="button"
+space:check:lint:  27 | `->       >
+space:check:lint:  28 |             <div className="grid size-3.5 shrink-0 place-items-center overflow-hidden">
+space:check:lint:     `----
+space:check:lint:   help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(prefer-tag-over-role): Prefer `button` over `role` attribute `button`.
+space:check:lint:     ,-[components/issues/issue-layouts/list/headers/group-by-card.tsx:26:9]
+space:check:lint:  25 |         onClick={() => toggleListGroup(groupID)}
+space:check:lint:  26 |         role="button"
+space:check:lint:     :         ^^^^^^^^^^^^^
+space:check:lint:  27 |       >
+space:check:lint:     `----
+space:check:lint:   help: Replace HTML elements with `role` attribute `button` to corresponding semantic HTML tag `button`.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+space:check:lint:     ,-[components/issues/issue-layouts/kanban/headers/sub-group-by-card.tsx:23:5]
+space:check:lint:  22 |       return (
+space:check:lint:  23 | ,->     <div
+space:check:lint:  24 | |         className={`relative flex w-full flex-shrink-0 cursor-pointer flex-row items-center gap-2 rounded-xs p-1.5`}
+space:check:lint:  25 | |         onClick={() => toggleExpanded()}
+space:check:lint:  26 | `->     >
+space:check:lint:  27 |           <div className="flex h-[20px] w-[20px] flex-shrink-0 items-center justify-center overflow-hidden rounded-xs transition-all hover:bg-layer-1">
+space:check:lint:     `----
+space:check:lint:   help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+space:check:lint:     ,-[components/issues/issue-layouts/kanban/headers/sub-group-by-card.tsx:23:6]
+space:check:lint:  22 |   return (
+space:check:lint:  23 |     <div
+space:check:lint:     :      ^^^
+space:check:lint:  24 |       className={`relative flex w-full flex-shrink-0 cursor-pointer flex-row items-center gap-2 rounded-xs p-1.5`}
+space:check:lint:     `----
+space:check:lint:   help: Add a role attribute to this element, or use a semantic HTML element instead.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-react(no-array-index-key): Usage of Array index in keys is not allowed
+space:check:lint:      ,-[components/issues/issue-layouts/kanban/kanban-group.tsx:130:39]
+space:check:lint:  129 |             {Array.from({ length: 2 }).map((_, index) => (
+space:check:lint:  130 |               <KanbanIssueBlockLoader key={index} />
+space:check:lint:      :                                       ^^^^^^^^^^^
+space:check:lint:  131 |             ))}
+space:check:lint:      `----
+space:check:lint:   help: Use a unique data-dependent key to avoid unnecessary rerenders
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+space:check:lint:      ,-[components/issues/issue-layouts/kanban/kanban-group.tsx:98:5]
+space:check:lint:   97 |       ) : (
+space:check:lint:   98 | ,->     <div
+space:check:lint:   99 | |         className="w-full cursor-pointer p-3 text-13 font-medium text-accent-primary hover:text-accent-secondary hover:underline"
+space:check:lint:  100 | |         onClick={loadMoreIssuesInThisGroup}
+space:check:lint:  101 | |         role="button"
+space:check:lint:  102 | `->     >
+space:check:lint:  103 |           {" "}
+space:check:lint:      `----
+space:check:lint:   help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(prefer-tag-over-role): Prefer `button` over `role` attribute `button`.
+space:check:lint:      ,-[components/issues/issue-layouts/kanban/kanban-group.tsx:101:7]
+space:check:lint:  100 |       onClick={loadMoreIssuesInThisGroup}
+space:check:lint:  101 |       role="button"
+space:check:lint:      :       ^^^^^^^^^^^^^
+space:check:lint:  102 |     >
+space:check:lint:      `----
+space:check:lint:   help: Replace HTML elements with `role` attribute `button` to corresponding semantic HTML tag `button`.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-promise(always-return): Each then() should return a value or throw
+space:check:lint:     ,-[components/issues/peek-overview/comment/add-comment.tsx:56:13]
+space:check:lint:  55 |         await addIssueComment(anchor, issueId, formData)
+space:check:lint:  56 | ,->       .then(async (res) => {
+space:check:lint:  57 | |           reset(defaultValues);
+space:check:lint:  58 | |           editorRef.current?.clearEditor();
+space:check:lint:  59 | |           if (uploadedAssetIds.length > 0) {
+space:check:lint:  60 | |             await fileService.updateBulkAssetsUploadStatus(anchor, res.id, {
+space:check:lint:  61 | |               asset_ids: uploadedAssetIds,
+space:check:lint:  62 | |             });
+space:check:lint:  63 | |             setUploadAssetIds([]);
+space:check:lint:  64 | |           }
+space:check:lint:  65 | `->       })
+space:check:lint:  66 |           .catch(() =>
+space:check:lint:     `----
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-promise(always-return): Each then() should return a value or throw
+space:check:lint:     ,-[components/issues/peek-overview/issue-properties.tsx:48:41]
+space:check:lint:  47 |     
+space:check:lint:  48 | ,->     copyTextToClipboard(urlToCopy).then(() => {
+space:check:lint:  49 | |         setToast({
+space:check:lint:  50 | |           type: "info",
+space:check:lint:  51 | |           title: "Link copied!",
+space:check:lint:  52 | |           message: "Work item link copied to clipboard",
+space:check:lint:  53 | |         });
+space:check:lint:  54 | `->     });
+space:check:lint:  55 |       };
+space:check:lint:     `----
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-promise(always-return): Each then() should return a value or throw
+space:check:lint:     ,-[components/issues/peek-overview/header.tsx:65:41]
+space:check:lint:  64 |     
+space:check:lint:  65 | ,->     copyTextToClipboard(urlToCopy).then(() => {
+space:check:lint:  66 | |         setToast({
+space:check:lint:  67 | |           type: "success",
+space:check:lint:  68 | |           title: "Link copied!",
+space:check:lint:  69 | |           message: "Work item link copied to clipboard.",
+space:check:lint:  70 | |         });
+space:check:lint:  71 | `->     });
+space:check:lint:  72 |       };
+space:check:lint:     `----
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-react(no-array-index-key): Usage of Array index in keys is not allowed
+space:check:lint:     ,-[components/issues/issue-layouts/list/list-group.tsx:57:21]
+space:check:lint:  56 |         {[...Array(6)].map((_, index) => (
+space:check:lint:  57 |           <Fragment key={index}>
+space:check:lint:     :                     ^^^^^^^^^^^
+space:check:lint:  58 |             <span key={index} className="h-5 w-5 animate-pulse rounded-sm bg-layer-1" />
+space:check:lint:     `----
+space:check:lint:   help: Use a unique data-dependent key to avoid unnecessary rerenders
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-react(no-array-index-key): Usage of Array index in keys is not allowed
+space:check:lint:     ,-[components/issues/issue-layouts/list/list-group.tsx:58:19]
+space:check:lint:  57 |           <Fragment key={index}>
+space:check:lint:  58 |             <span key={index} className="h-5 w-5 animate-pulse rounded-sm bg-layer-1" />
+space:check:lint:     :                   ^^^^^^^^^^^
+space:check:lint:  59 |           </Fragment>
+space:check:lint:     `----
+space:check:lint:   help: Use a unique data-dependent key to avoid unnecessary rerenders
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+space:check:lint:      ,-[components/issues/issue-layouts/list/list-group.tsx:101:5]
+space:check:lint:  100 |       ) : (
+space:check:lint:  101 | ,->     <div
+space:check:lint:  102 | |         className={
+space:check:lint:  103 | |           "relative flex h-11 cursor-pointer items-center gap-3 border border-transparent border-t-subtle-1 bg-surface-1 p-3 pl-6 text-13 font-medium text-accent-primary hover:text-accent-secondary hover:underline"
+space:check:lint:  104 | |         }
+space:check:lint:  105 | |         onClick={() => loadMoreIssues(group.id)}
+space:check:lint:  106 | |         role="button"
+space:check:lint:  107 | `->     >
+space:check:lint:  108 |           {t("common.load_more")} &darr;
+space:check:lint:      `----
+space:check:lint:   help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(prefer-tag-over-role): Prefer `button` over `role` attribute `button`.
+space:check:lint:      ,-[components/issues/issue-layouts/list/list-group.tsx:106:7]
+space:check:lint:  105 |       onClick={() => loadMoreIssues(group.id)}
+space:check:lint:  106 |       role="button"
+space:check:lint:      :       ^^^^^^^^^^^^^
+space:check:lint:  107 |     >
+space:check:lint:      `----
+space:check:lint:   help: Replace HTML elements with `role` attribute `button` to corresponding semantic HTML tag `button`.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'label' is already declared in the upper scope.
+space:check:lint:      ,-[components/issues/issue-layouts/utils.tsx:143:27]
+space:check:lint:  142 | 
+space:check:lint:  143 | const getLabelsColumns = (label: IIssueLabelStore) => {
+space:check:lint:      :                           ^^|^^
+space:check:lint:      :                             `-- shadowed declaration is here
+space:check:lint:  144 |   const { labels: storeLabels } = label;
+space:check:lint:  145 | 
+space:check:lint:  146 |   if (!storeLabels) return;
+space:check:lint:  147 | 
+space:check:lint:  148 |   const labels = [...storeLabels, { id: "None", name: "None", color: "#666" }];
+space:check:lint:  149 | 
+space:check:lint:  150 |   return labels.map((label) => ({
+space:check:lint:      :                      ^^|^^
+space:check:lint:      :                        `-- 'label' is declared here
+space:check:lint:  151 |     id: label.id,
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'label' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'member' is already declared in the upper scope.
+space:check:lint:      ,-[components/issues/issue-layouts/utils.tsx:160:29]
+space:check:lint:  159 | 
+space:check:lint:  160 | const getAssigneeColumns = (member: IIssueMemberStore) => {
+space:check:lint:      :                             ^^^|^^
+space:check:lint:      :                                `-- shadowed declaration is here
+space:check:lint:  161 |   const { members } = member;
+space:check:lint:  162 | 
+space:check:lint:  163 |   if (!members) return;
+space:check:lint:  164 | 
+space:check:lint:  165 |   const assigneeColumns: any = members.map((member) => ({
+space:check:lint:      :                                             ^^^|^^
+space:check:lint:      :                                                `-- 'member' is declared here
+space:check:lint:  166 |     id: member.id,
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'member' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'member' is already declared in the upper scope.
+space:check:lint:      ,-[components/issues/issue-layouts/utils.tsx:183:30]
+space:check:lint:  182 | 
+space:check:lint:  183 | const getCreatedByColumns = (member: IIssueMemberStore) => {
+space:check:lint:      :                              ^^^|^^
+space:check:lint:      :                                 `-- shadowed declaration is here
+space:check:lint:  184 |   const { members } = member;
+space:check:lint:  185 | 
+space:check:lint:  186 |   if (!members) return;
+space:check:lint:  187 | 
+space:check:lint:  188 |   return members.map((member) => ({
+space:check:lint:      :                       ^^^|^^
+space:check:lint:      :                          `-- 'member' is declared here
+space:check:lint:  189 |     id: member.id,
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'member' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(click-events-have-key-events): Enforce a clickable non-interactive element has at least one keyboard event listener.
+space:check:lint:     ,-[components/account/auth-forms/auth-banner.tsx:26:7]
+space:check:lint:  25 |           <div className="w-full text-13 font-medium text-accent-primary">{bannerData?.message}</div>
+space:check:lint:  26 | ,->       <div
+space:check:lint:  27 | |           className="relative ml-auto flex h-6 w-6 cursor-pointer items-center justify-center rounded-xs text-accent-primary/80 transition-all hover:bg-accent-primary/20"
+space:check:lint:  28 | |           onClick={() => handleBannerData && handleBannerData(undefined)}
+space:check:lint:  29 | `->       >
+space:check:lint:  30 |             <CloseOutline className="h-4 w-4 flex-shrink-0" />
+space:check:lint:     `----
+space:check:lint:   help: Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(no-static-element-interactions): Static HTML elements with event handlers require a role.
+space:check:lint:     ,-[components/account/auth-forms/auth-banner.tsx:26:8]
+space:check:lint:  25 |       <div className="w-full text-13 font-medium text-accent-primary">{bannerData?.message}</div>
+space:check:lint:  26 |       <div
+space:check:lint:     :        ^^^
+space:check:lint:  27 |         className="relative ml-auto flex h-6 w-6 cursor-pointer items-center justify-center rounded-xs text-accent-primary/80 transition-all hover:bg-accent-primary/20"
+space:check:lint:     `----
+space:check:lint:   help: Add a role attribute to this element, or use a semantic HTML element instead.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-unicorn(consistent-function-scoping): Function `handleRetry` does not capture any variables from its parent scope
+space:check:lint:     ,-[components/instance/instance-failure-view.tsx:18:9]
+space:check:lint:  12 | 
+space:check:lint:  13 | export function InstanceFailureView() {
+space:check:lint:     :                 ^^^^^^^^^|^^^^^^^^^
+space:check:lint:     :                          `-- Outer scope where this function is defined
+space:check:lint:  14 |   const { resolvedTheme } = useTheme();
+space:check:lint:  15 | 
+space:check:lint:  16 |   const instanceImage = resolvedTheme === "dark" ? InstanceFailureDarkImage : InstanceFailureImage;
+space:check:lint:  17 | 
+space:check:lint:  18 |   const handleRetry = () => {
+space:check:lint:     :         ^^^^^|^^^^^
+space:check:lint:     :              `-- This function does not use any variables from the parent function
+space:check:lint:  19 |     window.location.reload();
+space:check:lint:     `----
+space:check:lint:   help: Move `handleRetry` to the outer scope to avoid recreating it on every call.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(img-redundant-alt): Redundant `alt` attribute.
+space:check:lint:     ,-[components/instance/instance-failure-view.tsx:26:36]
+space:check:lint:  25 |         <div className="relative flex flex-col items-center justify-center space-y-4">
+space:check:lint:  26 |           <img src={instanceImage} alt="Plane instance failure image" />
+space:check:lint:     :                                    ^^^
+space:check:lint:  27 |           <h3 className="text-20 font-medium text-on-color">Unable to fetch instance details.</h3>
+space:check:lint:     `----
+space:check:lint:   help: Provide no redundant alt text for image. Screen-readers already announce `img` tags as an image. You don't need to use the words `image`, `photo`, or `picture` (or any specified custom words) in the `alt` prop.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-promise(always-return): Each then() should return a value or throw
+space:check:lint:     ,-[hooks/use-clipboard-write-permission.tsx:17:15]
+space:check:lint:  16 |             .query({ name: "clipboard-write" as PermissionName })
+space:check:lint:  17 | ,->         .then((result) => {
+space:check:lint:  18 | |             if (result.state === "granted") {
+space:check:lint:  19 | |               setClipboardWriteAllowed(true);
+space:check:lint:  20 | |             } else {
+space:check:lint:  21 | |               setClipboardWriteAllowed(false);
+space:check:lint:  22 | |             }
+space:check:lint:  23 | `->         })
+space:check:lint:  24 |             .catch(() => {
+space:check:lint:     `----
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'props' is already declared in the upper scope.
+space:check:lint:     ,-[components/editor/rich-text-editor.tsx:39:3]
+space:check:lint:  38 | export const RichTextEditor = forwardRef(function RichTextEditor(
+space:check:lint:  39 |   props: RichTextEditorWrapperProps,
+space:check:lint:     :   ^^|^^
+space:check:lint:     :     `-- shadowed declaration is here
+space:check:lint:  40 |   ref: React.ForwardedRef<EditorRefApi>
+space:check:lint:  41 | ) {
+space:check:lint:  42 |   const {
+space:check:lint:  43 |     anchor,
+space:check:lint:  44 |     containerClassName,
+space:check:lint:  45 |     editable,
+space:check:lint:  46 |     workspaceId,
+space:check:lint:  47 |     disabledExtensions: additionalDisabledExtensions = [],
+space:check:lint:  48 |     ...rest
+space:check:lint:  49 |   } = props;
+space:check:lint:  50 |   // store hooks
+space:check:lint:  51 |   const { getMemberById } = useMember();
+space:check:lint:  52 |   // parse content
+space:check:lint:  53 |   const { getEditorMetaData } = useParseEditorContent({
+space:check:lint:  54 |     anchor,
+space:check:lint:  55 |   });
+space:check:lint:  56 |   // editor flaggings
+space:check:lint:  57 |   const { richText: richTextEditorExtensions } = useEditorFlagging(anchor);
+space:check:lint:  58 | 
+space:check:lint:  59 |   return (
+space:check:lint:  60 |     <RichTextEditorWithRef
+space:check:lint:  61 |       mentionHandler={{
+space:check:lint:  62 |         renderComponent: (props) => <EditorMentionsRoot {...props} />,
+space:check:lint:     :                           ^^|^^
+space:check:lint:     :                             `-- 'props' is declared here
+space:check:lint:  63 |         getMentionedEntityDetails: (id: string) => ({
+space:check:lint:     `----
+space:check:lint:   help: Consider renaming 'props' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'ref' is already declared in the upper scope.
+space:check:lint:     ,-[components/editor/lite-text-editor.tsx:43:3]
+space:check:lint:  42 |   props: LiteTextEditorWrapperProps,
+space:check:lint:  43 |   ref: React.ForwardedRef<EditorRefApi>
+space:check:lint:     :   ^|^
+space:check:lint:     :    `-- shadowed declaration is here
+space:check:lint:  44 | ) {
+space:check:lint:  45 |   const {
+space:check:lint:  46 |     anchor,
+space:check:lint:  47 |     containerClassName,
+space:check:lint:  48 |     disabledExtensions: additionalDisabledExtensions = [],
+space:check:lint:  49 |     editable,
+space:check:lint:  50 |     isSubmitting = false,
+space:check:lint:  51 |     showSubmitButton = true,
+space:check:lint:  52 |     workspaceId,
+space:check:lint:  53 |     ...rest
+space:check:lint:  54 |   } = props;
+space:check:lint:  55 |   function isMutableRefObject<T>(ref: React.ForwardedRef<T>): ref is React.MutableRefObject<T | null> {
+space:check:lint:     :                                  ^|^
+space:check:lint:     :                                   `-- 'ref' is declared here
+space:check:lint:  56 |     return !!ref && typeof ref === "object" && "current" in ref;
+space:check:lint:     `----
+space:check:lint:   help: Consider renaming 'ref' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'props' is already declared in the upper scope.
+space:check:lint:     ,-[components/editor/lite-text-editor.tsx:42:3]
+space:check:lint:  41 | export const LiteTextEditor = React.forwardRef(function LiteTextEditor(
+space:check:lint:  42 |   props: LiteTextEditorWrapperProps,
+space:check:lint:     :   ^^|^^
+space:check:lint:     :     `-- shadowed declaration is here
+space:check:lint:  43 |   ref: React.ForwardedRef<EditorRefApi>
+space:check:lint:  44 | ) {
+space:check:lint:  45 |   const {
+space:check:lint:  46 |     anchor,
+space:check:lint:  47 |     containerClassName,
+space:check:lint:  48 |     disabledExtensions: additionalDisabledExtensions = [],
+space:check:lint:  49 |     editable,
+space:check:lint:  50 |     isSubmitting = false,
+space:check:lint:  51 |     showSubmitButton = true,
+space:check:lint:  52 |     workspaceId,
+space:check:lint:  53 |     ...rest
+space:check:lint:  54 |   } = props;
+space:check:lint:  55 |   function isMutableRefObject<T>(ref: React.ForwardedRef<T>): ref is React.MutableRefObject<T | null> {
+space:check:lint:  56 |     return !!ref && typeof ref === "object" && "current" in ref;
+space:check:lint:  57 |   }
+space:check:lint:  58 |   // derived values
+space:check:lint:  59 |   const isEmpty = isCommentEmpty(props.initialValue);
+space:check:lint:  60 |   const editorRef = isMutableRefObject<EditorRefApi>(ref) ? ref.current : null;
+space:check:lint:  61 |   const { liteText: liteTextEditorExtensions } = useEditorFlagging(anchor);
+space:check:lint:  62 |   // parse content
+space:check:lint:  63 |   const { getEditorMetaData } = useParseEditorContent({
+space:check:lint:  64 |     anchor,
+space:check:lint:  65 |   });
+space:check:lint:  66 | 
+space:check:lint:  67 |   return (
+space:check:lint:  68 |     <div className="space-y-3 rounded-sm border border-subtle p-3">
+space:check:lint:  69 |       <LiteTextEditorWithRef
+space:check:lint:  70 |         ref={ref}
+space:check:lint:  71 |         disabledExtensions={[...liteTextEditorExtensions.disabled, ...additionalDisabledExtensions]}
+space:check:lint:  72 |         flaggedExtensions={liteTextEditorExtensions.flagged}
+space:check:lint:  73 |         editable={editable}
+space:check:lint:  74 |         fileHandler={getEditorFileHandlers({
+space:check:lint:  75 |           anchor,
+space:check:lint:  76 |           uploadFile: editable ? props.uploadFile : async () => "",
+space:check:lint:  77 |           workspaceId,
+space:check:lint:  78 |         })}
+space:check:lint:  79 |         getEditorMetaData={getEditorMetaData}
+space:check:lint:  80 |         mentionHandler={{
+space:check:lint:  81 |           renderComponent: (props) => <EditorMentionsRoot {...props} />,
+space:check:lint:     :                             ^^|^^
+space:check:lint:     :                               `-- 'props' is declared here
+space:check:lint:  82 |         }}
+space:check:lint:     `----
+space:check:lint:   help: Consider renaming 'props' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-unicorn(consistent-function-scoping): Function `isMutableRefObject` does not capture any variables from its parent scope
+space:check:lint:     ,-[components/editor/lite-text-editor.tsx:55:12]
+space:check:lint:  40 | 
+space:check:lint:  41 | export const LiteTextEditor = React.forwardRef(function LiteTextEditor(
+space:check:lint:     :                                                         ^^^^^^^|^^^^^^
+space:check:lint:     :                                                                `-- Outer scope where this function is defined
+space:check:lint:  42 |   props: LiteTextEditorWrapperProps,
+space:check:lint:  43 |   ref: React.ForwardedRef<EditorRefApi>
+space:check:lint:  44 | ) {
+space:check:lint:  45 |   const {
+space:check:lint:  46 |     anchor,
+space:check:lint:  47 |     containerClassName,
+space:check:lint:  48 |     disabledExtensions: additionalDisabledExtensions = [],
+space:check:lint:  49 |     editable,
+space:check:lint:  50 |     isSubmitting = false,
+space:check:lint:  51 |     showSubmitButton = true,
+space:check:lint:  52 |     workspaceId,
+space:check:lint:  53 |     ...rest
+space:check:lint:  54 |   } = props;
+space:check:lint:  55 |   function isMutableRefObject<T>(ref: React.ForwardedRef<T>): ref is React.MutableRefObject<T | null> {
+space:check:lint:     :            ^^^^^^^^^|^^^^^^^^
+space:check:lint:     :                     `-- This function does not use any variables from the parent function
+space:check:lint:  56 |     return !!ref && typeof ref === "object" && "current" in ref;
+space:check:lint:     `----
+space:check:lint:   help: Move `isMutableRefObject` to the outer scope to avoid recreating it on every call.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-jsx-a11y(no-autofocus): The `autoFocus` attribute is found here, which can cause usability issues for sighted and non-sighted users.
+space:check:lint:     ,-[components/issues/filters/selection.tsx:40:13]
+space:check:lint:  39 |             onChange={(e) => setFiltersSearchQuery(e.target.value)}
+space:check:lint:  40 |             autoFocus
+space:check:lint:     :             ^^^^^^^^^
+space:check:lint:  41 |           />
+space:check:lint:     `----
+space:check:lint:   help: Remove the `autoFocus` attribute.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'email' is already declared in the upper scope.
+space:check:lint:     ,-[components/account/auth-forms/auth-root.tsx:41:10]
+space:check:lint:  40 |   const [authStep, setAuthStep] = useState<EAuthSteps>(EAuthSteps.EMAIL);
+space:check:lint:  41 |   const [email, setEmail] = useState(emailParam ? emailParam.toString() : "");
+space:check:lint:     :          ^^|^^
+space:check:lint:     :            `-- shadowed declaration is here
+space:check:lint:  42 |   const [errorInfo, setErrorInfo] = useState<TAuthErrorInfo | undefined>(undefined);
+space:check:lint:     `----
+space:check:lint:      ,-[components/account/auth-forms/auth-root.tsx:137:42]
+space:check:lint:  136 |   // generating the unique code
+space:check:lint:  137 |   const generateEmailUniqueCode = async (email: string): Promise<{ code: string } | undefined> => {
+space:check:lint:      :                                          ^^|^^
+space:check:lint:      :                                            `-- 'email' is declared here
+space:check:lint:  138 |     const payload = { email: email };
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'email' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-unneeded-ternary): Unnecessary use of boolean literals in conditional expression
+space:check:lint:      ,-[components/account/auth-forms/auth-root.tsx:188:39]
+space:check:lint:  187 |         )}
+space:check:lint:  188 |         <TermsAndConditions isSignUp={authMode === EAuthModes.SIGN_UP ? true : false} />
+space:check:lint:      :                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  189 |       </div>
+space:check:lint:      `----
+space:check:lint:   help: Remove this ternary operator
+space:check:lint: 
+space:check:lint:   ! eslint(no-unneeded-ternary): Unnecessary use of boolean literals in conditional expression
+space:check:lint:     ,-[components/account/auth-forms/password.tsx:83:7]
+space:check:lint:  82 |         () =>
+space:check:lint:  83 | ,->       !isSubmitting &&
+space:check:lint:  84 | |         !!passwordFormData.password &&
+space:check:lint:  85 | |         (mode === EAuthModes.SIGN_UP
+space:check:lint:  86 | |           ? getPasswordStrength(passwordFormData.password) === E_PASSWORD_STRENGTH.STRENGTH_VALID &&
+space:check:lint:  87 | |             passwordFormData.password === passwordFormData.confirm_password
+space:check:lint:  88 | |           : true)
+space:check:lint:  89 | |           ? false
+space:check:lint:  90 | `->         : true,
+space:check:lint:  91 |         [isSubmitting, mode, passwordFormData.confirm_password, passwordFormData.password]
+space:check:lint:     `----
+space:check:lint:   help: Remove this ternary operator
+space:check:lint: 
+space:check:lint:   ! eslint(no-unneeded-ternary): Unnecessary use of boolean literals in conditional expression
+space:check:lint:     ,-[components/issues/filters/priority.tsx:48:28]
+space:check:lint:  47 |                 key={priority.key}
+space:check:lint:  48 |                 isChecked={appliedFilters?.includes(priority.key) ? true : false}
+space:check:lint:     :                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  49 |                 onClick={() => handleUpdate(priority.key)}
+space:check:lint:     `----
+space:check:lint:   help: Remove this ternary operator
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'email' is already declared in the upper scope.
+space:check:lint:     ,-[components/account/auth-forms/unique-code.tsx:41:17]
+space:check:lint:  40 | export function AuthUniqueCodeForm(props: TAuthUniqueCodeForm) {
+space:check:lint:  41 |   const { mode, email, nextPath, handleEmailClear, generateEmailUniqueCode } = props;
+space:check:lint:     :                 ^^|^^
+space:check:lint:     :                   `-- shadowed declaration is here
+space:check:lint:  42 |   // derived values
+space:check:lint:  43 |   const defaultResetTimerValue = 5;
+space:check:lint:  44 |   // states
+space:check:lint:  45 |   const [uniqueCodeFormData, setUniqueCodeFormData] = useState<TUniqueCodeFormValues>({ ...defaultValues, email });
+space:check:lint:  46 |   const [isRequestingNewCode, setIsRequestingNewCode] = useState(false);
+space:check:lint:  47 |   const [csrfToken, setCsrfToken] = useState<string | undefined>(undefined);
+space:check:lint:  48 |   const [isSubmitting, setIsSubmitting] = useState(false);
+space:check:lint:  49 |   // timer
+space:check:lint:  50 |   const { timer: resendTimerCode, setTimer: setResendCodeTimer } = useTimer(0);
+space:check:lint:  51 | 
+space:check:lint:  52 |   const handleFormChange = (key: keyof TUniqueCodeFormValues, value: string) =>
+space:check:lint:  53 |     setUniqueCodeFormData((prev) => ({ ...prev, [key]: value }));
+space:check:lint:  54 | 
+space:check:lint:  55 |   const generateNewCode = async (email: string) => {
+space:check:lint:     :                                  ^^|^^
+space:check:lint:     :                                    `-- 'email' is declared here
+space:check:lint:  56 |     try {
+space:check:lint:     `----
+space:check:lint:   help: Consider renaming 'email' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-unneeded-ternary): Unnecessary use of boolean literals in conditional expression
+space:check:lint:     ,-[components/issues/filters/state.tsx:59:32]
+space:check:lint:  58 |                     key={state.id}
+space:check:lint:  59 |                     isChecked={appliedFilters?.includes(state.id) ? true : false}
+space:check:lint:     :                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  60 |                     onClick={() => handleUpdate(state.id)}
+space:check:lint:     `----
+space:check:lint:   help: Remove this ternary operator
+space:check:lint: 
+space:check:lint:   ! eslint(no-unsafe-optional-chaining): Unsafe usage of optional chaining
+space:check:lint:     ,-[components/issues/navbar/controls.tsx:77:41]
+space:check:lint:  76 |           const params: any = {
+space:check:lint:  77 |             display_filters: { layout: (query?.board as string[])[0] },
+space:check:lint:     :                                         ^^^^^^^^^^^^
+space:check:lint:  78 |             filters: {
+space:check:lint:     `----
+space:check:lint:   help: If this short-circuits with 'undefined' the evaluation will throw TypeError
+space:check:lint: 
+space:check:lint:   ! eslint(no-unneeded-ternary): Unnecessary use of boolean literals in conditional expression
+space:check:lint:     ,-[components/issues/filters/labels.tsx:59:32]
+space:check:lint:  58 |                     key={label?.id}
+space:check:lint:  59 |                     isChecked={appliedFilters?.includes(label?.id) ? true : false}
+space:check:lint:     :                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  60 |                     onClick={() => handleUpdate(label?.id)}
+space:check:lint:     `----
+space:check:lint:   help: Remove this ternary operator
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-unicorn(no-instanceof-builtins): Do not use `instanceof` with built-in constructors
+space:check:lint:     ,-[helpers/date-time.helper.ts:35:39]
+space:check:lint:  34 | 
+space:check:lint:  35 |     if (typeof date !== "string" && !(date instanceof String)) return date;
+space:check:lint:     :                                       ^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  36 | 
+space:check:lint:     `----
+space:check:lint:   help: Use `Array.isArray(…)`, `typeof … === 'string'`, or another realm-safe alternative instead
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+space:check:lint:     ,-[lib/b-progress/AppProgressBar.tsx:10:1]
+space:check:lint:   9 | import { useNavigation } from "react-router";
+space:check:lint:  10 | import "@bprogress/core/css";
+space:check:lint:     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  11 | 
+space:check:lint:     `----
+space:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'groupId' is already declared in the upper scope.
+space:check:lint:      ,-[store/helpers/base-issues.store.ts:389:5]
+space:check:lint:  388 |     groupedIssueCount: TGroupedIssueCount,
+space:check:lint:  389 |     groupId?: string,
+space:check:lint:      :     ^^^|^^^
+space:check:lint:      :        `-- shadowed declaration is here
+space:check:lint:  390 |     subGroupId?: string
+space:check:lint:  391 |   ) {
+space:check:lint:  392 |     // if groupId exists and groupedIssues has ALL_ISSUES as a group,
+space:check:lint:  393 |     // then it's an individual group/subgroup pagination
+space:check:lint:  394 |     if (groupId && groupedIssues[ALL_ISSUES] && Array.isArray(groupedIssues[ALL_ISSUES])) {
+space:check:lint:  395 |       const issueGroup = groupedIssues[ALL_ISSUES];
+space:check:lint:  396 |       const issueGroupCount = groupedIssueCount[ALL_ISSUES];
+space:check:lint:  397 |       const issuesPath = [groupId];
+space:check:lint:  398 |       // issuesPath is the path for the issue List in the Grouped Issue List
+space:check:lint:  399 |       // issuePath is either [groupId] for grouped pagination or [groupId, subGroupId] for subGrouped pagination
+space:check:lint:  400 |       if (subGroupId) issuesPath.push(subGroupId);
+space:check:lint:  401 | 
+space:check:lint:  402 |       // update the issue Count of the particular group/subGroup
+space:check:lint:  403 |       set(this.groupedIssueCount, [this.getGroupKey(groupId, subGroupId)], issueGroupCount);
+space:check:lint:  404 | 
+space:check:lint:  405 |       // update the issue list in the issuePath
+space:check:lint:  406 |       this.updateIssueGroup(issueGroup, issuesPath);
+space:check:lint:  407 |       return;
+space:check:lint:  408 |     }
+space:check:lint:  409 | 
+space:check:lint:  410 |     // if not in the above condition the it's a complete grouped pagination not individual group/subgroup pagination
+space:check:lint:  411 |     // update total issue count as ALL_ISSUES count in `groupedIssueCount` object
+space:check:lint:  412 |     set(this.groupedIssueCount, [ALL_ISSUES], groupedIssueCount[ALL_ISSUES]);
+space:check:lint:  413 | 
+space:check:lint:  414 |     // loop through the groups of groupedIssues.
+space:check:lint:  415 |     for (const groupId in groupedIssues) {
+space:check:lint:      :                ^^^|^^^
+space:check:lint:      :                   `-- 'groupId' is declared here
+space:check:lint:  416 |       const issueGroup = groupedIssues[groupId];
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'groupId' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'subGroupId' is already declared in the upper scope.
+space:check:lint:      ,-[store/helpers/base-issues.store.ts:390:5]
+space:check:lint:  389 |     groupId?: string,
+space:check:lint:  390 |     subGroupId?: string
+space:check:lint:      :     ^^^^^|^^^^
+space:check:lint:      :          `-- shadowed declaration is here
+space:check:lint:  391 |   ) {
+space:check:lint:  392 |     // if groupId exists and groupedIssues has ALL_ISSUES as a group,
+space:check:lint:  393 |     // then it's an individual group/subgroup pagination
+space:check:lint:  394 |     if (groupId && groupedIssues[ALL_ISSUES] && Array.isArray(groupedIssues[ALL_ISSUES])) {
+space:check:lint:  395 |       const issueGroup = groupedIssues[ALL_ISSUES];
+space:check:lint:  396 |       const issueGroupCount = groupedIssueCount[ALL_ISSUES];
+space:check:lint:  397 |       const issuesPath = [groupId];
+space:check:lint:  398 |       // issuesPath is the path for the issue List in the Grouped Issue List
+space:check:lint:  399 |       // issuePath is either [groupId] for grouped pagination or [groupId, subGroupId] for subGrouped pagination
+space:check:lint:  400 |       if (subGroupId) issuesPath.push(subGroupId);
+space:check:lint:  401 | 
+space:check:lint:  402 |       // update the issue Count of the particular group/subGroup
+space:check:lint:  403 |       set(this.groupedIssueCount, [this.getGroupKey(groupId, subGroupId)], issueGroupCount);
+space:check:lint:  404 | 
+space:check:lint:  405 |       // update the issue list in the issuePath
+space:check:lint:  406 |       this.updateIssueGroup(issueGroup, issuesPath);
+space:check:lint:  407 |       return;
+space:check:lint:  408 |     }
+space:check:lint:  409 | 
+space:check:lint:  410 |     // if not in the above condition the it's a complete grouped pagination not individual group/subgroup pagination
+space:check:lint:  411 |     // update total issue count as ALL_ISSUES count in `groupedIssueCount` object
+space:check:lint:  412 |     set(this.groupedIssueCount, [ALL_ISSUES], groupedIssueCount[ALL_ISSUES]);
+space:check:lint:  413 | 
+space:check:lint:  414 |     // loop through the groups of groupedIssues.
+space:check:lint:  415 |     for (const groupId in groupedIssues) {
+space:check:lint:  416 |       const issueGroup = groupedIssues[groupId];
+space:check:lint:  417 |       const issueGroupCount = groupedIssueCount[groupId];
+space:check:lint:  418 | 
+space:check:lint:  419 |       // update the groupId's issue count
+space:check:lint:  420 |       set(this.groupedIssueCount, [groupId], issueGroupCount);
+space:check:lint:  421 | 
+space:check:lint:  422 |       // This updates the group issue list in the store, if the issueGroup is a string
+space:check:lint:  423 |       const storeUpdated = this.updateIssueGroup(issueGroup, [groupId]);
+space:check:lint:  424 |       // if issueGroup is indeed a string, continue
+space:check:lint:  425 |       if (storeUpdated) continue;
+space:check:lint:  426 | 
+space:check:lint:  427 |       // if issueGroup is not a string, loop through the sub group Issues
+space:check:lint:  428 |       for (const subGroupId in issueGroup) {
+space:check:lint:      :                  ^^^^^|^^^^
+space:check:lint:      :                       `-- 'subGroupId' is declared here
+space:check:lint:  429 |         const issueSubGroup = (issueGroup as TGroupedIssues)[subGroupId];
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'subGroupId' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'update' is already declared in the upper scope.
+space:check:lint:    ,-[store/helpers/base-issues.store.ts:7:34]
+space:check:lint:  6 | 
+space:check:lint:  7 | import { concat, get, set, uniq, update } from "lodash-es";
+space:check:lint:    :                                  ^^^|^^
+space:check:lint:    :                                     `-- shadowed declaration is here
+space:check:lint:  8 | import { action, makeObservable, observable, runInAction } from "mobx";
+space:check:lint:    `----
+space:check:lint:      ,-[store/helpers/base-issues.store.ts:470:13]
+space:check:lint:  469 |     for (const updateKey of updateKeys) {
+space:check:lint:  470 |       const update = accumulatedUpdatesForCount[updateKey];
+space:check:lint:      :             ^^^|^^
+space:check:lint:      :                `-- 'update' is declared here
+space:check:lint:  471 |       if (!update) continue;
+space:check:lint:      `----
+space:check:lint:   help: Consider renaming 'update' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint(no-shadow): 'user' is already declared in the upper scope.
+space:check:lint:     ,-[hooks/use-mention.tsx:15:17]
+space:check:lint:  14 |   const userService = new UserService();
+space:check:lint:  15 |   const { data: user, isLoading: userDataLoading } = useSWR("currentUser", async () => userService.me());
+space:check:lint:     :                 ^^|^
+space:check:lint:     :                   `-- shadowed declaration is here
+space:check:lint:  16 | 
+space:check:lint:     `----
+space:check:lint:     ,-[hooks/use-mention.tsx:41:13]
+space:check:lint:  40 |     } else {
+space:check:lint:  41 |       const user = await waitForUserDate();
+space:check:lint:     :             ^^|^
+space:check:lint:     :               `-- 'user' is declared here
+space:check:lint:  42 |       return [user.id];
+space:check:lint:     `----
+space:check:lint:   help: Consider renaming 'user' to avoid shadowing the variable from the outer scope.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-promise(always-return): Each then() should return a value or throw
+space:check:lint:     ,-[app/entry.client.tsx:19:9]
+space:check:lint:  18 |       .catch(() => {})
+space:check:lint:  19 | ,->   .then(() => {
+space:check:lint:  20 | |       startTransition(() => {
+space:check:lint:  21 | |         hydrateRoot(
+space:check:lint:  22 | |           document,
+space:check:lint:  23 | |           <StrictMode>
+space:check:lint:  24 | |             <HydratedRouter />
+space:check:lint:  25 | |           </StrictMode>
+space:check:lint:  26 | |         );
+space:check:lint:  27 | |       });
+space:check:lint:  28 | `->   });
+space:check:lint:     `----
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-unicorn(no-array-sort): Use `Array#toSorted()` instead of `Array#sort()`.
+space:check:lint:     ,-[helpers/state.helper.ts:13:17]
+space:check:lint:  12 | 
+space:check:lint:  13 |   return states.sort((stateA, stateB) => {
+space:check:lint:     :                 ^^^^
+space:check:lint:  14 |     if (stateA.group === stateB.group) {
+space:check:lint:     `----
+space:check:lint:   help: `Array#sort()` mutates the original array. Use `Array#toSorted()` to return a new sorted array without modifying the original.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+space:check:lint:     ,-[app/root.tsx:22:1]
+space:check:lint:  21 | // fonts
+space:check:lint:  22 | import "@fontsource-variable/inter";
+space:check:lint:     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  23 | import interVariableWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+space:check:lint:     `----
+space:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+space:check:lint:     ,-[app/root.tsx:24:1]
+space:check:lint:  23 | import interVariableWoff2 from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url";
+space:check:lint:  24 | import "@fontsource/material-symbols-rounded";
+space:check:lint:     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  25 | import "@fontsource/ibm-plex-mono";
+space:check:lint:     `----
+space:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-import(no-unassigned-import): Imported module should be assigned
+space:check:lint:     ,-[app/root.tsx:25:1]
+space:check:lint:  24 | import "@fontsource/material-symbols-rounded";
+space:check:lint:  25 | import "@fontsource/ibm-plex-mono";
+space:check:lint:     : ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+space:check:lint:  26 | 
+space:check:lint:     `----
+space:check:lint:   help: Consider assigning the import to a variable or removing it if it's unused.
+space:check:lint: 
+space:check:lint:   ! eslint-plugin-unicorn(consistent-function-scoping): Function `handleRetry` does not capture any variables from its parent scope
+space:check:lint:     ,-[app/error.tsx:11:9]
+space:check:lint:   9 | 
+space:check:lint:  10 | function ErrorPage() {
+space:check:lint:     :          ^^^^|^^^^
+space:check:lint:     :              `-- Outer scope where this function is defined
+space:check:lint:  11 |   const handleRetry = () => {
+space:check:lint:     :         ^^^^^|^^^^^
+space:check:lint:     :              `-- This function does not use any variables from the parent function
+space:check:lint:  12 |     window.location.reload();
+space:check:lint:     `----
+space:check:lint:   help: Move `handleRetry` to the outer scope to avoid recreating it on every call.
+space:check:lint: 
+space:check:lint: Found 47 warnings and 0 errors.
+space:check:lint: Finished in 22.7s on 164 files with 93 rules using 10 threads.
+@plane/hooks:check:format: cache miss, executing 5ca7f0af5ba5172f
+@plane/decorators:check:format: All matched files use the correct format.
+@plane/decorators:check:format: Finished in 23898ms on 8 files using 10 threads.
+@plane/shared-state:check:lint: cache miss, executing e0f5ffca06e5cdd2
+live:check:format: $ oxfmt --check .
+@plane/utils:check:lint: $ oxlint --max-warnings=38 .
+live:check:lint: $ oxlint --max-warnings=119 .
+@plane/services:check:format: $ oxfmt --check .
+@plane/i18n:check:format: All matched files use the correct format.
+@plane/i18n:check:format: Finished in 37354ms on 607 files using 10 threads.
+web:check:format: components/radar/create-object-input.test.ts (0ms)
+web:check:format: 
+web:check:format: Format issues found in above 1 files. Run without `--check` to fix.
+web:check:format: Finished in 37426ms on 1906 files using 10 threads.
+@plane/constants:check:format: cache miss, executing be2b227ebbca09d7
+web:check:format: [ELIFECYCLE] Command failed with exit code 1.
+live:check:format: Checking formatting...
+live:check:format: 
+@plane/shared-state:check:format: $ oxfmt --check .
+@plane/constants:check:lint: cache miss, executing 4f6facfa24a59b32
+@plane/blocks:check:format: cache miss, executing fecb3c69c2418db9
+@plane/hooks:check:lint: cache miss, executing d385dca2f19d07bb
+space:check:format: cache miss, executing a8c61051553a2cf0
+@plane/blocks:check:lint: cache miss, executing dfe2b1ea4ca8c724
+@plane/editor:check:format: cache miss, executing 99ad7b2716319600
+@plane/services:check:lint: cache miss, executing df15d92bea59fd55
+@plane/editor:check:lint: cache miss, executing a23d71f9f51fd1cb
+web:check:lint: cache miss, executing 948b61bf714114d5
+@plane/utils:check:format: cache miss, executing 3e781c1290d5efce
+admin:check:lint: cache miss, executing a40dea1a3da22b73
+@plane/hooks:check:types: cache miss, executing cbbb209d1b1f4847
+@plane/decorators:check:types: cache miss, executing d141064ce8573df9
+@plane/hooks:build: cache hit, replaying logs 546f1637bd02f4de
+@plane/hooks:build: $ tsdown
+@plane/hooks:build: [34mℹ[39m tsdown [2mv0.16.0[22m powered by rolldown [2mv1.0.0-beta.46[22m
+@plane/hooks:build: [34mℹ[39m Using tsdown config: [4m/Users/joaomarcosramos/Documents/Github/plane/packages/hooks/tsdown.config.ts[24m
+@plane/hooks:build: [34mℹ[39m entry: [34msrc/index.ts[39m
+@plane/hooks:build: [34mℹ[39m tsconfig: [34mtsconfig.json[39m
+@plane/hooks:build: [34mℹ[39m Build start
+@plane/hooks:build: [34mℹ[39m [2mdist/[22m[1mindex.js[22m        [2m 7.60 kB[22m [2m│ gzip: 2.39 kB[22m
+@plane/hooks:build: [34mℹ[39m [2mdist/[22mindex.js.map    [2m15.26 kB[22m [2m│ gzip: 4.88 kB[22m
+@plane/hooks:build: [34mℹ[39m [2mdist/[22mindex.d.ts.map  [2m 1.44 kB[22m [2m│ gzip: 0.60 kB[22m
+@plane/hooks:build: [34mℹ[39m [2mdist/[22m[32m[1mindex.d.ts[22m[39m      [2m 2.60 kB[22m [2m│ gzip: 0.95 kB[22m
+@plane/hooks:build: [34mℹ[39m 4 files, total: 26.90 kB
+@plane/hooks:build: [32m✔[39m Build complete in [32m2732ms[39m
+@plane/i18n:build: cache hit, replaying logs 1801e6e292c5b5f2
+@plane/i18n:build: $ pnpm run generate:types && tsdown
+@plane/i18n:build: $ tsx scripts/generate-types.ts
+@plane/i18n:build: Generated 3859 keys from 28 namespace files
+@plane/i18n:build: [34mℹ[39m tsdown [2mv0.16.0[22m powered by rolldown [2mv1.0.0-beta.46[22m
+@plane/i18n:build: [34mℹ[39m Using tsdown config: [4m/Users/joaomarcosramos/Documents/Github/plane/packages/i18n/tsdown.config.ts[24m
+@plane/i18n:build: [34mℹ[39m entry: [34msrc/index.ts[39m
+@plane/i18n:build: [34mℹ[39m tsconfig: [34mtsconfig.json[39m
+@plane/i18n:build: [34mℹ[39m Build start
+@plane/i18n:build: [34mℹ[39m [2mdist/[22m[1mindex.js[22m        [2m  5.14 kB[22m [2m│ gzip:  1.97 kB[22m
+@plane/i18n:build: [34mℹ[39m [2mdist/[22mindex.d.ts.map  [2m 43.41 kB[22m [2m│ gzip:  5.42 kB[22m
+@plane/i18n:build: [34mℹ[39m [2mdist/[22mindex.js.map    [2m 11.47 kB[22m [2m│ gzip:  3.90 kB[22m
+@plane/i18n:build: [34mℹ[39m [2mdist/[22m[32m[1mindex.d.ts[22m[39m      [2m177.09 kB[22m [2m│ gzip: 24.02 kB[22m
+@plane/i18n:build: [34mℹ[39m 4 files, total: 237.11 kB
+@plane/i18n:build: [32m✔[39m Build complete in [32m1512ms[39m
+@plane/types:check:types: cache miss, executing ae33a27d9465ffb6
+@plane/i18n:check:types: cache hit, replaying logs 68274b6581aab83e
+@plane/i18n:check:types: $ pnpm run generate:types && tsc --noEmit
+@plane/i18n:check:types: $ tsx scripts/generate-types.ts
+@plane/i18n:check:types: Generated 3859 keys from 28 namespace files
+@plane/logger:check:types: cache miss, executing f275037626ff91b0
+@plane/types:build: cache hit, replaying logs 9f03543bcc386d7a
+@plane/types:build: $ tsdown
+@plane/types:build: [34mℹ[39m tsdown [2mv0.16.0[22m powered by rolldown [2mv1.0.0-beta.46[22m
+@plane/types:build: [34mℹ[39m Using tsdown config: [4m/Users/joaomarcosramos/Documents/Github/plane/packages/types/tsdown.config.ts[24m
+@plane/types:build: [34mℹ[39m entry: [34msrc/index.ts[39m
+@plane/types:build: [34mℹ[39m tsconfig: [34mtsconfig.json[39m
+@plane/types:build: [34mℹ[39m Build start
+@plane/types:build: [34mℹ[39m [2mdist/[22m[1mindex.mjs[22m        [2m 16.83 kB[22m [2m│ gzip:  3.67 kB[22m
+@plane/types:build: [34mℹ[39m [2mdist/[22mindex.d.mts.map  [2m 89.21 kB[22m [2m│ gzip: 29.52 kB[22m
+@plane/types:build: [34mℹ[39m [2mdist/[22mindex.mjs.map    [2m 65.49 kB[22m [2m│ gzip: 13.52 kB[22m
+@plane/types:build: [34mℹ[39m [2mdist/[22m[32m[1mindex.d.mts[22m[39m      [2m146.96 kB[22m [2m│ gzip: 28.70 kB[22m
+@plane/types:build: [34mℹ[39m 4 files, total: 318.50 kB
+@plane/types:build: [32m✔[39m Build complete in [32m3014ms[39m
+@plane/decorators:build: cache hit, replaying logs c6b4c76dcee11ee2
+@plane/decorators:build: $ tsdown
+@plane/decorators:build: [34mℹ[39m tsdown [2mv0.16.0[22m powered by rolldown [2mv1.0.0-beta.46[22m
+@plane/decorators:build: [34mℹ[39m Using tsdown config: [4m/Users/joaomarcosramos/Documents/Github/plane/packages/decorators/tsdown.config.ts[24m
+@plane/decorators:build: [34mℹ[39m entry: [34msrc/index.ts[39m
+@plane/decorators:build: [34mℹ[39m tsconfig: [34mtsconfig.json[39m
+@plane/decorators:build: [34mℹ[39m Build start
+@plane/decorators:build: [34mℹ[39m [2mdist/[22m[1mindex.mjs[22m        [2m49.41 kB[22m [2m│ gzip:  8.69 kB[22m
+@plane/decorators:build: [34mℹ[39m [2mdist/[22mindex.mjs.map    [2m93.65 kB[22m [2m│ gzip: 16.13 kB[22m
+@plane/decorators:build: [34mℹ[39m [2mdist/[22mindex.d.mts.map  [2m 0.86 kB[22m [2m│ gzip:  0.47 kB[22m
+@plane/decorators:build: [34mℹ[39m [2mdist/[22m[32m[1mindex.d.mts[22m[39m      [2m 1.39 kB[22m [2m│ gzip:  0.51 kB[22m
+@plane/decorators:build: [34mℹ[39m 4 files, total: 145.32 kB
+@plane/decorators:build: [32m✔[39m Build complete in [32m2268ms[39m
+@plane/logger:build: cache hit, replaying logs adaf32c63f4fc4ab
+@plane/logger:build: $ tsdown
+@plane/logger:build: [34mℹ[39m tsdown [2mv0.16.0[22m powered by rolldown [2mv1.0.0-beta.46[22m
+@plane/logger:build: [34mℹ[39m Using tsdown config: [4m/Users/joaomarcosramos/Documents/Github/plane/packages/logger/tsdown.config.ts[24m
+@plane/logger:build: [34mℹ[39m entry: [34msrc/index.ts[39m
+@plane/logger:build: [34mℹ[39m tsconfig: [34mtsconfig.json[39m
+@plane/logger:build: [34mℹ[39m Build start
+@plane/logger:build: [34mℹ[39m [2mdist/[22m[1mindex.mjs[22m        [2m0.73 kB[22m [2m│ gzip: 0.39 kB[22m
+@plane/logger:build: [34mℹ[39m [2mdist/[22mindex.mjs.map    [2m1.68 kB[22m [2m│ gzip: 0.74 kB[22m
+@plane/logger:build: [34mℹ[39m [2mdist/[22mindex.d.mts.map  [2m0.22 kB[22m [2m│ gzip: 0.18 kB[22m
+@plane/logger:build: [34mℹ[39m [2mdist/[22m[32m[1mindex.d.mts[22m[39m      [2m0.42 kB[22m [2m│ gzip: 0.22 kB[22m
+@plane/logger:build: [34mℹ[39m 4 files, total: 3.05 kB
+@plane/logger:build: [32m✔[39m Build complete in [32m1930ms[39m
+@plane/hooks:check:format: $ oxfmt --check .
+admin:check:format: $ oxfmt --check .
+@plane/hooks:check:format: [ELIFECYCLE] Command failed.
+@plane/shared-state:check:format: [ELIFECYCLE] Command failed.
+live:check:format: [ELIFECYCLE] Command failed.
+@plane/utils:check:lint: [ELIFECYCLE] Command failed.
+web#check:format:  ERROR  command (/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web) /opt/homebrew/bin/pnpm run check:format exited (1)
+
+ Tasks:    15 successful, 40 total
+Cached:    6 cached, 40 total
+  Time:    57.88s 
+Failed:    web#check:format
+
+ ERROR  run failed: command  exited (1)
+[ELIFECYCLE] Command failed with exit code 1.

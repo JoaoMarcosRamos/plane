@@ -1,0 +1,47 @@
+ Container radar-core-u1-01-test-test-db-1 Running 
+ Container radar-core-u1-01-test-test-redis-1 Running 
+ Container radar-core-u1-01-test-test-mq-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Running 
+ Container radar-core-u1-01-test-test-redis-1 Waiting 
+ Container radar-core-u1-01-test-test-mq-1 Waiting 
+ Container radar-core-u1-01-test-test-minio-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Healthy 
+ Container radar-core-u1-01-test-test-minio-1 Healthy 
+ Container radar-core-u1-01-test-test-redis-1 Healthy 
+ Container radar-core-u1-01-test-test-mq-1 Healthy 
+ Container radar-core-u1-01-test-api-tests-run-a0405801902b Creating 
+ Container radar-core-u1-01-test-api-tests-run-a0405801902b Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+plane/radar/tests/test_core_u1_phase01.py:109:16: F821 Undefined name `uuid4`
+    |
+107 | def test_deleted_human_and_missing_provenance_have_distinct_fallbacks(seeded):
+108 |     # Historical fixture: a validated human identity whose User no longer exists.
+109 |     actor_id = uuid4()
+    |                ^^^^^ F821
+110 |     record = Provenance.objects.create(
+111 |         workspace=seeded[3], command_id=uuid4(), command_name="CreateObject",
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:111:41: F821 Undefined name `uuid4`
+    |
+109 |     actor_id = uuid4()
+110 |     record = Provenance.objects.create(
+111 |         workspace=seeded[3], command_id=uuid4(), command_name="CreateObject",
+    |                                         ^^^^^ F821
+112 |         actor_type="human", actor_id=actor_id, reason="Historical creation", source="historical.session-api",
+113 |         correlation_id=uuid4(), outcome="executed",
+    |
+
+plane/radar/tests/test_core_u1_phase01.py:113:24: F821 Undefined name `uuid4`
+    |
+111 |         workspace=seeded[3], command_id=uuid4(), command_name="CreateObject",
+112 |         actor_type="human", actor_id=actor_id, reason="Historical creation", source="historical.session-api",
+113 |         correlation_id=uuid4(), outcome="executed",
+    |                        ^^^^^ F821
+114 |     )
+115 |     kind = ObjectType.objects.get(workspace=seeded[3], key="objective")
+    |
+
+Found 4 errors (1 fixed, 3 remaining).
+

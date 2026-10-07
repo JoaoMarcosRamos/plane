@@ -1,0 +1,66 @@
+{
+  "steps": [
+    {
+      "name": "create_custom_type_from_metadata",
+      "initial": "Starts as Open. Later changes follow the type's lifecycle.",
+      "createDisabledBeforeRequired": true,
+      "narrative": "Third floor printer is offline",
+      "notes": "Notes",
+      "stamp": "Recorded automatically when the status changes."
+    },
+    {
+      "name": "custom_transitions_saved",
+      "working": 200,
+      "closed": 200
+    },
+    {
+      "name": "custom_lifecycle_to_terminal",
+      "closedAt": "2026-10-06T19:13",
+      "statusEditable": "false"
+    },
+    {
+      "name": "risk_derived_and_sections",
+      "scoreEditable": "false",
+      "scoreReason": "Calculated from other properties.",
+      "likelihoodEditable": "true",
+      "sections": [
+        "radar-section-assessment",
+        "radar-section-response"
+      ]
+    },
+    {
+      "name": "complete_action_with_review",
+      "preview": "Changes: Completed at, Status.\n\nTakes effect immediately.",
+      "executed": 200,
+      "statusEditable": "false",
+      "completedAt": "2026-10-06T19:13",
+      "completeAvailable": 0
+    },
+    {
+      "name": "decision_author_unavailable",
+      "take": "Move to Decided\nHuman decision\n\nRequires a current, independent approval of this version.",
+      "approve": "Approve decision\nHuman decision\n\nYou don't have the authority for this."
+    },
+    {
+      "name": "decision_approved_and_taken_by_reviewer",
+      "approved": 200,
+      "taken": 200,
+      "contextReason": "A taken decision is immutable. Create a new decision instead.",
+      "decidedAt": "2026-10-06T19:13"
+    },
+    {
+      "name": "guest_read_only",
+      "editable": [
+        "false"
+      ],
+      "saveButtons": [
+        {
+          "label": "Save title and notes",
+          "disabled": true
+        }
+      ],
+      "reviewButtons": 0
+    }
+  ],
+  "ticket": "6de52e66-c835-446d-873e-402f8751c6b9"
+}

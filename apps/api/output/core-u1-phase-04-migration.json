@@ -1,0 +1,22 @@
+{
+  "migration": "0014_type_presentation",
+  "seeded_types_installed": 11,
+  "creation_lifecycle_invariants_preserved": true,
+  "installed_base_updated_for_managed_ids": true,
+  "schema_revision": {
+    "before": 5,
+    "forward": 6,
+    "reverse": 7,
+    "reapplied": 8
+  },
+  "package_hash_unchanged_until_explicit_upgrade": true,
+  "preexisting_local_presentation_preserved_on_forward": true,
+  "fact_version_and_content_preserved": {
+    "version": 4,
+    "content": "<p>Kept</p>"
+  },
+  "live_effective_schema_valid": true,
+  "live_upgrade_plan_without_changes_or_conflicts": true,
+  "reverse_strips_presentation_including_local": true,
+  "reverse_forward_passed": true
+}

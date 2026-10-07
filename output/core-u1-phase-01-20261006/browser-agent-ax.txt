@@ -1,0 +1,3 @@
+Browser tab: 1881978231, Title: "RADAR collaboration fixture", URL: "http://127.0.0.1:3038/u1-phase01-browser/radar/objects/00439e02-6231-4061-abb0-9d0ff8e9631f".
+There has been no change in the accessibility tree.
+The focused UI element is 1 AXWebArea RADAR collaboration fixture, URL: 127.0.0.1:3038/u1-phase01-browser/radar/objects/00439e02-6231-4061-abb0-9d0ff8e9631f

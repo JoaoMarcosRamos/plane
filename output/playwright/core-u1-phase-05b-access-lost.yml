@@ -1,0 +1,120 @@
+- generic [ref=f3e3]:
+  - link "All objects" [ref=f3e4] [cursor=pointer]:
+    - /url: /c18-browser-21c27b5e/radar/objects/
+  - generic [ref=f3e6]:
+    - paragraph [ref=f3e7]: Action
+    - generic [ref=f3e8]:
+      - generic [ref=f3e10]:
+        - text: Title
+        - generic [aria-hidden] [ref=f3e11]: "*"
+      - textbox "Title" [disabled] [ref=f3e14]: Autoria legada preservada
+    - generic [ref=f3e16]:
+      - generic [ref=f3e17]:
+        - generic [ref=f3e18]: Description
+        - textbox "Description" [disabled] [ref=f3e22]: Backfill preserves unknowns
+      - generic [ref=f3e23]: Saved
+    - generic [ref=f3e25]:
+      - heading "Notes" [level=2] [ref=f3e26]
+      - paragraph [ref=f3e27]: Complementary notes. The main narrative is description.
+      - generic:
+        - paragraph
+    - generic [ref=f3e28]:
+      - term [ref=f3e29]: Created by
+      - definition [ref=f3e30]: "Human: c18-admin-eaba0ac6"
+      - term [ref=f3e31]: Updated by
+      - definition [ref=f3e32]: "Human: c18-admin-eaba0ac6"
+      - term [ref=f3e33]: Version
+      - definition [ref=f3e34]: "1"
+    - button "Save title and notes" [disabled] [ref=f3e35]
+  - generic [ref=f3e37]:
+    - paragraph [ref=f3e38]: Read-only workspace access.
+    - region [ref=f3e39]:
+      - heading "Actions" [level=2] [ref=f3e40]
+      - list [ref=f3e41]:
+        - listitem [ref=f3e42]:
+          - generic [ref=f3e43]: Complete action
+          - paragraph [ref=f3e45]: Read-only workspace access.
+    - region [ref=f3e46]:
+      - heading "Execution" [level=2] [ref=f3e47]
+      - generic [ref=f3e48]:
+        - generic [ref=f3e49]:
+          - generic [ref=f3e50]:
+            - generic [ref=f3e51]: Status
+            - combobox "Status" [disabled] [ref=f3e52]:
+              - generic "Todo" [ref=f3e53]
+            - textbox [disabled] [aria-hidden] [ref=f3e57]: todo
+          - generic [ref=f3e58]: Saved
+        - generic [ref=f3e60]:
+          - generic [ref=f3e61]:
+            - generic [ref=f3e62]: Next step
+            - textbox "Next step" [disabled] [ref=f3e66]
+          - generic [ref=f3e67]: Saved
+        - generic [ref=f3e69]:
+          - generic [ref=f3e70]:
+            - generic [ref=f3e71]: Priority
+            - combobox "Priority" [disabled] [ref=f3e72]:
+              - generic "Medium" [ref=f3e73]
+            - textbox [disabled] [aria-hidden] [ref=f3e77]: medium
+          - generic [ref=f3e78]: Saved
+        - generic [ref=f3e80]:
+          - generic [ref=f3e81]:
+            - generic [ref=f3e82]: Due date
+            - textbox "Due date" [disabled] [ref=f3e86]
+          - generic [ref=f3e87]: Not set
+        - generic [ref=f3e89]:
+          - generic [ref=f3e90]:
+            - generic [ref=f3e91]: Completed at
+            - textbox "Completed at" [disabled] [ref=f3e95]
+          - generic [ref=f3e96]: Not set
+    - region [ref=f3e98]:
+      - heading "Other properties" [level=2] [ref=f3e99]
+      - generic [ref=f3e101]:
+        - generic [ref=f3e102]:
+          - generic [ref=f3e103]: Delegation deadline
+          - textbox "Delegation deadline" [disabled] [ref=f3e107]
+        - generic [ref=f3e108]: Not set
+    - region [ref=f3e110]:
+      - heading "Relations" [level=2] [ref=f3e112]
+      - list
+      - paragraph [ref=f3e113]: No outgoing relations.
+    - region [ref=f3e114]:
+      - heading "Backlinks" [level=2] [ref=f3e115]
+      - list
+      - paragraph [ref=f3e116]: No incoming relations.
+  - region [ref=f3e117]:
+    - generic [ref=f3e118]:
+      - heading "Collaboration" [level=2] [ref=f3e119]
+      - button "Reload" [ref=f3e120] [cursor=pointer]
+    - generic [ref=f3e122]:
+      - heading "Comments" [level=3] [ref=f3e123]
+      - paragraph [ref=f3e124]: No comments yet.
+    - generic [ref=f3e125]:
+      - heading "Attachments" [level=3] [ref=f3e126]
+      - paragraph [ref=f3e127]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+      - paragraph [ref=f3e128]: No attachments yet.
+    - generic [ref=f3e129]:
+      - heading "Activity" [level=3] [ref=f3e130]
+      - list [ref=f3e131]:
+        - listitem [ref=f3e132]:
+          - paragraph [ref=f3e133]: Backfill Operational History · executed
+          - paragraph [ref=f3e134]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=f3e135]: 06/10/2026, 20:41:37
+          - paragraph [ref=f3e136]: C18 browser fixture · fixture.browser
+        - listitem [ref=f3e137]:
+          - paragraph [ref=f3e138]: Create Object · executed
+          - paragraph [ref=f3e139]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=f3e140]: 06/10/2026, 20:41:37
+          - paragraph [ref=f3e141]: C18 browser fixture · fixture.browser
+  - region "Histórico operacional" [ref=f3e142]:
+    - generic [ref=f3e143]:
+      - heading "Histórico operacional" [level=2] [ref=f3e144]
+      - button "Atualizar histórico" [active] [ref=f3e145] [cursor=pointer]
+    - alert [ref=f3e160]: Não foi possível atualizar o Object. O histórico anterior foi descartado.
+    - generic [ref=f3e147]:
+      - generic [ref=f3e148]: Filtrar histórico
+      - combobox "Filtrar histórico" [ref=f3e149] [cursor=pointer]:
+        - generic "Todos" [ref=f3e150]
+      - textbox [aria-hidden] [ref=f3e154]: all
+    - list

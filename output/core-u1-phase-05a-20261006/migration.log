@@ -1,0 +1,16 @@
+ Container radar-core-u1-phase05a-test-db-1 Running 
+ Container radar-core-u1-phase05a-test-redis-1 Running 
+ Container radar-core-u1-phase05a-test-mq-1 Running 
+ Container radar-core-u1-phase05a-test-minio-1 Running 
+ Container radar-core-u1-phase05a-test-redis-1 Waiting 
+ Container radar-core-u1-phase05a-test-mq-1 Waiting 
+ Container radar-core-u1-phase05a-test-minio-1 Waiting 
+ Container radar-core-u1-phase05a-test-db-1 Waiting 
+ Container radar-core-u1-phase05a-test-redis-1 Healthy 
+ Container radar-core-u1-phase05a-test-minio-1 Healthy 
+ Container radar-core-u1-phase05a-test-db-1 Healthy 
+ Container radar-core-u1-phase05a-test-mq-1 Healthy 
+ Container radar-core-u1-phase05a-api-tests-run-1d99e4ba2866 Creating 
+ Container radar-core-u1-phase05a-api-tests-run-1d99e4ba2866 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+{"migration": "0015_type_runtime", "forward_reverse_reapply": true, "idempotent": true, "managed_type_count": 11, "custom_type_disabled_by_default": true, "explicit_local_opt_out_preserved_on_forward": true, "installed_base_updated_without_conflicts": true, "existing_fact_version_and_content_preserved": true, "identity_and_timestamps_preserved": true, "schema_revision": [5, 6, 7, 8], "package_hash_unchanged_until_explicit_upgrade": true, "reverse_removes_descriptors_requires_export": true}

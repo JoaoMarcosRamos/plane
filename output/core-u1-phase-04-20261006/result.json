@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "delivery": "Core U1 phase 4",
+  "completed_findings": [
+    "C03",
+    "C20",
+    "C21"
+  ],
+  "findings_balance": {
+    "fixed": 18,
+    "pending": 5,
+    "pending_u1": [
+      "C13",
+      "C18",
+      "C19"
+    ],
+    "pending_u2": [
+      "C14",
+      "C23"
+    ]
+  },
+  "baseline": {
+    "source": "Core U1 phase 3B/3C final regression on the same worktree",
+    "passed": 452,
+    "skipped": 4
+  },
+  "backend_final": {
+    "cases": 481,
+    "passed": 477,
+    "skipped": 4,
+    "failed": 0,
+    "errors": 0,
+    "new_cases": 25
+  },
+  "backend_directed_contracts": {
+    "cases": 123,
+    "passed": 123,
+    "includes_actual_cos_adapter": true
+  },
+  "migration_0014": {
+    "migration": "0014_type_presentation",
+    "seeded_types_installed": 11,
+    "creation_lifecycle_invariants_preserved": true,
+    "installed_base_updated_for_managed_ids": true,
+    "schema_revision": {
+      "before": 5,
+      "forward": 6,
+      "reverse": 7,
+      "reapplied": 8
+    },
+    "package_hash_unchanged_until_explicit_upgrade": true,
+    "preexisting_local_presentation_preserved_on_forward": true,
+    "fact_version_and_content_preserved": {
+      "version": 4,
+      "content": "<p>Kept</p>"
+    },
+    "live_effective_schema_valid": true,
+    "live_upgrade_plan_without_changes_or_conflicts": true,
+    "reverse_strips_presentation_including_local": true,
+    "reverse_forward_passed": true
+  },
+  "frontend": {
+    "passed": 132,
+    "files": 18,
+    "new_cases": 17
+  },
+  "workspace_check": {
+    "successful": 56,
+    "total": 56,
+    "radar_lint_warnings": 0,
+    "app_lint_warnings_unchanged": 538
+  },
+  "browser": {
+    "flows": [
+      "create_custom_type_from_metadata",
+      "custom_transitions_saved",
+      "custom_lifecycle_to_terminal",
+      "risk_derived_and_sections",
+      "complete_action_with_review",
+      "decision_author_unavailable",
+      "decision_approved_and_taken_by_reviewer",
+      "guest_read_only"
+    ],
+    "database_proof": {
+      "schema_revision": 2,
+      "ticket": {
+        "values": {
+          "status": "closed",
+          "summary": "Third floor printer is offline",
+          "closed_at": "2026-10-06T22:13:35.658033+00:00",
+          "severity": "low"
+        },
+        "version": 3
+      },
+      "action": {
+        "status": "done",
+        "completed_at": "2026-10-06T22:13:39.179933+00:00"
+      },
+      "decision": {
+        "status": "decided",
+        "decided_at": "2026-10-06T22:13:43.711209+00:00"
+      },
+      "completion_outcome": "Enterprise terms signed",
+      "approvals": 1,
+      "commands": [
+        {
+          "command": "CreateObject",
+          "status": "executed",
+          "expected_schema_revision": 2
+        },
+        {
+          "command": "UpdateObject",
+          "status": "executed",
+          "expected_schema_revision": 2
+        },
+        {
+          "command": "UpdateObject",
+          "status": "executed",
+          "expected_schema_revision": 2
+        },
+        {
+          "command": "CompleteAction",
+          "status": "executed",
+          "expected_schema_revision": 2
+        },
+        {
+          "command": "ApproveDecision",
+          "status": "executed",
+          "expected_schema_revision": 2
+        },
+        {
+          "command": "UpdateObject",
+          "status": "executed",
+          "expected_schema_revision": 2
+        }
+      ],
+      "provenance_commands": [
+        "ApproveDecision",
+        "CompleteAction",
+        "CreateObject",
+        "InitializeSemanticModel",
+        "LinkObjects",
+        "PersonIdentityConfigured",
+        "UpdateObject",
+        "UpgradeWorkspaceSchema"
+      ]
+    }
+  },
+  "python_style": "passed",
+  "migration_check": "no_structural_changes",
+  "limits": {
+    "browser_harness_stubs": [
+      "rich text editor",
+      "member select",
+      "UI permission hook"
+    ],
+    "full_shell_tested": false,
+    "published_environment_tested": false,
+    "deployed": false,
+    "production_stack_modified": false,
+    "cos_sources_modified": false,
+    "cos_repository_tests_reexecuted": false,
+    "benchmark": false
+  }
+}

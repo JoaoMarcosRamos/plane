@@ -1,0 +1,36 @@
+ Network radar-collaboration-test_test_env Creating 
+ Network radar-collaboration-test_test_env Creating 
+ Network radar-collaboration-test_test_env Created 
+ Network radar-collaboration-test_test_env Created 
+ Container radar-collaboration-test-test-redis-1 Creating 
+ Container radar-collaboration-test-test-minio-1 Creating 
+ Container radar-collaboration-test-test-db-1 Creating 
+ Container radar-collaboration-test-test-mq-1 Creating 
+ Container radar-collaboration-test-test-redis-1 Created 
+ Container radar-collaboration-test-test-minio-1 Created 
+ Container radar-collaboration-test-test-db-1 Created 
+ Container radar-collaboration-test-test-mq-1 Created 
+ Container radar-collaboration-test-test-minio-1 Starting 
+ Container radar-collaboration-test-test-mq-1 Starting 
+ Container radar-collaboration-test-test-redis-1 Starting 
+ Container radar-collaboration-test-test-db-1 Starting 
+ Container radar-collaboration-test-test-minio-1 Started 
+ Container radar-collaboration-test-test-mq-1 Started 
+ Container radar-collaboration-test-test-redis-1 Started 
+ Container radar-collaboration-test-test-db-1 Started 
+ Container radar-collaboration-test-test-mq-1 Waiting 
+ Container radar-collaboration-test-test-minio-1 Waiting 
+ Container radar-collaboration-test-test-db-1 Waiting 
+ Container radar-collaboration-test-test-redis-1 Waiting 
+ Container radar-collaboration-test-test-redis-1 Healthy 
+ Container radar-collaboration-test-test-db-1 Healthy 
+ Container radar-collaboration-test-test-minio-1 Healthy 
+ Container radar-collaboration-test-test-mq-1 Healthy 
+ Container radar-collaboration-test-api-tests-run-7efabcb55ea5 Creating 
+ Container radar-collaboration-test-api-tests-run-7efabcb55ea5 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Migrations for 'radar':
+  plane/radar/migrations/0010_object_collaboration.py
+    + Create model ObjectAttachment
+    + Create model AttachmentPayload
+    + Create model ObjectComment

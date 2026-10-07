@@ -1,0 +1,77 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "phases_completed": [
+    0,
+    1
+  ],
+  "corrected_findings": [
+    "C15",
+    "C16",
+    "C22"
+  ],
+  "remaining_u1": 13,
+  "remaining_u2": 2,
+  "backend": {
+    "collected": 323,
+    "passed": 319,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "frontend": {
+    "passed": 106,
+    "files": 15
+  },
+  "new_tests": {
+    "backend": 18,
+    "frontend": 13
+  },
+  "baseline": {
+    "backend_passed": 301,
+    "backend_skipped": 4,
+    "frontend_passed": 93
+  },
+  "checks": {
+    "pnpm_check_tasks": 56,
+    "pnpm_check_cached": 53,
+    "ruff": true,
+    "python_format": true,
+    "makemigrations_check": true,
+    "migration_roundtrip_0010_0011": true,
+    "frontend_lint": true
+  },
+  "browser": {
+    "via": "Chrome / Computer Use",
+    "actors": [
+      "human",
+      "agent",
+      "system",
+      "integration"
+    ],
+    "human_edit_preserves_creator": true,
+    "reload_persisted": true,
+    "postgres_evidence": true,
+    "console_errors": 0,
+    "fixture_scope": "Product Object Page/store/service, real Django session/API/PostgreSQL; UI user/permission hook, member picker and notes editor are explicit fixtures."
+  },
+  "activation": {
+    "live_plane_radar_installed": false,
+    "live_stack_modified": false,
+    "new_product_migrations": 0,
+    "deployed": false
+  },
+  "limits": [
+    "Retry intentions in memory only; no reload persistence.",
+    "DRF shared input contracts remain.",
+    "Full Plane backend outside RADAR, CoS/provider real and opt-ins not rerun.",
+    "Builders/schema/lifecycle/runtime metadata remain phases 2–6."
+  ],
+  "cleanup": {
+    "test_stack_removed": true,
+    "browser_api_stopped": true,
+    "vite_stopped": true,
+    "agent_tab_closed": true,
+    "live_plane_preserved": true
+  }
+}

@@ -1,0 +1,47 @@
+### Result
+{
+  "object_id": "8181b6f4-3103-439d-b4ac-bc26dc479c77",
+  "object_version": 2,
+  "schema_revision": 1,
+  "schema_version": 1,
+  "migration_required": false,
+  "deadline": {
+    "source": "conflict",
+    "timezone": "America/Bahia",
+    "conflict": true,
+    "due_date": "2026-10-08",
+    "due_at": "2026-10-06T22:41:31.367650+00:00",
+    "effective_at": null,
+    "effective_date": null,
+    "overdue": true
+  },
+  "executors": [
+    "69c004fd-1578-4832-8452-fbc799295f82"
+  ],
+  "origins": {
+    "delegation": {
+      "entry_id": "00001a72-4bb9-4781-b5f6-65fb6966f80c",
+      "origin": "command",
+      "provenance_id": "bb3acea1-ce75-4dcb-a4a3-a9673fef14dd"
+    }
+  },
+  "operation_data": {
+    "assignment": {
+      "state": "proposed",
+      "due_at": "2026-10-06T22:41:31.367650+00:00",
+      "acceptances": {},
+      "accepted_at": null,
+      "proposed_at": "2026-10-06T23:41:31.536261+00:00",
+      "proposed_by": "9f2cbc76-6f78-4a49-8b16-0be880218fa5",
+      "executor_ids": [
+        "69c004fd-1578-4832-8452-fbc799295f82"
+      ],
+      "next_review_at": null,
+      "terms_changed": false
+    }
+  }
+}
+### Ran Playwright code
+```js
+await page.evaluate('() => (fetch("/api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operations/?timezone=America%2FBahia").then(r=>r.json()))');
+```

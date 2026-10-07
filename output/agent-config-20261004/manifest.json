@@ -1,0 +1,191 @@
+{
+  "phase": "1.4",
+  "date": "2026-10-04",
+  "files": [
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/agent_config.py",
+      "sha256": "8f8de22957bd97ca802617a20e4e41495e0ca9caec380ac8de999d0ccf6037fe"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/agent_runtime.py",
+      "sha256": "11085f300c604a3cf02f1269163b72d004f15588c2447731b0a21336c7eb6518"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/api/agent_config_views.py",
+      "sha256": "b0abd7394646ce28c6be143df1bba5bccd172509638911d6dc21ed65f315b9e4"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/api/agent_views.py",
+      "sha256": "a00b53d8d49cb1c100449fb39814cf80421260e37f96bee994471f019ef67ba9"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/api/urls.py",
+      "sha256": "2ecbf203dec4f5c4e784e6209b47fae4087ab0fde86150ea68e2ea0204a70bd2"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/models/agent_config.py",
+      "sha256": "98312625392eb55b87e96612130e434abc11300b57261ad36d9b360816fd3398"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/models/__init__.py",
+      "sha256": "6f3a66d0dce993b852ae163c34531097d8270d72253092cf9f0991254b241f90"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/migrations/0007_agent_configuration.py",
+      "sha256": "3501c888c02b8bd5c0921912ebc65cef5cdba906b9d70bea8fe8d28b09f4f952"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/api/plane/radar/tests/test_agent_config.py",
+      "sha256": "0766b7d2b6ea88186fcb4f62c9f458e9f62d76ebace5b78a2b562ddc9c54387b"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/services/radar/agent-config.types.ts",
+      "sha256": "e51cd2eada63f65404416ce6934ad034ca31faa00257864cc79c9a5630d1e604"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/services/radar/radar.service.ts",
+      "sha256": "98ab4ae958b3f0e41dbc35a5899a2f0722f47fb742376186438690c447a1a41b"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/services/radar/radar.service.test.ts",
+      "sha256": "35e7cdef84f2108b83fdcae6aa6ff9410bb9db1873c93bd720da50d36a241d6a"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/store/radar/agent-config.store.ts",
+      "sha256": "f626e294233caced9d65365c092108ac1737301829f1a78bc37195c98ba081db"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/store/radar/agent-config.store.test.ts",
+      "sha256": "f8a945712d21f15dbaf37abb095a8391494d8e3bc2335cf6818425fd124b25c8"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/store/radar/__fixtures__/agent-config.ts",
+      "sha256": "6c93a24eaa439d6cf17047c223fc6bd50ee0d13d46b03a05522ff847a28fc334"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/agent-config.tsx",
+      "sha256": "15532aa0c21e1e50779c66a76089f2e3a364d3d8fa3b6b72a0538afd3e873247"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/agent-config-form.tsx",
+      "sha256": "25b6640139cdebd6a38bce21ecb28487f817aa9bc0553f2ffcf72f0c4d0d670c"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/agent-config-form.test.ts",
+      "sha256": "64abd13eb685895800f33091b2325a951db94536f5399770b568a06cc0d51c6a"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/agent-config-input.ts",
+      "sha256": "b390351469a4f9eafa43c6d7aec068509ea1cbcabb6e84899815a37833ad1853"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/agent-config-input.test.ts",
+      "sha256": "eb8ed3a37f172b2c6c4d7443db927f2dae07e20161c60429ced67cf9d92454c0"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/sections.ts",
+      "sha256": "49aa13e9e96d2387dc78326fb7a6feddfc6c4792ba09bf74a421327a637fae41"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/components/radar/sidebar.tsx",
+      "sha256": "97a809f07c1d555ef2f8c924adb3c3f29d949a5e49d40636f111449602e81f01"
+    },
+    {
+      "repository": "Plane",
+      "path": "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx",
+      "sha256": "f339981b5eb26feecf4fab445eda94a6c7dc9352a32d753db490bfc3118b1c2b"
+    },
+    {
+      "repository": "Plane",
+      "path": "docs/radar/AGENT_CONFIG.md",
+      "sha256": "29ba98803433ed109d3d95e0570cfcd2bb1ec33ba8443434aa9c68a0d70da613"
+    },
+    {
+      "repository": "Plane",
+      "path": "docs/radar/AGENT_RUNTIME.md",
+      "sha256": "1148402363d64f33cdbd53365add32351455ce553f26401e211d876d7c79a8e2"
+    },
+    {
+      "repository": "Plane",
+      "path": "docs/radar/NEXT_PHASE_READINESS.md",
+      "sha256": "79cfad9959440d4ca855afd5fdebeae128cf0c1aa6e80d392f9871d52c65d82e"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "app/runtime/contracts.py",
+      "sha256": "22335f0781f260b46ee367b125010d044ebfef8929707f0e86238f77d517621a"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "app/runtime/deep_agents.py",
+      "sha256": "e8bea34f6c8554220011486309cd8cffed4c458dfe843d91cece3ae070f3b475"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "app/database/agent_runtime.py",
+      "sha256": "e42cb5a22a8d5d9e80a5ff1889f0fddf66aae3949bff8d0c75ceb754a2fe155f"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "tests/unit/test_product_agent_config.py",
+      "sha256": "6cb67ffa55f2746b9468c43dc3c2311fbab4f420b24672a609a1df91bed046ca"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "SPEC.MD",
+      "sha256": "e2c971939f9aac7450681d90107a4e64b16d38531d13ef87e169522737f3ce99"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "PLAN.MD",
+      "sha256": "fa696f4150c6179853ffc6dd51e2bd2e92a973114f44b01b267e57d4bbe75384"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "TASK_LIST.md",
+      "sha256": "65c86396640fd853538de0ba8437dfc9590deac8be30caf3184309dc3c6becdb"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "docs/index.html",
+      "sha256": "b7a2223045d26712e3be3bc46a3f2c233ec00c7fb60d4b261f0f23408af2336d"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "docs/development/043-radar-agent-runtime.html",
+      "sha256": "571979f1e21e77e583ae2f634412eb5c93a88adf8d41b78e9d916ab0c13e8715"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "docs/development/044-radar-agent-config.html",
+      "sha256": "b57e27163ac33c337160e3a41bdbbc24756b8d576e795ac6ff6fdae5d3511ad7"
+    },
+    {
+      "repository": "DOCS_PROJETO_RADAR_COMPLETO",
+      "path": "RADAR_ROADMAP.md",
+      "sha256": "0ede71ecfb867ec140950f6e1c996411b8a096d5ff6e5c5d455937ae5b819858"
+    }
+  ]
+}

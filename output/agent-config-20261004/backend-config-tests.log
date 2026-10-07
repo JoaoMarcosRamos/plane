@@ -1,0 +1,84 @@
+ Container radar-agent-config-tests-test-mq-1 Running 
+ Container radar-agent-config-tests-test-minio-1 Running 
+ Container radar-agent-config-tests-test-db-1 Running 
+ Container radar-agent-config-tests-test-redis-1 Running 
+ Container radar-agent-config-tests-test-db-1 Waiting 
+ Container radar-agent-config-tests-test-redis-1 Waiting 
+ Container radar-agent-config-tests-test-mq-1 Waiting 
+ Container radar-agent-config-tests-test-minio-1 Waiting 
+ Container radar-agent-config-tests-test-db-1 Healthy 
+ Container radar-agent-config-tests-test-redis-1 Healthy 
+ Container radar-agent-config-tests-test-minio-1 Healthy 
+ Container radar-agent-config-tests-test-mq-1 Healthy 
+ Container radar-agent-config-tests-api-tests-run-3e0a5b636a47 Creating 
+ Container radar-agent-config-tests-api-tests-run-3e0a5b636a47 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+No changes detected
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 21 items
+
+plane/radar/tests/test_agent_config.py .................F...
+
+=================================== FAILURES ===================================
+_______ test_permissions_filter_objects_relations_and_fields_before_run ________
+
+product = (((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider...imeCredential object (1e0ec638-e605-4487-b9c4-d330a505d600)>, <rest_framework.test.APIClient object at 0xffffb21a4d40>)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffffb21a78f0>
+
+>   ???
+
+plane/radar/tests/test_agent_config.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:80: in create
+    return create_object(
+plane/radar/commands/objects.py:33: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:27: in invoke
+    refs = references(workspace, name, serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:122: in references
+    specialized, payload = _special_input(workspace, data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:180: in _special_input
+    serializer.is_valid(raise_exception=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RegisterRiskInput(data={'title': 'risk'}):
+    title = CharField(max_length=255)
+    description = CharField()
+    lik...atens_object_ids = ListField(child=UUIDField(), default=<class 'list'>)
+    owner_person_id = UUIDField(required=False)
+
+    def is_valid(self, *, raise_exception=False):
+        assert hasattr(self, 'initial_data'), (
+            'Cannot call `.is_valid()` as no `data=` keyword argument was '
+            'passed when instantiating the serializer instance.'
+        )
+    
+        if not hasattr(self, '_validated_data'):
+            try:
+                self._validated_data = self.run_validation(self.initial_data)
+            except ValidationError as exc:
+                self._validated_data = {}
+                self._errors = exc.detail
+            else:
+                self._errors = {}
+    
+        if self._errors and raise_exception:
+>           raise ValidationError(self.errors)
+E           rest_framework.exceptions.ValidationError: {'description': [ErrorDetail(string='This field is required.', code='required')]}
+
+/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py:233: ValidationError
+--- generated xml file: /code/output/agent-config-20261004/config-tests.xml ----
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_agent_config.py::test_permissions_filter_objects_relations_and_fields_before_run
+=================== 1 failed, 20 passed in 748.75s (0:12:28) ===================
+

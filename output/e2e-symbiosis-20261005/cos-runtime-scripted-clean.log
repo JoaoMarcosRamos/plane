@@ -1,0 +1,19 @@
+INFO:     Started server process [44775]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8940 (Press CTRL+C to quit)
+INFO:     127.0.0.1:60277 - "POST /agent-runtime/v1/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:60279 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60280 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60282 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60281 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60283 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60284 - "POST /agent-runtime/v1/runs/2376944f-794d-4b68-9feb-6dff287be994/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60302 - "POST /agent-runtime/v1/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:60462 - "POST /agent-runtime/v1/runs HTTP/1.1" 202 Accepted
+INFO:     127.0.0.1:60463 - "POST /agent-runtime/v1/runs/8484c3ab-3663-4479-b71d-28b71ba6915a/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:60464 - "POST /agent-runtime/v1/runs/8484c3ab-3663-4479-b71d-28b71ba6915a/status HTTP/1.1" 200 OK
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [44775]

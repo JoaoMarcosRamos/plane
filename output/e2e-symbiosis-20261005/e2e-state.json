@@ -1,0 +1,554 @@
+{
+  "checks": [
+    {
+      "name": "login: real Plane sign-in reaches RADAR Today in the shell",
+      "ok": true,
+      "detail": "http://localhost:3000/radar-e2e/radar/today/",
+      "at": "2026-10-05T13:28:38.715Z"
+    },
+    {
+      "name": "create: human created Risk, Objective and Project through the RADAR UI",
+      "ok": true,
+      "detail": "{\"objective\":\"4dc08b10-9bba-447a-9597-8c740966b1d0\",\"project\":\"09fa033a-0a0c-468d-9ec0-d4563abda5e4\",\"risk\":\"09fee826-8e2b-4535-8cfc-56c28f7024ad\"}",
+      "at": "2026-10-05T13:30:48.582Z"
+    },
+    {
+      "name": "review: run started from the shell with skill risk_review",
+      "ok": true,
+      "detail": "run 7be3e847-44c8-45a9-916d-aea900207244",
+      "at": "2026-10-05T13:32:49.409Z"
+    },
+    {
+      "name": "review: context roots are the human-created Risk, Objective and Project",
+      "ok": true,
+      "detail": "09fee826-8e2b-4535-8cfc-56c28f7024ad,4dc08b10-9bba-447a-9597-8c740966b1d0,09fa033a-0a0c-468d-9ec0-d4563abda5e4",
+      "at": "2026-10-05T13:32:49.412Z"
+    },
+    {
+      "name": "review: agent suggested THREATENS and a mitigating action",
+      "ok": true,
+      "detail": "4 proposal cards",
+      "at": "2026-10-05T13:32:49.418Z"
+    },
+    {
+      "name": "review: UI shows Accept",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:32:49.423Z"
+    },
+    {
+      "name": "review: UI shows Edit",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:32:49.425Z"
+    },
+    {
+      "name": "review: UI shows Reject",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:32:49.427Z"
+    },
+    {
+      "name": "idempotency: replayed run start returns the same run",
+      "ok": true,
+      "detail": "202 7be3e847-44c8-45a9-916d-aea900207244",
+      "at": "2026-10-05T13:32:49.997Z"
+    },
+    {
+      "name": "idempotency: preparing the same run twice keeps the same proposals",
+      "ok": true,
+      "detail": "200/200",
+      "at": "2026-10-05T13:32:50.451Z"
+    },
+    {
+      "name": "accept: relation applied through the Command Layer",
+      "ok": true,
+      "detail": "200 LinkObjects",
+      "at": "2026-10-05T13:33:50.364Z"
+    },
+    {
+      "name": "accept: sibling action reports the version conflict and asks for review",
+      "ok": true,
+      "detail": "409 {\"code\":\"revision_conflict\",\"object_id\":\"09fee826-8e2b-4535-8cfc-56c28f7024ad\"} / UI: Objects changed since this preview. Use Edit to save a fresh proposal, then review it before accepting.",
+      "at": "2026-10-05T13:33:50.676Z"
+    },
+    {
+      "name": "edit: saved a new intent (revision 2) without executing",
+      "ok": true,
+      "detail": "200 rev 2",
+      "at": "2026-10-05T13:33:51.345Z"
+    },
+    {
+      "name": "accept: revised action applied",
+      "ok": true,
+      "detail": "480f79a1-d3e0-41e0-8740-1681b61d9917",
+      "at": "2026-10-05T13:33:53.532Z"
+    },
+    {
+      "name": "reject: both components of the second suggestion rejected with rationale",
+      "ok": true,
+      "detail": "O Sandbox IA tem licença temporária; não é ameaça.",
+      "at": "2026-10-05T13:33:53.959Z"
+    },
+    {
+      "name": "idempotency: retried Accept returns the executed proposal",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:33:54.176Z"
+    },
+    {
+      "name": "idempotency: retried Reject returns the rejected proposal",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:33:54.276Z"
+    },
+    {
+      "name": "rejection: a rejected proposal cannot be accepted later",
+      "ok": true,
+      "detail": "409 {\"code\":\"proposal_closed\"}",
+      "at": "2026-10-05T13:33:54.329Z"
+    },
+    {
+      "name": "object page: Risk shows threatens -> Implantar Governança de IA",
+      "ok": true,
+      "detail": "Relations Add relation → Threatens Implantar Governança de IA Objective Remove",
+      "at": "2026-10-05T13:34:20.265Z"
+    },
+    {
+      "name": "object page: Risk shows the mitigating Action as backlink",
+      "ok": true,
+      "detail": "Backlinks ← Mitigated by Validar licenciamento de IA Action Remove",
+      "at": "2026-10-05T13:34:20.267Z"
+    },
+    {
+      "name": "rejection: rejected Sandbox IA threat is absent from the Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:34:20.267Z"
+    },
+    {
+      "name": "object page: Action shows mitigates -> Licenciamento pode atrasar",
+      "ok": true,
+      "detail": "Relations Add relation → Mitigates Licenciamento pode atrasar Risk Remove",
+      "at": "2026-10-05T13:34:24.456Z"
+    },
+    {
+      "name": "object page: Objective shows the Risk as backlink",
+      "ok": true,
+      "detail": "Backlinks ← Threatened by Licenciamento pode atrasar Risk Remove",
+      "at": "2026-10-05T13:34:28.928Z"
+    },
+    {
+      "name": "object page: state survives a full reload",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:34:31.913Z"
+    },
+    {
+      "name": "permission: member without binding sees no agent and no foreign reviews",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:36:37.233Z"
+    },
+    {
+      "name": "permission: member can read the Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:36:37.478Z"
+    },
+    {
+      "name": "permission: member cannot start a run with another user's agent binding",
+      "ok": true,
+      "detail": "404",
+      "at": "2026-10-05T13:36:37.604Z"
+    },
+    {
+      "name": "permission: member cannot resolve another user's proposal",
+      "ok": true,
+      "detail": "404",
+      "at": "2026-10-05T13:36:37.823Z"
+    },
+    {
+      "name": "permission: guest has no Run Risk Review control",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:36:52.804Z"
+    },
+    {
+      "name": "permission: guest cannot start runs",
+      "ok": true,
+      "detail": "403",
+      "at": "2026-10-05T13:36:52.973Z"
+    },
+    {
+      "name": "permission: outsider cannot see the workspace Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:37:01.580Z"
+    },
+    {
+      "name": "permission: outsider API read is denied",
+      "ok": true,
+      "detail": "403",
+      "at": "2026-10-05T13:37:01.735Z"
+    },
+    {
+      "name": "permission: anonymous resolve is rejected",
+      "ok": true,
+      "detail": "401",
+      "at": "2026-10-05T13:37:01.767Z"
+    },
+    {
+      "name": "permission: narrowed agent grant blocks the pending suggestion",
+      "ok": true,
+      "detail": "409 {\"code\":\"authorization_stale\"}",
+      "at": "2026-10-05T13:37:19.907Z"
+    },
+    {
+      "name": "permission: UI disables Run Risk Review without CreateAction",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:37:19.911Z"
+    },
+    {
+      "name": "permission: restoring the grant does not revive a run authorized under the old policy",
+      "ok": true,
+      "detail": "409 {\"code\":\"authorization_stale\"}",
+      "at": "2026-10-05T13:37:24.020Z"
+    },
+    {
+      "name": "provider: real-model Risk Review completed from the shell",
+      "ok": true,
+      "detail": "prepare 200",
+      "at": "2026-10-05T13:43:42.685Z"
+    },
+    {
+      "name": "provider: output passed CoS and Plane validation and was saved for review",
+      "ok": true,
+      "detail": "{\"run_id\":\"80fb9c91-d2c6-42ff-a7e3-66728f4e1720\",\"status\":\"completed\",\"result\":{\"summary\":\"A análise identificou 2 ameaças plausíveis no snapshot. O risco 'Licenciamento pode atrasar' (09fee826, v3) já possui uma relação formal de ameaça com o objetivo 'Implantar Governança de IA' (4dc08b10, v2), co",
+      "at": "2026-10-05T13:43:42.695Z"
+    },
+    {
+      "name": "provider: every suggestion cites both Risk and target with evidence from the snapshot",
+      "ok": true,
+      "detail": "2 suggestion(s): threatens->objective 0.95; threatens->project 0.88",
+      "at": "2026-10-05T13:43:42.695Z"
+    },
+    {
+      "name": "provider: accepting a suggestion that already exists is a no-op",
+      "ok": false,
+      "detail": "200 executed",
+      "at": "2026-10-05T13:44:43.652Z",
+      "superseded_by": "provider: accepting an already-recorded relation leaves the domain unchanged",
+      "note": "Incorrect test expectation: the execution consumes the approval (status executed) while the domain stays unchanged; replaced by a domain-level assertion."
+    },
+    {
+      "name": "provider: accepting an already-recorded relation leaves the domain unchanged",
+      "ok": true,
+      "detail": "execution executed (approval consumed); Risk v3, Objective v2",
+      "at": "2026-10-05T13:46:18.473Z"
+    },
+    {
+      "name": "provider: human accepted the real-model THREATENS -> Sandbox IA",
+      "ok": true,
+      "detail": "200 executed",
+      "at": "2026-10-05T13:46:19.319Z"
+    },
+    {
+      "name": "provider: rejected action \"Acelerar consulta de licenciamento de IA\"",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:46:19.716Z"
+    },
+    {
+      "name": "provider: rejected action \"Vincular formalmente o risco de licencia\"",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:46:19.890Z"
+    },
+    {
+      "name": "provider: Object Page shows both threats, each once",
+      "ok": true,
+      "detail": "Relations Add relation → Threatens Implantar Governança de IA Objective Remove → Threatens Sandbox IA Project Remove",
+      "at": "2026-10-05T13:46:24.190Z"
+    }
+  ],
+  "objects": {
+    "objective": "4dc08b10-9bba-447a-9597-8c740966b1d0",
+    "project": "09fa033a-0a0c-468d-9ec0-d4563abda5e4",
+    "risk": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+  },
+  "runs": {
+    "scripted": {
+      "run_id": "7be3e847-44c8-45a9-916d-aea900207244",
+      "status": "queued",
+      "http": 202,
+      "key": "361bb33b-1df1-4172-93f9-e468c9d448c3",
+      "body": {
+        "binding_id": "920dea9b-e9f7-4f79-a710-78b1819787a6",
+        "root_ids": [
+          "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+          "4dc08b10-9bba-447a-9597-8c740966b1d0",
+          "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+        ],
+        "skill": "risk_review",
+        "prompt": "Review Risks that may threaten the supplied Objectives or Projects."
+      }
+    },
+    "authority": {
+      "run_id": "751ce080-fe2e-4c6d-a885-ea608a9e0903",
+      "status": "queued",
+      "http": 202,
+      "key": "e3ddeca6-44c3-4e9f-967b-e18cd42adf0e",
+      "body": {
+        "binding_id": "920dea9b-e9f7-4f79-a710-78b1819787a6",
+        "root_ids": [
+          "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+          "4dc08b10-9bba-447a-9597-8c740966b1d0",
+          "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+        ],
+        "skill": "risk_review",
+        "prompt": "Review Risks that may threaten the supplied Objectives or Projects."
+      },
+      "prepare_status": 200
+    },
+    "provider": {
+      "run_id": "80fb9c91-d2c6-42ff-a7e3-66728f4e1720",
+      "status": "queued",
+      "http": 202,
+      "key": "512dcb1f-5018-4b0e-8047-4f1575948866",
+      "body": {
+        "binding_id": "920dea9b-e9f7-4f79-a710-78b1819787a6",
+        "root_ids": [
+          "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+          "4dc08b10-9bba-447a-9597-8c740966b1d0",
+          "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+        ],
+        "skill": "risk_review",
+        "prompt": "Review Risks that may threaten the supplied Objectives or Projects."
+      },
+      "prepare_status": 200
+    }
+  },
+  "proposals": [
+    {
+      "id": "c6ef0c1a-0334-42f0-a6dc-3a2ee641dc69",
+      "component": "action",
+      "ordinal": 0,
+      "status": "pending_approval",
+      "target": null,
+      "title": "Validar licenciamento de IA"
+    },
+    {
+      "id": "9097c8a6-547a-4fb7-a2ae-d2ad1db5cad3",
+      "component": "relation",
+      "ordinal": 0,
+      "status": "pending_approval",
+      "target": "4dc08b10-9bba-447a-9597-8c740966b1d0",
+      "title": null
+    },
+    {
+      "id": "6f7fb60b-e81e-44f8-8010-ec4563693358",
+      "component": "action",
+      "ordinal": 1,
+      "status": "pending_approval",
+      "target": null,
+      "title": "Preparar plano B do Sandbox IA"
+    },
+    {
+      "id": "b011d689-c715-4de1-be51-9dc32b265592",
+      "component": "relation",
+      "ordinal": 1,
+      "status": "pending_approval",
+      "target": "09fa033a-0a0c-468d-9ec0-d4563abda5e4",
+      "title": null
+    }
+  ],
+  "accepted_relation": {
+    "proposal": "9097c8a6-547a-4fb7-a2ae-d2ad1db5cad3",
+    "intent_hash": "5cf0c6a024f59754826073c457fd2246ca5350d31f5362a501ca9787058993f5"
+  },
+  "action": "480f79a1-d3e0-41e0-8740-1681b61d9917",
+  "accepted_action": {
+    "proposal": "9cb85f75-a1c4-417e-b3bd-9a1934b5334c",
+    "intent_hash": "bfb9c398ee520be4106cb62e7a04cc1e28929805afc58f6d036d2caf2f218f03"
+  },
+  "rejected": {
+    "relation": {
+      "proposal": "b011d689-c715-4de1-be51-9dc32b265592",
+      "intent_hash": "d4a0db58f3e0ebacabeb035df4d0f8da983f58cedbe654e6c29cbc734d682eb5"
+    },
+    "action": {
+      "proposal": "6f7fb60b-e81e-44f8-8010-ec4563693358",
+      "intent_hash": "91c7526358fdeb2e5c1bde404d3b4018ff474c7088ac8266f3435d823342afb5"
+    }
+  },
+  "authority": {
+    "run_id": "751ce080-fe2e-4c6d-a885-ea608a9e0903",
+    "proposal": "d11a92fa-5386-49d2-866f-beb8e57173bb",
+    "grant_after": "GRANT ['CaptureIssue', 'DelegateAction', 'ReviewObject', 'RecordMeasurement', 'LinkObjects'] 3",
+    "grant_restored": "GRANT ['CaptureIssue', 'DelegateAction', 'ReviewObject', 'RecordMeasurement', 'LinkObjects', 'CreateAction'] 4"
+  },
+  "provider": {
+    "run_id": "80fb9c91-d2c6-42ff-a7e3-66728f4e1720",
+    "prepare_status": 200,
+    "body": {
+      "result": {
+        "summary": "A análise identificou 2 ameaças plausíveis no snapshot. O risco 'Licenciamento pode atrasar' (09fee826, v3) já possui uma relação formal de ameaça com o objetivo 'Implantar Governança de IA' (4dc08b10, v2), confirmada pela relação e98a2337. Adicionalmente, por inferência, o mesmo risco ameaça o projeto 'Sandbox IA' (09fa033a, v1), pois a descrição do risco cita explicitamente o Sandbox IA — mas essa relação ainda não está formalizada no snapshot. A ação 'Validar licenciamento de IA' (480f79a1, v1) existe como mitigação e está vinculada ao risco via relação ce4233e6, porém seu status é 'todo' e o próximo passo ainda não foi executado, o que representa lacuna de execução. Nenhum contexto foi truncado.",
+        "suggestions": [
+          {
+            "evidence": [
+              {
+                "field": "properties:description",
+                "quote": "Licenciamento pode atrasar a governança de IA e o Sandbox IA",
+                "version": 3,
+                "object_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+              },
+              {
+                "field": "properties:status",
+                "quote": "draft",
+                "version": 2,
+                "object_id": "4dc08b10-9bba-447a-9597-8c740966b1d0"
+              },
+              {
+                "field": "properties:timeframe",
+                "quote": "short_term",
+                "version": 2,
+                "object_id": "4dc08b10-9bba-447a-9597-8c740966b1d0"
+              },
+              {
+                "field": "properties:status",
+                "quote": "todo",
+                "version": 1,
+                "object_id": "480f79a1-d3e0-41e0-8740-1681b61d9917"
+              }
+            ],
+            "confidence": 0.95,
+            "explanation": "A relação e98a2337 confirma formalmente que o risco 'Licenciamento pode atrasar' (09fee826, v3) ameaça o objetivo 'Implantar Governança de IA' (4dc08b10, v2). O risco possui likelihood 3, impact 3 e score 9 — nível moderado-alto. O objetivo está em status 'draft' com progresso 0% e prazo 'short_term', o que aumenta a exposição: qualquer atraso de licenciamento pode impedir a saída do draft antes do prazo. A ação de mitigação existe, mas está em 'todo', sem evidência de execução.",
+            "context_used": [
+              "e98a2337-5c5c-4137-87f8-5a653c3466f3",
+              "ce4233e6-35a7-4a75-b514-623738edfaa3"
+            ],
+            "suggested_action": {
+              "title": "Acelerar consulta de licenciamento de IA",
+              "next_step": "Executar imediatamente a consulta à equipe de licenciamento conforme definido na ação 480f79a1 e registrar prazo confirmado ou alternativas identificadas.",
+              "description": "A ação 'Validar licenciamento de IA' (480f79a1) está em 'todo'. Com o objetivo 'Implantar Governança de IA' em prazo short_term e progresso zero, o atraso no licenciamento pode bloquear completamente a implantação. Recomenda-se priorizar a execução do próximo passo já definido — consultar a equipe de licenciamento — e registrar o resultado como medição ou decisão.",
+              "mitigates_risk_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+            },
+            "suggested_relation": {
+              "relation": "threatens",
+              "source_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+              "target_id": "4dc08b10-9bba-447a-9597-8c740966b1d0"
+            }
+          },
+          {
+            "evidence": [
+              {
+                "field": "properties:description",
+                "quote": "Licenciamento pode atrasar a governança de IA e o Sandbox IA",
+                "version": 3,
+                "object_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+              },
+              {
+                "field": "title",
+                "quote": "Sandbox IA",
+                "version": 1,
+                "object_id": "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+              },
+              {
+                "field": "properties:status",
+                "quote": "draft",
+                "version": 1,
+                "object_id": "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+              },
+              {
+                "field": "title",
+                "quote": "Licenciamento pode atrasar",
+                "version": 3,
+                "object_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+              }
+            ],
+            "confidence": 0.88,
+            "explanation": "Por inferência direta da descrição do risco, 'Licenciamento pode atrasar a governança de IA e o Sandbox IA' menciona explicitamente o projeto 'Sandbox IA' (09fa033a, v1). No entanto, não existe nenhuma relação formalizada no snapshot entre o risco 09fee826 e o projeto 09fa033a. O projeto está em status 'draft' sem descrição ou conteúdo, o que indica estágio inicial e, portanto, alta vulnerabilidade a bloqueios externos como o licenciamento. Esta sugestão é inferencial — a relação de ameaça ainda não foi registrada formalmente.",
+            "context_used": [
+              "ce4233e6-35a7-4a75-b514-623738edfaa3"
+            ],
+            "suggested_action": {
+              "title": "Vincular formalmente o risco de licenciamento ao projeto Sandbox IA",
+              "next_step": "Criar a relação 'threatens' entre o risco 09fee826 e o projeto 09fa033a e avaliar se a ação de mitigação 480f79a1 deve ser estendida ao escopo do projeto.",
+              "description": "O risco 'Licenciamento pode atrasar' cita explicitamente o Sandbox IA em sua descrição, mas não há relação formal de ameaça registrada entre os dois objetos. Formalizar essa ligação permite rastrear o impacto e acionar planos de resposta específicos para o projeto.",
+              "mitigates_risk_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+            },
+            "suggested_relation": {
+              "relation": "threatens",
+              "source_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+              "target_id": "09fa033a-0a0c-468d-9ec0-d4563abda5e4"
+            }
+          }
+        ]
+      },
+      "proposals": [
+        {
+          "id": "0c746ac2-88fe-49dd-8a14-4b863077c6b2",
+          "component": "action",
+          "status": "pending_approval",
+          "command": "CreateAction",
+          "input": {
+            "title": "Acelerar consulta de licenciamento de IA",
+            "next_step": "Executar imediatamente a consulta à equipe de licenciamento conforme definido na ação 480f79a1 e registrar prazo confirmado ou alternativas identificadas.",
+            "description": "A ação 'Validar licenciamento de IA' (480f79a1) está em 'todo'. Com o objetivo 'Implantar Governança de IA' em prazo short_term e progresso zero, o atraso no licenciamento pode bloquear completamente a implantação. Recomenda-se priorizar a execução do próximo passo já definido — consultar a equipe de licenciamento — e registrar o resultado como medição ou decisão.",
+            "mitigates_risk_ids": [
+              "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+            ],
+            "executor_person_ids": []
+          },
+          "intent_hash": "dc6962036e8466664554a3735562b08b31fb6bb8456c08a8abed238ceea85e8a"
+        },
+        {
+          "id": "a0775af1-2a34-4d39-88ee-22c2327a85dd",
+          "component": "relation",
+          "status": "pending_approval",
+          "command": "LinkObjects",
+          "input": {
+            "source_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+            "target_id": "4dc08b10-9bba-447a-9597-8c740966b1d0",
+            "relation_type_id": "6704a111-4284-4fd4-a167-4556e5c162c8"
+          },
+          "intent_hash": "6e5b86149c2e5f149fa2db849a12accca6999667a11d71bccf3d699798fb7618"
+        },
+        {
+          "id": "1aab9bc6-e2ff-484d-92e2-af0470270ee4",
+          "component": "action",
+          "status": "pending_approval",
+          "command": "CreateAction",
+          "input": {
+            "title": "Vincular formalmente o risco de licenciamento ao projeto Sandbox IA",
+            "next_step": "Criar a relação 'threatens' entre o risco 09fee826 e o projeto 09fa033a e avaliar se a ação de mitigação 480f79a1 deve ser estendida ao escopo do projeto.",
+            "description": "O risco 'Licenciamento pode atrasar' cita explicitamente o Sandbox IA em sua descrição, mas não há relação formal de ameaça registrada entre os dois objetos. Formalizar essa ligação permite rastrear o impacto e acionar planos de resposta específicos para o projeto.",
+            "mitigates_risk_ids": [
+              "09fee826-8e2b-4535-8cfc-56c28f7024ad"
+            ],
+            "executor_person_ids": []
+          },
+          "intent_hash": "bbd2e5a0080187f1864b599162ff230a15a6ecf1260fc38a34dc07fdd5656902"
+        },
+        {
+          "id": "0f2b76f9-0f0d-477a-aa30-edcf8a5106eb",
+          "component": "relation",
+          "status": "pending_approval",
+          "command": "LinkObjects",
+          "input": {
+            "source_id": "09fee826-8e2b-4535-8cfc-56c28f7024ad",
+            "target_id": "09fa033a-0a0c-468d-9ec0-d4563abda5e4",
+            "relation_type_id": "6704a111-4284-4fd4-a167-4556e5c162c8"
+          },
+          "intent_hash": "288aa3c7effda82df80a91a261dfd7b4ad9710489f7636b0e44692cafe93c96a"
+        }
+      ]
+    },
+    "decisions": {
+      "duplicate": "executed",
+      "project": "executed"
+    }
+  }
+}

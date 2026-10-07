@@ -1,0 +1,10 @@
+Operations to perform:
+  Apply all migrations: auth, contenttypes, db, django_celery_beat, license, radar, sessions
+Running migrations:
+  Applying radar.0003_commandexecution_provenance_personidentity_and_more... OK
+  Applying radar.0004_operationalrecord_runtimecredential_and_more... OK
+  Applying radar.0005_remove_relationtype_radar_reltype_cardinality_and_more... OK
+  Applying radar.0006_agent_runtime... OK
+  Applying radar.0007_agent_configuration... OK
+  Applying radar.0008_risk_review... OK
+  Applying radar.0009_risk_review_preview... OK

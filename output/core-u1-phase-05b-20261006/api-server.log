@@ -1,0 +1,294 @@
+ Container radar-core-u1-phase05b-test-mq-1 Running 
+ Container radar-core-u1-phase05b-test-minio-1 Running 
+ Container radar-core-u1-phase05b-test-db-1 Running 
+ Container radar-core-u1-phase05b-test-redis-1 Running 
+ Container radar-core-u1-phase05b-test-mq-1 Waiting 
+ Container radar-core-u1-phase05b-test-minio-1 Waiting 
+ Container radar-core-u1-phase05b-test-db-1 Waiting 
+ Container radar-core-u1-phase05b-test-redis-1 Waiting 
+ Container radar-core-u1-phase05b-test-minio-1 Healthy 
+ Container radar-core-u1-phase05b-test-mq-1 Healthy 
+ Container radar-core-u1-phase05b-test-redis-1 Healthy 
+ Container radar-core-u1-phase05b-test-db-1 Healthy 
+ Container radar-phase05b-browser-api Creating 
+ Container radar-phase05b-browser-api Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+U1_PHASE05B_BROWSER_READY
+192.168.65.1 - - [06/Oct/2026 23:41:44] "GET /fixture/info/ HTTP/1.1" 200 260
+192.168.65.1 - - [06/Oct/2026 23:42:38] "GET /fixture/login/admin/ HTTP/1.1" 302 0
+GET - /api/workspaces/c18-browser-21c27b5e/radar/today/?timezone=America%2FBahia of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:42:42] "GET /api/workspaces/c18-browser-21c27b5e/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 456
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/properties/ of Queries: 17
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/properties/ HTTP/1.1" 200 1704
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/capabilities/ of Queries: 89
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/capabilities/ HTTP/1.1" 200 751
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/relations/ of Queries: 16
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/relations/ HTTP/1.1" 200 1198
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9587
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/ of Queries: 10
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/ HTTP/1.1" 200 1849
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9533
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9593
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:05] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9573
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/collaboration/ of Queries: 14
+192.168.65.1 - - [06/Oct/2026 23:43:06] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/collaboration/ HTTP/1.1" 200 2445
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:43:06] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia HTTP/1.1" 200 705
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:43:06] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?limit=20 HTTP/1.1" 200 2685
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9589
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?cursor=eyJvYmplY3QiOiAiMjU5OTk3MGItOTMxZC00YWI4LWI5NzYtYzcwMDNlN2RjNjI2IiwgImtpbmQiOiBudWxsLCAiYXQiOiAiMjAyNi0xMC0wNlQyMzo0MTozMi4zMjE5NTMrMDA6MDAiLCAiaWQiOiAiZTE2MDY3NTMtNjVjZS00NWE3LWJiY2EtYjFjODFhNDFmMGM2In0%3D&limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:43:19] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?cursor=eyJvYmplY3QiOiAiMjU5OTk3MGItOTMxZC00YWI4LWI5NzYtYzcwMDNlN2RjNjI2IiwgImtpbmQiOiBudWxsLCAiYXQiOiAiMjAyNi0xMC0wNlQyMzo0MTozMi4zMjE5NTMrMDA6MDAiLCAiaWQiOiAiZTE2MDY3NTMtNjVjZS00NWE3LWJiY2EtYjFjODFhNDFmMGM2In0%3D&limit=20 HTTP/1.1" 200 897
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:43:41] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9530
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=review&limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:43:54] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=review&limit=20 HTTP/1.1" 200 2686
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:43:54] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia HTTP/1.1" 200 633
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=review&cursor=eyJvYmplY3QiOiAiMjU5OTk3MGItOTMxZC00YWI4LWI5NzYtYzcwMDNlN2RjNjI2IiwgImtpbmQiOiAicmV2aWV3IiwgImF0IjogIjIwMjYtMTAtMDZUMjM6NDE6MzIuMzIxOTUzKzAwOjAwIiwgImlkIjogImUxNjA2NzUzLTY1Y2UtNDVhNy1iYmNhLWIxYzgxYTQxZjBjNiJ9&limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:44:09] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=review&cursor=eyJvYmplY3QiOiAiMjU5OTk3MGItOTMxZC00YWI4LWI5NzYtYzcwMDNlN2RjNjI2IiwgImtpbmQiOiAicmV2aWV3IiwgImF0IjogIjIwMjYtMTAtMDZUMjM6NDE6MzIuMzIxOTUzKzAwOjAwIiwgImlkIjogImUxNjA2NzUzLTY1Y2UtNDVhNy1iYmNhLWIxYzgxYTQxZjBjNiJ9&limit=20 HTTP/1.1" 200 702
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:44:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9566
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=delegation&limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:44:36] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operational-history/?kind=delegation&limit=20 HTTP/1.1" 200 481
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:44:37] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/operations/?timezone=America%2FBahia HTTP/1.1" 200 645
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:44:41] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9560
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9559
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/ of Queries: 10
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/ HTTP/1.1" 200 1875
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/relations/ of Queries: 16
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/relations/ HTTP/1.1" 200 1197
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/capabilities/ of Queries: 89
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/capabilities/ HTTP/1.1" 200 773
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/properties/ of Queries: 17
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/properties/ HTTP/1.1" 200 1719
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9583
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9568
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9558
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9595
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/collaboration/ of Queries: 14
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/collaboration/ HTTP/1.1" 200 629
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operations/?timezone=America%2FBahia HTTP/1.1" 200 510
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:45:28] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operational-history/?limit=20 HTTP/1.1" 200 475
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/ of Queries: 10
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/ HTTP/1.1" 200 1912
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/capabilities/ of Queries: 22
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/capabilities/ HTTP/1.1" 200 603
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/properties/ of Queries: 17
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/properties/ HTTP/1.1" 200 2073
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/relations/ of Queries: 16
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/relations/ HTTP/1.1" 200 1066
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9615
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9599
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9578
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:45:44] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9621
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/collaboration/ of Queries: 14
+192.168.65.1 - - [06/Oct/2026 23:45:45] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/collaboration/ HTTP/1.1" 200 747
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:45:45] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/operations/?timezone=America%2FBahia HTTP/1.1" 200 451
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:45:45] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/6efdada8-e546-40f7-a4f6-a80dc030ba26/operational-history/?limit=20 HTTP/1.1" 200 740
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /fixture/login/guest/?to=objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41 HTTP/1.1" 302 0
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/relations/ of Queries: 16
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/relations/ HTTP/1.1" 200 812
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9601
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/properties/ of Queries: 17
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/properties/ HTTP/1.1" 200 1582
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/capabilities/ of Queries: 20
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/capabilities/ HTTP/1.1" 200 616
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/ of Queries: 10
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/ HTTP/1.1" 200 1889
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9585
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/collaboration/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/collaboration/ HTTP/1.1" 200 547
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/operational-history/?limit=20 HTTP/1.1" 200 497
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:46:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/operations/?timezone=America%2FBahia HTTP/1.1" 200 389
+192.168.65.1 - - [06/Oct/2026 23:46:29] "GET /fixture/login/outsider/ HTTP/1.1" 302 0
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/relations/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/relations/
+192.168.65.1 - - [06/Oct/2026 23:46:31] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/relations/ HTTP/1.1" 403 63
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/properties/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/properties/
+192.168.65.1 - - [06/Oct/2026 23:46:31] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/properties/ HTTP/1.1" 403 63
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/capabilities/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/capabilities/
+192.168.65.1 - - [06/Oct/2026 23:46:31] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/d1c2a9e9-23b2-4320-8112-46fe98e84b41/capabilities/ HTTP/1.1" 403 63
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/schema/
+192.168.65.1 - - [06/Oct/2026 23:46:41] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 403 63
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/schema/
+192.168.65.1 - - [06/Oct/2026 23:47:11] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 403 63
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 3
+Forbidden: /api/workspaces/c18-browser-21c27b5e/radar/schema/
+192.168.65.1 - - [06/Oct/2026 23:47:41] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 403 63
+192.168.65.1 - - [06/Oct/2026 23:47:46] "GET /fixture/login/admin/ HTTP/1.1" 302 0
+GET - /api/workspaces/c18-browser-21c27b5e/radar/today/?timezone=America%2FBahia of Queries: 12
+192.168.65.1 - - [06/Oct/2026 23:47:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 467
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:48:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9615
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:48:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9576
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:49:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9603
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:49:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9557
+GET - /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [06/Oct/2026 23:49:54] "GET /api/workspaces/c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/operations/?timezone=America%2FBahia HTTP/1.1" 200 549
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:50:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9550
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:50:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9569
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:51:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9542
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:51:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9610
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:52:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9540
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:52:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9557
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:53:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9575
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:53:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9560
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:54:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9608
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:54:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9596
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:55:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9605
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:55:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9597
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:56:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9537
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:56:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9617
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:57:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9621
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:57:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9587
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:58:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9564
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:58:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9628
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:59:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9592
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [06/Oct/2026 23:59:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9621
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:00:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9614
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:00:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9574
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:01:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9625
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:01:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9581
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:02:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9628
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:02:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9579
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:03:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9621
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:03:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9590
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:04:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9574
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:04:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9583
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:05:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9576
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:05:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9590
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:06:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9593
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:06:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9588
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:07:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9573
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:07:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9574
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:08:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9550
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:08:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9578
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:09:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9564
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:09:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9555
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:10:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9531
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:10:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9538
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:11:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9594
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:11:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9594
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:12:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9558
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:12:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9534
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:13:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9564
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:13:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9596
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:14:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9618
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:14:48] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9560
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:15:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9550
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:15:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9585
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:16:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9570
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:16:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9550
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:17:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9588
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:17:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9600
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:18:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9567
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:18:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9539
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:19:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9565
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:19:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9540
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:20:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9613
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:20:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9532
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:21:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9625
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:21:47] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9626
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:22:17] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9548
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:22:46] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9540
+GET - /api/workspaces/c18-browser-21c27b5e/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 00:23:16] "GET /api/workspaces/c18-browser-21c27b5e/radar/schema/ HTTP/1.1" 200 9552
+

@@ -1,0 +1,3 @@
+✗ Auto-launch failed: Chrome exited early (exit code: unknown) without writing DevToolsActivePort
+(also tried parsing stderr) Chrome exited before providing DevTools URL (no stderr output from Chrome)
+Hint: try passing --args "--no-sandbox" if Chrome crashes silently in your environment

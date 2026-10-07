@@ -1,0 +1,92 @@
+ Container radar-core-u1-02-test-test-db-1 Running 
+ Container radar-core-u1-02-test-test-redis-1 Running 
+ Container radar-core-u1-02-test-test-mq-1 Running 
+ Container radar-core-u1-02-test-test-minio-1 Running 
+ Container radar-core-u1-02-test-test-minio-1 Waiting 
+ Container radar-core-u1-02-test-test-db-1 Waiting 
+ Container radar-core-u1-02-test-test-redis-1 Waiting 
+ Container radar-core-u1-02-test-test-mq-1 Waiting 
+ Container radar-core-u1-02-test-test-redis-1 Healthy 
+ Container radar-core-u1-02-test-test-minio-1 Healthy 
+ Container radar-core-u1-02-test-test-mq-1 Healthy 
+ Container radar-core-u1-02-test-test-db-1 Healthy 
+ Container radar-core-u1-02-test-api-tests-run-03ca8352ba6d Creating 
+ Container radar-core-u1-02-test-api-tests-run-03ca8352ba6d Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 39 items
+
+plane/radar/tests/test_core_u1_phase02.py::test_gets_do_not_install_schema_and_explicit_provisioning_is_admin_only Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_three_way_field_merge_preserves_local_customization PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_upgrade_preserves_ids_local_fields_and_inactive_definitions PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_upgrade_conflicts_are_reviewable_and_never_overwrite_local_fields PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_legacy_custom_workspace_is_baselined_without_a_presumed_package_version PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_retired_deleted_definition_is_never_recreated_by_install_or_upgrade PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_upgrade_failure_rolls_back_metadata_state_history_and_provenance PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_incompatible_property_changes_require_explicit_fact_migration[kind] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_incompatible_property_changes_require_explicit_fact_migration[choices] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_incompatible_property_changes_require_explicit_fact_migration[required] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_cardinality_reduction_checks_existing_edges PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_metadata_revision_changes_without_incrementing_objects_and_rejects_old_forms PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_confirmed_replay_precedes_schema_precondition PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_pending_approval_is_stale_after_metadata_change PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_uniform_object_policy_and_explicit_history[inactive_type] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_uniform_object_policy_and_explicit_history[deleted_type] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_uniform_object_policy_and_explicit_history[deleted_object] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_agent_context_excludes_retired_values_relations_and_endpoints PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[enum-config0] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[enum-config1] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[enum-config2] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[enum-config3] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[number-config4] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[number-config5] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[integer-config6] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[boolean-config7] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[string-config8] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[rich_text-config9] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_property_config_is_rejected_before_persistence[user-config10] PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_relation_descriptors_are_rejected PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_schema_metadata_edit_requires_admin_and_exact_revision PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_authority_changes_are_distinct_from_schema_revision PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_upgrade_preview_reports_new_required_field_migration_blocker PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_legacy_confirmed_http_intent_replays_without_new_schema_header FAILED
+plane/radar/tests/test_core_u1_phase02.py::test_metadata_operations_report_uninitialized_workspace PASSED
+plane/radar/tests/test_core_u1_phase02.py::test_invalid_metadata_config_cannot_be_saved_under_a_trusted_audit_context PASSED
+plane/radar/tests/test_semantic.py::test_normative_seed_idempotent_and_minimal PASSED
+plane/radar/tests/test_semantic.py::test_cross_workspace_schema_and_endpoints_rejected PASSED
+plane/radar/tests/test_governance.py::test_generic_api_accepts_additional_type_without_structural_code PASSED
+
+=================================== FAILURES ===================================
+_____ test_legacy_confirmed_http_intent_replays_without_new_schema_header ______
+
+installed = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 27, 3, 505141, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_legacy_confirmed_http_intent_replays_without_new_schema_header(installed):
+        obj = object_for(installed)
+        from plane.radar.commands.semantic import initialize_properties_command
+    
+        actor = replace(installed[5], source="radar.session-api", reason="Initialize object defaults")
+        confirmed = initialize_properties_command(
+            actor=actor,
+            workspace=installed[3],
+            object_id=obj.pk,
+            expected_versions={str(obj.pk): 1},
+            idempotency_key="legacy-http-defaults",
+        )
+        edit(installed, obj.object_type, {"name": "Changed"})
+>       client = APIClient()
+                 ^^^^^^^^^
+E       NameError: name 'APIClient' is not defined
+
+plane/radar/tests/test_core_u1_phase02.py:401: NameError
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_core_u1_phase02.py::test_legacy_confirmed_http_intent_replays_without_new_schema_header
+======================== 1 failed, 38 passed in 14.02s =========================
+

@@ -1,0 +1,397 @@
+- generic [ref=e38]:
+  - link "All objects" [ref=e39] [cursor=pointer]:
+    - /url: /c18-browser-21c27b5e/radar/objects/
+  - generic [ref=e40]:
+    - paragraph [ref=e41]: Action
+    - generic [ref=e42]:
+      - generic [ref=e44]:
+        - text: Title
+        - generic [aria-hidden] [ref=e45]: "*"
+      - textbox "Title" [ref=e48]: Delegação atrasada sem data
+    - generic [ref=e50]:
+      - generic [ref=e51]:
+        - generic [ref=e52]: Description
+        - textbox "Description" [ref=e56]: Datetime controls the deadline
+      - generic [ref=e57]:
+        - generic [ref=e58]: Saved
+        - button "Save Description" [disabled] [ref=e60]:
+          - generic [ref=e61]: Save
+    - generic [ref=e62]:
+      - heading "Notes" [level=2] [ref=e63]
+      - paragraph [ref=e64]: Complementary notes. The main narrative is description.
+      - generic:
+        - paragraph
+    - generic [ref=e65]:
+      - term [ref=e66]: Created by
+      - definition [ref=e67]: "Human: c18-admin-eaba0ac6"
+      - term [ref=e68]: Updated by
+      - definition [ref=e69]: "Human: c18-admin-eaba0ac6"
+      - term [ref=e70]: Version
+      - definition [ref=e71]: "25"
+    - button "Save title and notes" [disabled] [ref=e72]
+  - generic [ref=e74]:
+    - region [ref=e75]:
+      - heading "Actions" [level=2] [ref=e76]
+      - list [ref=e77]:
+        - listitem [ref=e78]:
+          - generic [ref=e79]: Complete action → Done
+          - generic [ref=e81]:
+            - generic [ref=e82]: Outcome
+            - textbox "Outcome" [ref=e86]
+          - generic [ref=e87]:
+            - generic [ref=e88]: Evidence
+            - combobox "Evidence" [ref=e89] [cursor=pointer]:
+              - generic "Select…" [ref=e90]
+            - textbox [aria-hidden] [ref=e94]
+          - button "Review Complete action → Done" [ref=e96] [cursor=pointer]:
+            - generic [ref=e97]: Review
+    - region [ref=e98]:
+      - heading "Execution" [level=2] [ref=e99]
+      - generic [ref=e100]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - generic [ref=e103]: Status
+            - combobox "Status" [ref=e104] [cursor=pointer]:
+              - generic "Todo" [ref=e105]
+            - textbox [aria-hidden] [ref=e109]: todo
+          - generic [ref=e110]:
+            - generic [ref=e111]: Saved
+            - button "Save Status" [disabled] [ref=e113]:
+              - generic [ref=e114]: Save
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]: Next step
+            - textbox "Next step" [ref=e121]
+          - generic [ref=e122]:
+            - generic [ref=e123]: Saved
+            - button "Save Next step" [disabled] [ref=e125]:
+              - generic [ref=e126]: Save
+        - generic [ref=e127]:
+          - generic [ref=e128]:
+            - generic [ref=e129]: Priority
+            - combobox "Priority" [ref=e130] [cursor=pointer]:
+              - generic "Medium" [ref=e131]
+            - textbox [aria-hidden] [ref=e135]: medium
+          - generic [ref=e136]:
+            - generic [ref=e137]: Saved
+            - button "Save Priority" [disabled] [ref=e139]:
+              - generic [ref=e140]: Save
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - generic [ref=e143]: Due date
+            - textbox "Due date" [ref=e147]
+          - generic [ref=e148]:
+            - generic [ref=e149]: Not set
+            - button "Save Due date" [ref=e151] [cursor=pointer]:
+              - generic [ref=e152]: Save
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]: Completed at
+            - textbox "Completed at" [disabled] [ref=e159]
+          - paragraph [ref=e160]: Recorded by Complete action when the transition happens.
+          - generic [ref=e161]: Not set
+    - region [ref=e163]:
+      - heading "Other properties" [level=2] [ref=e164]
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - generic [ref=e168]: Delegation deadline
+          - textbox "Delegation deadline" [ref=e172]: 2026-10-06T19:41
+        - generic [ref=e173]:
+          - generic [ref=e174]: Saved
+          - generic [ref=e175]:
+            - button "Clear Delegation deadline" [ref=e176] [cursor=pointer]:
+              - generic [ref=e177]: Clear
+            - button "Save Delegation deadline" [disabled] [ref=e178]:
+              - generic [ref=e179]: Save
+    - region [ref=e180]:
+      - generic [ref=e181]:
+        - heading "Relations" [level=2] [ref=e182]
+        - button "Add relation" [ref=e183] [cursor=pointer]
+      - list [ref=e185]:
+        - listitem [ref=e186]:
+          - generic [aria-hidden] [ref=e187]: →
+          - generic [ref=e188]: Assigned to
+          - link "Executor C18" [ref=e189] [cursor=pointer]:
+            - /url: /c18-browser-21c27b5e/radar/objects/69c004fd-1578-4832-8452-fbc799295f82/
+          - generic [ref=e190]: Person
+          - button "Remove Assigned to relation with Executor C18" [ref=e191] [cursor=pointer]:
+            - generic [ref=e192]: Remove
+    - region [ref=e193]:
+      - heading "Backlinks" [level=2] [ref=e194]
+      - list
+      - paragraph [ref=e195]: No incoming relations.
+  - region [ref=e196]:
+    - generic [ref=e197]:
+      - heading "Collaboration" [level=2] [ref=e198]
+      - button "Reload" [ref=e199] [cursor=pointer]
+    - generic [ref=e201]:
+      - heading "Comments" [level=3] [ref=e202]
+      - paragraph [ref=e203]: No comments yet.
+      - generic [ref=e204]:
+        - generic [ref=e205]:
+          - generic [ref=e207]:
+            - text: New comment
+            - generic [aria-hidden] [ref=e208]: "*"
+          - textbox "New comment" [ref=e211]
+        - button "Add comment" [disabled] [ref=e212]
+    - generic [ref=e214]:
+      - heading "Attachments" [level=3] [ref=e215]
+      - paragraph [ref=e216]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+      - paragraph [ref=e217]: No attachments yet.
+      - generic [ref=e218]:
+        - generic [ref=e219]: Supporting file
+        - button "Supporting file" [ref=e220]
+        - paragraph [ref=e221]: Choose a nonempty file. A failed request keeps your selection for retry.
+        - button "Upload attachment" [disabled] [ref=e222]
+    - generic [ref=e224]:
+      - heading "Activity" [level=3] [ref=e225]
+      - list [ref=e226]:
+        - listitem [ref=e227]:
+          - paragraph [ref=e228]: Review Object · executed
+          - paragraph [ref=e229]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e230]: 06/10/2026, 20:41:36
+          - paragraph [ref=e231]: C18 browser fixture · fixture.browser
+        - listitem [ref=e232]:
+          - paragraph [ref=e233]: Review Object · executed
+          - paragraph [ref=e234]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e235]: 06/10/2026, 20:41:35
+          - paragraph [ref=e236]: C18 browser fixture · fixture.browser
+        - listitem [ref=e237]:
+          - paragraph [ref=e238]: Review Object · executed
+          - paragraph [ref=e239]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e240]: 06/10/2026, 20:41:35
+          - paragraph [ref=e241]: C18 browser fixture · fixture.browser
+        - listitem [ref=e242]:
+          - paragraph [ref=e243]: Review Object · executed
+          - paragraph [ref=e244]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e245]: 06/10/2026, 20:41:35
+          - paragraph [ref=e246]: C18 browser fixture · fixture.browser
+        - listitem [ref=e247]:
+          - paragraph [ref=e248]: Review Object · executed
+          - paragraph [ref=e249]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e250]: 06/10/2026, 20:41:35
+          - paragraph [ref=e251]: C18 browser fixture · fixture.browser
+        - listitem [ref=e252]:
+          - paragraph [ref=e253]: Review Object · executed
+          - paragraph [ref=e254]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e255]: 06/10/2026, 20:41:35
+          - paragraph [ref=e256]: C18 browser fixture · fixture.browser
+        - listitem [ref=e257]:
+          - paragraph [ref=e258]: Review Object · executed
+          - paragraph [ref=e259]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e260]: 06/10/2026, 20:41:34
+          - paragraph [ref=e261]: C18 browser fixture · fixture.browser
+        - listitem [ref=e262]:
+          - paragraph [ref=e263]: Review Object · executed
+          - paragraph [ref=e264]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e265]: 06/10/2026, 20:41:34
+          - paragraph [ref=e266]: C18 browser fixture · fixture.browser
+        - listitem [ref=e267]:
+          - paragraph [ref=e268]: Review Object · executed
+          - paragraph [ref=e269]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e270]: 06/10/2026, 20:41:34
+          - paragraph [ref=e271]: C18 browser fixture · fixture.browser
+        - listitem [ref=e272]:
+          - paragraph [ref=e273]: Review Object · executed
+          - paragraph [ref=e274]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e275]: 06/10/2026, 20:41:34
+          - paragraph [ref=e276]: C18 browser fixture · fixture.browser
+        - listitem [ref=e277]:
+          - paragraph [ref=e278]: Review Object · executed
+          - paragraph [ref=e279]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e280]: 06/10/2026, 20:41:34
+          - paragraph [ref=e281]: C18 browser fixture · fixture.browser
+        - listitem [ref=e282]:
+          - paragraph [ref=e283]: Review Object · executed
+          - paragraph [ref=e284]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e285]: 06/10/2026, 20:41:34
+          - paragraph [ref=e286]: C18 browser fixture · fixture.browser
+        - listitem [ref=e287]:
+          - paragraph [ref=e288]: Review Object · executed
+          - paragraph [ref=e289]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e290]: 06/10/2026, 20:41:33
+          - paragraph [ref=e291]: C18 browser fixture · fixture.browser
+        - listitem [ref=e292]:
+          - paragraph [ref=e293]: Review Object · executed
+          - paragraph [ref=e294]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e295]: 06/10/2026, 20:41:33
+          - paragraph [ref=e296]: C18 browser fixture · fixture.browser
+        - listitem [ref=e297]:
+          - paragraph [ref=e298]: Review Object · executed
+          - paragraph [ref=e299]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e300]: 06/10/2026, 20:41:33
+          - paragraph [ref=e301]: C18 browser fixture · fixture.browser
+        - listitem [ref=e302]:
+          - paragraph [ref=e303]: Review Object · executed
+          - paragraph [ref=e304]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e305]: 06/10/2026, 20:41:33
+          - paragraph [ref=e306]: C18 browser fixture · fixture.browser
+        - listitem [ref=e307]:
+          - paragraph [ref=e308]: Review Object · executed
+          - paragraph [ref=e309]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e310]: 06/10/2026, 20:41:33
+          - paragraph [ref=e311]: C18 browser fixture · fixture.browser
+        - listitem [ref=e312]:
+          - paragraph [ref=e313]: Review Object · executed
+          - paragraph [ref=e314]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e315]: 06/10/2026, 20:41:32
+          - paragraph [ref=e316]: C18 browser fixture · fixture.browser
+        - listitem [ref=e317]:
+          - paragraph [ref=e318]: Review Object · executed
+          - paragraph [ref=e319]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e320]: 06/10/2026, 20:41:32
+          - paragraph [ref=e321]: C18 browser fixture · fixture.browser
+        - listitem [ref=e322]:
+          - paragraph [ref=e323]: Review Object · executed
+          - paragraph [ref=e324]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e325]: 06/10/2026, 20:41:32
+          - paragraph [ref=e326]: C18 browser fixture · fixture.browser
+        - listitem [ref=e327]:
+          - paragraph [ref=e328]: Review Object · executed
+          - paragraph [ref=e329]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e330]: 06/10/2026, 20:41:32
+          - paragraph [ref=e331]: C18 browser fixture · fixture.browser
+        - listitem [ref=e332]:
+          - paragraph [ref=e333]: Review Object · executed
+          - paragraph [ref=e334]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e335]: 06/10/2026, 20:41:32
+          - paragraph [ref=e336]: C18 browser fixture · fixture.browser
+        - listitem [ref=e337]:
+          - paragraph [ref=e338]: Review Object · executed
+          - paragraph [ref=e339]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e340]: 06/10/2026, 20:41:31
+          - paragraph [ref=e341]: C18 browser fixture · fixture.browser
+        - listitem [ref=e342]:
+          - paragraph [ref=e343]: Delegate Action · executed
+          - paragraph [ref=e344]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e345]: 06/10/2026, 20:41:31
+          - paragraph [ref=e346]: C18 browser fixture · fixture.browser
+        - listitem [ref=e347]:
+          - paragraph [ref=e348]: Bind Fixture Identity · executed
+          - paragraph [ref=e349]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e350]: 06/10/2026, 20:41:31
+          - paragraph [ref=e351]: C18 browser fixture · fixture.browser
+        - listitem [ref=e352]:
+          - paragraph [ref=e353]: Create Object · executed
+          - paragraph [ref=e354]:
+            - text: "human: 9f2cbc76-6f78-4a49-8b16-0be880218fa5 ·"
+            - time [ref=e355]: 06/10/2026, 20:41:30
+          - paragraph [ref=e356]: C18 browser fixture · fixture.browser
+  - region "Histórico operacional" [ref=e357]:
+    - generic [ref=e358]:
+      - heading "Histórico operacional" [level=2] [ref=e359]
+      - button "Atualizar histórico" [ref=e360] [cursor=pointer]
+    - paragraph [ref=e488]: 06/10/2026, 19:41:31 · America/Bahia
+    - paragraph [ref=e489]: "Executores correntes: Executor C18"
+    - generic [ref=e364]:
+      - generic [ref=e365]: Filtrar histórico
+      - combobox "Filtrar histórico" [ref=e366] [cursor=pointer]:
+        - generic "Reviews" [ref=e490]
+      - textbox [aria-hidden] [ref=e371]: review
+    - list [ref=e372]:
+      - listitem [ref=e491]:
+        - paragraph [ref=e492]: Review C18 22
+        - paragraph [ref=e493]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:36
+        - paragraph [ref=e494]: Registrado por command · Object v25
+      - listitem [ref=e495]:
+        - paragraph [ref=e496]: Review C18 21
+        - paragraph [ref=e497]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:35
+        - paragraph [ref=e498]: Registrado por command · Object v24
+      - listitem [ref=e499]:
+        - paragraph [ref=e500]: Review C18 20
+        - paragraph [ref=e501]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:35
+        - paragraph [ref=e502]: Registrado por command · Object v23
+      - listitem [ref=e503]:
+        - paragraph [ref=e504]: Review C18 19
+        - paragraph [ref=e505]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:35
+        - paragraph [ref=e506]: Registrado por command · Object v22
+      - listitem [ref=e507]:
+        - paragraph [ref=e508]: Review C18 18
+        - paragraph [ref=e509]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:35
+        - paragraph [ref=e510]: Registrado por command · Object v21
+      - listitem [ref=e511]:
+        - paragraph [ref=e512]: Review C18 17
+        - paragraph [ref=e513]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:35
+        - paragraph [ref=e514]: Registrado por command · Object v20
+      - listitem [ref=e515]:
+        - paragraph [ref=e516]: Review C18 16
+        - paragraph [ref=e517]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:34
+        - paragraph [ref=e518]: Registrado por command · Object v19
+      - listitem [ref=e519]:
+        - paragraph [ref=e520]: Review C18 15
+        - paragraph [ref=e521]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:34
+        - paragraph [ref=e522]: Registrado por command · Object v18
+      - listitem [ref=e523]:
+        - paragraph [ref=e524]: Review C18 14
+        - paragraph [ref=e525]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:34
+        - paragraph [ref=e526]: Registrado por command · Object v17
+      - listitem [ref=e527]:
+        - paragraph [ref=e528]: Review C18 13
+        - paragraph [ref=e529]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:34
+        - paragraph [ref=e530]: Registrado por command · Object v16
+      - listitem [ref=e531]:
+        - paragraph [ref=e532]: Review C18 12
+        - paragraph [ref=e533]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:34
+        - paragraph [ref=e534]: Registrado por command · Object v15
+      - listitem [ref=e535]:
+        - paragraph [ref=e536]: Review C18 11
+        - paragraph [ref=e537]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e538]: Registrado por command · Object v14
+      - listitem [ref=e539]:
+        - paragraph [ref=e540]: Review C18 10
+        - paragraph [ref=e541]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e542]: Registrado por command · Object v13
+      - listitem [ref=e543]:
+        - paragraph [ref=e544]: Review C18 09
+        - paragraph [ref=e545]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e546]: Registrado por command · Object v12
+      - listitem [ref=e547]:
+        - paragraph [ref=e548]: Review C18 08
+        - paragraph [ref=e549]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e550]: Registrado por command · Object v11
+      - listitem [ref=e551]:
+        - paragraph [ref=e552]: Review C18 07
+        - paragraph [ref=e553]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e554]: Registrado por command · Object v10
+      - listitem [ref=e555]:
+        - paragraph [ref=e556]: Review C18 06
+        - paragraph [ref=e557]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:33
+        - paragraph [ref=e558]: Registrado por command · Object v9
+      - listitem [ref=e559]:
+        - paragraph [ref=e560]: Review C18 05
+        - paragraph [ref=e561]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:32
+        - paragraph [ref=e562]: Registrado por command · Object v8
+      - listitem [ref=e563]:
+        - paragraph [ref=e564]: Review C18 04
+        - paragraph [ref=e565]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:32
+        - paragraph [ref=e566]: Registrado por command · Object v7
+      - listitem [ref=e567]:
+        - paragraph [ref=e568]: Review C18 03
+        - paragraph [ref=e569]: Humano · 9f2cbc76-6f78-4a49-8b16-0be880218fa5 · 06/10/2026, 20:41:32
+        - paragraph [ref=e570]: Registrado por command · Object v6
+    - button "Carregar mais registros" [ref=e571] [cursor=pointer]

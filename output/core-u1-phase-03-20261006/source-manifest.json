@@ -1,0 +1,103 @@
+{
+  "head": "8fa56b19d7864da0c80a4ae92dc4371d5487699e",
+  "basis": "Inherited dirty worktree; HEAD alone is not the delivery baseline. Baseline suite was run before implementation.",
+  "date": "2026-10-06",
+  "files": {
+    "apps/api/plane/radar/api/agent_config_views.py": {
+      "sha256": "d34eee918f0581b769cb2fed1234f26acfcc4ee2b8cf1e8a1a98c453d32feca1"
+    },
+    "apps/api/plane/radar/api/collaboration_views.py": {
+      "sha256": "4d64cae2efda082a6a5070ac68880659148285367ed02051ca3ac62b8de38ee5"
+    },
+    "apps/api/plane/radar/api/command_views.py": {
+      "sha256": "dcb912341b1a9ef2b06f69401fe17ce6dd35078305783f765e72e1843365a284"
+    },
+    "apps/api/plane/radar/api/runtime_views.py": {
+      "sha256": "a8ff50f7afe167d317751d77cdc30c5f4b732f2ed04778a00cc573694d8e2731"
+    },
+    "apps/api/plane/radar/api/schema_views.py": {
+      "sha256": "723c3b6ea72b5e230fa4768a2674c82f82d79eb425144d6bcc1d9c36fe3829e4"
+    },
+    "apps/api/plane/radar/api/urls.py": {
+      "sha256": "f8a831c1e8430b045d391aa3db306131426d536130b6284c94873abf1f40d021"
+    },
+    "apps/api/plane/radar/commands/access.py": {
+      "sha256": "ce843b7766693efa13c8c55d7caa0e9e9bc30a94940db900ca5efba46f0ff40f"
+    },
+    "apps/api/plane/radar/commands/capabilities.py": {
+      "sha256": "c798bd8d553b84b9f0ea2ebd5770d8a7c4c6c2ca09aa80fd2de9cd8060a5c86f"
+    },
+    "apps/api/plane/radar/commands/collaboration.py": {
+      "sha256": "911492d0dcc8de1d8fda94407d4bd679a78994c51676199b55dd3abe4caae2c6"
+    },
+    "apps/api/plane/radar/commands/compatibility.py": {
+      "sha256": "de9ff2c2f71c4b66c92ab99a1552ef3a77e6015eda3daae94d306f08bf97a157"
+    },
+    "apps/api/plane/radar/commands/context.py": {
+      "sha256": "5cbc90a73c39a7dbf4d3b429f699fe2023d9e6592e7ca486dc5302fcd7d5a2de"
+    },
+    "apps/api/plane/radar/commands/control.py": {
+      "sha256": "1304f8a25d79b8502ed3f24716f5d91f5ff0ff9ddcbe4d6f6563cd10e6ca2696"
+    },
+    "apps/api/plane/radar/commands/effects.py": {
+      "sha256": "097e43b5cba9952cee8c66a3a58b214de8a1215aaa69be76380f8d1951746ed5"
+    },
+    "apps/api/plane/radar/commands/execution.py": {
+      "sha256": "c3b83d5141ee2d2896de3eb809db7adbd3147b7acbf3bc9fee7824d8de2723de"
+    },
+    "apps/api/plane/radar/commands/handlers.py": {
+      "sha256": "4baff002a6f6cf8b8c50602de27bffd8d84d08bd8ffc166d1b3b4ab7eec2489a"
+    },
+    "apps/api/plane/radar/commands/inputs.py": {
+      "sha256": "65bb23c5fc6ec58dceca39cb676df5459695b7b6f6befd39d4c9331edf746fd6"
+    },
+    "apps/api/plane/radar/commands/legacy_replay.py": {
+      "sha256": "769a8f54621945c6fc2a04d304e95e3df1e174da63f023fd669df87f6ea9b8db"
+    },
+    "apps/api/plane/radar/commands/operations.py": {
+      "sha256": "1a4004c274a7c96e0a4de10faf240b7b55680d10ae7e80be156088a084f640f6"
+    },
+    "apps/api/plane/radar/commands/primitives_semantic.py": {
+      "sha256": "140bf75a84dc502d9b61aef23bedb16f05afda4fa59a1e40adbdb3c8a727ac66"
+    },
+    "apps/api/plane/radar/management/commands/radar_runtime_provision.py": {
+      "sha256": "6cfa4fdeb2aea6a0dd4dc294eba0d4fa5e46f884dc21ef8076998cd98b81d099"
+    },
+    "apps/api/plane/radar/models/collaboration.py": {
+      "sha256": "08843ca1645bd70e7c15b8822e7a2cab09ccff647875620c9324b9e89cc7cdaf"
+    },
+    "apps/api/plane/radar/mutation.py": {
+      "sha256": "3fb26fd98ebd05525d3acb0da7feedbd569cb774753d4361f7a8229134684b15"
+    },
+    "apps/api/plane/radar/risk_review.py": {
+      "sha256": "cee33d1827c61345067aeb911e72ce806bf9323008d23399f87657b4e5047c20"
+    },
+    "apps/api/plane/radar/tests/test_core_u1_phase03.py": {
+      "sha256": "f762b8f1b2afa8e294729be6d4029fea9242df30ad2e9ccbf07cce4dede3cf7b"
+    },
+    "apps/web/services/radar/radar.service.test.ts": {
+      "sha256": "31fc1d70a19428658cd34ba50c4e76c89672ccc298cf5762e08f229f383d1a84"
+    },
+    "apps/web/services/radar/radar.service.ts": {
+      "sha256": "6facc4d1b7b74b5139784ae8fa8cfd40079a76706ffe04c76867518269a21065"
+    },
+    "apps/web/services/radar/types.ts": {
+      "sha256": "27ef782fa5a4016d8194bd05739499da94aa15545a19de21c9c3e38a240eeeb0"
+    },
+    "docs/radar/CORE_AUDIT.md": {
+      "sha256": "793bf4cce22b9a817e5e9239bc946ff788cd0f3b52e1aa7ffb08a9452b2c868d"
+    },
+    "docs/radar/CORE_U1_IMPLEMENTATION_PLAN.md": {
+      "sha256": "d82269dae0baf3bc34556fa52fba60427e80b95b719c1e9bbd852adcf15c89b4"
+    },
+    "docs/radar/CORE_U1_PHASE_03_ADR.md": {
+      "sha256": "793072e8604f73e75b4b3158fefee64c853f10aeff588bbc91e8eb65d9c7581a"
+    },
+    "docs/radar/CORE_U1_PHASE_03_REPORT.md": {
+      "sha256": "8b1baa14bdf4e219c5f0b84f1e49568fe377b16daf5359464adf259e5c07a0e3"
+    },
+    "scripts/check-radar-contracts.py": {
+      "sha256": "b174da436a9d5fdc113579427adb82d2d86cf18e2a74adfeb9de0ddb8c417070"
+    }
+  }
+}

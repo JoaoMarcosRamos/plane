@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-06",
+  "completed": [
+    "C07",
+    "C11",
+    "C12"
+  ],
+  "partial": [
+    "C17 structural registry"
+  ],
+  "remaining_u1": 10,
+  "remaining_u2": 2,
+  "backend": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "4",
+    "tests": "360",
+    "time": "378.955",
+    "timestamp": "2026-10-06T12:29:01.953595+00:00",
+    "hostname": "f66aa64859e7"
+  },
+  "transport_recheck": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "5",
+    "time": "0.056",
+    "timestamp": "2026-10-06T18:23:34.169003+00:00",
+    "hostname": "8f0c49c6adc0"
+  },
+  "frontend": {
+    "passed": 114,
+    "files": 16
+  },
+  "workspace_check": {
+    "successful": 56,
+    "total": 56
+  },
+  "migration": {
+    "empty_workspace_uninitialized": true,
+    "exact_legacy_without_presumed_version": true,
+    "custom_preserved": true,
+    "divergences_recorded": true,
+    "metadata_ids_preserved": true,
+    "fact_version_preserved": 7,
+    "reverse_forward_passed": true
+  },
+  "browser_proof": {
+    "object_id": "6b57f396-a612-4279-8f55-7ba75b1ad058",
+    "object_version": 3,
+    "schema_revision": 2,
+    "property_name": "Revised narrative",
+    "property_value": "Narrativa ainda n\u00e3o enviada",
+    "fact_intentions": [
+      {
+        "expected_schema_revision": 2,
+        "expected_versions": {
+          "6b57f396-a612-4279-8f55-7ba75b1ad058": 1
+        },
+        "result_version": 2
+      },
+      {
+        "expected_schema_revision": 2,
+        "expected_versions": {
+          "6b57f396-a612-4279-8f55-7ba75b1ad058": 2
+        },
+        "result_version": 3
+      }
+    ]
+  },
+  "source_counts": {
+    "modified": 44,
+    "added": 14,
+    "unchanged": 134
+  }
+}

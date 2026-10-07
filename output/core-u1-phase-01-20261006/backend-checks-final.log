@@ -1,0 +1,30 @@
+ Container radar-core-u1-01-test-test-db-1 Running 
+ Container radar-core-u1-01-test-test-redis-1 Running 
+ Container radar-core-u1-01-test-test-mq-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Waiting 
+ Container radar-core-u1-01-test-test-redis-1 Waiting 
+ Container radar-core-u1-01-test-test-mq-1 Waiting 
+ Container radar-core-u1-01-test-test-redis-1 Healthy 
+ Container radar-core-u1-01-test-test-db-1 Healthy 
+ Container radar-core-u1-01-test-test-mq-1 Healthy 
+ Container radar-core-u1-01-test-test-minio-1 Healthy 
+ Container radar-core-u1-01-test-api-tests-run-b0ee5899c5c3 Creating 
+ Container radar-core-u1-01-test-api-tests-run-b0ee5899c5c3 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+All checks passed!
+73 files already formatted
+No changes detected in app 'radar'
+radar
+ [X] 0001_initial
+ [X] 0002_propertydefinition_propertyvalue_relationtype_and_more
+ [X] 0003_commandexecution_provenance_personidentity_and_more
+ [X] 0004_operationalrecord_runtimecredential_and_more
+ [X] 0005_remove_relationtype_radar_reltype_cardinality_and_more
+ [X] 0006_agent_runtime
+ [X] 0007_agent_configuration
+ [X] 0008_risk_review
+ [X] 0009_risk_review_preview
+ [X] 0010_object_collaboration
+ [X] 0011_objecttype_rules

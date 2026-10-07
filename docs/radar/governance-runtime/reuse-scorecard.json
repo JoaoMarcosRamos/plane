@@ -1,0 +1,150 @@
+{
+  "definition": "Equal-weight capability coverage, fixed inventory from REUSE_MAP §1. UI excludes Authentication/Workspace; mock-only/visual bug/pending do not count. This measures effective Phase 0 integration, not potential reusability or lines of UI code.",
+  "ui_effective": {
+    "numerator": 8,
+    "denominator": 17,
+    "percentage": 47.06,
+    "target_percentage": 70,
+    "target_met": false
+  },
+  "all_capabilities_effective": {
+    "numerator": 10,
+    "denominator": 19,
+    "percentage": 52.63
+  },
+  "capabilities": [
+    {
+      "id": 1,
+      "capability": "Authentication",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": false
+    },
+    {
+      "id": 2,
+      "capability": "Workspace",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": false
+    },
+    {
+      "id": 3,
+      "capability": "Navigation",
+      "classification": "**R2**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 4,
+      "capability": "Sidebar",
+      "classification": "**R2**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 5,
+      "capability": "Design System",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 6,
+      "capability": "Rich Text Editor",
+      "classification": "**R1** (não colaborativo) / **R2** (colaborativo, menções)",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 7,
+      "capability": "Comments",
+      "classification": "UI **R2** / backend **R3**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 8,
+      "capability": "Attachments",
+      "classification": "backend **R2** / UI **R3**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 9,
+      "capability": "Activity",
+      "classification": "backend **R4** / UI **R1**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 10,
+      "capability": "Search",
+      "classification": "**R3** agora / **R2** depois",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 11,
+      "capability": "Filters",
+      "classification": "motor **R1** / adapter **R3**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 12,
+      "capability": "Lists",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 13,
+      "capability": "Boards",
+      "classification": "**R1**",
+      "phase0_state": "mock_only",
+      "ui_denominator": true
+    },
+    {
+      "id": 14,
+      "capability": "Modals",
+      "classification": "**R1** (primitivos) / **R3** (modais de issue)",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 15,
+      "capability": "Drawers",
+      "classification": "**R1** (primitivo) / **R3** (peek)",
+      "phase0_state": "spike_visual_bug",
+      "ui_denominator": true
+    },
+    {
+      "id": 16,
+      "capability": "User / Assignee pickers",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 17,
+      "capability": "Date pickers",
+      "classification": "**R1**",
+      "phase0_state": "real",
+      "ui_denominator": true
+    },
+    {
+      "id": 18,
+      "capability": "Command palette",
+      "classification": "**R2**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    },
+    {
+      "id": 19,
+      "capability": "Notifications",
+      "classification": "modelo **R2** / produtor **R3** / UI **R2**",
+      "phase0_state": "pending",
+      "ui_denominator": true
+    }
+  ]
+}

@@ -1,0 +1,601 @@
+2026-10-05T13:28:38.722Z tester console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:28:38.722Z tester POST 200 /auth/email-check/
+2026-10-05T13:28:38.722Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:28:38.722Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:28:38.722Z tester POST 302 /auth/sign-in/
+2026-10-05T13:28:38.722Z tester console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:28:38.722Z tester console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:28:38.722Z tester GET 200 /api/workspaces/radar-e2e/radar/today/?timezone=America%2FBahia
+2026-10-05T13:29:07.197Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:29:07.206Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:29:07.206Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:29:07.206Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:29:07.206Z tester console.error Access to XMLHttpRequest at 'http://localhost:8001/api/workspaces/radar-e2e/radar/objects/' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field idempotency-key is not allowed by Access-Control-Allow-Headers in preflight response.
+2026-10-05T13:29:07.206Z tester console.error RADAR create failed AxiosError: Network Error
+    at XMLHttpRequest.handleError (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:2260:16)
+    at Axios$1.request (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:3024:37)
+    at async RadarService.createObject (http:
+2026-10-05T13:29:07.206Z tester console.error Failed to load resource: net::ERR_FAILED
+2026-10-05T13:29:36.880Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:29:36.882Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:29:36.882Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:29:36.882Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:29:36.882Z tester console.error Access to XMLHttpRequest at 'http://localhost:8001/api/workspaces/radar-e2e/radar/objects/' from origin 'http://localhost:3000' has been blocked by CORS policy: Request header field idempotency-key is not allowed by Access-Control-Allow-Headers in preflight response.
+2026-10-05T13:29:36.882Z tester console.error RADAR create failed AxiosError: Network Error
+    at XMLHttpRequest.handleError (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:2260:16)
+    at Axios$1.request (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:3024:37)
+    at async RadarService.createObject (http:
+2026-10-05T13:29:36.882Z tester console.error Failed to load resource: net::ERR_FAILED
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester POST 201 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester POST 201 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/object-types/
+2026-10-05T13:30:48.585Z tester POST 201 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:30:48.585Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:30:48.587Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:30:48.587Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:32:14.966Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:14.967Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:14.967Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:14.967Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:33.255Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:33.256Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:33.256Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:33.256Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:32:50.451Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:32:50.451Z tester POST 202 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:32:50.451Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:32:50.451Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:32:50.451Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:32:50.451Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/9097c8a6-547a-4fb7-a2ae-d2ad1db5cad3/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester POST 409 /api/workspaces/radar-e2e/radar/risk-reviews/c6ef0c1a-0334-42f0-a6dc-3a2ee641dc69/resolve/
+2026-10-05T13:33:54.330Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/c6ef0c1a-0334-42f0-a6dc-3a2ee641dc69/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/9cb85f75-a1c4-417e-b3bd-9a1934b5334c/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/b011d689-c715-4de1-be51-9dc32b265592/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/6f7fb60b-e81e-44f8-8010-ec4563693358/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:33:54.330Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:33:54.330Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/9097c8a6-547a-4fb7-a2ae-d2ad1db5cad3/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:33:54.330Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/b011d689-c715-4de1-be51-9dc32b265592/resolve/
+2026-10-05T13:33:54.330Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:33:54.330Z tester POST 409 /api/workspaces/radar-e2e/radar/risk-reviews/b011d689-c715-4de1-be51-9dc32b265592/resolve/
+2026-10-05T13:33:54.330Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/480f79a1-d3e0-41e0-8740-1681b61d9917/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/relations/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/properties/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/collaboration/
+2026-10-05T13:34:31.917Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/collaboration/
+2026-10-05T13:37:24.021Z member console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:37:24.021Z member POST 200 /auth/email-check/
+2026-10-05T13:37:24.021Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z member POST 302 /auth/sign-in/
+2026-10-05T13:37:24.021Z member console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:37:24.021Z member console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:37:24.021Z member GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z member GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z member GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z member GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z member GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/
+2026-10-05T13:37:24.021Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z member POST 404 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:37:24.021Z member console.error Failed to load resource: the server responded with a status of 404 (Not Found)
+2026-10-05T13:37:24.021Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z member POST 404 /api/workspaces/radar-e2e/radar/risk-reviews/6f7fb60b-e81e-44f8-8010-ec4563693358/resolve/
+2026-10-05T13:37:24.021Z member console.error Failed to load resource: the server responded with a status of 404 (Not Found)
+2026-10-05T13:37:24.021Z guest console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:37:24.021Z guest POST 200 /auth/email-check/
+2026-10-05T13:37:24.021Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z guest POST 302 /auth/sign-in/
+2026-10-05T13:37:24.021Z guest console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:37:24.021Z guest console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:37:24.021Z guest GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z guest GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z guest GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z guest GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z guest POST 403 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:37:24.021Z guest console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:37:24.021Z outsider POST 200 /auth/email-check/
+2026-10-05T13:37:24.021Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z outsider POST 302 /auth/sign-in/
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z outsider console.error Failed to fetch project navigation preferences: {detail: You do not have permission to perform this action.}
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z outsider console.error Failed to fetch sidebar preferences: {data: Object, status: 403, statusText: Forbidden, headers: AxiosHeaders$1, config: Object}
+2026-10-05T13:37:24.021Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z outsider GET 403 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z outsider console.error Failed to fetch project navigation preferences: {detail: You do not have permission to perform this action.}
+2026-10-05T13:37:24.021Z tester POST 202 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:37:24.021Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z tester POST 409 /api/workspaces/radar-e2e/radar/risk-reviews/d11a92fa-5386-49d2-866f-beb8e57173bb/resolve/
+2026-10-05T13:37:24.021Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:37:24.021Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:37:24.021Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:37:24.021Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:37:24.021Z tester POST 409 /api/workspaces/radar-e2e/radar/risk-reviews/d11a92fa-5386-49d2-866f-beb8e57173bb/resolve/
+2026-10-05T13:37:24.021Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/agent-runtime/runs/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 202 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:43:42.696Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:43:42.696Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:43:42.696Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:44:43.888Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:44:43.888Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:44:43.902Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:44:43.903Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:44:43.903Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/a0775af1-2a34-4d39-88ee-22c2327a85dd/resolve/
+2026-10-05T13:45:54.030Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:45:54.035Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:45:54.035Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:45:54.035Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:07.573Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:07.574Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:07.574Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:07.574Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:07.574Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:46:07.574Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/a0775af1-2a34-4d39-88ee-22c2327a85dd/resolve/
+2026-10-05T13:46:07.574Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:46:07.574Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:24.192Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:46:24.192Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/a0775af1-2a34-4d39-88ee-22c2327a85dd/resolve/
+2026-10-05T13:46:24.192Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/
+2026-10-05T13:46:24.192Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/4dc08b10-9bba-447a-9597-8c740966b1d0/
+2026-10-05T13:46:24.192Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/0f2b76f9-0f0d-477a-aa30-edcf8a5106eb/resolve/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:24.192Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/0c746ac2-88fe-49dd-8a14-4b863077c6b2/resolve/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:24.192Z tester POST 200 /api/workspaces/radar-e2e/radar/risk-reviews/1aab9bc6-e2ff-484d-92e2-af0470270ee4/resolve/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/risk-reviews/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/agent-config/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/relations/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/properties/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/property-definitions/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/relation-types/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:46:24.192Z tester GET 200 /api/workspaces/radar-e2e/radar/objects/09fee826-8e2b-4535-8cfc-56c28f7024ad/collaboration/
+2026-10-05T13:50:19.788Z tester console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:50:19.788Z tester POST 200 /auth/email-check/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 302 /auth/sign-in/
+2026-10-05T13:50:19.788Z tester console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:50:19.788Z tester console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/today/?timezone=America%2FBahia
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester POST 201 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester POST 201 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/object-types/
+2026-10-05T13:50:19.788Z tester POST 201 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/agent-runtime/runs/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/agent-runtime/runs/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/a16c9e44-7e61-4738-99dc-69ce369fb32e/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 409 /api/workspaces/radar-e2e-clean/radar/risk-reviews/2bd55ac2-7b15-4a17-b388-a66d709357aa/resolve/
+2026-10-05T13:50:19.788Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/2bd55ac2-7b15-4a17-b388-a66d709357aa/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/177ff6ee-1f94-46a4-8d4b-be1a10a4e0c2/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/f5713bbd-befa-4b40-848b-448a5df58968/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/3d4dde0e-4fec-401d-ab0b-e6e523b2b80d/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/a16c9e44-7e61-4738-99dc-69ce369fb32e/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/f5713bbd-befa-4b40-848b-448a5df58968/resolve/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 409 /api/workspaces/radar-e2e-clean/radar/risk-reviews/f5713bbd-befa-4b40-848b-448a5df58968/resolve/
+2026-10-05T13:50:19.788Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/a3edb8ea-1418-44ff-b9f8-43d18ecd953d/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/relations/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/property-definitions/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/properties/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/relation-types/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/collaboration/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/objects/0bab61c9-8434-4260-85d2-248778287489/collaboration/
+2026-10-05T13:50:19.788Z member console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:50:19.788Z member POST 200 /auth/email-check/
+2026-10-05T13:50:19.788Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z member POST 302 /auth/sign-in/
+2026-10-05T13:50:19.788Z member console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:50:19.788Z member console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:50:19.788Z member GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z member GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z member GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z member GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z member GET 200 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/
+2026-10-05T13:50:19.788Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z member POST 404 /api/workspaces/radar-e2e-clean/radar/agent-runtime/runs/
+2026-10-05T13:50:19.788Z member console.error Failed to load resource: the server responded with a status of 404 (Not Found)
+2026-10-05T13:50:19.788Z member GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z member POST 404 /api/workspaces/radar-e2e-clean/radar/risk-reviews/3d4dde0e-4fec-401d-ab0b-e6e523b2b80d/resolve/
+2026-10-05T13:50:19.788Z member console.error Failed to load resource: the server responded with a status of 404 (Not Found)
+2026-10-05T13:50:19.788Z guest console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:50:19.788Z guest POST 200 /auth/email-check/
+2026-10-05T13:50:19.788Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z guest POST 302 /auth/sign-in/
+2026-10-05T13:50:19.788Z guest console.error In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+       
+2026-10-05T13:50:19.788Z guest console.error <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button>
+2026-10-05T13:50:19.788Z guest GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z guest GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z guest GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z guest GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z guest GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z guest POST 403 /api/workspaces/radar-e2e-clean/radar/agent-runtime/runs/
+2026-10-05T13:50:19.788Z guest console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 401 (Unauthorized)
+2026-10-05T13:50:19.788Z outsider POST 200 /auth/email-check/
+2026-10-05T13:50:19.788Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z outsider POST 302 /auth/sign-in/
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to fetch project navigation preferences: {detail: You do not have permission to perform this action.}
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to fetch sidebar preferences: {data: Object, status: 403, statusText: Forbidden, headers: AxiosHeaders$1, config: Object}
+2026-10-05T13:50:19.788Z outsider GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z outsider GET 403 /api/workspaces/radar-e2e-clean/radar/objects/1e2e6285-45b0-46ad-88bb-956c08f2ed38/
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to fetch project navigation preferences: {detail: You do not have permission to perform this action.}
+2026-10-05T13:50:19.788Z tester POST 202 /api/workspaces/radar-e2e-clean/radar/agent-runtime/runs/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 409 /api/workspaces/radar-e2e-clean/radar/risk-reviews/dea4cfb9-ffda-4acd-9a69-007310128438/resolve/
+2026-10-05T13:50:19.788Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/agent-config/
+2026-10-05T13:50:19.788Z tester GET 200 /api/workspaces/radar-e2e-clean/radar/risk-reviews/
+2026-10-05T13:50:19.788Z outsider console.error Failed to load resource: the server responded with a status of 403 (Forbidden)
+2026-10-05T13:50:19.788Z outsider console.error Failed to fetch project navigation preferences: {detail: You do not have permission to perform this action.}
+2026-10-05T13:50:19.788Z tester GET 200 /auth/get-csrf-token/
+2026-10-05T13:50:19.788Z tester POST 409 /api/workspaces/radar-e2e-clean/radar/risk-reviews/dea4cfb9-ffda-4acd-9a69-007310128438/resolve/
+2026-10-05T13:50:19.788Z tester console.error Failed to load resource: the server responded with a status of 409 (Conflict)

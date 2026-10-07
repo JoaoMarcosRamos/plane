@@ -1,0 +1,44 @@
+- main:
+  - heading "Agent configuration" [level=1]
+  - heading "Evidence Copilot" [level=2]
+  - paragraph: company:test · Version 3
+  - paragraph: A workspace administrator can edit this configuration.
+  - group "Identity / Soul":
+    - generic: Identity / Soul
+    - generic: Name
+    - textbox "Name" [disabled]: Evidence Copilot
+    - generic: Principles and personality
+    - textbox "Principles and personality" [disabled]: Ask for evidence
+  - group "Role":
+    - generic: Role
+    - generic: Role name
+    - textbox "Role name" [disabled]: Risk reviewer
+    - generic: Purpose
+    - textbox "Purpose" [disabled]: Assess risks
+  - group "Policies":
+    - generic: Policies
+    - generic: Guidelines
+    - textbox "Guidelines" [disabled]: Explain uncertainty Ask for evidence
+    - paragraph: One guideline per line. Up to 20, with 500 characters each.
+    - paragraph: Execution is read-only. Domain changes require human approval.
+  - group "Permissions":
+    - generic: Permissions
+    - paragraph: Selections are limited by the administrative grant and the authorized context.
+    - generic: Commands eligible for future proposals
+    - checkbox "LinkObjects" [checked] [disabled]:
+    - checkbox [checked] [disabled]
+    - generic: LinkObjects
+    - generic: Object types
+    - textbox "Object types" [disabled]: risk
+    - paragraph: "One key per line. Grant allows: *. * means all granted values."
+    - generic: Fields
+    - textbox "Fields" [disabled]: title
+    - paragraph: "One key per line. Grant allows: *. * means all granted values."
+    - checkbox "Use all Objects in the authorized context" [disabled]
+    - checkbox [disabled]
+    - generic: Use all Objects in the authorized context
+    - checkbox "Licenciamento pode atrasar (risk)" [checked] [disabled]:
+    - checkbox [checked] [disabled]
+    - generic: Licenciamento pode atrasar (risk)
+  - button "Reload saved configuration":
+    - generic: Reload saved configuration

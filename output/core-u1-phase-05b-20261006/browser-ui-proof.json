@@ -1,0 +1,24 @@
+{
+  "today_no_date_and_explicit_conflict": true,
+  "same_explicit_timezone": "America/Bahia",
+  "all_history_pages": [
+    20,
+    4
+  ],
+  "filtered_review_pages": [
+    20,
+    3
+  ],
+  "unique_reviews": 23,
+  "measurement_rows": 3,
+  "guest_read_and_unknown_original_authorship": true,
+  "lost_membership_clears_operational_panel": true,
+  "final_console_errors": 0,
+  "visual_inspection_completed": true,
+  "real_api_session_commands_postgres": true,
+  "harness_stubs": [
+    "rich editor",
+    "member selector",
+    "visual user identity and UI permissions"
+  ]
+}

@@ -1,0 +1,37 @@
+- generic [ref=f4e3]:
+  - banner [ref=f4e4]:
+    - generic [ref=f4e5]:
+      - heading "Today" [level=1] [ref=f4e6]
+      - paragraph [ref=f4e7]: O que precisa da sua atenção gerencial.
+      - paragraph [ref=f4e11]: 06/10/2026 · America/Bahia
+    - button "Atualizar" [ref=f4e8] [cursor=pointer]
+  - region "Riscos relevantes" [ref=f4e12]:
+    - heading "Riscos relevantes" [level=2] [ref=f4e13]
+    - paragraph [ref=f4e14]: Nenhum risco relevante no momento.
+  - region "Decisões pendentes" [ref=f4e15]:
+    - heading "Decisões pendentes" [level=2] [ref=f4e16]
+    - paragraph [ref=f4e17]: Nenhuma decisão pendente.
+  - region "Ações vencidas" [ref=f4e18]:
+    - heading "Ações vencidas" [level=2] [ref=f4e19]
+    - list [ref=f4e20]:
+      - listitem [ref=f4e21]:
+        - generic [ref=f4e22]:
+          - link "Delegação atrasada sem data" [ref=f4e23] [cursor=pointer]:
+            - /url: /c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/
+          - paragraph [ref=f4e24]: 06/10/2026, 19:41:31 · America/Bahia
+        - generic [ref=f4e25]: Vencida
+        - 'link "Abrir ação: Delegação atrasada sem data" [ref=f4e27] [cursor=pointer]':
+          - /url: /c18-browser-21c27b5e/radar/objects/2599970b-931d-4ab8-b976-c7003e7dc626/
+          - text: Abrir ação
+      - listitem [ref=f4e28]:
+        - generic [ref=f4e29]:
+          - link "Revisar prazos divergentes" [ref=f4e30] [cursor=pointer]:
+            - /url: /c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/
+          - paragraph [ref=f4e31]: "Prazos divergentes: data 08/10/2026; delegação 06/10/2026, 19:41:31 · America/Bahia"
+        - generic [ref=f4e32]: Revisar prazos
+        - 'link "Abrir ação: Revisar prazos divergentes" [ref=f4e34] [cursor=pointer]':
+          - /url: /c18-browser-21c27b5e/radar/objects/8181b6f4-3103-439d-b4ac-bc26dc479c77/
+          - text: Abrir ação
+  - region "Sugestões aguardando aprovação" [ref=f4e35]:
+    - heading "Sugestões aguardando aprovação" [level=2] [ref=f4e36]
+    - paragraph [ref=f4e37]: Nenhuma sugestão aguardando sua aprovação.

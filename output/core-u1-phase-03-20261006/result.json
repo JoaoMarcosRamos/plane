@@ -1,0 +1,63 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "delivery": "Core U1 phase 3A",
+  "completed_findings": [
+    "C09",
+    "C17"
+  ],
+  "phase_3_status": "in_progress",
+  "next_deliveries": [
+    "3B:C02",
+    "3C:C01"
+  ],
+  "baseline": {
+    "cases": 360,
+    "passed": 356,
+    "skipped": 4,
+    "failed": 0,
+    "errors": 0
+  },
+  "backend_final": {
+    "cases": 403,
+    "passed": 399,
+    "skipped": 4,
+    "failed": 0,
+    "errors": 0,
+    "new_cases": 43
+  },
+  "backend_directed_contracts": {
+    "cases": 45,
+    "passed": 45,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0
+  },
+  "cos_selected_contracts": {
+    "cases": 27,
+    "passed": 27,
+    "skipped": 0,
+    "failed": 0,
+    "errors": 0
+  },
+  "frontend": {
+    "passed": 115,
+    "files": 16,
+    "new_cases": 1
+  },
+  "workspace_check": {
+    "successful": 56,
+    "total": 56
+  },
+  "python_style": "passed",
+  "migration_check": "no_changes",
+  "limits": {
+    "browser_tested": false,
+    "published_environment_tested": false,
+    "deployed": false,
+    "new_migration": false,
+    "production_stack_modified": false,
+    "cos_sources_modified": false,
+    "reexecution_counts_not_added": true
+  }
+}

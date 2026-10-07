@@ -1,0 +1,204 @@
+ Container plane-radar-phase-0-spike-test-db-1 Running 
+ Container plane-radar-phase-0-spike-test-redis-1 Running 
+ Container plane-radar-phase-0-spike-test-mq-1 Running 
+ Container plane-radar-phase-0-spike-test-minio-1 Running 
+ Container plane-radar-phase-0-spike-test-mq-1 Waiting 
+ Container plane-radar-phase-0-spike-test-minio-1 Waiting 
+ Container plane-radar-phase-0-spike-test-db-1 Waiting 
+ Container plane-radar-phase-0-spike-test-redis-1 Waiting 
+ Container plane-radar-phase-0-spike-test-mq-1 Healthy 
+ Container plane-radar-phase-0-spike-test-redis-1 Healthy 
+ Container plane-radar-phase-0-spike-test-db-1 Healthy 
+ Container plane-radar-phase-0-spike-test-minio-1 Healthy 
+ Container plane-radar-phase-0-spike-api-tests-run-cddf9b128dc9 Creating 
+ Container plane-radar-phase-0-spike-api-tests-run-cddf9b128dc9 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 238 items
+
+plane/radar/tests/test_agent_config.py .....................s
+plane/radar/tests/test_agent_runtime.py ......s......
+plane/radar/tests/test_commands.py ..................
+plane/radar/tests/test_context_bounds.py ...
+plane/radar/tests/test_core.py .........................................
+plane/radar/tests/test_governance.py ............
+plane/radar/tests/test_risk_review.py ........................s..
+plane/radar/tests/test_runtime_contract.py ...........s..
+plane/radar/tests/test_runtime_provision.py .
+plane/radar/tests/test_semantic.py ......................................................................
+plane/radar/tests/test_today.py FF.F.....
+plane/radar/tests/test_commands.py .
+plane/radar/tests/test_core.py ..
+plane/radar/tests/test_semantic.py .....
+
+=================================== FAILURES ===================================
+____________ test_attention_filters_defaults_ordering_and_no_writes ____________
+
+ready = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 52, 26, 161738, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa925a270>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffffa9258410>
+
+    def test_attention_filters_defaults_ordering_and_no_writes(ready, client, monkeypatch):  # noqa: F811
+        monkeypatch.setattr(timezone, "now", lambda: datetime(2026, 10, 5, 12, tzinfo=dt_timezone.utc))
+>       high = create(ready, "risk", score=15)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_today.py:19: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:80: in create
+    return create_object(
+plane/radar/commands/objects.py:33: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:27: in invoke
+    refs = references(workspace, name, serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:122: in references
+    specialized, payload = _special_input(workspace, data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:180: in _special_input
+    serializer.is_valid(raise_exception=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RegisterRiskInput(data={'title': 'risk', 'score': 15}):
+    title = CharField(max_length=255)
+    description = CharFi...atens_object_ids = ListField(child=UUIDField(), default=<class 'list'>)
+    owner_person_id = UUIDField(required=False)
+
+    def is_valid(self, *, raise_exception=False):
+        assert hasattr(self, 'initial_data'), (
+            'Cannot call `.is_valid()` as no `data=` keyword argument was '
+            'passed when instantiating the serializer instance.'
+        )
+    
+        if not hasattr(self, '_validated_data'):
+            try:
+                self._validated_data = self.run_validation(self.initial_data)
+            except ValidationError as exc:
+                self._validated_data = {}
+                self._errors = exc.detail
+            else:
+                self._errors = {}
+    
+        if self._errors and raise_exception:
+>           raise ValidationError(self.errors)
+E           rest_framework.exceptions.ValidationError: {'score': ErrorDetail(string='Unknown or read-only field.', code='invalid')}
+
+/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py:233: ValidationError
+_______________ test_local_day_boundary_and_timezone_validation ________________
+
+ready = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 52, 27, 144815, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa8d90bf0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0xffffa8d937a0>
+
+    def test_local_day_boundary_and_timezone_validation(ready, client, monkeypatch):  # noqa: F811
+        monkeypatch.setattr(timezone, "now", lambda: datetime(2026, 10, 5, 1, tzinfo=dt_timezone.utc))
+>       create(ready, "action", due_date="2026-10-04")
+
+plane/radar/tests/test_today.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:80: in create
+    return create_object(
+plane/radar/commands/objects.py:33: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:21: in invoke
+    authorize(actor, workspace, name)
+plane/radar/commands/execution.py:152: in authorize
+    validate_actor(actor)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actor = Actor(actor_type='human', actor_id=UUID('eecd7cff-29c5-45e1-98a0-f575bbbb8302'), reason='Test', source='pytest', corre..., 11, 52, 27, 144815, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})
+
+    def validate_actor(actor: Actor) -> None:
+        if not isinstance(actor, Actor) or actor.actor_type not in {"human", "agent", "system", "integration"}:
+            raise PermissionDenied("An explicit registered actor is required.")
+        for field in ("actor_id", "correlation_id"):
+            if not isinstance(getattr(actor, field), UUID):
+                raise PermissionDenied(f"Actor {field} must be a UUID.")
+        for field in ("run_id", "approval_id", "on_behalf_of"):
+            value = getattr(actor, field)
+            if value is not None and not isinstance(value, UUID):
+                raise PermissionDenied(f"Actor {field} must be a UUID.")
+        if not isinstance(actor.reason, str) or not actor.reason.strip():
+            raise PermissionDenied("Actor reason is required.")
+        if not isinstance(actor.source, str) or not actor.source.strip() or len(actor.source) > 255:
+            raise PermissionDenied("Actor source is required (up to 255 characters).")
+        if not hasattr(actor.timestamp, "tzinfo") or timezone.is_naive(actor.timestamp):
+            raise PermissionDenied("Actor timestamp must include a timezone.")
+        if actor.timestamp > timezone.now():
+            # Tolerate transport latency and small clock skew, never accept future observations.
+            if actor.timestamp > timezone.now() + timedelta(seconds=30):
+>               raise PermissionDenied("Actor timestamp is in the future.")
+E               rest_framework.exceptions.PermissionDenied: Actor timestamp is in the future.
+
+plane/radar/commands/execution.py:125: PermissionDenied
+________________ test_only_live_properties_and_types_contribute ________________
+
+ready = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 52, 28, 546424, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa936e120>
+
+    def test_only_live_properties_and_types_contribute(ready, client):  # noqa: F811
+>       risk = create(ready, "risk", score=25)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_today.py:73: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:80: in create
+    return create_object(
+plane/radar/commands/objects.py:33: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:27: in invoke
+    refs = references(workspace, name, serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:122: in references
+    specialized, payload = _special_input(workspace, data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:180: in _special_input
+    serializer.is_valid(raise_exception=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RegisterRiskInput(data={'title': 'risk', 'score': 25}):
+    title = CharField(max_length=255)
+    description = CharFi...atens_object_ids = ListField(child=UUIDField(), default=<class 'list'>)
+    owner_person_id = UUIDField(required=False)
+
+    def is_valid(self, *, raise_exception=False):
+        assert hasattr(self, 'initial_data'), (
+            'Cannot call `.is_valid()` as no `data=` keyword argument was '
+            'passed when instantiating the serializer instance.'
+        )
+    
+        if not hasattr(self, '_validated_data'):
+            try:
+                self._validated_data = self.run_validation(self.initial_data)
+            except ValidationError as exc:
+                self._validated_data = {}
+                self._errors = exc.detail
+            else:
+                self._errors = {}
+    
+        if self._errors and raise_exception:
+>           raise ValidationError(self.errors)
+E           rest_framework.exceptions.ValidationError: {'score': ErrorDetail(string='Unknown or read-only field.', code='invalid')}
+
+/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py:233: ValidationError
+--------- generated xml file: /code/output/today-20261005/backend.xml ----------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_today.py::test_attention_filters_defaults_ordering_and_no_writes
+FAILED plane/radar/tests/test_today.py::test_local_day_boundary_and_timezone_validation
+FAILED plane/radar/tests/test_today.py::test_only_live_properties_and_types_contribute
+============= 3 failed, 231 passed, 4 skipped in 216.54s (0:03:36) =============
+

@@ -1,0 +1,9 @@
+{
+  "empty_workspace_uninitialized": true,
+  "exact_legacy_without_presumed_version": true,
+  "custom_preserved": true,
+  "divergences_recorded": true,
+  "metadata_ids_preserved": true,
+  "fact_version_preserved": 7,
+  "reverse_forward_passed": true
+}

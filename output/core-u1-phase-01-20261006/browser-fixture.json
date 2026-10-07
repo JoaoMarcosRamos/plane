@@ -1,0 +1,10 @@
+{
+  "object_id": "1bb9964d-1631-48ba-a736-4133f4b84bdf",
+  "workspace_slug": "u1-phase01-browser",
+  "objects": {
+    "human": "1bb9964d-1631-48ba-a736-4133f4b84bdf",
+    "agent": "00439e02-6231-4061-abb0-9d0ff8e9631f",
+    "system": "8ff675b6-406a-45e0-8e29-996449906bdc",
+    "integration": "27319e87-3e53-4af1-9488-225dfbddbe17"
+  }
+}

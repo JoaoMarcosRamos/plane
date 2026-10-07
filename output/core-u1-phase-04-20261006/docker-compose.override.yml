@@ -1,0 +1,6 @@
+services:
+  api-tests:
+    image: plane-radar-api
+    build: !reset null
+    environment:
+      PIP_QUIET: "1"

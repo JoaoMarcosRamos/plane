@@ -1,0 +1,12 @@
+### Result
+{"navigation":"Projects → RADAR → Projects","marker":"core-slice","status":"PASS"}
+### Ran Playwright code
+```js
+await (async (page) => { await page.getByRole("link", {name:"RADAR",exact:true}).click(); await page.getByRole("heading",{name:"RADAR",exact:true}).waitFor(); await page.getByRole("link",{name:"Projects",exact:true}).click(); const marker = await page.evaluate(() => window.__radarNavigationMarker); if (marker !== "core-slice") throw new Error("Navigation reloaded page"); return {navigation:"Projects → RADAR → Projects", marker, status:"PASS"}; })(page);
+```
+### Page
+- Page URL: http://localhost:3000/radar-zero/
+- Page Title: RADAR Zero - Home
+- Console: 3 errors, 33 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-03T14-50-59-649Z.log#L128-L131

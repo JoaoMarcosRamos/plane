@@ -1,0 +1,120 @@
+{
+  "date": "2026-10-04",
+  "scope": "Documentation aligned after local phase 1.4 delivery",
+  "next_phase": "1.5",
+  "application_tests_rerun": false,
+  "published_environment_changed": false,
+  "historical_implementation_manifest_preserved": true,
+  "checks": {
+    "documents": 17,
+    "local_links": 271,
+    "checked_anchors": 1,
+    "html_pages_with_valid_nesting": 3,
+    "unchanged_implementation_files_in_historical_manifest": 27,
+    "implementation_test_total_confirmed_from_result_json": 324
+  },
+  "historical_manifest_documentation_files_updated": [
+    {
+      "repository": "Plane",
+      "path": "docs/radar/AGENT_RUNTIME.md"
+    },
+    {
+      "repository": "Plane",
+      "path": "docs/radar/NEXT_PHASE_READINESS.md"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "SPEC.MD"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "PLAN.MD"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "TASK_LIST.md"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "docs/index.html"
+    },
+    {
+      "repository": "COS_AGENT_V2",
+      "path": "docs/development/044-radar-agent-config.html"
+    },
+    {
+      "repository": "DOCS_PROJETO_RADAR_COMPLETO",
+      "path": "RADAR_ROADMAP.md"
+    }
+  ],
+  "documents": [
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/README.md",
+      "sha256": "d21f44620e7d1f6ef8651cbeed510173921b4910b3863bbc1b0d16b8c0878358"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/NEXT_PHASE_READINESS.md",
+      "sha256": "b601a7bdddf2f27aba997175fa48826224cee54ef3d7bf7fa209a3c45ae8df14"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/ARCHITECTURE.md",
+      "sha256": "7bd2707a33eec8491bae84bb077949d8ab0729e60155fce348ffcb4d696ab15f"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/COMMAND_LAYER.md",
+      "sha256": "2c9df210f2e71d893c57d0142e6fe479d994ed5eb4526a5f16e3e65e2ee7a388"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/COS_INTEGRATION.md",
+      "sha256": "ed9157d3e39f36719162a8bb5e40b33785a749df0be942f0c23528e48ee3834b"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/docs/radar/AGENT_RUNTIME.md",
+      "sha256": "e00b1e9a7e57d55f6c3b6ebc9a66d2cad9434a88a76e722b7595e95b906b9abd"
+    },
+    {
+      "path": "plane-radar-phase-0-spike/output/agent-config-20261004/README.md",
+      "sha256": "43da5af235e72c57aa06f6c968b3eb5c600054cca0a1ccd8ca1e6bfb0dcaadb7"
+    },
+    {
+      "path": "DOCS_PROJETO_RADAR_COMPLETO/README.md",
+      "sha256": "f06f737517a369ec48afafd54d3fd30152b8495d22dc48efac4bb9b2887f0703"
+    },
+    {
+      "path": "DOCS_PROJETO_RADAR_COMPLETO/RADAR_ROADMAP.md",
+      "sha256": "14dfffb4426c944c633e25586ef65a1e2aeddbaa4271090393801c054939c855"
+    },
+    {
+      "path": "DOCS_PROJETO_RADAR_COMPLETO/radar_prompts_por_fase.md",
+      "sha256": "170858e2461ec46b6ba24ee639c692988a5d1ce768e62dfcb8d756f60e38c895"
+    },
+    {
+      "path": "DOCS_PROJETO_RADAR_COMPLETO/radar_arquitetura_e_roadmap.html",
+      "sha256": "7f8d6c354f0404a0d4b299c2864ee85f3b8eedfd2d02c5c10d8e64a72e952f2d"
+    },
+    {
+      "path": "COS_AGENT_V2/README.md",
+      "sha256": "8405dc647793d32d6d652acf7b4073017c869e71619bf311d04921888636ad96"
+    },
+    {
+      "path": "COS_AGENT_V2/SPEC.MD",
+      "sha256": "7f589045f59383ac28c7703d6ff95986870580bcc8b65becb7c33ccbc65197e0"
+    },
+    {
+      "path": "COS_AGENT_V2/PLAN.MD",
+      "sha256": "224542f457ca142fe2d8b30d9f20d454419c07a8277ae3ad6b9388b78319282e"
+    },
+    {
+      "path": "COS_AGENT_V2/TASK_LIST.md",
+      "sha256": "998fd3928b345acb640e5f47b53878655e57a53de8ce2f39d80a3b3d4be949db"
+    },
+    {
+      "path": "COS_AGENT_V2/docs/index.html",
+      "sha256": "594a2471719ab3d496229fbf293729faacdd97cb01164be735892bfb843a43db"
+    },
+    {
+      "path": "COS_AGENT_V2/docs/development/044-radar-agent-config.html",
+      "sha256": "f01ae698f243e76b2d698886a96ba79ba28a0bcab876ff940529b59ac83c1caf"
+    }
+  ]
+}

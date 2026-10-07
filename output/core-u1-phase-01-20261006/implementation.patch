@@ -1,0 +1,3521 @@
+--- baseline/apps/api/plane/radar/agent_config.py
++++ current/apps/api/plane/radar/agent_config.py
+@@ -5,7 +5,7 @@
+ from rest_framework import serializers
+ from rest_framework.exceptions import PermissionDenied
+ 
+-from plane.radar.commands.control import _admin
++from plane.radar.commands.control import require_workspace_admin
+ from plane.radar.commands.execution import CommandConflict, run_internal
+ from plane.radar.commands.inputs import StrictSerializer
+ from plane.radar.models import AgentConfiguration
+@@ -105,7 +105,7 @@
+         from plane.radar.agent_runtime import binding_for
+         from plane.db.models import User
+ 
+-        _admin(actor, workspace)
++        require_workspace_admin(actor, workspace)
+         binding, grant, _, objects = binding_for(
+             user=User.objects.get(pk=actor.actor_id), workspace=workspace, binding_id=binding_id, include_config=False
+         )
+--- baseline/apps/api/plane/radar/agent_runtime.py
++++ current/apps/api/plane/radar/agent_runtime.py
+@@ -12,8 +12,8 @@
+ from rest_framework.exceptions import APIException, NotFound, PermissionDenied, ValidationError
+ 
+ from plane.radar.commands.actor import Actor
+-from plane.radar.commands.execution import _human_member, schema_fingerprint
+-from plane.radar.commands.handlers import _values
++from plane.radar.commands.execution import require_human_membership, schema_fingerprint
++from plane.radar.commands.queries import effective_values
+ from plane.radar.models import (
+     ActorGrant,
+     Object,
+@@ -42,7 +42,7 @@
+ 
+ 
+ def binding_for(*, user, workspace, binding_id, include_config=True):
+-    _human_member(
++    require_human_membership(
+         Actor(
+             actor_type="human",
+             actor_id=user.pk,
+@@ -58,7 +58,7 @@
+     if (
+         binding.external_author != f"plane:{user.pk}"
+         or not Object.objects.filter(pk=binding.person_id, workspace=workspace, object_type__key="person").exists()
+-        or _values(binding.person).get("status") != "active"
++        or effective_values(binding.person).get("status") != "active"
+     ):
+         raise PermissionDenied("Runtime identity unavailable.")
+     identity = PersonIdentity.objects.filter(
+--- baseline/apps/api/plane/radar/api/runtime_views.py
++++ current/apps/api/plane/radar/api/runtime_views.py
+@@ -17,8 +17,15 @@
+ 
+ from plane.radar.commands.actor import Actor
+ from plane.radar.commands.control import review_command
+-from plane.radar.commands.execution import _human_member, authorize, execute_command, validate_actor, command_envelope
+-from plane.radar.commands.handlers import _values, references, check_grant
++from plane.radar.commands.execution import (
++    require_human_membership,
++    authorize,
++    execute_command,
++    validate_actor,
++    command_envelope,
++)
++from plane.radar.commands.handlers import references, check_grant
++from plane.radar.commands.queries import effective_values
+ from plane.radar.commands.inputs import CommandInput, INPUTS, StrictSerializer
+ from plane.radar.collaboration import COLLABORATION_COMMANDS
+ from plane.radar.commands.operations import OPERATIONS
+@@ -98,7 +105,7 @@
+             source="radar.cos.host",
+             correlation_id=credential.pk,
+         )
+-        _human_member(actor, credential.workspace)
++        require_human_membership(actor, credential.workspace)
+         if (
+             not PersonIdentity.objects.filter(
+                 workspace=credential.workspace,
+@@ -106,7 +113,7 @@
+                 person_id=credential.person_id,
+                 is_active=True,
+             ).exists()
+-            or _values(credential.person).get("status") != "active"
++            or effective_values(credential.person).get("status") != "active"
+         ):
+             raise AuthenticationFailed("Runtime identity unavailable.")
+         grant = ActorGrant.objects.filter(
+@@ -596,7 +603,7 @@
+                     "type": i.object.object_type.key,
+                     "revision": i.object.version,
+                     "scope": i.context,
+-                    **_values(i.object),
++                    **effective_values(i.object),
+                     "operation_data": canonical(operation_data),
+                     "relations": [
+                         {"type": e.relation_type.key, "target_id": by_id[e.target_id].external_id}
+@@ -613,7 +620,7 @@
+                 for i in identities
+                 if (not query or query in i.object.title.casefold() or query in i.external_id.casefold())
+                 and (not p.get("entity_type") or i.object.object_type.key == p["entity_type"])
+-                and (not p.get("status") or _values(i.object).get("status") == p["status"])
++                and (not p.get("status") or effective_values(i.object).get("status") == p["status"])
+             ]
+             return Response(
+                 [
+@@ -621,7 +628,7 @@
+                         "id": i.external_id,
+                         "title": i.object.title,
+                         "type": i.object.object_type.key,
+-                        "status": _values(i.object)["status"],
++                        "status": effective_values(i.object)["status"],
+                         "revision": i.object.version,
+                     }
+                     for i in sorted(matches, key=lambda x: (x.object.title.casefold(), x.external_id))[:limit]
+--- baseline/apps/api/plane/radar/api/semantic_views.py
++++ current/apps/api/plane/radar/api/semantic_views.py
+@@ -6,14 +6,14 @@
+ from rest_framework.response import Response
+ from plane.radar.commands import (
+     initialize_semantic_model,
+-    initialize_object_properties,
+     set_property_value,
+     remove_property_value,
+     create_relation,
+     remove_relation,
+ )
+-from plane.radar.commands.objects import _authorize
+-from plane.radar.commands.semantic import _object, active_relations
++from plane.radar.commands.objects import authorize_primitive
++from plane.radar.commands.semantic import get_active_object, active_relations
++from plane.radar.commands.semantic import initialize_properties_command
+ from plane.radar.models import PropertyDefinition, PropertyValue, RelationType
+ from .views import RadarAPIView
+ from .serializers import (
+@@ -28,7 +28,7 @@
+ 
+ 
+ def property_snapshot(workspace, object_id):
+-    obj = _object(workspace, object_id, lock=True)
++    obj = get_active_object(workspace, object_id, lock=True)
+     values = PropertyValue.objects.filter(
+         workspace=workspace, object=obj, definition__is_active=True, definition__deleted_at__isnull=True
+     )
+@@ -68,7 +68,7 @@
+     def get(self, request, slug, object_id):
+         workspace = self.workspace()
+         actor = self.actor("Read object properties")
+-        _authorize(actor, workspace, write=False)
++        authorize_primitive(actor, workspace, write=False)
+         initialize_semantic_model(actor=actor, workspace=workspace)
+         return Response(property_snapshot(workspace, object_id))
+ 
+@@ -77,13 +77,16 @@
+         if request.data:
+             raise ValidationError("Default initialization accepts an empty payload.")
+         workspace = self.workspace()
+-        initialize_object_properties(
++        result = initialize_properties_command(
+             actor=self.actor("Initialize object defaults"),
+             workspace=workspace,
+             object_id=object_id,
+             **self.command_options(),
+         )
+-        return Response(property_snapshot(workspace, object_id))
++        pending = self.pending_response(result)
++        if pending is not None:
++            return pending
++        return Response(result["data"])
+ 
+ 
+ class ObjectPropertyView(RadarAPIView):
+@@ -134,11 +137,11 @@
+     @transaction.atomic
+     def get(self, request, slug, object_id):
+         workspace = self.workspace()
+-        _authorize(self.actor("Read object relations"), workspace, write=False)
++        authorize_primitive(self.actor("Read object relations"), workspace, write=False)
+         direction = request.query_params.get("direction", "both")
+         if direction not in {"both", "outgoing", "incoming"}:
+             raise ValidationError({"direction": "Use both, outgoing or incoming."})
+-        obj = _object(workspace, object_id, lock=True)
++        obj = get_active_object(workspace, object_id, lock=True)
+         predicate = {"both": Q(source=obj) | Q(target=obj), "outgoing": Q(source=obj), "incoming": Q(target=obj)}
+         relations = active_relations(workspace).filter(predicate[direction]).order_by("created_at", "id")
+         return Response(
+@@ -164,7 +167,7 @@
+         pending = self.pending_response(result)
+         if pending is not None:
+             return pending
+-        objects = [_object(workspace, pk) for pk in dict.fromkeys([result.source_id, result.target_id])]
++        objects = [get_active_object(workspace, pk) for pk in dict.fromkeys([result.source_id, result.target_id])]
+         return Response(
+             {"relation": RelationSerializer(result).data, "objects": ObjectSerializer(objects, many=True).data},
+             status=status.HTTP_201_CREATED,
+@@ -183,5 +186,5 @@
+         pending = self.pending_response(mutation)
+         if pending is not None:
+             return pending
+-        objects = [_object(workspace, pk) for pk in dict.fromkeys([result.source_id, result.target_id])]
++        objects = [get_active_object(workspace, pk) for pk in dict.fromkeys([result.source_id, result.target_id])]
+         return Response({"objects": ObjectSerializer(objects, many=True).data})
+--- baseline/apps/api/plane/radar/api/serializers.py
++++ current/apps/api/plane/radar/api/serializers.py
+@@ -1,5 +1,7 @@
+ from collections.abc import Mapping
++from django.db.models import QuerySet
+ from rest_framework import serializers
++from plane.radar.authorship import AUTHOR_RELATIONS, object_authorship
+ from plane.radar.models import Object, ObjectType, PropertyDefinition, PropertyValue, RelationType, Relation
+ from plane.radar.commands.inputs import StrictSerializer
+ 
+@@ -25,11 +27,35 @@
+         read_only_fields = fields
+ 
+ 
++class ObjectListSerializer(serializers.ListSerializer):
++    def to_representation(self, data):
++        if isinstance(data, QuerySet):
++            data = data.select_related(*AUTHOR_RELATIONS)
++        objects = list(data)
++        self.context["radar_authorship"] = object_authorship(objects)
++        return super().to_representation(objects)
++
++
+ class ObjectSerializer(serializers.ModelSerializer):
+     object_type_detail = ObjectTypeSerializer(source="object_type", read_only=True)
++    created_actor = serializers.SerializerMethodField()
++    updated_actor = serializers.SerializerMethodField()
++
++    def authorship(self, obj):
++        summaries = self.context.setdefault("radar_authorship", {})
++        if obj.pk not in summaries:
++            summaries.update(object_authorship([obj]))
++        return summaries[obj.pk]
++
++    def get_created_actor(self, obj):
++        return self.authorship(obj)["created_actor"]
++
++    def get_updated_actor(self, obj):
++        return self.authorship(obj)["updated_actor"]
+ 
+     class Meta:
+         model = Object
++        list_serializer_class = ObjectListSerializer
+         fields = [
+             "id",
+             "workspace",
+@@ -42,6 +68,8 @@
+             "updated_at",
+             "created_by",
+             "updated_by",
++            "created_actor",
++            "updated_actor",
+         ]
+         read_only_fields = fields
+ 
+--- baseline/apps/api/plane/radar/commands/compatibility.py
++++ current/apps/api/plane/radar/commands/compatibility.py
+@@ -5,7 +5,7 @@
+ 
+ from django.db import transaction
+ from plane.db.models import Workspace
+-from plane.radar.models import Object
++from plane.radar.models import Object, CommandExecution
+ from .execution import authorize, execute_command
+ from .handlers import references
+ from .inputs import INPUTS
+@@ -24,10 +24,23 @@
+     serializer.is_valid(raise_exception=True)
+     if expected_versions is None:
+         # Compatibility for trusted legacy Python callers. New transport clients supply their snapshot.
+-        refs = references(workspace, name, serializer.validated_data)
+-        expected_versions = {
+-            str(obj.pk): obj.version for obj in Object.objects.filter(workspace=workspace, pk__in=refs)
+-        }
++        previous = (
++            CommandExecution.objects.filter(
++                workspace=workspace,
++                actor_type=actor.actor_type,
++                actor_id=actor.actor_id,
++                idempotency_key=idempotency_key,
++            ).first()
++            if idempotency_key
++            else None
++        )
++        if previous is not None:
++            expected_versions = previous.envelope["expected_versions"]
++        else:
++            refs = references(workspace, name, serializer.validated_data)
++            expected_versions = {
++                str(obj.pk): obj.version for obj in Object.objects.filter(workspace=workspace, pk__in=refs)
++            }
+     envelope = {
+         "command_name": name,
+         "command_version": 1,
+--- baseline/apps/api/plane/radar/commands/control.py
++++ current/apps/api/plane/radar/commands/control.py
+@@ -5,13 +5,22 @@
+ from rest_framework.exceptions import NotFound, PermissionDenied, ValidationError
+ from plane.db.models import User, WorkspaceMember
+ from plane.radar.models import ActorGrant, CommandApproval, CommandExecution, PersonIdentity
+-from .execution import _human_member, _versions, authorize, CommandConflict, emit, run_internal, schema_fingerprint
+-from .handlers import _lookup, check_grant, references
++from .execution import (
++    require_human_membership,
++    lock_expected_versions,
++    authorize,
++    CommandConflict,
++    emit,
++    run_internal,
++    schema_fingerprint,
++)
++from .handlers import check_grant, references
++from .queries import lookup_object
+ from .inputs import INPUTS
+ 
+ 
+-def _admin(actor, workspace):
+-    _human_member(actor, workspace)
++def require_workspace_admin(actor, workspace):
++    require_human_membership(actor, workspace)
+     if (
+         workspace.owner_id != actor.actor_id
+         and not WorkspaceMember.objects.filter(
+@@ -35,10 +44,14 @@
+     is_active=True,
+ ):
+     def operation():
+-        _admin(actor, workspace)
++        require_workspace_admin(actor, workspace)
+         if actor_type not in {"agent", "system", "integration"} or not isinstance(actor_id, UUID):
+             raise ValidationError("Register a nonhuman UUID principal of a declared type.")
+-        if not commands or set(commands) - set(INPUTS) or "ApproveDecision" in commands:
++        if (
++            not commands
++            or set(commands) - set(INPUTS)
++            or {"ApproveDecision", "InitializeObjectProperties"}.intersection(commands)
++        ):
+             raise ValidationError("Grant only known commands; Decision approval is human-only.")
+         if not object_types or not fields or not all(isinstance(v, str) for v in [*object_types, *fields]):
+             raise ValidationError("Explicit Object type and field scopes are required.")
+@@ -76,8 +89,8 @@
+ 
+ def configure_person_identity(*, actor, workspace, user_id, person_id, can_approve=False, is_active=True):
+     def operation():
+-        _admin(actor, workspace)
+-        person = _lookup(workspace, person_id, {"person"})
++        require_workspace_admin(actor, workspace)
++        person = lookup_object(workspace, person_id, {"person"})
+         if type(can_approve) is not bool or type(is_active) is not bool:
+             raise ValidationError("Authority flags must be booleans.")
+         if not User.objects.filter(pk=user_id, is_active=True, is_bot=False).exists() or not (
+@@ -108,7 +121,7 @@
+ 
+ def review_command(*, actor, workspace, command_id, intent_hash, approve, rationale):
+     def operation():
+-        _human_member(actor, workspace)
++        require_human_membership(actor, workspace)
+         if type(approve) is not bool or not isinstance(rationale, str) or not rationale.strip():
+             raise ValidationError("Review requires a boolean outcome and a rationale.")
+         execution = CommandExecution.objects.filter(pk=command_id, workspace=workspace).first()
+@@ -138,7 +151,7 @@
+             serializer.is_valid(raise_exception=True)
+             refs = references(workspace, execution.command_name, serializer.validated_data)
+             refs.update(UUID(pk) for pk in execution.envelope["assertion"]["evidence_ids"])
+-            _versions(workspace, execution.envelope["expected_versions"], refs)
++            lock_expected_versions(workspace, execution.envelope["expected_versions"], refs)
+             check_grant(workspace, grant, execution.command_name, serializer.validated_data, refs)
+             if approval.policy_version != (grant.policy_version if grant else 1):
+                 raise CommandConflict({"code": "approval_stale"})
+--- baseline/apps/api/plane/radar/commands/execution.py
++++ current/apps/api/plane/radar/commands/execution.py
+@@ -13,7 +13,7 @@
+ from django.utils import timezone
+ from rest_framework.exceptions import APIException, NotFound, PermissionDenied, ValidationError
+ 
+-from plane.db.models import User, Workspace, WorkspaceMember
++from plane.db.models import Workspace
+ from plane.radar.models import (
+     ActorGrant,
+     CommandApproval,
+@@ -28,6 +28,7 @@
+ from plane.radar.mutation import MutationContext, current_mutation, json_value
+ from plane.radar.ontology.schema import load_schema
+ from .actor import Actor
++from .access import require_human_membership
+ from .inputs import CommandInput, INPUTS
+ from .rules import implementation_contract
+ 
+@@ -144,28 +145,18 @@
+     _hash(actor.metadata)
+ 
+ 
+-def _human_member(actor: Actor, workspace: Workspace, *, write=True) -> None:
+-    roles = [15, 20] if write else [5, 15, 20]
+-    if (
+-        actor.actor_type != "human"
+-        or not User.objects.filter(pk=actor.actor_id, is_active=True, is_bot=False).exists()
+-        or not WorkspaceMember.objects.filter(
+-            workspace=workspace, member_id=actor.actor_id, role__in=roles, is_active=True
+-        ).exists()
+-    ):
+-        raise PermissionDenied("Active workspace membership does not permit this operation.")
+-
+-
+ def authorize(actor: Actor, workspace: Workspace, command_name: str, *, read=False) -> ActorGrant | None:
+     validate_actor(actor)
+     from plane.radar.collaboration import COLLABORATION_COMMANDS
+ 
+     if command_name in COLLABORATION_COMMANDS and actor.actor_type != "human":
+         raise PermissionDenied("MVP collaboration commands are human-only.")
++    if command_name == "InitializeObjectProperties" and actor.actor_type != "human":
++        raise PermissionDenied("Default initialization requires a human actor.")
+     if not Workspace.objects.filter(pk=workspace.pk).exists():
+         raise NotFound("Workspace not found.")
+     if actor.actor_type == "human":
+-        _human_member(actor, workspace, write=not read)
++        require_human_membership(actor, workspace, write=not read)
+         return None
+     if read or command_name not in INPUTS:
+         raise PermissionDenied("Schema/control commands require a human actor.")
+@@ -174,13 +165,13 @@
+     ).first()
+     if grant is None or command_name not in grant.commands:
+         raise PermissionDenied("No grant for this actor and command in this workspace.")
+-    _human_member(replace(actor, actor_type="human", actor_id=grant.delegator_id), workspace)
++    require_human_membership(replace(actor, actor_type="human", actor_id=grant.delegator_id), workspace)
+     if actor.on_behalf_of is not None and actor.on_behalf_of != grant.delegator_id:
+         raise PermissionDenied("The actor does not represent this delegator.")
+     return grant
+ 
+ 
+-def _versions(workspace: Workspace, expected: dict, refs: set[UUID]) -> dict:
++def lock_expected_versions(workspace: Workspace, expected: dict, refs: set[UUID]) -> dict:
+     try:
+         normalized = {UUID(str(key)): value for key, value in expected.items()}
+     except (TypeError, ValueError, AttributeError) as exc:
+@@ -296,6 +287,13 @@
+ 
+ 
+ def _result(context, execution, data, provenance, events, before):
++    if execution.command_name == "InitializeObjectProperties":
++        from plane.radar.authorship import AUTHOR_RELATIONS, object_authorship
++
++        obj = Object.objects.select_related(*AUTHOR_RELATIONS).get(
++            workspace_id=context.workspace_id, pk=data["object"]["id"]
++        )
++        data["object"].update(object_authorship([obj])[obj.pk])
+     created = [change["id"] for change in context.changes.values() if change["before"] is None]
+     object_ids = {pk for label, pk in context.changes if label == "radar.Object"}
+     after = {str(obj.pk): obj.version for obj in Object.objects.filter(pk__in=object_ids)}
+@@ -410,7 +408,7 @@
+                 {"proposal_id": "Human takeover requires a retired agent proposal in this workspace."}
+             )
+     refs = references(workspace, name, data) | set(assertion["evidence_ids"])
+-    before = _versions(workspace, request["expected_versions"], refs)
++    before = lock_expected_versions(workspace, request["expected_versions"], refs)
+     check_grant(workspace, grant, name, data, refs)
+     if execution.status == "pending_approval" and actor.approval_id is None:
+         return execution.result
+@@ -485,7 +483,7 @@
+             ):
+                 raise CommandConflict({"code": "approval_stale"})
+             reviewer = replace(actor, actor_type="human", actor_id=approval.approver_id)
+-            _human_member(reviewer, workspace)
++            require_human_membership(reviewer, workspace)
+         elif actor.approval_id is not None:
+             raise ValidationError({"approval_id": "This command does not require an execution approval."})
+         data_result = dispatch(workspace, name, data)
+--- baseline/apps/api/plane/radar/commands/governance.py
++++ current/apps/api/plane/radar/commands/governance.py
+@@ -8,7 +8,7 @@
+ from plane.db.models import Workspace
+ from plane.radar.models import Object, ObjectType, PropertyDefinition, RelationType
+ from .actor import Actor
+-from .objects import _authorize, create_object
++from .objects import authorize_primitive, create_object
+ from .semantic import initialize_semantic_model, set_property_value, create_relation
+ from .execution import run_internal
+ 
+@@ -73,7 +73,7 @@
+     The workspace lock serializes concurrent fixture runs. Existing objects, including
+     tombstones, cause rejection; a rerun must use a new dedicated workspace.
+     """
+-    _authorize(actor, workspace)
++    authorize_primitive(actor, workspace)
+     Workspace.objects.select_for_update().get(pk=workspace.pk)
+     if Object.all_objects.filter(workspace=workspace).exists():
+         raise ValidationError("The governance scenario requires a workspace without RADAR objects.")
+--- baseline/apps/api/plane/radar/commands/handlers.py
++++ current/apps/api/plane/radar/commands/handlers.py
+@@ -5,7 +5,6 @@
+ from uuid import UUID
+ 
+ from django.utils import timezone
+-from django.utils.html import strip_tags
+ from rest_framework.exceptions import NotFound, PermissionDenied, ValidationError
+ 
+ from plane.radar.models import (
+@@ -21,36 +20,21 @@
+     Relation,
+     RelationType,
+ )
+-from plane.radar.mutation import current_mutation, json_value
++from plane.radar.mutation import json_value
+ from plane.radar.ontology.schema import load_schema
+ from .execution import CommandConflict, emit
+ from . import primitives_objects as objects
+ from . import primitives_semantic as semantic
+ from .rules import ORDINARY_TRANSITIONS, effective_invariants
+-
+-
+-def _context():
+-    context = current_mutation.get()
+-    if context is None:
+-        raise PermissionDenied("Mutation requires the shared command layer and an explicit Actor.")
+-    return context
+-
+-
+-def _actor():
+-    return _context().actor
+-
+-
+-def _user_id():
+-    return _actor().actor_id if _actor().actor_type == "human" else None
+-
+-
+-def _lookup(workspace, pk, types=None, *, active_person=True):
+-    obj = semantic._object(workspace, pk)
+-    if types is not None and obj.object_type.key not in types:
+-        raise ValidationError("Object type does not satisfy this command.")
+-    if active_person and obj.object_type.key == "person" and _values(obj).get("status") != "active":
+-        raise ValidationError("Select an active Person.")
+-    return obj
++from .context import command_context, command_actor, command_user_id
++from .queries import (
++    lookup_object,
++    effective_values,
++    decision_evidence_ids,
++    current_decision_approval,
++    validate_evidence,
++)
++from .results import object_result, relation_result, property_snapshot_result
+ 
+ 
+ def _kind(workspace, key):
+@@ -58,10 +42,6 @@
+         return RelationType.objects.get(workspace=workspace, key=key, is_active=True)
+     except RelationType.DoesNotExist as exc:
+         raise ValidationError({"code": "unsupported_schema", "relation": key}) from exc
+-
+-
+-def _values(obj):
+-    return semantic.effective_values(obj)
+ 
+ 
+ def _snapshot(obj):
+@@ -72,31 +52,8 @@
+             "title": obj.title,
+             "content": obj.content,
+             "object_type": obj.object_type.key,
+-            "properties": _values(obj),
++            "properties": effective_values(obj),
+         }
+-    )
+-
+-
+-def _fundaments(workspace, decision_id):
+-    return set(
+-        Relation.objects.filter(
+-            workspace=workspace,
+-            source_id=decision_id,
+-            relation_type__key="informed_by",
+-            relation_type__is_active=True,
+-            target__object_type__key="document",
+-            target__deleted_at__isnull=True,
+-        ).values_list("target_id", flat=True)
+-    )
+-
+-
+-def _approval(workspace, obj):
+-    return (
+-        DecisionApproval.objects.filter(
+-            workspace=workspace, decision=obj, is_stale=False, resulting_version=obj.version
+-        )
+-        .order_by("-created_at")
+-        .first()
+     )
+ 
+ 
+@@ -115,6 +72,7 @@
+             return references(workspace, specialized, payload)
+     refs = set()
+     single = {
++        "InitializeObjectProperties": ["object_id"],
+         "UpdateObject": ["object_id"],
+         "LinkObjects": ["source_id", "target_id"],
+         "CreateAction": ["origin_decision_id", "owner_person_id"],
+@@ -144,10 +102,10 @@
+     if name == "AddEvidence" and "existing_id" in data["document"]:
+         refs.add(data["document"]["existing_id"])
+     if name == "ApproveDecision":
+-        refs.update(_fundaments(workspace, data["decision_id"]))
++        refs.update(decision_evidence_ids(workspace, data["decision_id"]))
+     if name == "UpdateObject" and data.get("set_properties", {}).get("status") == "decided":
+-        obj = _lookup(workspace, data["object_id"])
+-        approval = _approval(workspace, obj)
++        obj = lookup_object(workspace, data["object_id"])
++        approval = current_decision_approval(workspace, obj)
+         if approval:
+             refs.update(UUID(pk) for pk in approval.evidence_versions)
+             refs.add(approval.approver_person_id)
+@@ -155,7 +113,7 @@
+ 
+ 
+ def _special_input(workspace, data):
+-    selected = objects._type(workspace, data["object_type_id"])
++    selected = objects.get_object_type(workspace, data["object_type_id"])
+     props = dict(data["properties"])
+     key = selected.key
+     specialized = {"action": "CreateAction", "risk": "RegisterRisk", "decision": "CreateDecision"}.get(key)
+@@ -203,7 +161,7 @@
+     }.get(name)
+     extra_commands = set()
+     if name == "CreateObject":
+-        types.add(objects._type(workspace, data["object_type_id"]).key)
++        types.add(objects.get_object_type(workspace, data["object_type_id"]).key)
+         specialized, _ = _special_input(workspace, data)
+         if specialized:
+             extra_commands.add(specialized)
+@@ -221,7 +179,7 @@
+         raise PermissionDenied("Grant does not cover every Object type.")
+     if name == "UpdateObject":
+         fields = set(data["changes"]) | set(data["set_properties"]) | set(data["remove_properties"])
+-        obj = semantic._object(workspace, data["object_id"])
++        obj = semantic.get_active_object(workspace, data["object_id"])
+         fields.update(semantic.property_effect_fields(obj, data["set_properties"], data["remove_properties"]))
+         if "*" not in grant.fields and not fields.issubset(set(grant.fields)):
+             raise PermissionDenied("Grant does not cover every modified field.")
+@@ -244,7 +202,7 @@
+         name == "ApproveDecision"
+         or name == "UpdateObject"
+         and data.get("set_properties", {}).get("status") == "decided"
+-        and semantic._object(workspace, data["object_id"]).object_type.key == "decision"
++        and semantic.get_active_object(workspace, data["object_id"]).object_type.key == "decision"
+     )
+ 
+ 
+@@ -274,7 +232,7 @@
+ 
+ @contextmanager
+ def _special(name):
+-    context = _context()
++    context = command_context()
+     old = context.special
+     context.special = name
+     try:
+@@ -292,23 +250,13 @@
+         emit("DecisionApprovalInvalidated", {"decision_id": obj.pk, "decision_approval_id": approval.pk})
+ 
+ 
+-def _ensure_evidence(obj):
+-    values = _values(obj)
+-    if (
+-        obj.object_type.key != "document"
+-        or values.get("status") == "archived"
+-        or not (strip_tags(obj.content).strip() or values.get("uri"))
+-    ):
+-        raise ValidationError({"evidence": "Use a live Document with content or a source URI."})
+-
+-
+-def _patch_properties(workspace, obj, values, remove=()):
+-    return semantic.patch_properties(actor=_actor(), workspace=workspace, obj=obj, values=values, remove=remove)
+-
+-
+-def _new(workspace, key, title, properties, content=None, type_id=None):
++def patch_object_properties(workspace, obj, values, remove=()):
++    return semantic.patch_properties(actor=command_actor(), workspace=workspace, obj=obj, values=values, remove=remove)
++
++
++def create_typed_object(workspace, key, title, properties, content=None, type_id=None):
+     selected = (
+-        objects._type(workspace, type_id)
++        objects.get_object_type(workspace, type_id)
+         if type_id
+         else ObjectType.objects.filter(workspace=workspace, key=key, is_active=True).first()
+     )
+@@ -321,26 +269,31 @@
+     if set(properties).intersection(derived):
+         raise ValidationError({"properties": "Derived properties are not initial inputs."})
+     obj = objects.create_object(
+-        actor=_actor(),
++        actor=command_actor(),
+         workspace=workspace,
+         object_type=selected.pk,
+         title=title,
+         content=content,
+         initial_values=properties,
+     )
+-    if _actor().metadata.get("context"):
+-        from .operations import _identify
+-
+-        _identify(workspace, obj, _actor().metadata["context"])
+-    _patch_properties(workspace, obj, {})
++    if command_actor().metadata.get("context"):
++        from .operations import identify_runtime_object
++
++        identify_runtime_object(workspace, obj, command_actor().metadata["context"])
++    patch_object_properties(workspace, obj, {})
+     emit(
+         "ObjectCreated",
+-        {"object_id": obj.pk, "object_type_id": selected.pk, "version": 1, "property_keys": list(_values(obj))},
++        {
++            "object_id": obj.pk,
++            "object_type_id": selected.pk,
++            "version": 1,
++            "property_keys": list(effective_values(obj)),
++        },
+     )
+     return obj
+ 
+ 
+-def _link(workspace, source, target, key=None, kind_id=None):
++def link_objects(workspace, source, target, key=None, kind_id=None):
+     kind = (
+         _kind(workspace, key)
+         if key
+@@ -348,52 +301,51 @@
+     )
+     if kind is None:
+         raise ValidationError({"relation_type": "Unknown active RelationType in this workspace."})
+-    if kind.key == "made_by" and _context().special != "ApproveDecision":
++    if kind.key == "made_by" and command_context().special != "ApproveDecision":
+         raise PermissionDenied("made_by is recorded only by ApproveDecision.")
+     if kind.key == "supersedes":
+         raise ValidationError("Decision replacement requires a dedicated workflow.")
+-    if kind.key == "creates" and source.object_type.key == "decision" and _values(source).get("status") != "decided":
++    if (
++        kind.key == "creates"
++        and source.object_type.key == "decision"
++        and effective_values(source).get("status") != "decided"
++    ):
+         raise ValidationError("Only a decided Decision can originate an Action.")
+     existing = Relation.objects.filter(workspace=workspace, relation_type=kind, source=source, target=target).first()
+     result = semantic.create_relation(
+-        actor=_actor(), workspace=workspace, source_id=source.pk, target_id=target.pk, relation_type_id=kind.pk
++        actor=command_actor(), workspace=workspace, source_id=source.pk, target_id=target.pk, relation_type_id=kind.pk
+     )
+     if existing is None:
+         emit(
+             "ObjectLinked",
+             {"relation_id": result.pk, "relation_type_id": kind.pk, "source_id": source.pk, "target_id": target.pk},
+         )
+-        if _context().special != "ApproveDecision":
++        if command_context().special != "ApproveDecision":
+             _stale(workspace, source)
+             if source.pk != target.pk:
+                 _stale(workspace, target)
+     return result
+ 
+ 
+-def _object_data(obj):
+-    from plane.radar.api.serializers import ObjectSerializer
+-
+-    obj.refresh_from_db()
+-    return {"object": ObjectSerializer(obj).data}
+-
+-
+ def _create_object(workspace, data):
+     specialized, payload = _special_input(workspace, data)
+     if specialized:
+         return dispatch(workspace, specialized, payload, content=data.get("content"))
+-    selected = objects._type(workspace, data["object_type_id"])
++    selected = objects.get_object_type(workspace, data["object_type_id"])
+     spec = load_schema()["object_types"].get(selected.key)
+     if "status" in data["properties"] and spec and data["properties"]["status"] != spec["status"]["default"]:
+         raise ValidationError({"status": "Use the initial status, then a guarded update."})
+-    return _object_data(
+-        _new(workspace, selected.key, data["title"], data["properties"], data.get("content"), selected.pk)
++    return object_result(
++        create_typed_object(
++            workspace, selected.key, data["title"], data["properties"], data.get("content"), selected.pk
++        )
+     )
+ 
+ 
+ def _update(workspace, data):
+-    obj = _lookup(workspace, data["object_id"], active_person=False)
++    obj = lookup_object(workspace, data["object_id"], active_person=False)
+     values, remove, changes = data["set_properties"], data["remove_properties"], data["changes"]
+-    effective = _values(obj)
++    effective = effective_values(obj)
+     key, status = obj.object_type.key, effective.get("status")
+     if key == "indicator" and (set(values) | set(remove)) & {"current", "measured_at"}:
+         raise ValidationError("Use RecordMeasurement with evidence to update observations.")
+@@ -421,13 +373,13 @@
+     taken = None
+     if "status" in values and values["status"] != status:
+         if key == "decision" and status == "proposed" and values["status"] == "decided":
+-            if _actor().actor_type != "human" or changes or set(values) != {"status"} or remove:
++            if command_actor().actor_type != "human" or changes or set(values) != {"status"} or remove:
+                 raise PermissionDenied("Decision taking is human-only and cannot edit the approved choice.")
+-            taken = _approval(workspace, obj)
++            taken = current_decision_approval(workspace, obj)
+             if taken is None:
+                 raise CommandConflict({"code": "approval_stale"})
+             identity = PersonIdentity.objects.filter(
+-                workspace=workspace, user_id=_actor().actor_id, can_approve=True, is_active=True
++                workspace=workspace, user_id=command_actor().actor_id, can_approve=True, is_active=True
+             ).first()
+             authority = PersonIdentity.objects.filter(
+                 workspace=workspace,
+@@ -438,17 +390,17 @@
+             ).first()
+             if identity is None or authority is None:
+                 raise PermissionDenied("A current context_approver is required.")
+-            _lookup(workspace, identity.person_id, {"person"})
+-            _lookup(workspace, authority.person_id, {"person"})
++            lookup_object(workspace, identity.person_id, {"person"})
++            lookup_object(workspace, authority.person_id, {"person"})
+             from dataclasses import replace
+-            from .execution import _human_member
+-
+-            _human_member(replace(_actor(), actor_id=taken.approver_id), workspace)
++            from .execution import require_human_membership
++
++            require_human_membership(replace(command_actor(), actor_id=taken.approver_id), workspace)
+             if authority.updated_at.isoformat() != taken.snapshot["authority_updated_at"]:
+                 raise CommandConflict({"code": "approval_stale"})
+             for pk, version in taken.evidence_versions.items():
+-                evidence = _lookup(workspace, UUID(pk), {"document"})
+-                _ensure_evidence(evidence)
++                evidence = lookup_object(workspace, UUID(pk), {"document"})
++                validate_evidence(evidence)
+                 if evidence.version != version:
+                     raise CommandConflict({"code": "approval_stale"})
+             values = {**values, "decided_at": timezone.now().isoformat()}
+@@ -456,15 +408,15 @@
+             raise ValidationError({"status": "This transition requires a dedicated workflow."})
+     changed = False
+     for field, value in changes.items():
+-        value = objects._title(value) if field == "title" else objects._content(value)
++        value = objects.validate_title(value) if field == "title" else objects.validate_content(value)
+         if getattr(obj, field) != value:
+             setattr(obj, field, value)
+             changed = True
+     if changed:
+-        obj.updated_by_id = _user_id()
++        obj.updated_by_id = command_user_id()
+         obj.save(update_fields=[*changes, "updated_by", "updated_at"])
+-        semantic._touch([obj], _user_id())
+-    changed = _patch_properties(workspace, obj, values, remove) or changed
++        semantic.touch_objects([obj], command_user_id())
++    changed = patch_object_properties(workspace, obj, values, remove) or changed
+     if changed:
+         if taken is None:
+             _stale(workspace, obj)
+@@ -482,7 +434,7 @@
+                 "DecisionTaken",
+                 {"decision_id": obj.pk, "decision_approval_id": taken.pk, "decided_at": values["decided_at"]},
+             )
+-    result = _object_data(obj)
++    result = object_result(obj)
+     if taken:
+         result["decision_approval_id"] = str(taken.pk)
+     return result
+@@ -491,23 +443,23 @@
+ def _create_action(workspace, data, content=None):
+     props = {key: value for key, value in data.items() if key in {"description", "next_step", "priority", "due_date"}}
+     if data.get("origin_decision_id"):
+-        decision = _lookup(workspace, data["origin_decision_id"], {"decision"})
+-        if _values(decision).get("status") != "decided":
++        decision = lookup_object(workspace, data["origin_decision_id"], {"decision"})
++        if effective_values(decision).get("status") != "decided":
+             raise ValidationError("Action origin requires a decided Decision.")
+-    obj = _new(workspace, "action", data["title"], props, content)
++    obj = create_typed_object(workspace, "action", data["title"], props, content)
+     if data.get("origin_decision_id"):
+-        _link(workspace, decision, obj, "creates")
++        link_objects(workspace, decision, obj, "creates")
+     if data.get("owner_person_id"):
+-        _link(workspace, obj, _lookup(workspace, data["owner_person_id"], {"person"}), "owned_by")
++        link_objects(workspace, obj, lookup_object(workspace, data["owner_person_id"], {"person"}), "owned_by")
+     for pk in set(data["executor_person_ids"]):
+-        _link(workspace, obj, _lookup(workspace, pk, {"person"}), "assigned_to")
++        link_objects(workspace, obj, lookup_object(workspace, pk, {"person"}), "assigned_to")
+     for pk in set(data["mitigates_risk_ids"]):
+-        _link(workspace, obj, _lookup(workspace, pk, {"risk"}), "mitigates")
++        link_objects(workspace, obj, lookup_object(workspace, pk, {"risk"}), "mitigates")
+     emit(
+         "ActionCreated",
+         {"action_id": obj.pk, "initial_status": "todo", "origin_decision_id": data.get("origin_decision_id")},
+     )
+-    result = _object_data(obj)
++    result = object_result(obj)
+     if not data.get("owner_person_id"):
+         result["findings"] = [{"code": "RADAR-M001", "object_id": str(obj.pk), "severity": "finding"}]
+     return result
+@@ -519,52 +471,52 @@
+         for key, value in data.items()
+         if key in {"description", "likelihood", "impact", "response_strategy", "review_date"}
+     }
+-    obj = _new(workspace, "risk", data["title"], props, content)
++    obj = create_typed_object(workspace, "risk", data["title"], props, content)
+     if data.get("owner_person_id"):
+-        _link(workspace, obj, _lookup(workspace, data["owner_person_id"], {"person"}), "owned_by")
++        link_objects(workspace, obj, lookup_object(workspace, data["owner_person_id"], {"person"}), "owned_by")
+     for pk in set(data["threatens_object_ids"]):
+-        _link(workspace, obj, _lookup(workspace, pk, {"objective", "project"}), "threatens")
++        link_objects(workspace, obj, lookup_object(workspace, pk, {"objective", "project"}), "threatens")
+     emit(
+         "RiskRegistered",
+         {
+             "risk_id": obj.pk,
+             "initial_status": "identified",
+-            **{key: _values(obj)[key] for key in ("likelihood", "impact", "score")},
++            **{key: effective_values(obj)[key] for key in ("likelihood", "impact", "score")},
+         },
+     )
+-    return _object_data(obj)
++    return object_result(obj)
+ 
+ 
+ def _create_decision(workspace, data, content=None):
+     props = {key: value for key, value in data.items() if key in {"context", "decision", "rationale", "consequences"}}
+-    obj = _new(workspace, "decision", data["title"], props, content)
++    obj = create_typed_object(workspace, "decision", data["title"], props, content)
+     if data.get("project_id"):
+-        _link(workspace, _lookup(workspace, data["project_id"], {"project"}), obj, "contains")
++        link_objects(workspace, lookup_object(workspace, data["project_id"], {"project"}), obj, "contains")
+     for pk in set(data["evidence_ids"]):
+-        evidence = _lookup(workspace, pk, {"document"})
+-        _ensure_evidence(evidence)
+-        _link(workspace, obj, evidence, "informed_by")
++        evidence = lookup_object(workspace, pk, {"document"})
++        validate_evidence(evidence)
++        link_objects(workspace, obj, evidence, "informed_by")
+     for field, key in [
+         ("consultation_person_ids", "requires_consultation"),
+         ("notification_person_ids", "requires_notification"),
+     ]:
+         for pk in set(data[field]):
+-            _link(workspace, obj, _lookup(workspace, pk, {"person"}), key)
++            link_objects(workspace, obj, lookup_object(workspace, pk, {"person"}), key)
+     emit("DecisionCreated", {"decision_id": obj.pk, "initial_status": "proposed"})
+-    return _object_data(obj)
++    return object_result(obj)
+ 
+ 
+ def _approve_decision(workspace, data):
+-    if _actor().actor_type != "human":
++    if command_actor().actor_type != "human":
+         raise PermissionDenied("Decision approval is human-only.")
+-    obj = _lookup(workspace, data["decision_id"], {"decision"})
+-    person = _lookup(workspace, data["approver_person_id"], {"person"})
++    obj = lookup_object(workspace, data["decision_id"], {"decision"})
++    person = lookup_object(workspace, data["approver_person_id"], {"person"})
+     identity = PersonIdentity.objects.filter(
+-        workspace=workspace, user_id=_actor().actor_id, person=person, can_approve=True, is_active=True
++        workspace=workspace, user_id=command_actor().actor_id, person=person, can_approve=True, is_active=True
+     ).first()
+     if identity is None:
+         raise PermissionDenied("No verified Person mapping and context_approver authority.")
+-    values = _values(obj)
++    values = effective_values(obj)
+     if values.get("status") not in {"proposed", "decided"} or any(
+         not values.get(key, "").strip() for key in ("context", "decision", "rationale")
+     ):
+@@ -586,36 +538,40 @@
+             if record.actor_type == "human":
+                 author_ids.add(record.actor_id)
+             break
+-    if _actor().actor_id in author_ids:
++    if command_actor().actor_id in author_ids:
+         raise PermissionDenied("An independent human must approve the reviewed proposal.")
+-    evidence_ids = _fundaments(workspace, obj.pk)
++    evidence_ids = decision_evidence_ids(workspace, obj.pk)
+     if not evidence_ids:
+         raise ValidationError("Decision approval requires evidence.")
+     evidence_versions, snapshots = {}, {}
+     for pk in evidence_ids:
+-        evidence = _lookup(workspace, pk, {"document"})
+-        _ensure_evidence(evidence)
++        evidence = lookup_object(workspace, pk, {"document"})
++        validate_evidence(evidence)
+         evidence_versions[str(pk)], snapshots[str(pk)] = evidence.version, _snapshot(evidence)
+-    existing = _approval(workspace, obj)
+-    if existing and existing.approver_id == _actor().actor_id and existing.evidence_versions == evidence_versions:
+-        return {**_object_data(obj), "decision_approval_id": str(existing.pk)}
++    existing = current_decision_approval(workspace, obj)
++    if (
++        existing
++        and existing.approver_id == command_actor().actor_id
++        and existing.evidence_versions == evidence_versions
++    ):
++        return {**object_result(obj), "decision_approval_id": str(existing.pk)}
+     snapshot, reviewed = _snapshot(obj), obj.version
+     with _special("ApproveDecision"):
+-        _link(workspace, obj, person, "made_by")
+-    semantic._touch([obj], _user_id())
++        link_objects(workspace, obj, person, "made_by")
++    semantic.touch_objects([obj], command_user_id())
+     obj.refresh_from_db()
+     vote = DecisionApproval.objects.create(
+         workspace=workspace,
+         decision=obj,
+-        approver_id=_actor().actor_id,
++        approver_id=command_actor().actor_id,
+         approver_person=person,
+         rationale=data["rationale"],
+         reviewed_version=reviewed,
+         resulting_version=obj.version,
+         snapshot={"decision": snapshot, "evidence": snapshots, "authority_updated_at": identity.updated_at.isoformat()},
+         evidence_versions=evidence_versions,
+-        created_by_id=_user_id(),
+-        updated_by_id=_user_id(),
++        created_by_id=command_user_id(),
++        updated_by_id=command_user_id(),
+     )
+     emit(
+         "DecisionApproved",
+@@ -624,25 +580,25 @@
+             "decision_approval_id": vote.pk,
+             "reviewed_version": reviewed,
+             "resulting_version": obj.version,
+-            "approver_actor_id": _actor().actor_id,
++            "approver_actor_id": command_actor().actor_id,
+             "approver_person_id": person.pk,
+             "evidence_ids": list(evidence_ids),
+         },
+     )
+-    return {**_object_data(obj), "decision_approval_id": str(vote.pk)}
++    return {**object_result(obj), "decision_approval_id": str(vote.pk)}
+ 
+ 
+ def _complete_action(workspace, data):
+-    obj = _lookup(workspace, data["action_id"], {"action"})
+-    evidence = _lookup(workspace, data["evidence_id"], {"document"})
+-    _ensure_evidence(evidence)
+-    status = _values(obj).get("status")
++    obj = lookup_object(workspace, data["action_id"], {"action"})
++    evidence = lookup_object(workspace, data["evidence_id"], {"document"})
++    validate_evidence(evidence)
++    status = effective_values(obj).get("status")
+     if status not in {"todo", "in_progress", "waiting"} or ActionCompletion.objects.filter(action=obj).exists():
+         raise ValidationError("This Action cannot be completed again or reopened.")
+     now = timezone.now()
+     snapshot = {"action": _snapshot(obj), "evidence": _snapshot(evidence)}
+-    _patch_properties(workspace, obj, {"status": "done", "completed_at": now.isoformat()})
+-    _link(workspace, evidence, obj, "verifies")
++    patch_object_properties(workspace, obj, {"status": "done", "completed_at": now.isoformat()})
++    link_objects(workspace, evidence, obj, "verifies")
+     completion = ActionCompletion.objects.create(
+         workspace=workspace,
+         action=obj,
+@@ -650,8 +606,8 @@
+         outcome=data["outcome"],
+         snapshot=snapshot,
+         completed_at=now,
+-        created_by_id=_user_id(),
+-        updated_by_id=_user_id(),
++        created_by_id=command_user_id(),
++        updated_by_id=command_user_id(),
+     )
+     emit(
+         "ActionCompleted",
+@@ -664,7 +620,7 @@
+             "after_status": "done",
+         },
+     )
+-    return {**_object_data(obj), "completion_id": str(completion.pk)}
++    return {**object_result(obj), "completion_id": str(completion.pk)}
+ 
+ 
+ def _unlink(workspace, data):
+@@ -676,14 +632,14 @@
+     if relation.deleted_at:
+         return {"relation_id": str(relation.pk)}
+     key = relation.relation_type.key
+-    source, target = _lookup(workspace, relation.source_id), _lookup(workspace, relation.target_id)
++    source, target = lookup_object(workspace, relation.source_id), lookup_object(workspace, relation.target_id)
+     if key == "made_by" and DecisionApproval.objects.filter(decision=source, approver_person=target).exists():
+         raise PermissionDenied("Decision approval history cannot be removed.")
+     if key == "verifies" and ActionCompletion.objects.filter(action=target, evidence=source).exists():
+         raise PermissionDenied("Completion evidence cannot be removed.")
+-    if key == "informed_by" and _values(source).get("status") == "decided":
++    if key == "informed_by" and effective_values(source).get("status") == "decided":
+         raise PermissionDenied("Evidence of a taken Decision cannot be removed.")
+-    semantic.remove_relation(actor=_actor(), workspace=workspace, relation_id=relation.pk)
++    semantic.remove_relation(actor=command_actor(), workspace=workspace, relation_id=relation.pk)
+     _stale(workspace, source)
+     if source.pk != target.pk:
+         _stale(workspace, target)
+@@ -701,17 +657,17 @@
+ 
+ 
+ def _add_evidence(workspace, data):
+-    target = _lookup(workspace, data["target_id"])
++    target = lookup_object(workspace, data["target_id"])
+     document = data["document"]
+     created = "existing_id" not in document
+     if created:
+         props = {
+             key: value for key, value in document.items() if key in {"document_type", "summary", "uri", "source_system"}
+         }
+-        obj = _new(workspace, "document", document["title"], props, document.get("content"))
++        obj = create_typed_object(workspace, "document", document["title"], props, document.get("content"))
+     else:
+-        obj = _lookup(workspace, document["existing_id"], {"document"})
+-    _ensure_evidence(obj)
++        obj = lookup_object(workspace, document["existing_id"], {"document"})
++    validate_evidence(obj)
+     observed_at = data.get("observed_at")
+     if observed_at and observed_at > timezone.now():
+         raise ValidationError({"observed_at": "Observation cannot be in the future."})
+@@ -722,7 +678,7 @@
+         source, dest = target, obj
+     else:
+         source, dest = obj, target
+-    relation = _link(workspace, source, dest, data["relation_key"])
++    relation = link_objects(workspace, source, dest, data["relation_key"])
+     record = EvidenceRecord.objects.filter(
+         workspace=workspace,
+         document=obj,
+@@ -739,8 +695,8 @@
+             relation=relation,
+             observed_at=observed_at,
+             content_hash=claimed_hash,
+-            created_by_id=_user_id(),
+-            updated_by_id=_user_id(),
++            created_by_id=command_user_id(),
++            updated_by_id=command_user_id(),
+         )
+         emit(
+             "EvidenceAdded",
+@@ -755,7 +711,7 @@
+             },
+         )
+     return {
+-        **_object_data(target),
++        **object_result(target),
+         "document_id": str(obj.pk),
+         "relation_id": str(relation.pk),
+         "evidence_record_id": str(record.pk),
+@@ -773,20 +729,25 @@
+         from .operations import dispatch as operation_dispatch
+ 
+         return operation_dispatch(workspace, name, data)
+-    _context()
++    command_context()
+     # Lazy seed belongs to this command's transaction and provenance, with no separate commit.
+-    if _actor().actor_type == "human":
+-        semantic.initialize_semantic_model(actor=_actor(), workspace=workspace)
++    if command_actor().actor_type == "human":
++        semantic.initialize_semantic_model(actor=command_actor(), workspace=workspace)
+     if name == "CreateObject":
+         return _create_object(workspace, data)
+     if name == "UpdateObject":
+         return _update(workspace, data)
++    if name == "InitializeObjectProperties":
++        obj = semantic.initialize_object_properties(
++            actor=command_actor(), workspace=workspace, object_id=data["object_id"]
++        )
++        if command_context().changes:
++            emit("InitializeObjectProperties", {"object_id": obj.pk})
++        return property_snapshot_result(obj)
+     if name == "LinkObjects":
+-        source, target = _lookup(workspace, data["source_id"]), _lookup(workspace, data["target_id"])
+-        relation = _link(workspace, source, target, kind_id=data["relation_type_id"])
+-        from plane.radar.api.serializers import RelationSerializer
+-
+-        return {"relation": RelationSerializer(relation).data}
++        source, target = lookup_object(workspace, data["source_id"]), lookup_object(workspace, data["target_id"])
++        relation = link_objects(workspace, source, target, kind_id=data["relation_type_id"])
++        return {"relation": relation_result(relation)}
+     if name == "UnlinkObjects":
+         return _unlink(workspace, data)
+     if name == "CreateAction":
+--- baseline/apps/api/plane/radar/commands/inputs.py
++++ current/apps/api/plane/radar/commands/inputs.py
+@@ -104,6 +104,10 @@
+         return data
+ 
+ 
++class InitializeObjectPropertiesInput(StrictSerializer):
++    object_id = serializers.UUIDField()
++
++
+ class LinkObjectsInput(StrictSerializer):
+     source_id = serializers.UUIDField()
+     target_id = serializers.UUIDField()
+@@ -280,6 +284,7 @@
+ 
+ 
+ INPUTS = {
++    "InitializeObjectProperties": InitializeObjectPropertiesInput,
+     "AddComment": AddCommentInput,
+     "EditComment": EditCommentInput,
+     "DeleteComment": CollaborationItemInput,
+--- baseline/apps/api/plane/radar/commands/objects.py
++++ current/apps/api/plane/radar/commands/objects.py
+@@ -2,7 +2,7 @@
+ from .actor import Actor
+ from .compatibility import PendingCommand, invoke
+ from .execution import run_internal
+-from .primitives_objects import _authorize as _authorize
++from .primitives_objects import authorize_primitive as authorize_primitive
+ from . import primitives_objects as primitives
+ 
+ 
+--- baseline/apps/api/plane/radar/commands/operations.py
++++ current/apps/api/plane/radar/commands/operations.py
+@@ -9,7 +9,10 @@
+ from plane.radar.ontology.schema import load_schema
+ from plane.radar.mutation import json_value
+ from . import primitives_semantic as semantic
+-from .handlers import _actor, _ensure_evidence, _link, _lookup, _new, _object_data, _patch_properties, _user_id, _values
++from .context import command_actor, command_user_id
++from .queries import validate_evidence, lookup_object, effective_values
++from .results import object_result
++from .handlers import link_objects, create_typed_object, patch_object_properties
+ from .execution import emit
+ 
+ OPERATIONS = {
+@@ -56,7 +59,7 @@
+         raise PermissionDenied("Every reference must have an explicit identity in this context.")
+ 
+ 
+-def _identify(workspace, obj, context):
++def identify_runtime_object(workspace, obj, context):
+     existing = RuntimeObjectIdentity.objects.filter(workspace=workspace, object=obj).first()
+     if existing:
+         if existing.context != context:
+@@ -71,51 +74,51 @@
+         object=obj,
+         context=context,
+         external_id=f"{prefix}-{timezone.now():%Y%m%d}-{uuid4().hex[:6].upper()}",
+-        created_by_id=_user_id(),
+-        updated_by_id=_user_id(),
++        created_by_id=command_user_id(),
++        updated_by_id=command_user_id(),
+     )
+ 
+ 
+ def _record(workspace, obj, values):
+     record, _ = OperationalRecord.objects.get_or_create(
+-        workspace=workspace, object=obj, defaults={"created_by_id": _user_id()}
++        workspace=workspace, object=obj, defaults={"created_by_id": command_user_id()}
+     )
+     record.data = {**record.data, **json_value(values)}
+-    record.updated_by_id = _user_id()
++    record.updated_by_id = command_user_id()
+     record.save()
+-    semantic._touch([obj], _user_id())
++    semantic.touch_objects([obj], command_user_id())
+ 
+ 
+ def _document(workspace, context, title, source, text):
+-    doc = _new(workspace, "document", title, {"source_system": source}, content=f"<p>{escape(text)}</p>")
+-    _identify(workspace, doc, context)
++    doc = create_typed_object(workspace, "document", title, {"source_system": source}, content=f"<p>{escape(text)}</p>")
++    identify_runtime_object(workspace, doc, context)
+     return doc
+ 
+ 
+ def _capture(workspace, data):
+-    case = _new(workspace, "case", data["case_title"], {})
+-    issue = _new(
++    case = create_typed_object(workspace, "case", data["case_title"], {})
++    issue = create_typed_object(
+         workspace,
+         "management_item",
+         data["title"],
+         {"kind": "issue", **({"priority": data["priority"]} if "priority" in data else {})},
+     )
+     for obj in (case, issue):
+-        _identify(workspace, obj, data["context"])
++        identify_runtime_object(workspace, obj, data["context"])
+     evidence = _document(workspace, data["context"], data["evidence_title"], data["source"], data["source"])
+-    _link(workspace, case, issue, "contains")
+-    _link(workspace, evidence, issue, "evidences")
++    link_objects(workspace, case, issue, "contains")
++    link_objects(workspace, evidence, issue, "evidences")
+     if "owner_id" in data:
+-        _link(workspace, issue, _lookup(workspace, data["owner_id"], {"person"}), "owned_by")
++        link_objects(workspace, issue, lookup_object(workspace, data["owner_id"], {"person"}), "owned_by")
+     emit("IssueCaptured", {"case_id": case.pk, "issue_id": issue.pk, "evidence_id": evidence.pk})
+-    return _object_data(issue)
++    return object_result(issue)
+ 
+ 
+ def _delegate(workspace, data):
+-    action = _lookup(workspace, data["action_id"], {"action"})
+-    if _values(action)["status"] not in {"todo", "in_progress", "waiting"}:
++    action = lookup_object(workspace, data["action_id"], {"action"})
++    if effective_values(action)["status"] not in {"todo", "in_progress", "waiting"}:
+         raise ValidationError("Only an active Action can be delegated.")
+-    actor = _actor()
++    actor = command_actor()
+     user_id = actor.actor_id if actor.actor_type == "human" else actor.on_behalf_of
+     identity = PersonIdentity.objects.filter(workspace=workspace, user_id=user_id, is_active=True).first()
+     credential = (
+@@ -145,17 +148,18 @@
+     ):
+         raise PermissionDenied("Delegation requires the owner or a configured context manager.")
+     executors = [
+-        _lookup(workspace, pk, {"person"}) for pk in dict.fromkeys(data.get("executor_ids") or [data["executor_id"]])
++        lookup_object(workspace, pk, {"person"})
++        for pk in dict.fromkeys(data.get("executor_ids") or [data["executor_id"]])
+     ]
+     for edge in Relation.objects.filter(
+         workspace=workspace, target=action, relation_type__key="commits_to", source__object_type__key="commitment"
+     ).select_related("source"):
+-        if _values(edge.source).get("status") == "confirmed":
+-            _patch_properties(workspace, edge.source, {"status": "superseded"})
++        if effective_values(edge.source).get("status") == "confirmed":
++            patch_object_properties(workspace, edge.source, {"status": "superseded"})
+     for edge in Relation.objects.filter(workspace=workspace, source=action, relation_type__key="assigned_to"):
+         semantic.remove_relation(actor=actor, workspace=workspace, relation_id=edge.pk)
+     for person in executors:
+-        _link(workspace, action, person, "assigned_to")
++        link_objects(workspace, action, person, "assigned_to")
+     _record(
+         workspace,
+         action,
+@@ -174,35 +178,35 @@
+         },
+     )
+     emit("ActionDelegated", {"action_id": action.pk, "executor_ids": [p.pk for p in executors], "state": "proposed"})
+-    return _object_data(action)
++    return object_result(action)
+ 
+ 
+ def _review(workspace, data):
+-    obj = _lookup(workspace, data["target_id"], set(load_schema()["object_types"]) - {"person"})
+-    evidence = _lookup(workspace, data["evidence_id"], {"document"})
+-    _ensure_evidence(evidence)
++    obj = lookup_object(workspace, data["target_id"], set(load_schema()["object_types"]) - {"person"})
++    evidence = lookup_object(workspace, data["evidence_id"], {"document"})
++    validate_evidence(evidence)
+     disposition = data.get("disposition")
+     if disposition:
+         transitions = {"management_item": {"resolved": "done"}, "risk": {"resolved": "closed", "accepted": "accepted"}}
+         new_status = transitions.get(obj.object_type.key, {}).get(disposition)
+         terminal = load_schema()["object_types"][obj.object_type.key]["status"].get("terminal", [])
+-        if new_status is None or _values(obj)["status"] in terminal:
++        if new_status is None or effective_values(obj)["status"] in terminal:
+             raise ValidationError("Disposition is not valid for this type/status.")
+-        _patch_properties(workspace, obj, {"status": new_status})
++        patch_object_properties(workspace, obj, {"status": new_status})
+     old = OperationalRecord.objects.filter(object=obj).first()
+-    review = {**data, "actor": _actor().actor_id, "at": timezone.now()}
++    review = {**data, "actor": command_actor().actor_id, "at": timezone.now()}
+     _record(
+         workspace,
+         obj,
+         {"review": review, "reviews": [*(old.data.get("reviews", []) if old else []), json_value(review)]},
+     )
+     emit("ObjectReviewed", {"object_id": obj.pk, "evidence_id": evidence.pk, "disposition": disposition})
+-    return _object_data(obj)
++    return object_result(obj)
+ 
+ 
+ def _measure(workspace, data):
+-    obj = _lookup(workspace, data["indicator_id"], {"indicator"})
+-    values = _values(obj)
++    obj = lookup_object(workspace, data["indicator_id"], {"indicator"})
++    values = effective_values(obj)
+     if values["status"] != "active":
+         raise ValidationError("Measurement requires an active Indicator.")
+     if data["measured_at"] > timezone.now():
+@@ -213,21 +217,21 @@
+         if data["measured_at"] <= datetime.fromisoformat(values["measured_at"].replace("Z", "+00:00")):
+             raise ValidationError({"code": "measurement_out_of_order"})
+     if "evidence_id" in data:
+-        evidence = _lookup(workspace, data["evidence_id"], {"document"})
+-        _ensure_evidence(evidence)
++        evidence = lookup_object(workspace, data["evidence_id"], {"document"})
++        validate_evidence(evidence)
+     else:
+         evidence = _document(
+             workspace, data["context"], data["evidence_title"], data["evidence_source"], data["evidence_text"]
+         )
+-    _link(workspace, evidence, obj, "evidences")
+-    _patch_properties(workspace, obj, {"current": data["value"], "measured_at": data["measured_at"].isoformat()})
++    link_objects(workspace, evidence, obj, "evidences")
++    patch_object_properties(workspace, obj, {"current": data["value"], "measured_at": data["measured_at"].isoformat()})
+     previous = OperationalRecord.objects.filter(object=obj).first()
+     measurement = json_value(
+         {
+             "value": data["value"],
+             "measured_at": data["measured_at"],
+             "evidence_id": evidence.pk,
+-            "actor": _actor().actor_id,
++            "actor": command_actor().actor_id,
+             "at": timezone.now(),
+         }
+     )
+@@ -240,7 +244,7 @@
+         },
+     )
+     emit("MeasurementRecorded", {"indicator_id": obj.pk, "evidence_id": evidence.pk, "value": data["value"]})
+-    return _object_data(obj)
++    return object_result(obj)
+ 
+ 
+ def dispatch(workspace, name, data):
+--- baseline/apps/api/plane/radar/commands/primitives_objects.py
++++ current/apps/api/plane/radar/commands/primitives_objects.py
+@@ -3,16 +3,17 @@
+ from uuid import UUID
+ from django.db import transaction
+ from rest_framework.exceptions import NotFound, PermissionDenied, ValidationError
+-from plane.db.models import User, Workspace, WorkspaceMember
++from plane.db.models import Workspace
+ from plane.utils.content_validator import validate_html_content
+ from plane.radar.models import Object, ObjectType
+ from plane.radar.ontology.schema import load_schema
+ from .actor import Actor
++from .access import require_human_membership
+ 
+ SYSTEM_TYPES = tuple((key, spec["label"]) for key, spec in load_schema()["object_types"].items())
+ 
+ 
+-def _authorize(actor: Actor, workspace: Workspace, *, write: bool = True) -> UUID | None:
++def authorize_primitive(actor: Actor, workspace: Workspace, *, write: bool = True) -> UUID | None:
+     from plane.radar.mutation import current_mutation
+ 
+     context = current_mutation.get()
+@@ -26,30 +27,24 @@
+         raise PermissionDenied("An explicit human actor with source and reason is required.")
+     if not Workspace.objects.filter(pk=workspace.pk).exists():
+         raise NotFound("Workspace not found.")
+-    if not User.objects.filter(pk=actor.actor_id, is_active=True, is_bot=False).exists():
+-        raise PermissionDenied("Human actor is not active.")
+-    roles = [15, 20] if write else [5, 15, 20]
+-    if not WorkspaceMember.objects.filter(
+-        workspace_id=workspace.pk, member_id=actor.actor_id, role__in=roles, is_active=True
+-    ).exists():
+-        raise PermissionDenied("Workspace membership does not permit this operation.")
++    require_human_membership(actor, workspace, write=write)
+     return actor.actor_id
+ 
+ 
+-def _type(workspace: Workspace, type_id: UUID) -> ObjectType:
++def get_object_type(workspace: Workspace, type_id: UUID) -> ObjectType:
+     try:
+         return ObjectType.objects.get(pk=type_id, workspace_id=workspace.pk, is_active=True)
+     except ObjectType.DoesNotExist:
+         raise ValidationError({"object_type": "Select an active type from this workspace."})
+ 
+ 
+-def _title(value: str) -> str:
++def validate_title(value: str) -> str:
+     if not isinstance(value, str) or not value.strip() or len(value.strip()) > 255:
+         raise ValidationError({"title": "Title must contain 1–255 characters."})
+     return value.strip()
+ 
+ 
+-def _content(value: str | None) -> str:
++def validate_content(value: str | None) -> str:
+     if value is None:
+         return ""
+     if not isinstance(value, str):
+@@ -66,7 +61,7 @@
+ 
+     if current_mutation.get() is None:
+         raise PermissionDenied("Schema initialization requires an audited command context.")
+-    user_id = _authorize(actor, workspace, write=False)
++    user_id = authorize_primitive(actor, workspace, write=False)
+     # Serialize initialization per tenant, including concurrent first accesses.
+     Workspace.objects.select_for_update().get(pk=workspace.pk)
+     for key, name in SYSTEM_TYPES:
+@@ -100,17 +95,17 @@
+     content: str | None = None,
+     initial_values: Mapping[str, Any] | None = None,
+ ) -> Object:
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     from .primitives_semantic import initialize_semantic_model, materialize_defaults
+ 
+     if actor.actor_type == "human":
+         initialize_semantic_model(actor=actor, workspace=workspace)
+-    selected_type = _type(workspace, object_type)
++    selected_type = get_object_type(workspace, object_type)
+     result = Object(
+         workspace=workspace,
+         object_type=selected_type,
+-        title=_title(title),
+-        content=_content(content),
++        title=validate_title(title),
++        content=validate_content(content),
+         created_by_id=user_id,
+         updated_by_id=user_id,
+     )
+@@ -140,18 +135,18 @@
+ 
+ @transaction.atomic
+ def update_object(*, actor: Actor, workspace: Workspace, object_id: UUID, changes: Mapping[str, Any]) -> Object:
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     if set(changes) - {"title", "content", "object_type"} or not changes:
+         raise ValidationError("Provide title, content or object_type; audit fields are read-only.")
+     try:
+         result = Object.objects.select_for_update().get(pk=object_id, workspace=workspace)
+     except Object.DoesNotExist:
+         raise NotFound("Object not found in this workspace.")
+-    selected_type = _type(workspace, changes.get("object_type", result.object_type_id))
++    selected_type = get_object_type(workspace, changes.get("object_type", result.object_type_id))
+     if "title" in changes:
+-        result.title = _title(changes["title"])
++        result.title = validate_title(changes["title"])
+     if "content" in changes:
+-        result.content = _content(changes["content"])
++        result.content = validate_content(changes["content"])
+     if selected_type.pk != result.object_type_id:
+         from .primitives_semantic import assert_type_change_safe
+ 
+--- baseline/apps/api/plane/radar/commands/primitives_semantic.py
++++ current/apps/api/plane/radar/commands/primitives_semantic.py
+@@ -11,7 +11,7 @@
+ from plane.radar.models import Object, PropertyDefinition, PropertyValue, RelationType, Relation
+ from plane.radar.ontology.schema import load_schema
+ from .actor import Actor
+-from .primitives_objects import _authorize
++from .primitives_objects import authorize_primitive
+ 
+ 
+ def validate_value(definition: PropertyDefinition, value, workspace: Workspace):
+@@ -61,7 +61,7 @@
+ def initialize_semantic_model(*, actor: Actor, workspace: Workspace):
+     from .primitives_objects import initialize_object_types
+ 
+-    user_id = _authorize(actor, workspace, write=False)
++    user_id = authorize_primitive(actor, workspace, write=False)
+     types = {item.key: item for item in initialize_object_types(actor=actor, workspace=workspace)}
+     schema = load_schema()
+     for key, spec in schema["object_types"].items():
+@@ -107,7 +107,7 @@
+         )
+ 
+ 
+-def _object(workspace: Workspace, object_id: UUID, *, lock=False) -> Object:
++def get_active_object(workspace: Workspace, object_id: UUID, *, lock=False) -> Object:
+     queryset = Object.objects.select_related("object_type")
+     if lock:
+         queryset = queryset.select_for_update(of=("self",))
+@@ -132,7 +132,7 @@
+         raise ValidationError({"definition": "Select an active definition for this object type and workspace."})
+ 
+ 
+-def _touch(objects: list[Object], user_id: UUID):
++def touch_objects(objects: list[Object], user_id: UUID):
+     from plane.radar.mutation import current_mutation
+ 
+     context = current_mutation.get()
+@@ -169,13 +169,13 @@
+ 
+ @transaction.atomic
+ def initialize_object_properties(*, actor: Actor, workspace: Workspace, object_id: UUID) -> Object:
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     initialize_semantic_model(actor=actor, workspace=workspace)
+-    obj = _object(workspace, object_id, lock=True)
++    obj = get_active_object(workspace, object_id, lock=True)
+     changed = materialize_defaults(obj, user_id)
+     changed = patch_properties(actor=actor, workspace=workspace, obj=obj, values={}) or changed
+     if changed:
+-        _touch([obj], user_id)
++        touch_objects([obj], user_id)
+     return obj
+ 
+ 
+@@ -240,7 +240,7 @@
+ 
+ @transaction.atomic
+ def patch_properties(*, actor: Actor, workspace: Workspace, obj: Object, values: dict, remove=()) -> bool:
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     definitions, changes, _ = plan_properties(obj, values, remove)
+     if "status" in values and values["status"] != effective_values(obj).get("status"):
+         validate_required_relations(obj)
+@@ -270,7 +270,7 @@
+             stored.save(update_fields=["deleted_at", "updated_by", "updated_at"])
+             changed = True
+     if changed:
+-        _touch([obj], user_id)
++        touch_objects([obj], user_id)
+     return changed
+ 
+ 
+@@ -278,8 +278,8 @@
+ def set_property_value(
+     *, actor: Actor, workspace: Workspace, object_id: UUID, definition_id: UUID, value
+ ) -> PropertyValue:
+-    _authorize(actor, workspace)
+-    obj = _object(workspace, object_id, lock=True)
++    authorize_primitive(actor, workspace)
++    obj = get_active_object(workspace, object_id, lock=True)
+     definition = _definition(workspace, obj, definition_id)
+     patch_properties(actor=actor, workspace=workspace, obj=obj, values={definition.key: value})
+     return PropertyValue.objects.get(workspace=workspace, object=obj, definition=definition)
+@@ -287,8 +287,8 @@
+ 
+ @transaction.atomic
+ def remove_property_value(*, actor: Actor, workspace: Workspace, object_id: UUID, definition_id: UUID):
+-    _authorize(actor, workspace)
+-    obj = _object(workspace, object_id, lock=True)
++    authorize_primitive(actor, workspace)
++    obj = get_active_object(workspace, object_id, lock=True)
+     definition = _definition(workspace, obj, definition_id)
+     patch_properties(actor=actor, workspace=workspace, obj=obj, values={}, remove=[definition.key])
+ 
+@@ -318,7 +318,7 @@
+ def create_relation(
+     *, actor: Actor, workspace: Workspace, relation_type_id: UUID, source_id: UUID, target_id: UUID
+ ) -> Relation:
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     source, target = _endpoints(workspace, source_id, target_id)
+     try:
+         kind = RelationType.objects.get(pk=relation_type_id, workspace=workspace, is_active=True)
+@@ -352,13 +352,13 @@
+         created_by_id=user_id,
+         updated_by_id=user_id,
+     )
+-    _touch([source, target], user_id)
++    touch_objects([source, target], user_id)
+     return result
+ 
+ 
+ @transaction.atomic
+ def remove_relation(*, actor: Actor, workspace: Workspace, relation_id: UUID):
+-    user_id = _authorize(actor, workspace)
++    user_id = authorize_primitive(actor, workspace)
+     try:
+         result = Relation.objects.get(pk=relation_id, workspace=workspace)
+     except Relation.DoesNotExist:
+@@ -372,7 +372,7 @@
+         result.deleted_at = timezone.now()
+         result.updated_by_id = user_id
+         result.save(update_fields=["deleted_at", "updated_by", "updated_at"])
+-        _touch([source, target], user_id)
++        touch_objects([source, target], user_id)
+ 
+ 
+ def active_relations(workspace: Workspace):
+--- baseline/apps/api/plane/radar/commands/runtime_control.py
++++ current/apps/api/plane/radar/commands/runtime_control.py
+@@ -7,15 +7,15 @@
+ from rest_framework.exceptions import PermissionDenied, ValidationError
+ from plane.radar.models import PersonIdentity, RuntimeCredential, RuntimeObjectIdentity
+ from plane.radar.ontology.schema import load_schema
+-from .control import _admin
++from .control import require_workspace_admin
+ from .execution import run_internal
+-from .handlers import _lookup
++from .queries import lookup_object
+ 
+ 
+ def bind_runtime_object(*, actor, workspace, object_id, external_id, context):
+     def operation():
+-        _admin(actor, workspace)
+-        obj = _lookup(workspace, object_id, active_person=False)
++        require_workspace_admin(actor, workspace)
++        obj = lookup_object(workspace, object_id, active_person=False)
+         spec = load_schema()["object_types"].get(obj.object_type.key)
+         if spec is None:
+             raise ValidationError("This Object type has no canonical runtime identity contract.")
+@@ -60,7 +60,7 @@
+     token = secrets.token_urlsafe(48)
+ 
+     def operation():
+-        _admin(actor, workspace)
++        require_workspace_admin(actor, workspace)
+         if not isinstance(actor_id, UUID) or type(is_manager) is not bool:
+             raise ValidationError("Use an agent UUID and an explicit manager flag.")
+         if channel not in {"telegram", "plane"}:
+--- baseline/apps/api/plane/radar/commands/semantic.py
++++ current/apps/api/plane/radar/commands/semantic.py
+@@ -1,10 +1,10 @@
+ from rest_framework.exceptions import ValidationError
+-from plane.radar.models import PropertyDefinition, PropertyValue, Relation
++from plane.radar.models import Object, PropertyDefinition, PropertyValue, Relation
+ from .actor import Actor
+ from .compatibility import PendingCommand, invoke
+ from .execution import authorize, run_internal
+ from .primitives_semantic import (
+-    _object,
++    get_active_object,
+     active_relations as active_relations,
+ )
+ from . import primitives_semantic as primitives
+@@ -20,20 +20,35 @@
+     )
+ 
+ 
++def initialize_properties_command(*, actor: Actor, workspace, object_id, expected_versions=None, idempotency_key=None):
++    """Public defaults intention with the same ledger/replay contract as domain writes."""
++    return invoke(
++        actor=actor,
++        workspace=workspace,
++        name="InitializeObjectProperties",
++        data={"object_id": object_id},
++        expected_versions=expected_versions,
++        idempotency_key=idempotency_key,
++    )
++
++
+ def initialize_object_properties(*, actor: Actor, workspace, object_id, expected_versions=None, idempotency_key=None):
+-    def operation():
+-        if expected_versions is not None:
+-            from .execution import _versions
+-
+-            _versions(workspace, expected_versions, {object_id})
+-        return primitives.initialize_object_properties(actor=actor, workspace=workspace, object_id=object_id)
+-
+-    return run_internal(actor=actor, workspace=workspace, name="InitializeObjectProperties", operation=operation)
++    """Trusted Python compatibility; transport callers use the confirmed command snapshot."""
++    result = initialize_properties_command(
++        actor=actor,
++        workspace=workspace,
++        object_id=object_id,
++        expected_versions=expected_versions,
++        idempotency_key=idempotency_key,
++    )
++    if isinstance(result, PendingCommand):
++        return result
++    return Object.objects.get(workspace=workspace, pk=result["data"]["object"]["id"])
+ 
+ 
+ def _selected(actor, workspace, object_id, definition_id):
+     authorize(actor, workspace, "UpdateObject")
+-    obj = _object(workspace, object_id)
++    obj = get_active_object(workspace, object_id)
+     definition = PropertyDefinition.objects.filter(
+         workspace=workspace, object_type=obj.object_type, pk=definition_id, is_active=True
+     ).first()
+--- baseline/apps/api/plane/radar/management/commands/radar_runtime_provision.py
++++ current/apps/api/plane/radar/management/commands/radar_runtime_provision.py
+@@ -7,7 +7,7 @@
+ from plane.radar.commands.actor import Actor
+ from plane.radar.commands import initialize_semantic_model, configure_person_identity, register_actor_grant
+ from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+-from plane.radar.commands.control import _admin
++from plane.radar.commands.control import require_workspace_admin
+ from plane.radar.models import PersonIdentity
+ from plane.radar.ontology.schema import load_schema
+ 
+@@ -38,7 +38,7 @@
+             source="radar.runtime-cli",
+             correlation_id=uuid4(),
+         )
+-        _admin(actor, workspace)
++        require_workspace_admin(actor, workspace)
+         initialize_semantic_model(actor=actor, workspace=workspace)
+         if options["bind_object"]:
+             identity = bind_runtime_object(
+--- baseline/apps/api/plane/radar/tests/test_commands.py
++++ current/apps/api/plane/radar/tests/test_commands.py
+@@ -104,7 +104,7 @@
+         actor_type=actor_type,
+         actor_id=actor.actor_id,
+         delegator_id=ctx[0].pk,
+-        commands=[name for name in INPUTS if name != "ApproveDecision"],
++        commands=[name for name in INPUTS if name not in {"ApproveDecision", "InitializeObjectProperties"}],
+         object_types=["*"],
+         fields=["*"],
+         requires_approval=requires_approval,
+--- baseline/apps/api/plane/radar/tests/test_runtime_contract.py
++++ current/apps/api/plane/radar/tests/test_runtime_contract.py
+@@ -257,15 +257,15 @@
+     assert pending.status_code == 202, pending.data
+     result = resolve(runtime, pending.data)
+     assert result.status_code == 200, result.data
+-    from plane.radar.commands.handlers import _values
+-
+-    assert _values(commitment)["status"] == "superseded"
++    from plane.radar.commands.handlers import effective_values
++
++    assert effective_values(commitment)["status"] == "superseded"
+     terms = OperationalRecord.objects.get(object=action).data["assignment"]
+     assert terms["state"] == "proposed" and terms["accepted_at"] is None
+ 
+ 
+ def test_measurement_review_and_temporal_rules(runtime):
+-    from plane.radar.commands.handlers import _values
++    from plane.radar.commands.handlers import effective_values
+ 
+     indicator = create(runtime[0], "indicator")
+     external = bind(runtime, indicator, "IND")
+@@ -281,7 +281,7 @@
+     assert pending.status_code == 202, pending.data
+     result = resolve(runtime, pending.data)
+     assert result.status_code == 200, result.data
+-    assert _values(indicator)["current"] == 12
++    assert effective_values(indicator)["current"] == 12
+     assert (
+         prepare(runtime, "record_measurement", external, parameters, source).data["code"] == "measurement_out_of_order"
+     )
+@@ -298,7 +298,7 @@
+     )
+     assert reviewed.status_code == 202, reviewed.data
+     assert resolve(runtime, reviewed.data).status_code == 200
+-    assert _values(risk)["status"] == "closed"
++    assert effective_values(risk)["status"] == "closed"
+ 
+ 
+ def test_authenticated_scope_and_source_cannot_be_supplied_by_payload(runtime):
+--- baseline/apps/web/components/radar/object-page.tsx
++++ current/apps/web/components/radar/object-page.tsx
+@@ -11,6 +11,8 @@
+ import { RadarCollaborationPanel } from "./collaboration-panel";
+ import { RadarSemanticPanel } from "./semantic-panel";
+ import { RadarNotesEditor } from "./notes-editor";
++import { actorLabel } from "./actor-summary";
++import { semanticError } from "./semantic-utils";
+ 
+ const ObjectForm = observer(function ObjectForm({ object, canWrite }: { object: RadarObject; canWrite: boolean }) {
+   const store = useRadarStore();
+@@ -33,7 +35,7 @@
+       setToast({ type: "success", title: "Object saved", message: "Changes persisted." });
+     } catch (cause) {
+       console.error("RADAR update failed", cause);
+-      setError("Could not save object. Check your membership and try again.");
++      setError(semanticError(cause));
+     } finally {
+       setSaving(false);
+     }
+@@ -64,9 +66,13 @@
+       </div>
+       <dl className="grid grid-cols-[120px_1fr] gap-2 text-13" data-testid="radar-audit">
+         <dt>Created by</dt>
+-        <dd data-testid="radar-created-by">{object.created_by ?? "Deleted user"}</dd>
++        <dd data-testid="radar-created-by" title={object.created_actor?.source ?? undefined}>
++          {actorLabel(object.created_actor, object.created_by)}
++        </dd>
+         <dt>Updated by</dt>
+-        <dd data-testid="radar-updated-by">{object.updated_by ?? "Deleted user"}</dd>
++        <dd data-testid="radar-updated-by" title={object.updated_actor?.source ?? undefined}>
++          {actorLabel(object.updated_actor, object.updated_by)}
++        </dd>
+         <dt>Version</dt>
+         <dd data-testid="radar-version">{object.version}</dd>
+       </dl>
+--- baseline/apps/web/components/radar/semantic-utils.test.ts
++++ current/apps/web/components/radar/semantic-utils.test.ts
+@@ -106,6 +106,9 @@
+       "due_date cannot precede start_date."
+     );
+     expect(semanticError(new Error("Offline"))).toBe("Offline");
++    expect(semanticError({ response: { status: 409, data: { code: "revision_conflict" } } })).toBe(
++      "This change is based on an older snapshot. Refresh and review before trying again."
++    );
+   });
+ });
+ 
+--- baseline/apps/web/components/radar/semantic-utils.ts
++++ current/apps/web/components/radar/semantic-utils.ts
+@@ -91,6 +91,8 @@
+ export function semanticError(cause: unknown): string {
+   if (cause && typeof cause === "object" && "response" in cause) {
+     const response = cause.response;
++    if (response && typeof response === "object" && "status" in response && response.status === 409)
++      return "This change is based on an older snapshot. Refresh and review before trying again.";
+     if (response && typeof response === "object" && "data" in response) {
+       const detail = messages(response.data).slice(0, 3).join(" ");
+       if (detail) return detail;
+--- baseline/apps/web/services/radar/radar.service.test.ts
++++ current/apps/web/services/radar/radar.service.test.ts
+@@ -112,7 +112,7 @@
+       data: { status: "pending_approval", command_id: "command", approval_id: "approval" },
+     });
+     await expect(
+-      new RadarService().createObject("team", { object_type: "type", title: "Draft" })
++      new RadarService().createObject("team", { object_type: "type", title: "Draft" }, context)
+     ).rejects.toBeInstanceOf(RadarApprovalPendingError);
+   });
+   it("preserves the caller's intention key and exact versions across retries", async () => {
+--- baseline/apps/web/services/radar/radar.service.ts
++++ current/apps/web/services/radar/radar.service.ts
+@@ -158,10 +158,8 @@
+   async getObject(slug: string, id: string): Promise<RadarObject> {
+     return (await this.get(`${this.path(slug)}/objects/${encodeURIComponent(id)}/`)).data;
+   }
+-  async createObject(slug: string, payload: CreateRadarObject): Promise<RadarObject> {
+-    return mutationData(
+-      (await this.post(`${this.path(slug)}/objects/`, payload, mutationConfig({ expected_versions: {} }))).data
+-    );
++  async createObject(slug: string, payload: CreateRadarObject, context: RadarMutationContext): Promise<RadarObject> {
++    return mutationData((await this.post(`${this.path(slug)}/objects/`, payload, mutationConfig(context))).data);
+   }
+   async updateObject(
+     slug: string,
+--- baseline/apps/web/services/radar/types.ts
++++ current/apps/web/services/radar/types.ts
+@@ -14,6 +14,16 @@
+   rules?: { invariants?: RadarInvariant[] };
+ };
+ 
++export type RadarActorSummary = {
++  actor_type: "human" | "agent" | "system" | "integration" | "unknown";
++  actor_id: string | null;
++  display_name: string | null;
++  user_status: "available" | "deleted" | "unknown" | "not_applicable";
++  source: string | null;
++  timestamp: string;
++  provenance_id: string | null;
++};
++
+ export type RadarObject = {
+   id: string;
+   workspace: string;
+@@ -26,6 +36,8 @@
+   updated_by: string | null;
+   created_at: string;
+   updated_at: string;
++  created_actor?: RadarActorSummary;
++  updated_actor?: RadarActorSummary;
+ };
+ 
+ export type CreateRadarObject = {
+--- baseline/apps/web/store/radar/provider.tsx
++++ current/apps/web/store/radar/provider.tsx
+@@ -1,12 +1,29 @@
+ import { createContext, useContext, useState } from "react";
++import { observer } from "mobx-react";
+ import type { ReactNode } from "react";
+ import { RadarService } from "@/services/radar/radar.service";
++import { useUser } from "@/hooks/store/user";
+ import { RadarCollaborationStore } from "./collaboration.store";
+ import { RadarRootStore } from "./root.store";
+ 
+ const CollaborationContext = createContext<RadarCollaborationStore | null>(null);
+ const RadarContext = createContext<RadarRootStore | null>(null);
+-export function RadarStoreProvider({ workspaceSlug, children }: { workspaceSlug: string; children: ReactNode }) {
++export const RadarStoreProvider = observer(function RadarStoreProvider({
++  workspaceSlug,
++  children,
++}: {
++  workspaceSlug: string;
++  children: ReactNode;
++}) {
++  const { data: user } = useUser();
++  return (
++    <RadarSessionProvider key={`${workspaceSlug}:${user?.id ?? "anonymous"}`} workspaceSlug={workspaceSlug}>
++      {children}
++    </RadarSessionProvider>
++  );
++});
++
++function RadarSessionProvider({ workspaceSlug, children }: { workspaceSlug: string; children: ReactNode }) {
+   const [store] = useState(() => new RadarRootStore(workspaceSlug, new RadarService()));
+   const [collaboration] = useState(() => new RadarCollaborationStore(workspaceSlug, new RadarService()));
+   return (
+--- baseline/apps/web/store/radar/root.store.test.ts
++++ current/apps/web/store/radar/root.store.test.ts
+@@ -136,9 +136,16 @@
+     expect(store.objects.get(object.id)?.version).toBe(2);
+     expect(store.propertySnapshots.get(object.id)?.object.version).toBe(2);
+     expect(store.relationsFor(object.id)).toBeUndefined();
+-    expect(service.setProperty).toHaveBeenCalledWith("tenant", object.id, "definition", "active", {
+-      expected_versions: { object: 1 },
+-    });
++    expect(service.setProperty).toHaveBeenCalledWith(
++      "tenant",
++      object.id,
++      "definition",
++      "active",
++      expect.objectContaining({
++        expected_versions: { object: 1 },
++        idempotency_key: expect.any(String),
++      })
++    );
+   });
+   it("invalidates both endpoint snapshots when a relation changes", async () => {
+     const service = client();
+@@ -159,9 +166,14 @@
+     expect(store.propertiesFor(object.id)).toBeUndefined();
+     expect(store.relationsFor(object.id)).toBeUndefined();
+     await store.removeRelation("edge");
+-    expect(service.removeRelation).toHaveBeenCalledWith("tenant", "edge", {
+-      expected_versions: { object: 2, target: 2 },
+-    });
++    expect(service.removeRelation).toHaveBeenCalledWith(
++      "tenant",
++      "edge",
++      expect.objectContaining({
++        expected_versions: { object: 2, target: 2 },
++        idempotency_key: expect.any(String),
++      })
++    );
+     expect(store.objects.get(object.id)?.version).toBe(3);
+   });
+   it("preserves cache on failed semantic mutations", async () => {
+@@ -218,3 +230,138 @@
+     expect(service.getProperties).toHaveBeenCalledTimes(3);
+   });
+ });
++
++describe("RADAR mutation intentions", () => {
++  it("retries a lost creation response with the same input and key, then retires it", async () => {
++    const service = client();
++    vi.mocked(service.createObject).mockRejectedValueOnce(new Error("Response lost"));
++    const store = new RadarRootStore("tenant", service);
++    const payload = { object_type: type.id, title: "Create once", properties: { tags: ["first"] } };
++    await expect(store.createObject(payload)).rejects.toThrow("Response lost");
++    await store.createObject({ properties: { tags: ["first"] }, title: "Create once", object_type: type.id });
++    const calls = vi.mocked(service.createObject).mock.calls;
++    expect(calls[0]).toEqual(calls[1]);
++    expect(calls[0][2]).toMatchObject({ expected_versions: {}, idempotency_key: expect.any(String) });
++    expect(store.listedObjects).toHaveLength(1);
++    await store.createObject(payload);
++    expect(calls[2][2].idempotency_key).not.toBe(calls[0][2].idempotency_key);
++  });
++  it("preserves reviewed versions after an uncertain commit and a fresh read", async () => {
++    const service = client();
++    const store = new RadarRootStore("tenant", service);
++    await store.getObject(object.id);
++    vi.mocked(service.updateObject).mockRejectedValueOnce(new Error("Timeout after commit"));
++    await expect(store.updateObject(object.id, { title: "Edit" })).rejects.toThrow("Timeout");
++    vi.mocked(service.getObject).mockResolvedValue({ ...object, version: 2 });
++    await store.getObject(object.id);
++    await store.updateObject(object.id, { title: "Edit" });
++    const calls = vi.mocked(service.updateObject).mock.calls;
++    expect(calls[0]).toEqual(calls[1]);
++    expect(calls[1][3].expected_versions).toEqual({ object: 1 });
++  });
++  it("copies payloads and uses a new key for changed input", async () => {
++    const service = client();
++    vi.mocked(service.createObject).mockRejectedValueOnce(new Error("Lost"));
++    const store = new RadarRootStore("tenant", service);
++    const payload = { object_type: type.id, title: "Before", properties: { tags: ["original"] } };
++    await expect(store.createObject(payload)).rejects.toThrow();
++    payload.title = "After";
++    payload.properties.tags.push("additional");
++    await store.createObject(payload);
++    const calls = vi.mocked(service.createObject).mock.calls;
++    expect(calls[0][1]).toEqual({ object_type: type.id, title: "Before", properties: { tags: ["original"] } });
++    expect(calls[0][2].idempotency_key).not.toBe(calls[1][2].idempotency_key);
++  });
++  it("does not automatically rebase conflicts; reviewed resubmission creates a new intent", async () => {
++    const service = client();
++    const store = new RadarRootStore("tenant", service);
++    await store.getObject(object.id);
++    vi.mocked(service.updateObject).mockRejectedValueOnce({ response: { status: 409 } });
++    await expect(store.updateObject(object.id, { title: "Edit" })).rejects.toBeDefined();
++    expect(service.updateObject).toHaveBeenCalledTimes(1);
++    vi.mocked(service.getObject).mockResolvedValue({ ...object, version: 3 });
++    await store.getObject(object.id);
++    await store.updateObject(object.id, { title: "Edit" });
++    const calls = vi.mocked(service.updateObject).mock.calls;
++    expect(calls[1][3].expected_versions).toEqual({ object: 3 });
++    expect(calls[1][3].idempotency_key).not.toBe(calls[0][3].idempotency_key);
++  });
++  it("preserves defaults, property and relation intentions after lost responses", async () => {
++    const service = client();
++    const store = new RadarRootStore("tenant", service);
++    vi.mocked(service.listObjects).mockResolvedValue([object, { ...object, id: "target" }]);
++    await store.loadList();
++    await store.loadRelations(object.id);
++    vi.mocked(service.initializeProperties).mockRejectedValueOnce(new Error("Lost"));
++    await expect(store.initializeProperties(object.id)).rejects.toThrow("Lost");
++    await store.initializeProperties(object.id);
++    expect(vi.mocked(service.initializeProperties).mock.calls[0]).toEqual(
++      vi.mocked(service.initializeProperties).mock.calls[1]
++    );
++    vi.mocked(service.setProperty).mockRejectedValueOnce({ response: { status: 502 } });
++    await expect(store.setProperty(object.id, "definition", "active")).rejects.toBeDefined();
++    await store.setProperty(object.id, "definition", "active");
++    expect(vi.mocked(service.setProperty).mock.calls[0]).toEqual(vi.mocked(service.setProperty).mock.calls[1]);
++    vi.mocked(service.removeProperty).mockRejectedValueOnce(new Error("Lost"));
++    await expect(store.removeProperty(object.id, "definition")).rejects.toThrow("Lost");
++    await store.removeProperty(object.id, "definition");
++    expect(vi.mocked(service.removeProperty).mock.calls[0]).toEqual(vi.mocked(service.removeProperty).mock.calls[1]);
++    const payload = { relation_type: "kind", source: object.id, target: "target" };
++    vi.mocked(service.createRelation).mockRejectedValueOnce(new Error("Lost"));
++    await expect(store.createRelation(payload)).rejects.toThrow("Lost");
++    await store.createRelation(payload);
++    expect(vi.mocked(service.createRelation).mock.calls[0]).toEqual(vi.mocked(service.createRelation).mock.calls[1]);
++    vi.mocked(service.removeRelation).mockRejectedValueOnce(new Error("Lost"));
++    await expect(store.removeRelation(relation.id)).rejects.toThrow("Lost");
++    await store.removeRelation(relation.id);
++    expect(vi.mocked(service.removeRelation).mock.calls[0]).toEqual(vi.mocked(service.removeRelation).mock.calls[1]);
++  });
++  it("retains pending approval intent and adds its ID only after explicit resume", async () => {
++    const service = client();
++    const pending = Object.assign(new Error("Pending approval"), {
++      command: { status: "pending_approval", command_id: "command", approval_id: "approval" },
++    });
++    vi.mocked(service.createObject).mockRejectedValueOnce(pending).mockRejectedValueOnce(pending);
++    const store = new RadarRootStore("tenant", service);
++    const payload = { object_type: type.id, title: "Governed" };
++    await expect(store.createObject(payload)).rejects.toThrow("Pending");
++    await expect(store.createObject(payload)).rejects.toThrow("Pending");
++    expect(vi.mocked(service.createObject).mock.calls[1][2].approval_id).toBeUndefined();
++    const key = vi.mocked(service.createObject).mock.calls[0][2].idempotency_key;
++    expect(() => store.resumePendingMutation("different")).toThrow("review");
++    store.resumePendingMutation("approval");
++    await store.createObject(payload);
++    expect(vi.mocked(service.createObject).mock.calls[2][2]).toEqual({
++      expected_versions: {},
++      idempotency_key: key,
++      approval_id: "approval",
++    });
++  });
++  it("does not duplicate an in-flight submission", async () => {
++    const service = client();
++    let finish!: (value: RadarObject) => void;
++    vi.mocked(service.createObject).mockReturnValueOnce(
++      new Promise((resolve) => {
++        finish = resolve;
++      })
++    );
++    const store = new RadarRootStore("tenant", service);
++    const payload = { object_type: type.id, title: "Once" };
++    const request = store.createObject(payload);
++    await expect(store.createObject(payload)).rejects.toThrow("already being submitted");
++    expect(service.createObject).toHaveBeenCalledTimes(1);
++    finish(object);
++    await request;
++  });
++  it("isolates uncertainty between workspace/session instances", async () => {
++    const service = client();
++    vi.mocked(service.createObject).mockRejectedValueOnce(new Error("Lost"));
++    const first = new RadarRootStore("first", service);
++    const second = new RadarRootStore("second", service);
++    const payload = { object_type: type.id, title: "Once" };
++    await expect(first.createObject(payload)).rejects.toThrow();
++    await second.createObject(payload);
++    const calls = vi.mocked(service.createObject).mock.calls;
++    expect(calls[0][2].idempotency_key).not.toBe(calls[1][2].idempotency_key);
++  });
++});
+--- baseline/apps/web/store/radar/root.store.ts
++++ current/apps/web/store/radar/root.store.ts
+@@ -1,4 +1,5 @@
+ import { makeAutoObservable, runInAction } from "mobx";
++import { RadarMutationIntents } from "./mutation-intents";
+ import type { RadarService } from "../../services/radar/radar.service";
+ import type {
+   CreateRadarObject,
+@@ -43,11 +44,16 @@
+   propertySnapshots = new Map<string, RadarPropertySnapshot>();
+   relationSnapshots = new Map<string, RadarRelationSnapshot>();
+   relations = new Map<string, RadarRelation>();
++  private readonly intentions = new RadarMutationIntents();
+   constructor(
+     readonly workspaceSlug: string,
+     private readonly service: RadarClient
+   ) {
+-    makeAutoObservable<RadarRootStore, "service">(this, { workspaceSlug: false, service: false }, { autoBind: true });
++    makeAutoObservable<RadarRootStore, "service" | "intentions">(
++      this,
++      { workspaceSlug: false, service: false, intentions: false },
++      { autoBind: true }
++    );
+   }
+   get listedObjects() {
+     return this.listIds.map((id) => this.objects.get(id)).filter((item): item is RadarObject => !!item);
+@@ -84,7 +90,12 @@
+     return object;
+   }
+   async createObject(payload: CreateRadarObject) {
+-    const object = await this.service.createObject(this.workspaceSlug, payload);
++    const object = await this.intentions.run(
++      "createObject",
++      payload,
++      () => ({ expected_versions: {} }),
++      (input, context) => this.service.createObject(this.workspaceSlug, input, context)
++    );
+     runInAction(() => {
+       this.cache(object);
+       if (!this.listIds.includes(object.id)) this.listIds.unshift(object.id);
+@@ -92,7 +103,12 @@
+     return object;
+   }
+   async updateObject(id: string, payload: UpdateRadarObject) {
+-    const object = await this.service.updateObject(this.workspaceSlug, id, payload, this.mutationContext([id]));
++    const object = await this.intentions.run(
++      `updateObject:${id}`,
++      payload,
++      () => this.mutationContext([id]),
++      (input, context) => this.service.updateObject(this.workspaceSlug, id, input, context)
++    );
+     runInAction(() => this.cache(object));
+     return object;
+   }
+@@ -125,23 +141,32 @@
+     return snapshot;
+   }
+   async initializeProperties(id: string) {
+-    const snapshot = await this.service.initializeProperties(this.workspaceSlug, id, this.mutationContext([id]));
++    const snapshot = await this.intentions.run(
++      `initializeProperties:${id}`,
++      {},
++      () => this.mutationContext([id]),
++      (_input, context) => this.service.initializeProperties(this.workspaceSlug, id, context)
++    );
+     runInAction(() => this.cacheProperties(snapshot));
+     return snapshot;
+   }
+   async setProperty(id: string, definition: string, value: RadarPropertyData) {
+-    const snapshot = await this.service.setProperty(
+-      this.workspaceSlug,
+-      id,
+-      definition,
+-      value,
+-      this.mutationContext([id])
++    const snapshot = await this.intentions.run(
++      `property:${id}:${definition}`,
++      { kind: "set", value },
++      () => this.mutationContext([id]),
++      (input, context) => this.service.setProperty(this.workspaceSlug, id, definition, input.value, context)
+     );
+     runInAction(() => this.cacheProperties(snapshot));
+     return snapshot;
+   }
+   async removeProperty(id: string, definition: string) {
+-    const snapshot = await this.service.removeProperty(this.workspaceSlug, id, definition, this.mutationContext([id]));
++    const snapshot = await this.intentions.run(
++      `property:${id}:${definition}`,
++      { kind: "remove" },
++      () => this.mutationContext([id]),
++      (_input, context) => this.service.removeProperty(this.workspaceSlug, id, definition, context)
++    );
+     runInAction(() => this.cacheProperties(snapshot));
+     return snapshot;
+   }
+@@ -171,10 +196,11 @@
+     return snapshot;
+   }
+   async createRelation(payload: CreateRadarRelation) {
+-    const result = await this.service.createRelation(
+-      this.workspaceSlug,
++    const result = await this.intentions.run(
++      `createRelation:${payload.source}`,
+       payload,
+-      this.mutationContext([payload.source, payload.target])
++      () => this.mutationContext([payload.source, payload.target]),
++      (input, context) => this.service.createRelation(this.workspaceSlug, input, context)
+     );
+     runInAction(() => {
+       result.objects.forEach((object) => this.cache(object));
+@@ -185,10 +211,11 @@
+   async removeRelation(id: string) {
+     const relation = this.relations.get(id);
+     if (!relation) throw new Error("Load the relation before removing it.");
+-    const result = await this.service.removeRelation(
+-      this.workspaceSlug,
+-      id,
+-      this.mutationContext([relation.source, relation.target])
++    const result = await this.intentions.run(
++      `removeRelation:${id}`,
++      {},
++      () => this.mutationContext([relation.source, relation.target]),
++      (_input, context) => this.service.removeRelation(this.workspaceSlug, id, context)
+     );
+     runInAction(() => {
+       result.objects.forEach((object) => this.cache(object));
+@@ -196,4 +223,9 @@
+     });
+     return result;
+   }
++
++  /** Call only after a pending command has been reviewed; resubmit its original input. */
++  resumePendingMutation(approvalId: string) {
++    this.intentions.resume(approvalId);
++  }
+ }
+--- baseline/docs/radar/CORE_AUDIT.md
++++ current/docs/radar/CORE_AUDIT.md
+@@ -1,8 +1,8 @@
+ # RADAR Core — Auditoria 2.1
+ 
+-**Auditoria inicial:** 05/10/2026, America/Bahia. **Atualização:** 06/10/2026. **Entrega:** prompt 2.1 de [radar_prompts_por_fase.md](../../../DOCS_PROJETO_RADAR_COMPLETO/radar_prompts_por_fase.md), com acompanhamento das correções U0 posteriormente autorizadas.
+-
+-> **Estado atual:** C04, C05, C06, C08 e C10 corrigidos no código e validados. Permanecem 16 achados U1 e 2 U2. A migration 0011 foi validada em banco isolado e ainda não foi aplicada ao stack Plane em uso nem a ambiente publicado. O [CORE_U0_REPORT.md](CORE_U0_REPORT.md) detalha a implementação e seus limites.
++**Auditoria inicial:** 05/10/2026, America/Bahia. **Atualização:** 06/10/2026. **Entrega:** prompt 2.1 de [radar_prompts_por_fase.md](../../../DOCS_PROJETO_RADAR_COMPLETO/radar_prompts_por_fase.md), com acompanhamento das correções U0 e das fases 0/1 do plano U1 posteriormente autorizadas.
++
++> **Estado atual:** C04, C05, C06, C08 e C10 (U0), além de C15, C16 e C22 (U1), corrigidos no código e validados. Permanecem **13 achados U1 e 2 U2**. A migration 0011 foi validada em banco isolado; o stack Plane em uso inspecionado nas fases 0/1 não tem o app nem tabelas/migrations RADAR instalados. Nenhum ambiente publicado foi ativado. Ver [CORE_U0_REPORT.md](CORE_U0_REPORT.md) e [CORE_U1_PHASE_01_REPORT.md](CORE_U1_PHASE_01_REPORT.md).
+ 
+ ## Conclusão
+ 
+@@ -12,7 +12,9 @@
+ 
+ Dos **23 achados**, os **5 U0 foram corrigidos**: restrições de domínio passaram a ter escopo de tipo; escrita e derivação de propriedades usam uma implementação compartilhada; invariantes do workspace e contrato de implementação integram o fingerprint de aprovação; relações obrigatórias têm validação genérica em momentos definidos; e os models do Core bloqueiam escrita ORM fora do contexto de command. A regressão final teve **301 testes backend aprovados, 4 opt-in ignorados e 93 testes frontend aprovados**, incluindo 33 casos U0 novos.
+ 
+-Os **18 achados U1/U2 permanecem pendentes**. As correções não tornam lifecycle, criação, builders, identidade de runtime ou apresentação inteiramente configuráveis por metadata. A entrega também não demonstra homologação em produção: a ativação depende da migration descrita abaixo.
++As fases 0/1 do [plano U1](CORE_U1_IMPLEMENTATION_PLAN.md) corrigiram autoria por actor/provenance (C22), interfaces públicas e resultados sem serializers HTTP no domínio (C16), e replay de defaults/retries com intenção estável (C15). A validação final teve **319 backend aprovados, 4 opt-in ignorados e 106 frontend aprovados**.
++
++Os **15 achados U1/U2 restantes permanecem pendentes**. As correções não tornam lifecycle, criação, builders, identidade de runtime ou apresentação inteiramente configuráveis por metadata. A entrega não demonstra homologação em produção: a ativação exige disponibilizar o app RADAR e aplicar sua cadeia de migrations no ambiente alvo.
+ 
+ ## Escopo e método
+ 
+@@ -35,7 +37,7 @@
+ 
+ ## Matriz dos achados
+ 
+-Impacto, urgência e risco conservam a **classificação original** para rastreabilidade. A coluna Status indica o trabalho ainda aberto; um U0 corrigido não representa um problema ainda presente no código. A aplicação da migration é uma condição de ativação comum à entrega, não uma confirmação de implantação.
++Impacto, urgência e risco conservam a **classificação original** para rastreabilidade. A coluna Status indica o trabalho ainda aberto; um achado corrigido não representa um problema ainda presente no código. A aplicação da migration é uma condição de ativação comum à entrega, não uma confirmação de implantação.
+ 
+ | ID  | Problema                                                                 | Categorias                       | Impacto | Urgência | Risco | Status              |
+ | --- | ------------------------------------------------------------------------ | -------------------------------- | ------- | -------- | ----- | ------------------- |
+@@ -53,14 +55,14 @@
+ | C12 | Object.version não cobre mudanças de metadata                            | Acoplamento; metadata            | Alto    | U1       | Alto  | Pendente            |
+ | C13 | Object Page e seletores carregam todo o workspace                        | Acoplamento; escala              | Médio   | U1       | Médio | Pendente            |
+ | C14 | Writes e inicialização de schema serializam o workspace inteiro          | Acoplamento; escala              | Médio   | U2       | Médio | Pendente            |
+-| C15 | Defaults internos e retries não têm o mesmo contrato de idempotência     | Duplicação; acoplamento          | Médio   | U1       | Médio | Pendente            |
+-| C16 | Domain handlers dependem de serializers HTTP e funções privadas          | Acoplamento                      | Médio   | U1       | Médio | Pendente            |
++| C15 | Defaults internos e retries não têm o mesmo contrato de idempotência     | Duplicação; acoplamento          | Médio   | U1       | Médio | Corrigido no código |
++| C16 | Domain handlers dependem de serializers HTTP e funções privadas          | Acoplamento                      | Médio   | U1       | Médio | Corrigido no código |
+ | C17 | Catálogo e contratos estruturais repetidos manualmente                   | Duplicação; hardcoded; metadata  | Médio   | U1       | Médio | Pendente            |
+ | C18 | OperationalRecord cria metadata operacional paralela                     | Hardcoded; acoplamento; WorkItem | Alto    | U1       | Alto  | Pendente            |
+ | C19 | Tipo criado no workspace não ganha identidade/contexto de runtime        | Tipos; acoplamento; metadata     | Alto    | U1       | Médio | Pendente            |
+ | C20 | Editor genérico não conhece campos derivados, guards e ações disponíveis | Metadata; WorkItem               | Alto    | U1       | Médio | Pendente            |
+ | C21 | Página universal de título/conteúdo e descrição concorrente              | Hardcoded; WorkItem              | Médio   | U1       | Médio | Pendente            |
+-| C22 | Autoria resumida da página ainda pressupõe User humano                   | Acoplamento; WorkItem            | Médio   | U1       | Médio | Pendente            |
++| C22 | Autoria resumida da página ainda pressupõe User humano                   | Acoplamento; WorkItem            | Médio   | U1       | Médio | Corrigido no código |
+ | C23 | Navegação por tipos é estática e contém placeholders                     | Tipos; hardcoded; metadata       | Médio   | U2       | Baixo | Pendente            |
+ 
+ ## Evidências e consequências
+@@ -235,89 +237,97 @@
+ 
+ **Direção futura:** medir concorrência e tempo dos locks antes de alterar a estratégia; preservar a atomicidade de schema, autoridade e replay ao propor granularidade menor.
+ 
+-### C15 — Idempotência diferente entre commands e defaults internos
++### C15 — Defaults internos e retry de intenção
++
++**Classificação original: impacto médio · Urgência U1 · Risco médio. Status: corrigido no código em 06/10/2026.**
++
++**Problema original:** `initialize_object_properties` recebia uma chave que não usava e executava via `run_internal`, sem ledger/replay. No cliente, o service gerava chaves quando a store não conservava uma intenção; resposta perdida podia resultar em nova criação ou conflito de versão no retry de defaults.
++
++**Implementação:** `InitializeObjectProperties` usa o dispatcher/ledger comum, preserva human-only e grava o snapshot confirmado; o endpoint retorna esse snapshot no replay antes de recusar uma versão antiga. No-op e rollback seguem o mesmo contrato. A compatibility layer reutiliza versões do ledger somente quando um caller Python confiável omite o mapa; transport continua exigindo versões e chave explícitas.
++
++`RadarMutationIntents` conserva chave, payload copiado e expected_versions para criação/edição/propriedades/defaults/relações. Resposta incerta mantém a intenção; input alterado ou rejeição definitiva permite nova intenção. Aprovação pendente é conservada e retomada explicitamente. Troca de usuário/workspace recria o provider; não há rebase automático de conflito.
++
++**Validação:** os testes U1 cobrem snapshot histórico, retry de defaults/criação, rollback, revogação, chave conflitante, versões mantidas após refresh da cache e aprovação pendente. Evidências no [relatório das fases 0/1](CORE_U1_PHASE_01_REPORT.md).
++
++**Limites:** intenções ficam em memória; reload exige consultar estado antes de reenviar uma criação incerta. Callers Python sem versões continuam uma compatibilidade confiável. Bootstrap interno segue idempotência por estado; sua evolução pertence a C07.
++
++### C16 — Interfaces públicas da aplicação
++
++**Classificação original: impacto médio · Urgência U1 · Risco médio. Status: corrigido no código em 06/10/2026.**
++
++**Problema original:** handlers importavam serializers de representação HTTP; operations/runtime/Risk Review dependiam de funções privadas de primitives/handlers/execution. Imports locais contornavam ciclos, sem contrato público verificável.
++
++**Implementação:** `commands/context.py`, `access.py`, `queries.py` e `results.py` publicam contexto, membership, lookup/validação/evidência/aprovação e DTOs tipados. Helpers de efeitos, primitives e provisioning usados entre módulos têm nomes públicos e callers atualizados. Handlers deixaram de importar serializers da API, incluindo resultados de Object e Relation. A representação v1 dos resultados persistidos/replays foi preservada.
++
++**Validação:** paridade de JSON Object/Relation/propriedades com adapters e teste de fronteiras impedindo imports privados entre módulos e serializers API nos commands; regressão final e contratos runtime/Risk Review aprovados. Ver [relatório das fases 0/1](CORE_U1_PHASE_01_REPORT.md).
++
++**Limites:** Django/DRF e serializers de input compartilhados continuam na infraestrutura/aplicação. Esta correção não substitui o framework nem implementa o registro de capabilities/efeitos de C09/C17.
++
++### C17 — Contratos/catálogos repetidos manualmente
+ 
+ **Impacto médio · Urgência U1 · Risco médio.**
+ 
+-[commands/semantic.py](../../apps/api/plane/radar/commands/semantic.py), linhas 23–31, recebe `idempotency_key` em `initialize_object_properties`, mas não a usa; executa `run_internal` e verifica a versão fornecida. [execution.py](../../apps/api/plane/radar/commands/execution.py), linhas 262–281, não mantém `CommandExecution` para esse caminho. Os commands públicos regulares mantêm ledger de intenção/replay.
+-
+-Um retry de inicialização que já alterou defaults pode falhar por versão antiga, em vez de devolver o resultado confirmado pela mesma chave. Separadamente, [radar.service.ts](../../apps/web/services/radar/radar.service.ts), linhas 41–47, gera nova chave quando a store não fornece uma; a store genérica não conserva uma intenção para repetição após resposta incerta. Isso não demonstra duplicações existentes, mas o risco de duplicar uma criação em retry manual permanece.
+-
+-**Direção futura:** declarar quais operações internas são idempotentes por estado e quais exigem replay da intenção; conservar a chave enquanto a intenção do usuário não mudar. A compatibilidade Python que preenche versões correntes deve continuar explicitamente limitada a callers confiáveis ([compatibility.py](../../apps/api/plane/radar/commands/compatibility.py), linhas 25–34).
+-
+-### C16 — Camada de domínio conhece a API
++Tipos de propriedade aparecem em [models/semantic.py](../../apps/api/plane/radar/models/semantic.py), linhas 5–17, [services/types.ts](../../apps/web/services/radar/types.ts), linhas 45–65, no validador de primitives e no parser/editor da UI. [api/serializers.py](../../apps/api/plane/radar/api/serializers.py), linhas 48–70, repete o bloqueio de campos desconhecidos já presente no `StrictSerializer`. `DEFINITIONS` em [runtime_views.py](../../apps/api/plane/radar/api/runtime_views.py), linhas 40–74, repete parâmetros/target_types dos serializers operacionais e handlers.
++
++Uma capability nova precisa ser mantida no input, dispatch, catálogo anunciado, references, grants e client types. A repetição da validação no cliente é útil para UX; a dívida é não haver um contrato verificável comum. Os kinds de valor atuais são operadores estruturais legítimos. A ausência de `rich_text`/`object_reference` no catálogo atual é escopo futuro do 2.4, não bug de um campo já suportado.
++
++**Acompanhamento U0:** os operadores de invariantes têm validação compartilhada e DTO `RadarInvariant` tipado no cliente. Os demais catálogos, capabilities e serializers continuam repetidos; C17 permanece pendente.
++
++**Direção futura:** registro de operadores/capabilities e schema de contratos com verificação ou geração de DTOs; constraints do banco continuam explícitas. Validar `PropertyDefinition.config` e descritores de relações antes de disponibilizar escrita por builder.
++
++### C18 — Estado operacional paralelo às propriedades/relações
++
++**Impacto alto · Urgência U1 · Risco alto.**
++
++[models/commands.py](../../apps/api/plane/radar/models/commands.py), linhas 180–186, mantém `OperationalRecord.data`. [operations.py](../../apps/api/plane/radar/commands/operations.py), linhas 81–88 e 161–176, grava `assignment.executor_id/executor_ids/due_at/next_review_at/state/acceptances`. A atribuição também aparece em relações `assigned_to`. Reviews e measurements acumulam listas no JSON, nas linhas 194–199 e 226–242.
++
++Action possui `due_date` em PropertyValue; delegação grava outro prazo, `due_at`, no OperationalRecord, e Today só consulta `due_date` ([today.py](../../apps/api/plane/radar/today.py), linhas 62–64). Uma delegação atrasada sem `due_date` não entra nesse grupo do Today. Esse é um cenário derivado das leituras/escritas, não um teste de runtime executado aqui. O JSON não é mostrado pelo Property Builder/Editor e as listas crescem sem limite local.
++
++**Direção futura:** decidir a fonte de cada prazo/atribuição e quais registros são fatos/histórico operacional. Records especializados podem ser legítimos; precisam de schema, invariantes e projeção explícitos, evitando um segundo formulário de tarefa escondido em JSON.
++
++### C19 — Runtime depende de catálogo global de tipos
++
++**Impacto alto · Urgência U1 · Risco médio.**
++
++[runtime_control.py](../../apps/api/plane/radar/commands/runtime_control.py) recusa tipos sem spec/prefix no snapshot. [operations.py](../../apps/api/plane/radar/commands/operations.py) aplica o mesmo contrato; o ramo de cardinalidade específico de Commitment presente na auditoria inicial foi removido nos U0. [agent_runtime.py](../../apps/api/plane/radar/agent_runtime.py), linhas 105–119, exige identidade no contexto para selecionar Objects.
++
++Um ObjectType adicional no PostgreSQL pode funcionar na API genérica, mas não recebe automaticamente binding para o runtime. A existência de prefixo, formato de ID externo e eligibility para contexto não é metadata do ObjectType persistido. Não é dependência direta de Deep Agents: é um limite do port/contexto atual.
++
++**Acompanhamento U0:** a cardinalidade obrigatória no binding agora é genérica (C08). A exigência de spec/prefix global para identidade de runtime permanece; a remoção do ramo especial de Commitment não resolve C19.
++
++**Direção futura:** descritor de identidade/contexto/capabilities por tipo, com defaults seguros e provisioning explícito. Não ampliar silenciosamente o escopo autorizado do agente ao cadastrar um tipo.
++
++### C20 — Editor de campos não conhece capabilities/guards
++
++**Impacto alto · Urgência U1 · Risco médio.**
++
++[property-editor.tsx](../../apps/web/components/radar/property-editor.tsx), linhas 34–41 e 73–141, determina edição por `canWrite` e value_type; enums oferecem todos os choices. [semantic-panel.tsx](../../apps/web/components/radar/semantic-panel.tsx), linhas 94–105 e 139–147, oferece remoção de toda relação a quem pode escrever. Não recebe `computed`, `read_only`, transições disponíveis ou requisitos de command/review.
++
++Score derivado aparece como input editável; `completed_at`/`decided_at` e transições protegidas aparecem em formulários genéricos, mas são recusados pelo backend. Relações obrigatórias ou de aprovação também oferecem remoção que será recusada ou ficará pendente. Os guards de backend estão presentes; o problema é o modelo de edição de WorkItem aplicado a uma entidade que possui ações semânticas governadas.
++
++**Direção futura:** capacidades calculadas pelo servidor para campos, transições, comandos e relações; mostrar ações como CompleteAction/ApproveDecision quando disponíveis e manter o servidor como autoridade final.
++
++### C21 — Rich Object reduzido a título/conteúdo universal
+ 
+ **Impacto médio · Urgência U1 · Risco médio.**
+ 
+-[handlers.py](../../apps/api/plane/radar/commands/handlers.py), linhas 435–439, importa `ObjectSerializer` de `api.serializers` para produzir o resultado. Esse módulo importa `StrictSerializer` de commands. Handlers/operations usam funções privadas de primitives; runtime e Risk Review importam `_values`, `references`, `check_grant` e `_human_member` de implementação interna.
+-
+-Os imports locais contornam dependências circulares, mas mudanças de representação HTTP podem atingir commands e adaptadores. O domínio e a aplicação também usam exceções/serializers DRF, de modo que os contratos chamados de independentes de transporte continuam dependentes do framework.
+-
+-**Direção futura:** interfaces públicas para consulta, validação e resultado de command; adapters serializam essas estruturas. Isso não exige eliminar Django/DRF em uma única refatoração.
+-
+-### C17 — Contratos/catálogos repetidos manualmente
+-
+-**Impacto médio · Urgência U1 · Risco médio.**
+-
+-Tipos de propriedade aparecem em [models/semantic.py](../../apps/api/plane/radar/models/semantic.py), linhas 5–17, [services/types.ts](../../apps/web/services/radar/types.ts), linhas 45–65, no validador de primitives e no parser/editor da UI. [api/serializers.py](../../apps/api/plane/radar/api/serializers.py), linhas 48–70, repete o bloqueio de campos desconhecidos já presente no `StrictSerializer`. `DEFINITIONS` em [runtime_views.py](../../apps/api/plane/radar/api/runtime_views.py), linhas 40–74, repete parâmetros/target_types dos serializers operacionais e handlers.
+-
+-Uma capability nova precisa ser mantida no input, dispatch, catálogo anunciado, references, grants e client types. A repetição da validação no cliente é útil para UX; a dívida é não haver um contrato verificável comum. Os kinds de valor atuais são operadores estruturais legítimos. A ausência de `rich_text`/`object_reference` no catálogo atual é escopo futuro do 2.4, não bug de um campo já suportado.
+-
+-**Acompanhamento U0:** os operadores de invariantes têm validação compartilhada e DTO `RadarInvariant` tipado no cliente. Os demais catálogos, capabilities e serializers continuam repetidos; C17 permanece pendente.
+-
+-**Direção futura:** registro de operadores/capabilities e schema de contratos com verificação ou geração de DTOs; constraints do banco continuam explícitas. Validar `PropertyDefinition.config` e descritores de relações antes de disponibilizar escrita por builder.
+-
+-### C18 — Estado operacional paralelo às propriedades/relações
+-
+-**Impacto alto · Urgência U1 · Risco alto.**
+-
+-[models/commands.py](../../apps/api/plane/radar/models/commands.py), linhas 180–186, mantém `OperationalRecord.data`. [operations.py](../../apps/api/plane/radar/commands/operations.py), linhas 81–88 e 161–176, grava `assignment.executor_id/executor_ids/due_at/next_review_at/state/acceptances`. A atribuição também aparece em relações `assigned_to`. Reviews e measurements acumulam listas no JSON, nas linhas 194–199 e 226–242.
+-
+-Action possui `due_date` em PropertyValue; delegação grava outro prazo, `due_at`, no OperationalRecord, e Today só consulta `due_date` ([today.py](../../apps/api/plane/radar/today.py), linhas 62–64). Uma delegação atrasada sem `due_date` não entra nesse grupo do Today. Esse é um cenário derivado das leituras/escritas, não um teste de runtime executado aqui. O JSON não é mostrado pelo Property Builder/Editor e as listas crescem sem limite local.
+-
+-**Direção futura:** decidir a fonte de cada prazo/atribuição e quais registros são fatos/histórico operacional. Records especializados podem ser legítimos; precisam de schema, invariantes e projeção explícitos, evitando um segundo formulário de tarefa escondido em JSON.
+-
+-### C19 — Runtime depende de catálogo global de tipos
+-
+-**Impacto alto · Urgência U1 · Risco médio.**
+-
+-[runtime_control.py](../../apps/api/plane/radar/commands/runtime_control.py) recusa tipos sem spec/prefix no snapshot. [operations.py](../../apps/api/plane/radar/commands/operations.py) aplica o mesmo contrato; o ramo de cardinalidade específico de Commitment presente na auditoria inicial foi removido nos U0. [agent_runtime.py](../../apps/api/plane/radar/agent_runtime.py), linhas 105–119, exige identidade no contexto para selecionar Objects.
+-
+-Um ObjectType adicional no PostgreSQL pode funcionar na API genérica, mas não recebe automaticamente binding para o runtime. A existência de prefixo, formato de ID externo e eligibility para contexto não é metadata do ObjectType persistido. Não é dependência direta de Deep Agents: é um limite do port/contexto atual.
+-
+-**Acompanhamento U0:** a cardinalidade obrigatória no binding agora é genérica (C08). A exigência de spec/prefix global para identidade de runtime permanece; a remoção do ramo especial de Commitment não resolve C19.
+-
+-**Direção futura:** descritor de identidade/contexto/capabilities por tipo, com defaults seguros e provisioning explícito. Não ampliar silenciosamente o escopo autorizado do agente ao cadastrar um tipo.
+-
+-### C20 — Editor de campos não conhece capabilities/guards
+-
+-**Impacto alto · Urgência U1 · Risco médio.**
+-
+-[property-editor.tsx](../../apps/web/components/radar/property-editor.tsx), linhas 34–41 e 73–141, determina edição por `canWrite` e value_type; enums oferecem todos os choices. [semantic-panel.tsx](../../apps/web/components/radar/semantic-panel.tsx), linhas 94–105 e 139–147, oferece remoção de toda relação a quem pode escrever. Não recebe `computed`, `read_only`, transições disponíveis ou requisitos de command/review.
+-
+-Score derivado aparece como input editável; `completed_at`/`decided_at` e transições protegidas aparecem em formulários genéricos, mas são recusados pelo backend. Relações obrigatórias ou de aprovação também oferecem remoção que será recusada ou ficará pendente. Os guards de backend estão presentes; o problema é o modelo de edição de WorkItem aplicado a uma entidade que possui ações semânticas governadas.
+-
+-**Direção futura:** capacidades calculadas pelo servidor para campos, transições, comandos e relações; mostrar ações como CompleteAction/ApproveDecision quando disponíveis e manter o servidor como autoridade final.
+-
+-### C21 — Rich Object reduzido a título/conteúdo universal
+-
+-**Impacto médio · Urgência U1 · Risco médio.**
+-
+ [models/core.py](../../apps/api/plane/radar/models/core.py), linhas 84–89, exige `title` de até 255 caracteres e `content` HTML em todo Object. [object-page.tsx](../../apps/web/components/radar/object-page.tsx), linhas 15–81, renderiza sempre Title, Content e Save. Action/Risk possuem também propriedade `description`; Decision possui textos semânticos próprios, mantidos pelo handler especializado.
+ 
+ Título/UUID/version são envelopes comuns defensáveis e não indicam herança de Issue. A dívida é o layout fixo e a falta de papel explícito para content versus description/context/summary. O usuário pode manter narrativas divergentes em dois campos sem indicação de qual expressa a descrição principal. Tipos futuros como Person/Meeting/Evidence continuam recebendo a mesma página, sem metadata de apresentação/capabilities.
+ 
+ **Direção futura:** declarar campos principais, seções e apresentação por tipo, reutilizando a Object Page. Manter campos técnicos de identidade/versionamento no Core; não migrar automaticamente todo campo comum para EAV.
+ 
+-### C22 — Autoria humana simplificada na página
+-
+-**Impacto médio · Urgência U1 · Risco médio.**
+-
+-[models/core.py](../../apps/api/plane/radar/models/core.py), linhas 22–34, mantém FKs opcionais de User e ponteiros de provenance. [handlers.py](../../apps/api/plane/radar/commands/handlers.py), linhas 43–44, devolve `None` como User para actor não humano. [ObjectSerializer](../../apps/api/plane/radar/api/serializers.py), linhas 27–45, não devolve esses ponteiros. [object-page.tsx](../../apps/web/components/radar/object-page.tsx), linhas 65–71, interpreta null como `Deleted user`.
+-
+-Uma criação/edição por agente pode mostrar `Deleted user` na identificação principal apesar de provenance válido e actor conhecido. O painel de colaboração/activity já apresenta actor_type/actor_id ([collaboration_views.py](../../apps/api/plane/radar/api/collaboration_views.py), linhas 68–80); portanto não há ausência geral de auditoria, e sim duas representações incoerentes. PersonIdentity corretamente distingue Person de db.User, mas essa distinção ainda não chega ao resumo da página.
+-
+-**Direção futura:** resumo de autoria por provenance/actor, distinguindo humano, agente, sistema, integração e autor histórico desconhecido.
++### C22 — Autoria por provenance na página
++
++**Classificação original: impacto médio · Urgência U1 · Risco médio. Status: corrigido no código em 06/10/2026.**
++
++**Problema original:** ObjectSerializer não expunha autoria por provenance; a Object Page tratava FK User nula como `Deleted user`, inclusive em criação/edição por agente com actor conhecido.
++
++**Implementação:** `authorship.py` fornece `created_actor/updated_actor`, tipo/ID do actor, nome humano quando disponível, user_status, fonte, timestamp e provenance_id. ObjectSerializer acrescenta os resumos e resolve humanos em lote; a UI distingue humano, agente, sistema, integração e autoria desconhecida. FKs User legadas continuam compatíveis. Identidade humana histórica sem User é distinta de falta de provenance/actor.
++
++**Validação:** testes dos quatro actors, criação versus última edição, dados históricos e orçamento constante de queries; navegador/sessão/API/PostgreSQL confirmaram autoria de integração preservada após edição humana e reload. Ver [relatório das fases 0/1](CORE_U1_PHASE_01_REPORT.md).
++
++**Limites:** resolução do nome humano usa cadastro atual; a identidade histórica continua no provenance. O caso sem User é validado por fixture histórica, sem ampliar/burlar os guards U0 para exclusão de usuários de produto. Não há alteração de PersonIdentity nem de seu significado.
+ 
+ ### C23 — Navegação estática por tipo
+ 
+@@ -333,14 +343,14 @@
+ 
+ Não foi encontrada dependência estrutural `Workspace → Plane Project → Issue` no Core. Os seguintes comportamentos são **semelhanças de contrato e UX**, não herança de WorkItem:
+ 
+-| Comportamento                                           | Evidência     | Avaliação                                                                                 |
+-| ------------------------------------------------------- | ------------- | ----------------------------------------------------------------------------------------- |
+-| Formulário universal de título/descrição com Save       | C21           | Envelope comum é aceitável; apresentação fixa não expressa Rich Objects.                  |
+-| Status tratado como dropdown de propriedade editável    | C01, C20      | Workflow governado não cabe em simples edição de campo.                                   |
+-| Assignee/prazo/status de execução em estrutura dedicada | C18           | Legítimo para Action; não deve se tornar estado oculto de todo Object.                    |
+-| Criador/editor resumidos como db.User                   | C22           | Preserva compatibilidade com shell, mas descreve incorretamente actor não humano.         |
+-| Tipos conhecidos controlam formulário/rotas             | C02, C03, C23 | Um tipo configurado não recebe automaticamente experiência completa.                      |
+-| Relação de Decision com Project em input especializado  | C02           | `project_id` é opcional e aponta a Object RADAR; não é FK nem requisito de Plane Project. |
++| Comportamento                                           | Evidência      | Avaliação                                                                                 |
++| ------------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------- |
++| Formulário universal de título/descrição com Save       | C21            | Envelope comum é aceitável; apresentação fixa não expressa Rich Objects.                  |
++| Status tratado como dropdown de propriedade editável    | C01, C20       | Workflow governado não cabe em simples edição de campo.                                   |
++| Assignee/prazo/status de execução em estrutura dedicada | C18            | Legítimo para Action; não deve se tornar estado oculto de todo Object.                    |
++| Autoria antes resumida como db.User                     | C22, corrigido | Resumo por provenance/actor entregue; FKs User permanecem para compatibilidade.           |
++| Tipos conhecidos controlam formulário/rotas             | C02, C03, C23  | Um tipo configurado não recebe automaticamente experiência completa.                      |
++| Relação de Decision com Project em input especializado  | C02            | `project_id` é opcional e aponta a Object RADAR; não é FK nem requisito de Plane Project. |
+ 
+ List layout, design system, workspace membership e rich text do Plane são reutilizações legítimas. O store [RadarRootStore](../../apps/web/store/radar/root.store.ts) não recebe Issue/Project stores. Comments/attachments são models RADAR ligados a Object, não adapters de Issue. Não há justificativa nesta auditoria para substituir essas fronteiras já isoladas.
+ 
+@@ -364,8 +374,8 @@
+ ## Ativação e ordem recomendada das pendências
+ 
+ 1. **Ativação da entrega U0:** aplicar a migration 0011 antes de usar o código atualizado. Ela foi validada em ambiente isolado; não foi aplicada ao stack Plane em uso nem publicada. As cinco correções estão concluídas no código, sem builders ou tipos novos.
+-2. **No desenho do Type/Property/Relation Builder:** versionamento/upgrade geral de schema e snapshots (C07, C12), lifecycle/criação/capabilities (C01–C03, C20), leitura ativa e autoridade compartilhada (C09, C11), contratos e vínculo ao runtime (C16–C17, C19).
+-3. **Na integração da experiência genérica:** fonte dos prazos/atribuições e registros operacionais (C18), apresentação e autoria (C21–C22), consultas de candidatos/detalhe e retries (C13, C15).
++2. **No desenho do Type/Property/Relation Builder:** versionamento/upgrade geral de schema e snapshots (C07, C12), lifecycle/criação/capabilities (C01–C03, C20), leitura ativa e autoridade compartilhada (C09, C11), catálogos/capabilities e vínculo ao runtime (C17, C19). Interfaces públicas C16 foram entregues nas fases 0/1.
++3. **Na integração da experiência genérica:** fonte dos prazos/atribuições e registros operacionais (C18), apresentação (C21; C22 entregue), consultas de candidatos/detalhe (C13; C15 entregue com limite de retry em memória).
+ 4. **Com evidência de uso/concorrência:** otimização de locks (C14) e navegação configurável/limpeza de mensagens históricas (C23).
+ 
+ As pendências orientam os prompts posteriores. A correção dos U0 não constitui implementação dos itens 2.2–2.6.
+@@ -381,6 +391,6 @@
+ - Checks aprovados: Ruff, formatação Python, OxLint, Oxfmt, TypeScript e `makemigrations radar --check --dry-run`.
+ - Migration: duas invariantes normativas instaladas nos tipos legados, tipo customizado e identidades preservados; upgrade 0010 → 0011, downgrade e novo upgrade aprovados em banco descartável. Evidência: [resultado da migration](../../apps/api/output/core-u0-migration.json).
+ 
+-Não foram reexecutados a suíte completa do Plane fora de RADAR, testes de navegador ou opt-ins de provider real/CoS. Não há benchmark novo nem confirmação de implantação. A barreira ORM tem os limites descritos em C10; o digest conservador e o downgrade têm os limites descritos em C06. Lifecycle customizado, formulário de required fields, upgrades gerais de schema e divergência de prazos continuam pendências U1, sem alegação de cobertura integral.
+-
+-**Esta atualização é documental:** altera somente `docs/radar/CORE_AUDIT.md`, registra as implementações e evidências existentes e verifica formatação/links. As suítes acima foram executadas na entrega U0; não foram repetidas para esta edição do relatório.
++Na entrega U0, não foram reexecutados a suíte completa do Plane fora de RADAR, testes de navegador ou opt-ins de provider real/CoS. Não há benchmark novo nem confirmação de implantação. A barreira ORM tem os limites descritos em C10; o digest conservador e o downgrade têm os limites descritos em C06. Lifecycle customizado, formulário de required fields, upgrades gerais de schema e divergência de prazos continuam pendências U1, sem alegação de cobertura integral.
++
++**Acompanhamento U1 de 06/10:** fases 0/1 concluídas; 319 backend aprovados/4 ignorados, 106 frontend aprovados, `pnpm check` 56/56 tarefas, Ruff/formatação/migrations e navegador dirigido aprovados. As contagens U0 acima permanecem históricas; não foram somadas. Relatório, limites e evidências em [CORE_U1_PHASE_01_REPORT.md](CORE_U1_PHASE_01_REPORT.md). Esta edição documental incorpora essa entrega de código, sem demonstrar deploy.
+--- baseline/docs/radar/CORE_U1_IMPLEMENTATION_PLAN.md
++++ current/docs/radar/CORE_U1_IMPLEMENTATION_PLAN.md
+@@ -1,8 +1,8 @@
+ # RADAR Core — Plano de correções U1
+ 
+-**Data:** 06/10/2026, America/Bahia. **Status:** proposta de implementação; nenhuma correção U1 executada nesta entrega.
+-
+-**Base:** [CORE_AUDIT.md](CORE_AUDIT.md), [entrega U0](CORE_U0_REPORT.md) e inspeção do código atual no filesystem. O worktree contém alterações anteriores; o HEAD isoladamente não representa a base analisada. Este plano cobre os **16 achados U1** e preserva as garantias U0.
++**Data:** 06/10/2026, America/Bahia. **Status:** fases 0 e 1 implementadas e validadas em 06/10/2026; fases 2–6 pendentes. [Relatório](CORE_U1_PHASE_01_REPORT.md), [decisões](CORE_U1_PHASE_01_ADR.md).
++
++**Base:** [CORE_AUDIT.md](CORE_AUDIT.md), [entrega U0](CORE_U0_REPORT.md) e inspeção do código atual no filesystem. O worktree contém alterações anteriores; o HEAD isoladamente não representa a base analisada. Este plano cobre os **16 achados U1 originais** e preserva as garantias U0. C15, C16 e C22 foram corrigidos nas fases 0/1; permanecem **13 U1**. O plano conserva a sequência e os critérios originais para rastreabilidade.
+ 
+ ## Análise e prioridade
+ 
+@@ -251,4 +251,4 @@
+ 
+ **Fora deste plano:** C14, otimização dos locks de workspace, e C23, navegação configurável/placeholders, permanecem U2. Preservar o lock conservador durante a refatoração U1. Scripts, workflows arbitrários, rule engine geral, event sourcing completo e migração indiscriminada do envelope comum para EAV também ficam fora do escopo.
+ 
+-**Primeira entrega recomendada:** fase 0 seguida de fase 1. **Primeiro gate para escrita dos builders:** fases 2 e 3 concluídas e validadas. **Conclusão de U1:** fases 4–6 e cenário integrado aprovados, com todos os 16 achados rastreados.
++**Entrega inicial concluída:** fases 0 e 1. **Próxima entrega:** fase 2, schema efetivo e leitura consistente. **Primeiro gate para escrita dos builders:** fases 2 e 3 concluídas e validadas. **Conclusão de U1:** fases 4–6 e cenário integrado aprovados, com todos os 16 achados rastreados.
+--- baseline/docs/radar/README.md
++++ current/docs/radar/README.md
+@@ -6,6 +6,8 @@
+ | -------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+ | [Auditoria do Core — 2.1](CORE_AUDIT.md)                                                     | 23 achados classificados por impacto, urgência e risco                     |
+ | [Correções U0 do Core](CORE_U0_REPORT.md)                                                    | Invariantes, contrato de regras, cardinalidade e fronteira de escrita      |
++| [Correções U1 — fases 0/1](CORE_U1_PHASE_01_REPORT.md)                                       | Autoria por actor, interfaces públicas e replay de defaults/retries        |
++| [Plano de correções U1](CORE_U1_IMPLEMENTATION_PLAN.md)                                      | Fases por complexidade, dependências e critérios de aceite                 |
+ | [Relatório da Fase 1 (HTML)](PHASE_1_REPORT.html)                                            | Visão consolidada 1.1–1.8: arquitetura, workflows, capturas e testes       |
+ | [E2E da simbiose — 1.8](E2E_SYMBIOSIS.md)                                                    | Fluxo completo no shell real, provider, permissões, idempotência e achados |
+ | [Colaboração mínima — 1.7](COLLABORATION.md)                                                 | Comments, anexos privados, activity e pendências de piloto                 |
+--- /dev/null
++++ current/apps/api/plane/radar/authorship.py
+@@ -0,0 +1,63 @@
++"""Actor summaries derived from provenance; bulk human resolution for list/detail adapters."""
++
++from collections.abc import Sequence
++from typing import Literal, TypedDict
++from uuid import UUID
++from plane.db.models import User
++from plane.radar.commands.results import result_timestamp
++from plane.radar.models import Object
++
++AUTHOR_RELATIONS = ("object_type", "created_provenance", "last_provenance")
++
++
++class ActorSummary(TypedDict):
++    actor_type: Literal["human", "agent", "system", "integration", "unknown"]
++    actor_id: str | None
++    display_name: str | None
++    user_status: Literal["available", "deleted", "unknown", "not_applicable"]
++    source: str | None
++    timestamp: str
++    provenance_id: str | None
++
++
++class ObjectAuthorship(TypedDict):
++    created_actor: ActorSummary
++    updated_actor: ActorSummary
++
++
++def object_authorship(objects: Sequence[Object]) -> dict[UUID, ObjectAuthorship]:
++    """Objects should preload AUTHOR_RELATIONS; names are resolved in one scoped batch."""
++    actors = {}
++    ids = set()
++    for obj in objects:
++        for label, pointer, legacy_id, timestamp in (
++            ("created_actor", obj.created_provenance, obj.created_by_id, obj.created_at),
++            ("updated_actor", obj.last_provenance, obj.updated_by_id, obj.updated_at),
++        ):
++            actor_id = pointer.actor_id if pointer else legacy_id
++            actor_type = pointer.actor_type if pointer else "human" if legacy_id else "unknown"
++            actors[obj.pk, label] = actor_id, actor_type, pointer, timestamp
++            if actor_type == "human" and actor_id:
++                ids.add(actor_id)
++    users = User.objects.filter(pk__in=ids).in_bulk() if ids else {}
++    result = {}
++    for obj in objects:
++        summaries = {}
++        for label in ("created_actor", "updated_actor"):
++            actor_id, actor_type, pointer, timestamp = actors[obj.pk, label]
++            user = users.get(actor_id)
++            summaries[label] = {
++                "actor_type": actor_type,
++                "actor_id": str(actor_id) if actor_id else None,
++                "display_name": (user.display_name or user.full_name) if user else None,
++                "user_status": ("available" if user else "deleted")
++                if actor_type == "human"
++                else "unknown"
++                if actor_type == "unknown"
++                else "not_applicable",
++                "source": pointer.source if pointer else None,
++                "timestamp": result_timestamp(pointer.timestamp if pointer else timestamp),
++                "provenance_id": str(pointer.pk) if pointer else None,
++            }
++        result[obj.pk] = summaries
++    return result
+--- /dev/null
++++ current/apps/api/plane/radar/commands/access.py
+@@ -0,0 +1,17 @@
++"""Shared human membership boundary; command effect authority remains in the dispatcher."""
++
++from rest_framework.exceptions import PermissionDenied
++from plane.db.models import User, Workspace, WorkspaceMember
++from .actor import Actor
++
++
++def require_human_membership(actor: Actor, workspace: Workspace, *, write=True) -> None:
++    roles = [15, 20] if write else [5, 15, 20]
++    if (
++        actor.actor_type != "human"
++        or not User.objects.filter(pk=actor.actor_id, is_active=True, is_bot=False).exists()
++        or not WorkspaceMember.objects.filter(
++            workspace=workspace, member_id=actor.actor_id, role__in=roles, is_active=True
++        ).exists()
++    ):
++        raise PermissionDenied("Active workspace membership does not permit this operation.")
+--- /dev/null
++++ current/apps/api/plane/radar/commands/context.py
+@@ -0,0 +1,22 @@
++"""Public transaction context for deterministic domain effects."""
++
++from uuid import UUID
++from rest_framework.exceptions import PermissionDenied
++from plane.radar.mutation import MutationContext, current_mutation
++from .actor import Actor
++
++
++def command_context() -> MutationContext:
++    context = current_mutation.get()
++    if context is None:
++        raise PermissionDenied("Mutation requires the shared command layer and an explicit Actor.")
++    return context
++
++
++def command_actor() -> Actor:
++    return command_context().actor
++
++
++def command_user_id() -> UUID | None:
++    actor = command_actor()
++    return actor.actor_id if actor.actor_type == "human" else None
+--- /dev/null
++++ current/apps/api/plane/radar/commands/queries.py
+@@ -0,0 +1,57 @@
++"""Public domain queries/validation shared by commands and authenticated adapters."""
++
++from uuid import UUID
++from collections.abc import Collection
++from django.utils.html import strip_tags
++from rest_framework.exceptions import ValidationError
++from plane.db.models import Workspace
++from plane.radar.models import Object, DecisionApproval, Relation
++from . import primitives_semantic as semantic
++
++
++def lookup_object(
++    workspace: Workspace, pk: UUID, types: Collection[str] | None = None, *, active_person: bool = True
++) -> Object:
++    obj = semantic.get_active_object(workspace, pk)
++    if types is not None and obj.object_type.key not in types:
++        raise ValidationError("Object type does not satisfy this command.")
++    if active_person and obj.object_type.key == "person" and effective_values(obj).get("status") != "active":
++        raise ValidationError("Select an active Person.")
++    return obj
++
++
++def effective_values(obj: Object) -> dict:
++    return semantic.effective_values(obj)
++
++
++def decision_evidence_ids(workspace: Workspace, decision_id: UUID) -> set[UUID]:
++    return set(
++        Relation.objects.filter(
++            workspace=workspace,
++            source_id=decision_id,
++            relation_type__key="informed_by",
++            relation_type__is_active=True,
++            target__object_type__key="document",
++            target__deleted_at__isnull=True,
++        ).values_list("target_id", flat=True)
++    )
++
++
++def current_decision_approval(workspace: Workspace, obj: Object) -> DecisionApproval | None:
++    return (
++        DecisionApproval.objects.filter(
++            workspace=workspace, decision=obj, is_stale=False, resulting_version=obj.version
++        )
++        .order_by("-created_at")
++        .first()
++    )
++
++
++def validate_evidence(obj: Object) -> None:
++    values = effective_values(obj)
++    if (
++        obj.object_type.key != "document"
++        or values.get("status") == "archived"
++        or not (strip_tags(obj.content).strip() or values.get("uri"))
++    ):
++        raise ValidationError({"evidence": "Use a live Document with content or a source URI."})
+--- /dev/null
++++ current/apps/api/plane/radar/commands/results.py
+@@ -0,0 +1,207 @@
++"""Typed application read models; no dependency on HTTP/API serializers.
++
++The version-1 representation is preserved for persisted command results/replays.
++Adapters may extend their read responses without changing historical executions.
++"""
++
++from datetime import datetime
++from typing import Any, TypedDict
++from django.utils import timezone
++from plane.radar.models import Object, ObjectType, PropertyDefinition, PropertyValue, Relation, RelationType
++
++
++class AuditResult(TypedDict):
++    id: str
++    workspace: str
++    created_at: str
++    updated_at: str
++    created_by: str | None
++    updated_by: str | None
++
++
++class ObjectTypeResult(AuditResult):
++    key: str
++    name: str
++    description: str
++    icon: str
++    rules: dict
++    is_system: bool
++    is_active: bool
++
++
++class ObjectResult(AuditResult):
++    object_type: str
++    object_type_detail: ObjectTypeResult
++    title: str
++    content: str
++    version: int
++
++
++class RelationTypeResult(AuditResult):
++    key: str
++    forward_label: str
++    reverse_label: str
++    description: str
++    source_types: list[str]
++    target_types: list[str]
++    allowed_pairs: list[list[str]]
++    cardinality: str
++    allow_self: bool
++    is_system: bool
++    is_active: bool
++
++
++class RelationResult(AuditResult):
++    relation_type: str
++    relation_type_detail: RelationTypeResult
++    source: str
++    target: str
++
++
++class PropertyDefinitionResult(AuditResult):
++    object_type: str
++    key: str
++    name: str
++    value_type: str
++    config: dict
++    is_required: bool
++    is_active: bool
++    is_system: bool
++
++
++class PropertyValueResult(AuditResult):
++    object: str
++    definition: str
++    value: Any
++
++
++class PropertyRowResult(TypedDict):
++    definition: PropertyDefinitionResult
++    stored_value: PropertyValueResult | None
++    value: Any
++    has_value: bool
++
++
++class PropertySnapshotResult(TypedDict):
++    object: ObjectResult
++    properties: list[PropertyRowResult]
++
++
++def result_timestamp(value: datetime) -> str:
++    """Preserve the v1 ISO representation, including the current timezone and UTC Z."""
++    if timezone.is_aware(value):
++        value = timezone.localtime(value)
++    return value.isoformat().replace("+00:00", "Z")
++
++
++def audit_result(item) -> AuditResult:
++    return {
++        "id": str(item.pk),
++        "workspace": str(item.workspace_id),
++        "created_at": result_timestamp(item.created_at),
++        "updated_at": result_timestamp(item.updated_at),
++        "created_by": str(item.created_by_id) if item.created_by_id else None,
++        "updated_by": str(item.updated_by_id) if item.updated_by_id else None,
++    }
++
++
++def object_type_result(item: ObjectType) -> ObjectTypeResult:
++    return {
++        **audit_result(item),
++        "key": item.key,
++        "name": item.name,
++        "description": item.description,
++        "icon": item.icon,
++        "rules": item.rules,
++        "is_system": item.is_system,
++        "is_active": item.is_active,
++    }
++
++
++def object_data(item: Object) -> ObjectResult:
++    return {
++        **audit_result(item),
++        "object_type": str(item.object_type_id),
++        "object_type_detail": object_type_result(item.object_type),
++        "title": item.title,
++        "content": item.content,
++        "version": item.version,
++    }
++
++
++def object_result(item: Object) -> dict[str, ObjectResult]:
++    item.refresh_from_db()
++    return {"object": object_data(item)}
++
++
++def relation_type_result(item: RelationType) -> RelationTypeResult:
++    return {
++        **audit_result(item),
++        "key": item.key,
++        "forward_label": item.forward_label,
++        "reverse_label": item.reverse_label,
++        "description": item.description,
++        "source_types": item.source_types,
++        "target_types": item.target_types,
++        "allowed_pairs": item.allowed_pairs,
++        "cardinality": item.cardinality,
++        "allow_self": item.allow_self,
++        "is_system": item.is_system,
++        "is_active": item.is_active,
++    }
++
++
++def relation_result(item: Relation) -> RelationResult:
++    return {
++        **audit_result(item),
++        "relation_type": str(item.relation_type_id),
++        "relation_type_detail": relation_type_result(item.relation_type),
++        "source": str(item.source_id),
++        "target": str(item.target_id),
++    }
++
++
++def definition_result(item: PropertyDefinition) -> PropertyDefinitionResult:
++    return {
++        **audit_result(item),
++        "object_type": str(item.object_type_id),
++        "key": item.key,
++        "name": item.name,
++        "value_type": item.value_type,
++        "config": item.config,
++        "is_required": item.is_required,
++        "is_active": item.is_active,
++        "is_system": item.is_system,
++    }
++
++
++def property_value_result(item: PropertyValue) -> PropertyValueResult:
++    return {
++        **audit_result(item),
++        "object": str(item.object_id),
++        "definition": str(item.definition_id),
++        "value": item.value,
++    }
++
++
++def property_snapshot_result(item: Object) -> PropertySnapshotResult:
++    values = {
++        value.definition_id: value
++        for value in PropertyValue.objects.filter(
++            workspace_id=item.workspace_id, object=item, definition__is_active=True, definition__deleted_at__isnull=True
++        )
++    }
++    rows: list[PropertyRowResult] = []
++    for definition in PropertyDefinition.objects.filter(
++        workspace_id=item.workspace_id, object_type_id=item.object_type_id, is_active=True
++    ):
++        value = values.get(definition.pk)
++        rows.append(
++            {
++                "definition": definition_result(definition),
++                "stored_value": property_value_result(value) if value else None,
++                "value": value.value if value else definition.config.get("default"),
++                "has_value": value is not None or "default" in definition.config,
++            }
++        )
++    return {"object": object_data(item), "properties": rows}
+--- /dev/null
++++ current/apps/api/plane/radar/tests/test_core_u1_phase01.py
+@@ -0,0 +1,335 @@
++"""U1 phase 1: actor summaries, public application contracts and exact defaults replay."""
++
++import ast
++from dataclasses import replace
++from pathlib import Path
++from uuid import uuid4
++
++import pytest
++from django.db import transaction
++from django.test.utils import CaptureQueriesContext
++from django.db import connection
++from rest_framework.exceptions import PermissionDenied
++from rest_framework.test import APIClient
++
++from plane.db.models import WorkspaceMember
++from plane.radar.api.serializers import ObjectSerializer, RelationSerializer
++from plane.radar.api.semantic_views import property_snapshot
++from plane.radar.authorship import AUTHOR_RELATIONS
++from plane.radar.commands import create_object, initialize_object_properties, initialize_semantic_model, update_object
++from plane.radar.commands.execution import CommandConflict, execute_command
++from plane.radar.commands.results import object_data, relation_result, property_snapshot_result
++from plane.radar.commands.semantic import initialize_properties_command
++from plane.radar.models import (
++    Object,
++    ObjectType,
++    PropertyDefinition,
++    PropertyValue,
++    CommandExecution,
++    DomainEvent,
++    Provenance,
++    Relation,
++    RelationType,
++)
++from plane.radar.mutation import json_value
++from .fixture_writes import fixture_write
++from .test_commands import approved_agent, accept, envelope
++from .test_core import url
++
++pytestmark = [pytest.mark.django_db, pytest.mark.unit]
++
++
++@pytest.fixture
++def seeded(context):
++    initialize_semantic_model(actor=context[5], workspace=context[3])
++    return context
++
++
++def create(ctx, actor=None):
++    return create_object(
++        actor=actor or ctx[5],
++        workspace=ctx[3],
++        object_type=ObjectType.objects.get(workspace=ctx[3], key="objective").pk,
++        title="U1 object",
++    )
++
++
++def snapshot(obj):
++    obj = Object.objects.select_related(*AUTHOR_RELATIONS).get(pk=obj.pk)
++    return json_value(ObjectSerializer(obj).data)
++
++
++def counts():
++    return tuple(model.objects.count() for model in (Object, PropertyValue, CommandExecution, Provenance, DomainEvent))
++
++
++@pytest.mark.parametrize("actor_type", ["human", "agent", "system", "integration"])
++def test_author_summary_uses_real_actor(seeded, actor_type):
++    ctx = seeded
++    actor = ctx[5] if actor_type == "human" else approved_agent(ctx, actor_type, requires_approval=False)
++    data = {"object_type_id": str(ObjectType.objects.get(workspace=ctx[3], key="objective").pk), "title": "Authored"}
++    request = envelope(ctx, "CreateObject", data, actor=actor)
++    result = execute_command(actor=actor, workspace=ctx[3], envelope=request)
++    if result["status"] == "pending_approval":
++        vote = accept(ctx, result)
++        result = execute_command(actor=replace(actor, approval_id=vote.pk), workspace=ctx[3], envelope=request)
++    obj = Object.objects.get(pk=result["data"]["object"]["id"])
++    result = snapshot(obj)
++    assert result["created_actor"]["actor_type"] == actor_type
++    assert result["created_actor"]["actor_id"] == str(actor.actor_id)
++    assert result["created_actor"]["source"] == actor.source
++    assert result["created_actor"]["provenance_id"]
++    assert result["updated_actor"] == result["created_actor"]
++    assert result["created_by"] == (str(actor.actor_id) if actor_type == "human" else None)
++    assert result["created_actor"]["user_status"] == ("available" if actor_type == "human" else "not_applicable")
++
++
++def test_authorship_tracks_editor_without_replacing_creator(seeded):
++    obj = create(seeded)
++    actor = approved_agent(seeded, "integration", requires_approval=False)
++    result = execute_command(
++        actor=actor,
++        workspace=seeded[3],
++        envelope=envelope(
++            seeded,
++            "UpdateObject",
++            {"object_id": str(obj.pk), "changes": {"title": "Edited by integration"}},
++            actor=actor,
++        ),
++    )
++    data = snapshot(obj)
++    assert data["created_actor"]["actor_id"] == str(seeded[0].pk)
++    assert data["updated_actor"]["actor_id"] == str(actor.actor_id)
++    assert data["updated_actor"]["actor_type"] == "integration"
++    assert data["updated_actor"]["provenance_id"] == result["provenance_id"]
++    assert data["created_by"] == str(seeded[0].pk) and data["updated_by"] is None
++
++
++def test_deleted_human_and_missing_provenance_have_distinct_fallbacks(seeded):
++    # Historical fixture: a validated human identity whose User no longer exists.
++    actor_id = uuid4()
++    record = Provenance.objects.create(
++        workspace=seeded[3],
++        command_id=uuid4(),
++        command_name="CreateObject",
++        actor_type="human",
++        actor_id=actor_id,
++        reason="Historical creation",
++        source="historical.session-api",
++        correlation_id=uuid4(),
++        outcome="executed",
++    )
++    kind = ObjectType.objects.get(workspace=seeded[3], key="objective")
++    obj = fixture_write(
++        lambda: Object.objects.create(
++            workspace=seeded[3],
++            object_type=kind,
++            title="Deleted human author",
++            created_provenance=record,
++            last_provenance=record,
++        )
++    )
++    data = snapshot(obj)
++    assert data["created_by"] is None
++    assert data["created_actor"]["actor_type"] == "human"
++    assert data["created_actor"]["actor_id"] == str(actor_id)
++    assert data["created_actor"]["user_status"] == "deleted"
++    legacy = fixture_write(
++        lambda: Object.objects.create(
++            workspace=seeded[3], object_type=obj.object_type, title="Unknown legacy", created_by_id=None
++        )
++    )
++    assert snapshot(legacy)["created_actor"]["actor_type"] == "unknown"
++    assert snapshot(legacy)["created_actor"]["actor_id"] is None
++    assert snapshot(legacy)["created_actor"]["provenance_id"] is None
++
++
++def test_legacy_human_without_provenance_is_resolved(seeded):
++    kind = ObjectType.objects.get(workspace=seeded[3], key="objective")
++    obj = fixture_write(
++        lambda: Object.objects.create(workspace=seeded[3], object_type=kind, title="Legacy", created_by_id=seeded[0].pk)
++    )
++    author = snapshot(obj)["created_actor"]
++    assert author["actor_type"] == "human" and author["user_status"] == "available"
++    assert author["provenance_id"] is None and author["source"] is None
++
++
++def test_author_list_resolves_humans_in_a_constant_query_budget(seeded):
++    for actor in [seeded[5], replace(seeded[5], actor_id=seeded[1].pk)]:
++        for _ in range(3):
++            create(seeded, actor)
++    with CaptureQueriesContext(connection) as queries:
++        data = ObjectSerializer(Object.objects.filter(workspace=seeded[3]), many=True).data
++    assert len(data) == 6
++    assert len(queries) == 2  # Objects/type/provenance join, then all human names.
++
++
++def test_application_results_preserve_v1_object_relation_and_property_representation(seeded):
++    obj, target = create(seeded), create(seeded)
++    object_payload = dict(snapshot(obj))
++    object_payload.pop("created_actor")
++    object_payload.pop("updated_actor")
++    assert object_data(obj) == object_payload
++    kind = fixture_write(
++        lambda: RelationType.objects.create(
++            workspace=seeded[3],
++            key="u1_relation",
++            forward_label="links",
++            reverse_label="linked by",
++            source_types=["objective"],
++            target_types=["objective"],
++            cardinality="0..n",
++        )
++    )
++    edge = fixture_write(
++        lambda: Relation.objects.create(workspace=seeded[3], relation_type=kind, source=obj, target=target)
++    )
++    assert relation_result(edge) == json_value(dict(RelationSerializer(edge).data))
++    with transaction.atomic():
++        http = json_value(property_snapshot(seeded[3], obj.pk))
++    http["object"].pop("created_actor")
++    http["object"].pop("updated_actor")
++    assert property_snapshot_result(obj) == http
++
++
++def add_default(ctx, obj, key="u1_default", value="seeded"):
++    return fixture_write(
++        lambda: PropertyDefinition.objects.create(
++            workspace=ctx[3],
++            object_type=obj.object_type,
++            key=key,
++            name=key,
++            value_type="string",
++            config={"default": value},
++        )
++    )
++
++
++def test_defaults_replay_precedes_stale_version_check_and_preserves_historical_snapshot(seeded):
++    obj = create(seeded)
++    definition = add_default(seeded, obj)
++    kwargs = dict(
++        actor=seeded[5],
++        workspace=seeded[3],
++        object_id=obj.pk,
++        expected_versions={str(obj.pk): obj.version},
++        idempotency_key="defaults-once",
++    )
++    result = initialize_properties_command(**kwargs)
++    before = counts()
++    assert result["status"] == "executed" and result["data"]["object"]["version"] == 2
++    assert result["data"]["object"]["updated_actor"]["provenance_id"] == result["provenance_id"]
++    assert initialize_properties_command(**kwargs) == result and counts() == before
++    update_object(actor=seeded[5], workspace=seeded[3], object_id=obj.pk, changes={"title": "Later"})
++    changed = counts()
++    assert initialize_properties_command(**kwargs) == result and counts() == changed
++    assert PropertyValue.objects.get(object=obj, definition=definition).value == "seeded"
++    assert result["data"]["object"]["title"] == "U1 object"
++
++
++def test_defaults_http_replays_confirmed_snapshot_after_lost_response(seeded):
++    obj = create(seeded)
++    add_default(seeded, obj)
++    client = APIClient()
++    client.force_authenticate(seeded[0])
++    headers = {"HTTP_IDEMPOTENCY_KEY": "http-defaults", "HTTP_X_RADAR_EXPECTED_VERSIONS": '{"%s":1}' % obj.pk}
++    path = url(seeded, f"objects/{obj.pk}/properties/")
++    first = client.post(path, {}, format="json", **headers)
++    assert first.status_code == 200 and first.data["object"]["version"] == 2
++    update_object(actor=seeded[5], workspace=seeded[3], object_id=obj.pk, changes={"title": "Later"})
++    before = counts()
++    replay = client.post(path, {}, format="json", **headers)
++    assert replay.status_code == 200 and replay.data == first.data and counts() == before
++
++
++def test_trusted_defaults_caller_reuses_saved_versions_when_only_key_is_supplied(seeded):
++    obj = create(seeded)
++    add_default(seeded, obj)
++    kwargs = dict(actor=seeded[5], workspace=seeded[3], object_id=obj.pk, idempotency_key="trusted-defaults")
++    first = initialize_object_properties(**kwargs)
++    assert first.version == 2
++    before = counts()
++    assert initialize_object_properties(**kwargs).pk == first.pk and counts() == before
++
++
++def test_defaults_key_conflict_noop_and_authority_revocation(seeded):
++    obj, other = create(seeded), create(seeded)
++    kwargs = dict(
++        actor=seeded[5],
++        workspace=seeded[3],
++        expected_versions={str(obj.pk): obj.version},
++        idempotency_key="defaults-noop",
++        object_id=obj.pk,
++    )
++    result = initialize_properties_command(**kwargs)
++    assert result["status"] == "noop"
++    before = counts()
++    assert initialize_properties_command(**kwargs) == result and counts() == before
++    with pytest.raises(CommandConflict):
++        initialize_properties_command(**{**kwargs, "object_id": other.pk, "expected_versions": {str(other.pk): 1}})
++    WorkspaceMember.objects.filter(workspace=seeded[3], member=seeded[0]).update(is_active=False)
++    with pytest.raises(PermissionDenied):
++        initialize_properties_command(**kwargs)
++    assert counts() == before
++
++
++@pytest.mark.parametrize("actor_type", ["agent", "system", "integration"])
++def test_defaults_command_remains_human_only_even_with_forged_grant(seeded, actor_type):
++    from plane.radar.models import ActorGrant
++
++    obj = create(seeded)
++    actor = approved_agent(seeded, actor_type, requires_approval=False)
++    fixture_write(
++        lambda: ActorGrant.objects.filter(actor_id=actor.actor_id).update(commands=["InitializeObjectProperties"])
++    )
++    before = counts()
++    with pytest.raises(PermissionDenied):
++        initialize_properties_command(
++            actor=actor,
++            workspace=seeded[3],
++            object_id=obj.pk,
++            expected_versions={str(obj.pk): 1},
++            idempotency_key="human-only",
++        )
++    assert counts() == before
++
++
++def test_invalid_defaults_roll_back_ledger_properties_and_provenance(seeded):
++    from rest_framework.exceptions import ValidationError
++
++    obj = create(seeded)
++    add_default(seeded, obj)
++    fixture_write(
++        lambda: PropertyDefinition.objects.create(
++            workspace=seeded[3],
++            object_type=obj.object_type,
++            key="z_invalid",
++            name="Invalid default",
++            value_type="integer",
++            config={"default": "invalid"},
++        )
++    )
++    before = counts()
++    with pytest.raises(ValidationError):
++        initialize_properties_command(
++            actor=seeded[5],
++            workspace=seeded[3],
++            object_id=obj.pk,
++            expected_versions={str(obj.pk): 1},
++            idempotency_key="invalid-defaults",
++        )
++    obj.refresh_from_db()
++    assert obj.version == 1 and counts() == before
++
++
++def test_command_modules_do_not_depend_on_api_serializers_or_private_cross_module_interfaces():
++    root = Path(__file__).resolve().parents[1]
++    for path in root.rglob("*.py"):
++        if "tests" in path.parts or "migrations" in path.parts:
++            continue
++        tree = ast.parse(path.read_text())
++        for node in ast.walk(tree):
++            if isinstance(node, ast.ImportFrom):
++                assert not any(item.name.startswith("_") for item in node.names), (path, node.lineno)
++                if path.parent.name == "commands":
++                    assert not (node.module or "").startswith("plane.radar.api"), (path, node.lineno)
+--- /dev/null
++++ current/apps/web/components/radar/actor-summary.test.ts
+@@ -0,0 +1,37 @@
++import { describe, expect, it } from "vitest";
++import type { RadarActorSummary } from "../../services/radar/types";
++import { actorLabel } from "./actor-summary";
++
++const summary: RadarActorSummary = {
++  actor_type: "human",
++  actor_id: "historical-id",
++  display_name: "João",
++  user_status: "available",
++  source: "radar.session-api",
++  timestamp: "2026-10-06T00:00:00Z",
++  provenance_id: "provenance",
++};
++
++describe("RADAR authorship labels", () => {
++  it("shows the human name from provenance", () => {
++    expect(actorLabel(summary, null)).toBe("Human: João");
++  });
++  it.each(["agent", "system", "integration"] as const)("never calls a %s a deleted user", (actor_type) => {
++    expect(actorLabel({ ...summary, actor_type, display_name: null, user_status: "not_applicable" }, null)).toBe(
++      `${actor_type[0].toUpperCase()}${actor_type.slice(1)}: historical-id`
++    );
++  });
++  it("distinguishes a deleted human from missing provenance", () => {
++    expect(actorLabel({ ...summary, display_name: null, user_status: "deleted" }, null)).toBe(
++      "Deleted user (historical-id)"
++    );
++    expect(actorLabel(undefined, null)).toBe("Unknown author");
++    expect(
++      actorLabel(
++        { ...summary, actor_type: "unknown", actor_id: null, display_name: null, user_status: "unknown" },
++        null
++      )
++    ).toBe("Unknown author");
++    expect(actorLabel(undefined, "legacy-id")).toBe("Human (legacy-id)");
++  });
++});
+--- /dev/null
++++ current/apps/web/components/radar/actor-summary.ts
+@@ -0,0 +1,8 @@
++import type { RadarActorSummary } from "../../services/radar/types";
++
++export function actorLabel(summary: RadarActorSummary | undefined, legacyId: string | null): string {
++  if (!summary || summary.actor_type === "unknown") return legacyId ? `Human (${legacyId})` : "Unknown author";
++  const label = { human: "Human", agent: "Agent", system: "System", integration: "Integration" }[summary.actor_type];
++  if (summary.actor_type === "human" && summary.user_status === "deleted") return `Deleted user (${summary.actor_id})`;
++  return `${label}: ${summary.display_name || summary.actor_id}`;
++}
+--- /dev/null
++++ current/apps/web/store/radar/mutation-intents.ts
+@@ -0,0 +1,70 @@
++import { v4 as uuidv4 } from "uuid";
++import type { RadarMutationContext, RadarPendingCommand } from "../../services/radar/types";
++
++type Intent = {
++  signature: string;
++  payload: unknown;
++  context: RadarMutationContext;
++  busy: boolean;
++  approval?: RadarPendingCommand;
++};
++
++function canonical(value: unknown): unknown {
++  if (Array.isArray(value)) return value.map(canonical);
++  if (value !== null && typeof value === "object") {
++    const entries = Object.entries(value);
++    // eslint-disable-next-line unicorn/no-array-sort -- ES2022 target; this array is allocated locally.
++    entries.sort(([a], [b]) => a.localeCompare(b));
++    return Object.fromEntries(entries.map(([key, item]) => [key, canonical(item)]));
++  }
++  return value;
++}
++
++/** In-memory only: one workspace/session owns these exact retry envelopes. */
++export class RadarMutationIntents {
++  private readonly intents = new Map<string, Intent>();
++
++  resume(approvalId: string) {
++    const intent = [...this.intents.values()].find((item) => item.approval?.approval_id === approvalId);
++    if (!intent || intent.busy) throw new Error("Load and review the pending intention before resuming it.");
++    intent.context.approval_id = approvalId;
++  }
++
++  async run<Input, Result>(
++    slot: string,
++    payload: Input,
++    context: () => RadarMutationContext,
++    operation: (payload: Input, context: RadarMutationContext) => Promise<Result>
++  ): Promise<Result> {
++    const signature = JSON.stringify(canonical(payload));
++    let intent = this.intents.get(slot);
++    if (intent?.busy) throw new Error("This change is already being submitted.");
++    if (!intent || intent.signature !== signature) {
++      intent = {
++        signature,
++        payload: JSON.parse(JSON.stringify(payload)) as Input,
++        context: { ...context(), idempotency_key: uuidv4() },
++        busy: false,
++      };
++      this.intents.set(slot, intent);
++    }
++    intent.busy = true;
++    try {
++      const result = await operation(intent.payload as Input, intent.context);
++      this.intents.delete(slot);
++      return result;
++    } catch (cause) {
++      const pending = (cause as { command?: RadarPendingCommand } | null)?.command;
++      if (pending?.status === "pending_approval") intent.approval = pending;
++      else {
++        const status = (cause as { response?: { status?: number } } | null)?.response?.status;
++        // A timeout/server error may follow a commit. Retry it with its original payload and versions.
++        if (status !== undefined && status >= 400 && status < 500 && ![408, 429].includes(status))
++          this.intents.delete(slot);
++      }
++      throw cause;
++    } finally {
++      intent.busy = false;
++    }
++  }
++}
+--- /dev/null
++++ current/docs/radar/CORE_U1_PHASE_01_ADR.md
+@@ -0,0 +1,41 @@
++# RADAR U1 — Decisões das fases 0 e 1
++
++**Data:** 06/10/2026, America/Bahia. **Escopo autorizado:** fases 0 e 1 do [plano U1](CORE_U1_IMPLEMENTATION_PLAN.md). As decisões sobre schema/lifecycle/runtime orientam fases posteriores; não ativam builders nesta entrega.
++
++## Base e ambiente
++
++O manifesto inicial e a cópia dos fontes em [output/core-u1-phase-01-20261006](../../output/core-u1-phase-01-20261006) preservam o filesystem anterior à implementação, incluindo alterações staged, unstaged e untracked. A comparação da entrega será contra essa base, não contra HEAD.
++
++Inspeção somente leitura do stack `plane` em uso: `showmigrations radar` informa que o app RADAR não está instalado; o banco `plane` não contém migrations nem tabelas `radar_%`. Portanto a pendência de ativação não se limita a aplicar 0011: exige disponibilizar o app/código RADAR e sua cadeia de migrations. Esta entrega valida em stack isolado e não altera esse ambiente. Outros ambientes não foram inspecionados.
++
++## Ownership e evolução de schema
++
++O pacote de ontologia fornece uma base instalada; o workspace é dono da configuração efetiva. Upgrades futuros devem comparar base instalada, configuração local e pacote candidato. `is_system` não autoriza sobrescrever personalizações. IDs e inativações intencionais são preservados; alterações incompatíveis exigem relatório e migração explícita. Na fase 1, bootstrap continua idempotente por estado e auditado, sem ledger de intenção por GET.
++
++## Leitura operacional e histórica
++
++Na fase 2, a política operacional deverá excluir tipos/definições/relações/endpoints inativos ou excluídos. Histórico tem consulta explícita e autorização própria. A fase 1 publica as interfaces de consulta existentes sem alegar que unificou todas as queries de C11. Provenance permanece fonte da identidade histórica do actor; uma FK User nula não significa usuário excluído.
++
++## Prazo, atribuição e registros
++
++Executores correntes deverão ter fonte canônica em `assigned_to`. Prazo de delegação precisa preservar precisão datetime de `due_at`; `due_date` mantém seu significado de data até reconciliação explícita. O prazo efetivo compartilhado por Today/UI/runtime deverá ter política de fuso e diagnóstico de divergências antes do backfill da fase 5. Reviews/measurements/acceptances permanecem fatos operacionais tipados, com histórico paginável e origem rastreável. Não transformar listas JSON nesta fase.
++
++## Narrativa e lifecycle
++
++Title/UUID/version permanecem envelope comum. Apresentação futura declara narrativa principal e notas complementares; divergências entre content/description/context não são resolvidas por cópia automática. Tipo customizado não ganha transições nem autoridade de runtime implicitamente; lifecycle futuro seleciona operadores/capabilities registrados, sem scripts ou workflows arbitrários.
++
++## Interfaces e compatibilidade da fase 1
++
++Publicar lookup ativo, valores efetivos, membership, evidência/aprovação e helpers de execução usados entre módulos. Commands retornam DTOs de aplicação sem importar serializers da API. Manter nomes/campos e formatação dos resultados HTTP e dos resultados antigos do ledger; autoria no resumo HTTP é uma extensão aditiva. Preservar o fingerprint U0: intents pendentes sob código anterior exigem novo preview/review; execuções confirmadas continuam retornando resultados históricos.
++
++Inicialização de defaults pública passa pelo ledger compartilhado como command human-only. A API retorna o snapshot confirmado persistido, mesmo quando a versão atual já mudou; o caller pode buscar estado corrente separadamente. Callers Python confiáveis podem continuar omitindo versões/chave, com o limite documentado na compatibility layer.
++
++## Retry no cliente
++
++A store mantém em memória uma intenção por operação/target, com payload copiado, chave, reason e expected_versions estáveis. Resposta incerta conserva a intenção; submit com conteúdo diferente cria outra; resposta 4xx definitiva encerra a tentativa; conflito exige refresh e nova revisão antes de novo submit. Aprovação pendente conserva a intenção e seu approval ID para retomada. Mudança de versão da cache não rebaseia retries incertos.
++
++Não persistir intenções em localStorage nesta fase. O escopo é a instância de store do workspace/sessão; troca de usuário deve recriar o provider. Reload encerra esse escopo: depois de resposta incerta, consultar estado antes de reenviar criação como nova intenção. Garantir replay atravessando reload exige produto/armazenamento adicional e fica explicitamente fora deste contrato de retry.
++
++## Inventário e validação
++
++O [inventário inicial](../../output/core-u1-phase-01-20261006/phase0-inventory.json) registra imports privados, consumers do catálogo, estrutura operacional e compatibilidade. Não há OperationalRecord legado no stack inspecionado; dados de outro ambiente exigirão inventário antes da fase 5. O [relatório de entrega](CORE_U1_PHASE_01_REPORT.md) registra os resultados executados, migrations e limites finais.
+--- /dev/null
++++ current/docs/radar/CORE_U1_PHASE_01_REPORT.md
+@@ -0,0 +1,63 @@
++# RADAR Core U1 — Entrega das fases 0 e 1
++
++**Data:** 06/10/2026, America/Bahia. **Escopo:** fases 0 e 1 do [plano U1](CORE_U1_IMPLEMENTATION_PLAN.md), autorizadas após sua elaboração. Decisões: [ADR](CORE_U1_PHASE_01_ADR.md). **Status:** fases 0 e 1 concluídas e validadas em ambiente isolado; C15, C16 e C22 corrigidos no código.
++
++## Resultado implementado
++
++| Achado | Correção                                                                                               | Evidência                                                                    |
++| ------ | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
++| C22    | Resumos de criação/edição por provenance e actor, com resolução de humanos em lote                     | Testes humanos/não humanos/legados, limite de queries e Object Page real     |
++| C16    | Interfaces públicas para contexto, membership, queries, validação e efeitos; DTOs sem serializers HTTP | Teste de fronteiras/imports e paridade da representação v1                   |
++| C15    | Defaults no ledger comum e intenção estável de retry na store                                          | Replay histórico, rollback, revogação, resposta perdida e aprovação pendente |
++
++As fases seguintes continuam pendentes. Este trabalho não publica builders nem torna lifecycle, contexto de runtime e apresentação configuráveis por metadata.
++
++## Fase 0 — Base e decisões
++
++Preservados hashes e cópia dos fontes anteriores à edição em [output/core-u1-phase-01-20261006](../../output/core-u1-phase-01-20261006/README.md). O worktree já continha alterações staged/unstaged/untracked; o manifesto diferencia esta entrega dessa base, sem usar o diff contra HEAD como prova de autoria das mudanças.
++
++Baseline executado: **301 backend RADAR aprovados, 4 opt-in ignorados; 93 frontend aprovados**. O inventário inicial registra 20 imports privados entre módulos, consumers do catálogo e estrutura de `OperationalRecord`. O ADR define ownership do seed/customizações, leitura operacional/histórica, prazo/atribuição, narrativa, lifecycle e limite do retry em memória.
++
++Inspeção somente leitura do stack `plane` em uso confirmou **app RADAR não instalado, zero migrations e zero tabelas RADAR**. A ativação futura requer disponibilizar o app e aplicar sua cadeia de migrations, incluindo 0011. Não há `OperationalRecord` legado nesse stack; não se presume ausência em outros ambientes. O stack em uso não foi alterado.
++
++No banco descartável, o round-trip **0010 → 0011 → 0010 → 0011** passou, preservando identidades e tipo customizado, instalando as duas regras normativas. Não há nova migration de produto na fase 1; o check de migrations confirmou isso.
++
++## C22 — Autoria efetiva
++
++[authorship.py](../../apps/api/plane/radar/authorship.py) resolve `created_actor` e `updated_actor` usando os ponteiros de provenance. O resumo inclui actor_type, actor_id, display_name quando disponível, user_status, source, timestamp e provenance_id. Diferencia humano disponível, identidade humana histórica sem User, ator não humano e autoria desconhecida. FKs User existentes permanecem na representação para compatibilidade.
++
++[ObjectSerializer](../../apps/api/plane/radar/api/serializers.py) acrescenta os resumos em leituras HTTP. Na listagem, Object/type/provenance são carregados por join e nomes humanos por uma consulta em lote: **duas queries para seis Objects com dois autores**, verificadas em teste. A [Object Page](../../apps/web/components/radar/object-page.tsx) mostra humano, agente, sistema e integração com labels distintos; null isolado passa a autoria desconhecida.
++
++No navegador, a criação por integração continuou atribuída à integração após edição humana, e `updated_actor` passou ao humano com versão 2. Reload e consulta PostgreSQL confirmam persistência. [Captura](../../output/core-u1-phase-01-20261006/browser-integration-human-edit.jpg).
++
++## C16 — Fronteiras públicas
++
++Publicados os contratos de [contexto](../../apps/api/plane/radar/commands/context.py), [membership](../../apps/api/plane/radar/commands/access.py), [queries/validação](../../apps/api/plane/radar/commands/queries.py) e [DTOs de resultado](../../apps/api/plane/radar/commands/results.py). Helpers de primitives, provisioning e efeitos usados por outros módulos receberam nomes públicos; callers de operations, runtime, Risk Review, API e management commands foram atualizados.
++
++Handlers não importam `ObjectSerializer` nem `RelationSerializer` da API. Os DTOs mantêm a representação v1 dos resultados persistidos, incluindo UUIDs como strings e timestamps ISO. Testes comparam essa representação ao JSON dos adapters e impedem novos imports privados entre módulos/serializers API nos commands.
++
++A tradução comum de membership foi extraída e reutilizada na autorização de primitives e execução. Isso não encerra C09: planejamento/autoridade de efeitos compostos e demais traduções operacionais continuam para fase 3. Django, DRF e serializers de inputs compartilhados permanecem; não houve substituição do framework.
++
++## C15 — Defaults e retries
++
++`InitializeObjectProperties` tem input tipado e execução pelo dispatcher/ledger existente. Continua **human-only**, inclusive perante grant forjado; provisioning não permite concedê-lo a atores não humanos. Bootstrap de tipos/definições continua idempotente por estado e auditado no caminho interno.
++
++O endpoint POST de defaults usa [initialize_properties_command](../../apps/api/plane/radar/commands/semantic.py) e devolve o snapshot confirmado em `CommandExecution.result`. Replay com mesma chave/input retorna esse snapshot antes de verificar versões antigas; alterações posteriores no Object não reescrevem o resultado histórico. Na primeira execução, autoria é resolvida após o flush de provenance. No-op também tem um único resultado confirmado; falha de validação reverte ledger, propriedades, versões e auditoria.
++
++`initialize_object_properties` preserva o retorno Object para callers Python confiáveis. Na compatibility layer, chave existente com versões omitidas recupera o mapa original do ledger; versões fornecidas pelo cliente não são substituídas. Transport continua exigindo expected_versions e Idempotency-Key.
++
++[RadarMutationIntents](../../apps/web/store/radar/mutation-intents.ts) conserva input copiado, chave e expected_versions de criação, edição, defaults, propriedades e relações. Timeout/5xx não troca a intenção; resposta 4xx definitiva a encerra, exceto timeout/rate limit. Não há retry automático nem rebase automático após conflito. Erros 409 orientam refresh e revisão.
++
++Aprovação pendente conserva a intenção. O approval ID só é anexado por `resumePendingMutation` após retomada explícita; o servidor continua verificando o review. Submit simultâneo na mesma operação é bloqueado. A troca de workspace/usuário recria o provider e isola as intenções.
++
++**Limite declarado:** estado em memória, sem persistência após reload. Depois de resposta incerta e reload, consultar estado antes de enviar criação como nova intenção. Uma mudança de input significa nova intenção; não implica cancelamento automático de um command antigo pendente no servidor. Compatibilidade Python sem versões segue restrita a callers confiáveis.
++
++## Validação e limites
++
++Os comandos, logs, manifests e capturas ficam no [diretório de evidências](../../output/core-u1-phase-01-20261006/README.md). A regressão final teve **323 casos backend: 319 aprovados, 4 opt-in ignorados, zero falhas/erros**, incluindo os **18 casos U1 novos**. O frontend teve **106 casos aprovados em 15 arquivos**, incluindo oito cenários novos de retry e cinco de apresentação de actor. `pnpm check` passou com **56/56 tarefas** (53 em cache); Ruff, formatação Python, migration check e round-trip passaram. Não se somam reexecuções às contagens finais. O check do monorepo apresentou avisos de cache/IO do sandbox e avisos Vite/PostCSS existentes, sem falhar.
++
++A bancada de navegador usa Object Page, stores/services de produto, sessão Django, API e PostgreSQL reais. Permissões no hook da UI, member picker e editor de notas são fixtures explícitas; não representam novo E2E do shell/login completo. Foram verificados rótulos dos quatro actors, edição humana de Object criado por integração, reload e ausência de erros de console. Agent-browser CLI não iniciou Chromium devido à restrição de Mach ports do ambiente; a verificação foi concluída com Chrome via Computer Use.
++
++As tentativas iniciais conservam logs: assertions comparavam UUIDs do serializer antes da renderização com strings JSON; o helper de URL recebeu Workspace em vez de contexto; a fixture de autor histórico tentou cascata de User bloqueada pelos guards U0; e uma importação de uuid4 precisou ser restaurada. Foram corrigidos os testes, preservando guards de produto. O lint pediu evitar sort mutável, mas `toSorted` não pertence ao target ES2022 do projeto: mantido sort de array local com justificativa e supressão pontual da regra, sem mudar tsconfig/dependências.
++
++Não houve deploy, ativação no stack em uso, alteração de credenciais ou código do COS_AGENT_V2. Provider real e quatro opt-ins não foram reexecutados. Não há alegação de homologação em ambiente publicado nem de encerramento dos outros 13 U1 ou dois U2.

@@ -1,0 +1,83 @@
+ Container radar-general-validation-20261004-api-tests-run-e8e01a74a2ac Creating 
+ Container radar-general-validation-20261004-api-tests-run-e8e01a74a2ac Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 3 items
+
+plane/radar/tests/test_context_bounds.py Fatal Python error: Aborted
+
+Current thread 0x0000ffff99b4cd20 (most recent call first):
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/fields/related.py", line 1816 in deconstruct
+  File "/usr/local/lib/python3.12/site-packages/django/db/models/fields/__init__.py", line 671 in clone
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/state.py", line 978 in render
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/state.py", line 688 in render_multiple
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/state.py", line 458 in _reload
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/state.py", line 423 in reload_model
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/state.py", line 368 in rename_field
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/operations/fields.py", line 303 in state_forwards
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/migration.py", line 118 in apply
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/executor.py", line 255 in apply_migration
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/executor.py", line 167 in _migrate_all_forwards
+  File "/usr/local/lib/python3.12/site-packages/django/db/migrations/executor.py", line 135 in migrate
+  File "/usr/local/lib/python3.12/site-packages/django/core/management/commands/migrate.py", line 353 in handle
+  File "/usr/local/lib/python3.12/site-packages/django/core/management/base.py", line 111 in wrapper
+  File "/usr/local/lib/python3.12/site-packages/django/core/management/base.py", line 464 in execute
+  File "/usr/local/lib/python3.12/site-packages/django/core/management/__init__.py", line 194 in call_command
+  File "/usr/local/lib/python3.12/site-packages/django/db/backends/base/creation.py", line 78 in create_test_db
+  File "/usr/local/lib/python3.12/site-packages/django/test/utils.py", line 204 in setup_databases
+  File "/usr/local/lib/python3.12/site-packages/pytest_django/fixtures.py", line 186 in django_db_setup
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 908 in call_fixture_func
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 1202 in pytest_fixture_setup
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 1110 in execute
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 627 in _get_active_fixturedef
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 1068 in execute
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 627 in _get_active_fixturedef
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 539 in getfixturevalue
+  File "/usr/local/lib/python3.12/site-packages/pytest_django/plugin.py", line 566 in _django_db_marker
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 915 in call_fixture_func
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 1202 in pytest_fixture_setup
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 1110 in execute
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 627 in _get_active_fixturedef
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 539 in getfixturevalue
+  File "/usr/local/lib/python3.12/site-packages/_pytest/fixtures.py", line 707 in _fillfixtures
+  File "/usr/local/lib/python3.12/site-packages/_pytest/python.py", line 1723 in setup
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 523 in setup
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 165 in pytest_runtest_setup
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 245 in <lambda>
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 353 in from_call
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 244 in call_and_report
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 131 in runtestprotocol
+  File "/usr/local/lib/python3.12/site-packages/_pytest/runner.py", line 118 in pytest_runtest_protocol
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/main.py", line 396 in pytest_runtestloop
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/main.py", line 372 in _main
+  File "/usr/local/lib/python3.12/site-packages/_pytest/main.py", line 318 in wrap_session
+  File "/usr/local/lib/python3.12/site-packages/_pytest/main.py", line 365 in pytest_cmdline_main
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_callers.py", line 121 in _multicall
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_manager.py", line 120 in _hookexec
+  File "/usr/local/lib/python3.12/site-packages/pluggy/_hooks.py", line 512 in __call__
+  File "/usr/local/lib/python3.12/site-packages/_pytest/config/__init__.py", line 199 in main
+  File "/usr/local/lib/python3.12/site-packages/_pytest/config/__init__.py", line 223 in console_main
+  File "/usr/local/bin/pytest", line 8 in <module>
+
+Extension modules: yaml._yaml, psycopg_c.pq, psycopg_c._psycopg, charset_normalizer.md, charset_normalizer.cd, requests.packages.charset_normalizer.md, requests.packages.chardet.md, requests.packages.charset_normalizer.cd, requests.packages.chardet.cd, lxml._elementpath, lxml.etree (total: 11)
+

@@ -1,0 +1,21 @@
+130 objects imported automatically (use -v 2 for details).
+
+{
+  "object_version": 1,
+  "comment_revision": 2,
+  "comment_body": "Revisar licenciamento com a equipe respons\u00e1vel antes do piloto.",
+  "comment_creator_preserved": true,
+  "attachment_deleted": true,
+  "attachment_revision": 3,
+  "attachment_hash_matches": true,
+  "attachment_creator_preserved": true,
+  "delete_actor_matches_admin": true,
+  "payload_retained": true,
+  "commands": [
+    "AddComment",
+    "EditComment",
+    "AddAttachment",
+    "RenameAttachment",
+    "DeleteAttachment"
+  ]
+}

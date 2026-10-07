@@ -1,0 +1,634 @@
+ Container radar-core-u1-phase03-test-db-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Running 
+ Container radar-core-u1-phase03-test-mq-1 Running 
+ Container radar-core-u1-phase03-test-minio-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Waiting 
+ Container radar-core-u1-phase03-test-mq-1 Waiting 
+ Container radar-core-u1-phase03-test-minio-1 Waiting 
+ Container radar-core-u1-phase03-test-db-1 Waiting 
+ Container radar-core-u1-phase03-test-db-1 Healthy 
+ Container radar-core-u1-phase03-test-redis-1 Healthy 
+ Container radar-core-u1-phase03-test-mq-1 Healthy 
+ Container radar-core-u1-phase03-test-minio-1 Healthy 
+ Container radar-core-u1-phase03-api-tests-run-bf2fd8f96530 Creating 
+ Container radar-core-u1-phase03-api-tests-run-bf2fd8f96530 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+plane/radar/api/agent_config_views.py:29:121: E501 Line too long (186 > 120)
+   |
+27 | …
+28 | …
+29 | …="Read configuration authority", source="radar.session-api", correlation_id=uuid4()), workspace),
+   |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+30 | …
+31 | …
+   |
+
+plane/radar/api/command_views.py:53:121: E501 Line too long (125 > 120)
+   |
+51 |         return Response(preview_command(
+52 |             actor=self.actor(data["reason"]), workspace=self.workspace(), name=data["command_name"],
+53 |             data=data["input"], expected_schema_revision=data["expected_schema_revision"], evidence_ids=data["evidence_ids"],
+   |                                                                                                                         ^^^^^ E501
+54 |         ))
+   |
+
+plane/radar/api/runtime_views.py:264:121: E501 Line too long (146 > 120)
+    |
+262 | …_id", flat=True))):
+263 | …redential scope.")
+264 | …Object" and change["before"] is None for change in plan.preview["changes"]):
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+265 | …hority.")
+266 | …
+    |
+
+plane/radar/api/runtime_views.py:329:121: E501 Line too long (143 > 120)
+    |
+327 | …
+328 | …
+329 | …act in command_contracts(nonhuman=True).items() if name in grant.commands},
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^ E501
+330 | …
+331 | …
+    |
+
+plane/radar/commands/access.py:24:121: E501 Line too long (130 > 120)
+   |
+22 |     return actor.actor_type == "human" and (
+23 |         workspace.owner_id == actor.actor_id
+24 |         or WorkspaceMember.objects.filter(workspace=workspace, member_id=actor.actor_id, role=ADMIN_ROLE, is_active=True).exists()
+   |                                                                                                                         ^^^^^^^^^^ E501
+25 |     )
+   |
+
+plane/radar/commands/capabilities.py:192:121: E501 Line too long (122 > 120)
+    |
+190 |             kind = "string_list" if kind == "array" else "string" if kind == "uuid" else kind
+191 |             parameters[key] = {"type": kind, "required": field.required}
+192 |         targets = known - {"person"} if capability.target_types == ("*",) else known.intersection(capability.target_types)
+    |                                                                                                                         ^^ E501
+193 |         result[operation] = {"id": operation, "description": operation, "target_types": sorted(targets), "parameters": parameters}
+194 |     return result
+    |
+
+plane/radar/commands/capabilities.py:193:121: E501 Line too long (130 > 120)
+    |
+191 |             parameters[key] = {"type": kind, "required": field.required}
+192 |         targets = known - {"person"} if capability.target_types == ("*",) else known.intersection(capability.target_types)
+193 |         result[operation] = {"id": operation, "description": operation, "target_types": sorted(targets), "parameters": parameters}
+    |                                                                                                                         ^^^^^^^^^^ E501
+194 |     return result
+    |
+
+plane/radar/commands/capabilities.py:197:121: E501 Line too long (187 > 120)
+    |
+197 | …nce_resolver="handlers.creation_references", composed_capability="handlers.creation_capability"))
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+198 | …), "handlers.update_references", human_policy="handlers._is_human_only", requested_fields=("changes", "set_properties", "remove_prop…
+199 | …lers._initialize_properties", ("object_id",), human_only=True))
+    |
+
+plane/radar/commands/capabilities.py:198:121: E501 Line too long (232 > 120)
+    |
+197 | …creation_references", composed_capability="handlers.creation_capability"))
+198 | …erences", human_policy="handlers._is_human_only", requested_fields=("changes", "set_properties", "remove_properties")))
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+199 | …ties", ("object_id",), human_only=True))
+200 | …y="handlers.relation_review"))
+    |
+
+plane/radar/commands/capabilities.py:199:121: E501 Line too long (153 > 120)
+    |
+197 | …e_object", reference_resolver="handlers.creation_references", composed_capability="handlers.creation_capability"))
+198 | …e", ("object_id",), "handlers.update_references", human_policy="handlers._is_human_only", requested_fields=("changes", "set_properti…
+199 | …tiesInput", "handlers._initialize_properties", ("object_id",), human_only=True))
+    |                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+200 | …("source_id", "target_id"), review_policy="handlers.relation_review"))
+201 | …ink", reference_resolver="handlers.unlink_references", review_policy="handlers.relation_review"))
+    |
+
+plane/radar/commands/capabilities.py:200:121: E501 Line too long (143 > 120)
+    |
+198 | …update", ("object_id",), "handlers.update_references", human_policy="handlers._is_human_only", requested_fields=("changes", "set_pro…
+199 | …ropertiesInput", "handlers._initialize_properties", ("object_id",), human_only=True))
+200 | …nk", ("source_id", "target_id"), review_policy="handlers.relation_review"))
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^ E501
+201 | …._unlink", reference_resolver="handlers.unlink_references", review_policy="handlers.relation_review"))
+202 | …create_action", ("origin_decision_id", "owner_person_id", "executor_person_ids", "mitigates_risk_ids")))
+    |
+
+plane/radar/commands/capabilities.py:201:121: E501 Line too long (170 > 120)
+    |
+199 | …", "handlers._initialize_properties", ("object_id",), human_only=True))
+200 | …id", "target_id"), review_policy="handlers.relation_review"))
+201 | …erence_resolver="handlers.unlink_references", review_policy="handlers.relation_review"))
+    |                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+202 | …, ("origin_decision_id", "owner_person_id", "executor_person_ids", "mitigates_risk_ids")))
+203 | …, ("owner_person_id", "threatens_object_ids")))
+    |
+
+plane/radar/commands/capabilities.py:202:121: E501 Line too long (172 > 120)
+    |
+200 | …d", "target_id"), review_policy="handlers.relation_review"))
+201 | …rence_resolver="handlers.unlink_references", review_policy="handlers.relation_review"))
+202 | … ("origin_decision_id", "owner_person_id", "executor_person_ids", "mitigates_risk_ids")))
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+203 | … ("owner_person_id", "threatens_object_ids")))
+204 | …sion", ("project_id", "evidence_ids", "consultation_person_ids", "notification_person_ids")))
+    |
+
+plane/radar/commands/capabilities.py:203:121: E501 Line too long (129 > 120)
+    |
+201 | …andlers._unlink", reference_resolver="handlers.unlink_references", review_policy="handlers.relation_review"))
+202 | …dlers._create_action", ("origin_decision_id", "owner_person_id", "executor_person_ids", "mitigates_risk_ids")))
+203 | …dlers._register_risk", ("owner_person_id", "threatens_object_ids")))
+    |                                                             ^^^^^^^^^ E501
+204 | …"handlers._create_decision", ("project_id", "evidence_ids", "consultation_person_ids", "notification_person_ids")))
+205 | …, "handlers._approve_decision", ("decision_id", "approver_person_id"), "handlers.approval_references", human_only=True))
+    |
+
+plane/radar/commands/capabilities.py:204:121: E501 Line too long (176 > 120)
+    |
+202 | …"origin_decision_id", "owner_person_id", "executor_person_ids", "mitigates_risk_ids")))
+203 | …"owner_person_id", "threatens_object_ids")))
+204 | …on", ("project_id", "evidence_ids", "consultation_person_ids", "notification_person_ids")))
+    |                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+205 | …ision", ("decision_id", "approver_person_id"), "handlers.approval_references", human_only=True))
+206 | …on", ("action_id", "evidence_id")))
+    |
+
+plane/radar/commands/capabilities.py:205:121: E501 Line too long (181 > 120)
+    |
+203 | …wner_person_id", "threatens_object_ids")))
+204 | …", ("project_id", "evidence_ids", "consultation_person_ids", "notification_person_ids")))
+205 | …ion", ("decision_id", "approver_person_id"), "handlers.approval_references", human_only=True))
+    |                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+206 | …", ("action_id", "evidence_id")))
+207 | …et_id", "document.existing_id")))
+    |
+
+plane/radar/commands/capabilities.py:208:121: E501 Line too long (157 > 120)
+    |
+206 | …plete_action", ("action_id", "evidence_id")))
+207 | …nce", ("target_id", "document.existing_id")))
+208 | …ch", ("owner_id",), runtime_operation="capture_issue", source_parameter="source"))
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+209 | …spatch", ("action_id", "executor_id", "executor_ids"), reference_resolver="operations.references", runtime_operation="delegate", tar…
+210 | …ch", ("target_id", "evidence_id"), runtime_operation="review", target_field="target_id", target_types=("*",)))
+    |
+
+plane/radar/commands/capabilities.py:209:121: E501 Line too long (256 > 120)
+    |
+207 | …d")))
+208 | …apture_issue", source_parameter="source"))
+209 | …xecutor_ids"), reference_resolver="operations.references", runtime_operation="delegate", target_field="action_id", target_types=("action",)))
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+210 | …me_operation="review", target_field="target_id", target_types=("*",)))
+211 | …e_id"), runtime_operation="record_measurement", target_field="indicator_id", target_types=("indicator",), source_parameter="evidence_source", evid…
+    |
+
+plane/radar/commands/capabilities.py:210:121: E501 Line too long (185 > 120)
+    |
+208 | …d",), runtime_operation="capture_issue", source_parameter="source"))
+209 | …ion_id", "executor_id", "executor_ids"), reference_resolver="operations.references", runtime_operation="delegate", target_field="act…
+210 | …id", "evidence_id"), runtime_operation="review", target_field="target_id", target_types=("*",)))
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+211 | … ("indicator_id", "evidence_id"), runtime_operation="record_measurement", target_field="indicator_id", target_types=("indicator",), …
+212 | …
+    |
+
+plane/radar/commands/capabilities.py:211:121: E501 Line too long (298 > 120)
+    |
+209 | …xecutor_ids"), reference_resolver="operations.references", runtime_operation="delegate", target_field="action_id", target_types=("action",)))
+210 | …me_operation="review", target_field="target_id", target_types=("*",)))
+211 | …e_id"), runtime_operation="record_measurement", target_field="indicator_id", target_types=("indicator",), source_parameter="evidence_source", evidence_text_parameter="evidence_text"))
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+212 | …
+213 | …ut"),
+    |
+
+plane/radar/commands/capabilities.py:214:121: E501 Line too long (139 > 120)
+    |
+212 | …
+213 | …tInput"), ("DeleteComment", "CollaborationItemInput"),
+214 | …"RenameAttachmentInput"), ("DeleteAttachment", "CollaborationItemInput"),
+    |                                                        ^^^^^^^^^^^^^^^^^^^ E501
+215 | …
+216 | …, ("object_id",), human_only=True))
+    |
+
+plane/radar/commands/control.py:143:121: E501 Line too long (196 > 120)
+    |
+141 | …
+142 | …
+143 | …d_name, data=serializer.validated_data, evidence_ids=execution.envelope["assertion"]["evidence_ids"])
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+144 | …
+145 | …
+    |
+
+plane/radar/commands/effects.py:73:121: E501 Line too long (142 > 120)
+   |
+71 | …
+72 | …
+73 | …s": self.fields, "commands": self.commands, "human_only": self.human_only},
+   |                                                       ^^^^^^^^^^^^^^^^^^^^^^ E501
+74 | …
+75 | …
+   |
+
+plane/radar/commands/effects.py:79:121: E501 Line too long (122 > 120)
+   |
+78 | def capture_plan(workspace, capability, data, context, refs):
+79 |     dependencies = {str(pk): version for pk, version in context.dependencies.items() if pk not in context.created_objects}
+   |                                                                                                                         ^^ E501
+80 |     for obj in Object.objects.filter(workspace=workspace, pk__in=refs):
+81 |         dependencies.setdefault(str(obj.pk), obj.version)
+   |
+
+plane/radar/commands/effects.py:82:121: E501 Line too long (123 > 120)
+   |
+80 |     for obj in Object.objects.filter(workspace=workspace, pk__in=refs):
+81 |         dependencies.setdefault(str(obj.pk), obj.version)
+82 |     types = set(Object.objects.filter(workspace=workspace, pk__in=dependencies).values_list("object_type__key", flat=True))
+   |                                                                                                                         ^^^ E501
+83 |     fields, commands = capability.field_scope(data), {capability.name}
+84 |     if capability.composed_capability:
+   |
+
+plane/radar/commands/effects.py:101:121: E501 Line too long (124 > 120)
+    |
+ 99 |             commands.add("UnlinkObjects" if after["deleted_at"] else "LinkObjects")
+100 |         elif model == "radar.OperationalRecord":
+101 |             fields.update(key for key, value in after["data"].items() if before is None or before["data"].get(key) != value)
+    |                                                                                                                         ^^^^ E501
+102 |     # Observation while computing requested derived fields is also part of the plan.
+103 |     dependencies.update({str(pk): version for pk, version in context.dependencies.items() if pk not in context.created_objects})
+    |
+
+plane/radar/commands/effects.py:103:121: E501 Line too long (128 > 120)
+    |
+101 | ….items() if before is None or before["data"].get(key) != value)
+102 | … also part of the plan.
+103 | …context.dependencies.items() if pk not in context.created_objects})
+    |                                                             ^^^^^^^^ E501
+104 | …tuple(sorted(types)), tuple(sorted(fields)), tuple(sorted(commands)), capability.is_human_only(workspace, data))
+    |
+
+plane/radar/commands/effects.py:104:121: E501 Line too long (173 > 120)
+    |
+102 | ….
+103 | …tems() if pk not in context.created_objects})
+104 | …tuple(sorted(fields)), tuple(sorted(commands)), capability.is_human_only(workspace, data))
+    |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+    |
+
+plane/radar/commands/effects.py:129:121: E501 Line too long (132 > 120)
+    |
+127 |         raise PermissionDenied("This capability is human-only.")
+128 |     refs = capability.references(workspace, data) | {UUID(str(pk)) for pk in evidence_ids}
+129 |     return resolve(capability.planner)(actor=actor, workspace=workspace, capability=capability, data=data, refs=refs, upload=upload)
+    |                                                                                                                         ^^^^^^^^^^^^ E501
+    |
+
+plane/radar/commands/execution.py:323:121: E501 Line too long (127 > 120)
+    |
+321 |     serializer = INPUTS[name](data=json_value(data))
+322 |     serializer.is_valid(raise_exception=True)
+323 |     plan = plan_command(actor=actor, workspace=workspace, name=name, data=serializer.validated_data, evidence_ids=evidence_ids)
+    |                                                                                                                         ^^^^^^^ E501
+324 |     check_grant(workspace, grant, name, serializer.validated_data, plan=plan)
+325 |     return {
+    |
+
+plane/radar/commands/execution.py:434:121: E501 Line too long (130 > 120)
+    |
+432 |             )
+433 |     declared_refs = references(workspace, name, data) | set(assertion["evidence_ids"])
+434 |     known = set(Object.objects.select_for_update().filter(workspace=workspace, pk__in=declared_refs).values_list("pk", flat=True))
+    |                                                                                                                         ^^^^^^^^^^ E501
+435 |     if known != declared_refs:
+436 |         raise NotFound("Object not found in this workspace.")
+    |
+
+plane/radar/commands/execution.py:440:121: E501 Line too long (134 > 120)
+    |
+438 |     if "expected_schema_revision" in request:
+439 |         check_schema_revision(workspace, request["expected_schema_revision"])
+440 |     plan = plan_command(actor=actor, workspace=workspace, name=name, data=data, evidence_ids=assertion["evidence_ids"], upload=upload)
+    |                                                                                                                         ^^^^^^^^^^^^^^ E501
+441 |     refs = {UUID(pk) for pk in plan.dependencies}
+442 |     before = lock_expected_versions(workspace, request["expected_versions"], refs)
+    |
+
+plane/radar/commands/handlers.py:14:5: F401 [*] `plane.radar.models.Object` imported but unused
+   |
+12 |     DecisionApproval,
+13 |     EvidenceRecord,
+14 |     Object,
+   |     ^^^^^^ F401
+15 |     ObjectType,
+16 |     PersonIdentity,
+   |
+   = help: Remove unused import: `plane.radar.models.Object`
+
+plane/radar/models/collaboration.py:100:121: E501 Line too long (148 > 120)
+    |
+ 98 | …
+ 99 | …
+100 | …d), "size": len(self.data), "sha256": hashlib.sha256(self.data).hexdigest()})
+    |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+101 | …
+102 | …
+    |
+
+plane/radar/risk_review.py:231:121: E501 Line too long (123 > 120)
+    |
+229 |         else None,
+230 |     )
+231 |     plan = plan_command(actor=actor, workspace=run.workspace, name=name, data=data, evidence_ids=assertion["evidence_ids"])
+    |                                                                                                                         ^^^ E501
+232 |     refs = {UUID(pk) for pk in plan.dependencies}
+233 |     # All read dependencies must remain in the authorized run snapshot.
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:4:18: F401 [*] `uuid.UUID` imported but unused
+  |
+3 | from dataclasses import replace
+4 | from uuid import UUID
+  |                  ^^^^ F401
+5 |
+6 | import pytest
+  |
+  = help: Remove unused import: `uuid.UUID`
+
+plane/radar/tests/test_core_u1_phase03.py:10:42: F401 [*] `plane.radar.commands.control.review_command` imported but unused
+   |
+ 9 | from plane.radar.commands.capabilities import CAPABILITIES, command_contracts, register, resolve, runtime_definitions
+10 | from plane.radar.commands.control import review_command
+   |                                          ^^^^^^^^^^^^^^ F401
+11 | from plane.radar.commands.effects import plan_command
+12 | from plane.radar.commands.execution import execute_command, preview_command, schema_fingerprint, CommandConflict, emit
+   |
+   = help: Remove unused import: `plane.radar.commands.control.review_command`
+
+plane/radar/tests/test_core_u1_phase03.py:11:42: F401 [*] `plane.radar.commands.effects.plan_command` imported but unused
+   |
+ 9 | from plane.radar.commands.capabilities import CAPABILITIES, command_contracts, register, resolve, runtime_definitions
+10 | from plane.radar.commands.control import review_command
+11 | from plane.radar.commands.effects import plan_command
+   |                                          ^^^^^^^^^^^^ F401
+12 | from plane.radar.commands.execution import execute_command, preview_command, schema_fingerprint, CommandConflict, emit
+13 | from plane.radar.commands.inputs import INPUTS
+   |
+   = help: Remove unused import: `plane.radar.commands.effects.plan_command`
+
+plane/radar/tests/test_core_u1_phase03.py:12:61: F401 [*] `plane.radar.commands.execution.preview_command` imported but unused
+   |
+10 | from plane.radar.commands.control import review_command
+11 | from plane.radar.commands.effects import plan_command
+12 | from plane.radar.commands.execution import execute_command, preview_command, schema_fingerprint, CommandConflict, emit
+   |                                                             ^^^^^^^^^^^^^^^ F401
+13 | from plane.radar.commands.inputs import INPUTS
+14 | from plane.radar.commands.operations import OPERATIONS
+   |
+   = help: Remove unused import: `plane.radar.commands.execution.preview_command`
+
+plane/radar/tests/test_core_u1_phase03.py:15:121: E501 Line too long (149 > 120)
+   |
+13 | …
+14 | …
+15 | …PropertyValue, Relation, DomainEvent, Provenance, CommandExecution, ActorGrant
+   |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+16 | …
+17 | …gent, accept
+   |
+
+plane/radar/tests/test_core_u1_phase03.py:17:28: F401 [*] `.test_commands.ready` imported but unused
+   |
+15 | from plane.radar.models import Object, ObjectType, PropertyDefinition, PropertyValue, Relation, DomainEvent, Provenance, CommandExecut…
+16 | from plane.radar.workspace_schema import schema_revision
+17 | from .test_commands import ready, create, execute, envelope, approved_agent, accept
+   |                            ^^^^^ F401
+18 | from .test_core import url
+   |
+   = help: Remove unused import: `.test_commands.ready`
+
+plane/radar/tests/test_core_u1_phase03.py:24:121: E501 Line too long (129 > 120)
+   |
+23 | def counts():
+24 |     return tuple(model.objects.count() for model in (Object, PropertyValue, Relation, DomainEvent, Provenance, CommandExecution))
+   |                                                                                                                         ^^^^^^^^^ E501
+   |
+
+plane/radar/tests/test_core_u1_phase03.py:39:85: F811 Redefinition of unused `ready` from line 17
+   |
+39 | def test_new_registration_reaches_session_runtime_and_execution_without_other_lists(ready, client, monkeypatch):
+   |                                                                                     ^^^^^ F811
+40 |     ctx = ready
+41 |     capability = replace(CAPABILITIES["CreateObject"], name="PhaseThreeCreate")
+   |
+   = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:47:121: E501 Line too long (129 > 120)
+   |
+45 |     kind = ObjectType.objects.get(workspace=ctx[3], key="objective")
+46 |     result = execute(ctx, capability.name, {"object_type_id": str(kind.pk), "title": "Registry extension"})
+47 |     assert result["status"] == "executed" and Object.objects.get(pk=result["data"]["object"]["id"]).title == "Registry extension"
+   |                                                                                                                         ^^^^^^^^^ E501
+48 |     with pytest.raises(ValueError):
+49 |         register(capability)
+   |
+
+plane/radar/tests/test_core_u1_phase03.py:52:74: F811 Redefinition of unused `ready` from line 17
+   |
+52 | def test_runtime_parameters_and_new_operations_are_generated_from_inputs(ready, monkeypatch):
+   |                                                                          ^^^^^ F811
+53 |     from plane.radar.api.runtime_views import PrepareInput
+   |
+   = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:65:69: F811 Redefinition of unused `ready` from line 17
+   |
+65 | def test_preview_is_symbolic_complete_and_does_not_persist_anything(ready, client):
+   |                                                                     ^^^^^ F811
+66 |     ctx = ready
+67 |     objective = create(ctx)
+   |
+   = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:68:121: E501 Line too long (139 > 120)
+   |
+66 | …
+67 | …
+68 | …likelihood": 4, "impact": 5, "threatens_object_ids": [str(objective.pk)]}
+   |                                                        ^^^^^^^^^^^^^^^^^^^ E501
+69 | …
+70 | …
+   |
+
+plane/radar/tests/test_core_u1_phase03.py:85:72: F811 Redefinition of unused `ready` from line 17
+   |
+84 | @pytest.mark.parametrize("missing", ["type", "relation", "derived"])
+85 | def test_partial_grant_cannot_authorize_only_part_of_a_compound_effect(ready, missing):
+   |                                                                        ^^^^^ F811
+86 |     ctx = ready
+87 |     objective = create(ctx)
+   |
+   = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:97:121: E501 Line too long (129 > 120)
+   |
+95 | …ant.pk).update(commands=["RegisterRisk"]))
+96 | …
+97 | …pace=ctx[3], object_type__key="risk").values_list("key", flat=True))
+   |                                                             ^^^^^^^^^ E501
+98 | …ant.pk).update(fields=["title", "content", *[f for f in fields if f != "score"]]))
+99 | …
+   |
+
+plane/radar/tests/test_core_u1_phase03.py:98:121: E501 Line too long (143 > 120)
+    |
+ 96 | …
+ 97 | …x[3], object_type__key="risk").values_list("key", flat=True))
+ 98 | ….update(fields=["title", "content", *[f for f in fields if f != "score"]]))
+    |                                                      ^^^^^^^^^^^^^^^^^^^^^^^ E501
+ 99 | …
+100 | …
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:101:121: E501 Line too long (147 > 120)
+    |
+ 99 | …
+100 | …
+101 | …tion": "Delivery", "threatens_object_ids": [str(objective.pk)]}, actor=actor)
+    |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+102 | …
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:105:80: F811 Redefinition of unused `ready` from line 17
+    |
+105 | def test_omitted_reference_declaration_is_still_discovered_from_actual_effects(ready, monkeypatch):
+    |                                                                                ^^^^^ F811
+106 |     ctx = ready
+107 |     person = create(ctx, "person")
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:120:51: F811 Redefinition of unused `ready` from line 17
+    |
+119 | @pytest.mark.parametrize("extra", ["event", "field", "dependency"])
+120 | def test_effects_outside_the_plan_fail_atomically(ready, monkeypatch, extra):
+    |                                                   ^^^^^ F811
+121 |     ctx = ready
+122 |     obj, other = create(ctx), create(ctx)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:154:75: F811 Redefinition of unused `ready` from line 17
+    |
+154 | def test_review_detects_dependency_change_and_cannot_consume_old_approval(ready):
+    |                                                                           ^^^^^ F811
+155 |     ctx = ready
+156 |     objective = create(ctx)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:158:121: E501 Line too long (154 > 120)
+    |
+156 | …
+157 | …
+158 | …ription": "Delivery", "threatens_object_ids": [str(objective.pk)]}, actor=actor)
+    |                                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+159 | …est)
+160 | …": {"title": "Changed dependency"}})
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:168:62: F811 Redefinition of unused `ready` from line 17
+    |
+168 | def test_registered_policy_change_invalidates_pending_review(ready, monkeypatch):
+    |                                                              ^^^^^ F811
+169 |     ctx = ready
+170 |     actor = approved_agent(ctx)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:180:84: F811 Redefinition of unused `ready` from line 17
+    |
+180 | def test_confirmed_replay_uses_persisted_plan_and_current_grant_without_replanning(ready, monkeypatch):
+    |                                                                                    ^^^^^ F811
+181 |     ctx = ready
+182 |     actor = approved_agent(ctx, "system", requires_approval=False)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:187:121: E501 Line too long (138 > 120)
+    |
+185 | …
+186 | …ional_effects_v1"
+187 | …isk", lambda *a, **kw: pytest.fail("Confirmed replay must not execute"))
+    |                                                        ^^^^^^^^^^^^^^^^^^ E501
+188 | …
+189 | …=request) == result and counts() == before
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:198:67: F811 Redefinition of unused `ready` from line 17
+    |
+198 | def test_human_only_minimums_are_not_weakened_by_a_nonhuman_grant(ready):
+    |                                                                   ^^^^^ F811
+199 |     actor = approved_agent(ready, "system", requires_approval=False)
+200 |     obj = create(ready)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:214:81: F811 Redefinition of unused `ready` from line 17
+    |
+214 | def test_preview_rejects_guests_stale_schema_unknown_commands_and_forged_actors(ready, client):
+    |                                                                                 ^^^^^ F811
+215 |     ctx = ready
+216 |     obj = create(ctx)
+    |
+    = help: Remove definition: `ready`
+
+plane/radar/tests/test_core_u1_phase03.py:217:121: E501 Line too long (212 > 120)
+    |
+215 | …
+216 | …
+217 | …, "changes": {"title": "Changed"}}, "reason": "Preview", "expected_schema_revision": schema_revision(ctx[3])}
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+218 | …
+219 | …json").status_code == 400
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:219:121: E501 Line too long (128 > 120)
+    |
+217 | …on": 1, "input": {"object_id": str(obj.pk), "changes": {"title": "Changed"}}, "reason": "Preview", "expected_schema_revision": schem…
+218 | …
+219 | …oad, "actor_id": str(ctx[0].pk)}, format="json").status_code == 400
+    |                                                             ^^^^^^^^ E501
+220 | …oad, "command_name": "Unknown"}, format="json").status_code == 400
+221 | …oad, "expected_schema_revision": 0}, format="json").status_code == 409
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:220:121: E501 Line too long (127 > 120)
+    |
+218 |     before = counts()
+219 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "actor_id": str(ctx[0].pk)}, format="json").status_code == 400
+220 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "command_name": "Unknown"}, format="json").status_code == 400
+    |                                                                                                                         ^^^^^^^ E501
+221 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "expected_schema_revision": 0}, format="json").status_code == 409
+222 |     from plane.db.models import WorkspaceMember
+    |
+
+plane/radar/tests/test_core_u1_phase03.py:221:121: E501 Line too long (131 > 120)
+    |
+219 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "actor_id": str(ctx[0].pk)}, format="json").status_code == 400
+220 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "command_name": "Unknown"}, format="json").status_code == 400
+221 |     assert client.post(url(ctx, "commands/preview/"), {**payload, "expected_schema_revision": 0}, format="json").status_code == 409
+    |                                                                                                                         ^^^^^^^^^^^ E501
+222 |     from plane.db.models import WorkspaceMember
+    |
+
+Found 64 errors.
+[*] 6 fixable with the `--fix` option.
+

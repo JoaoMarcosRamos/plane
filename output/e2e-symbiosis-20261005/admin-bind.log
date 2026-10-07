@@ -1,0 +1,6 @@
+$ python manage.py radar_runtime_provision --settings=plane.settings.local --workspace radar-e2e --admin-id 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16 --context company:radar-e2e --bind-object 4dc08b10-9bba-447a-9597-8c740966b1d0 --external-id OBJ-20261005-E2E001
+0 OBJ-20261005-E2E001 
+$ python manage.py radar_runtime_provision --settings=plane.settings.local --workspace radar-e2e --admin-id 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16 --context company:radar-e2e --bind-object 09fa033a-0a0c-468d-9ec0-d4563abda5e4 --external-id PRJ-20261005-E2E001
+0 PRJ-20261005-E2E001 
+$ python manage.py radar_runtime_provision --settings=plane.settings.local --workspace radar-e2e --admin-id 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16 --context company:radar-e2e --bind-object 09fee826-8e2b-4535-8cfc-56c28f7024ad --external-id RSK-20261005-E2E001
+0 RSK-20261005-E2E001 

@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personal Chief of Staff — Documentação</title>
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><strong>Personal Chief of Staff</strong><span>Portal técnico do projeto</span></div>
+      <nav class="nav" aria-label="Navegação principal">
+        <a class="active" href="index.html">Visão geral</a>
+        <a href="architecture/overview.html">Arquitetura</a>
+        <a href="architecture/decisions.html">Decisões</a>
+        <a href="development/001-project-bootstrap.html">001 · Bootstrap</a>
+        <a href="development/002-notion-integration.html">002 · Notion sem IA</a>
+        <a href="development/003-tools.html">003 · Tools</a>
+        <a href="development/004-deep-agent.html">004 · Deep Agent</a>
+        <a href="development/005-hardening-phases-1-3.html">005 · Hardening</a>
+        <a href="development/006-temporal-context.html">006 · Contexto temporal</a>
+        <a href="development/007-telegram-webhook.html">007 · Telegram</a>
+        <a href="development/008-telegram-idempotency.html">008 · Idempotência</a>
+        <a href="development/009-execution-persistence.html">009 · Persistência</a>
+        <a href="development/010-conversational-threads.html">010 · Threads</a>
+        <a href="development/011-ambiguity-selection.html">011 · Ambiguidade</a>
+        <a href="development/012-observability-errors-tests.html">012 · Observabilidade e testes</a>
+        <a href="development/013-vps-deployment.html">013 · Deployment na VPS</a>
+        <a href="development/014-telegram-webhook-registration.html">014 · Registro do webhook</a>
+        <a href="development/015-board-surface.html">015 · Superfície do board</a>
+        <a href="development/016-end-to-end-test.html">016 · Teste end-to-end</a>
+        <a href="development/017-telegram-formatting.html">017 · Formatação no Telegram</a>
+        <a href="development/018-telegram-rich-messages.html">018 · Rich Messages</a><a href="development/019-scheduled-jobs.html">019 · Tarefas agendadas</a>
+        <a href="development/020-notion-mcp-fallback.html">020 · Fallback MCP do Notion</a>
+        <a href="development/021-people-relation.html">021 · Pessoas viram relação</a>
+        <a href="development/022-long-term-memory.html">022 · Memória de longo prazo</a>
+        <a href="development/023-live-progress-draft.html">023 · Rascunho ao vivo</a>
+        <a href="development/024-telegram-attachments.html">024 · Arquivos no Telegram</a>
+        <a href="development/025-google-calendar.html">025 · Google Calendar</a>
+        <a href="development/026-gmail-drafts.html">026 · Gmail drafts</a>
+        <a href="development/027-domain-subagents.html">027 · Subagentes</a>
+        <a href="development/028-radar-foundation.html">028 · Fundação RADAR</a>
+        <a href="development/029-radar-read-tools.html">029 · Consultas RADAR</a>
+        <a href="development/030-radar-management-queries.html">030 · Consultas gerenciais</a>
+        <a href="development/031-radar-approved-mutations.html">031 · Mutações RADAR aprovadas</a>
+        <a href="development/032-radar-human-interaction.html">032 · Interação humana RADAR</a>
+        <a href="development/037-radar-advanced-query-resilience.html">037 · Consultas avançadas RADAR</a>
+        <a href="development/038-radar-measurement-semantic-idempotency.html">038 · Medição e idempotência RADAR</a>
+        <a href="development/039-radar-public-language-integrity.html">039 · Linguagem e integridade RADAR</a>
+        <a href="development/040-radar-api-connection.html">040 · API RADAR</a>
+        <a href="development/041-radar-integration-port.html">041 · Integração no JMR</a>
+        <a href="concepts/deep-agents-orchestration.html">Referências</a>
+        <a href="../README.md">Setup rápido</a>
+      </nav>
+    </aside>
+    <main class="content">
+      <div class="breadcrumb">Documentação / Início</div>
+      <section class="hero">
+        <div class="eyebrow">Produto + laboratório de aprendizagem</div>
+        <h1>Personal Chief of Staff</h1>
+        <p class="lead">Um assistente pessoal operacional, construído incrementalmente para transformar linguagem natural em ações confiáveis.</p>
+        <div class="callout">A construção é de baixo para cima. Notion, Calendar e Gmail passam por integração, service e tools determinísticas; o Chief é o único escritor durável e três subagentes read-only ajudam em pesquisas multi-etapas.</div>
+      </section>
+      <section class="grid">
+        <article class="card"><h3>Arquitetura</h3><p>Conheça as fronteiras entre interface, aplicação, agente, tools, services, integrações e persistência.</p><a href="architecture/overview.html">Ver visão arquitetural →</a></article>
+        <article class="card"><h3>Desenvolvimento</h3><p>Acompanhe as decisões e os conceitos por trás de cada unidade de construção.</p><a href="development/039-radar-public-language-integrity.html">Ler a etapa mais recente →</a></article>
+        <article class="card"><h3>Desenvolvimento</h3><p>Acompanhe as decisões e os conceitos por trás de cada unidade de construção.</p><a href="development/041-radar-integration-port.html">Ler a etapa mais recente →</a></article>
+        <article class="card"><h3>Deep Agents</h3><p>Referência instalada para orquestração com subagentes, planejamento e aprovação humana.</p><a href="concepts/deep-agents-orchestration.html">Ver referência →</a></article>
+      </section>
+      <h2>Diário de desenvolvimento</h2>
+      <table>
+        <thead><tr><th>Etapa</th><th>Fase</th><th>O que foi construído</th></tr></thead>
+        <tbody>
+          <tr><td><a href="development/001-project-bootstrap.html">001 · Bootstrap do projeto</a></td><td>Fase 0</td><td>Ambiente Python, FastAPI, <code>/health</code>, Docker e PostgreSQL.</td></tr>
+          <tr><td><a href="development/002-notion-integration.html">002 · Integração com o Notion</a></td><td>Fase 1</td><td><code>NotionClient</code>, <code>TaskService</code>, <code>ProjectService</code> e mapeamento do schema — sem IA.</td></tr>
+          <tr><td><a href="development/003-tools.html">003 · Tools</a></td><td>Fase 2</td><td>As cinco ferramentas do agente, com schema validado, erro como valor e log de cada chamada.</td></tr>
+          <tr><td><a href="development/004-deep-agent.html">004 · Deep Agent</a></td><td>Fase 3</td><td>O agente que escolhe as tools, restrito a elas, e o <code>AgentRun</code> que registra o que cada execução realmente fez.</td></tr>
+          <tr><td><a href="development/005-hardening-phases-1-3.html">005 · Hardening das fases 1–3</a></td><td>Revisão transversal</td><td>IDs e pertença, retry seguro, outcomes honestos, contenção de built-ins, proveniência, logs seguros e contrato Docker.</td></tr>
+          <tr><td><a href="development/006-temporal-context.html">006 · Datas e contexto temporal</a></td><td>Fase 4</td><td>Timezone IANA centralizado, data local por execução, normalização ISO única e cenários temporais auditáveis.</td></tr>
+          <tr><td><a href="development/007-telegram-webhook.html">007 · Telegram e webhook</a></td><td>Fase 5</td><td>Cliente assíncrono, autorização por usuário, validação de updates, resposta confirmada e deduplicação provisória.</td></tr>
+          <tr><td><a href="development/008-telegram-idempotency.html">008 · Idempotência do Telegram</a></td><td>Fase 6</td><td>Claim transacional de <code>update_id</code>, estados persistidos e proteção contra reentrega após reinício.</td></tr>
+          <tr><td><a href="development/009-execution-persistence.html">009 · Persistência das execuções</a></td><td>Fase 7</td><td>Alembic, schema relacional e auditoria de runs, tools e erros por <code>run_id</code>.</td></tr>
+          <tr><td><a href="development/010-conversational-threads.html">010 · Threads conversacionais</a></td><td>Fase 8</td><td>Thread principal por usuário, histórico durável e limitado, e <code>thread_id</code> no agente.</td></tr>
+          <tr><td><a href="development/011-ambiguity-selection.html">011 · Seleção em casos ambíguos</a></td><td>Fase 9</td><td>Opções numeradas, confirmação persistida e proveniência limitada à tarefa escolhida.</td></tr>
+          <tr><td><a href="development/012-observability-errors-tests.html">012 · Observabilidade, erros e testes</a></td><td>Fases 10–12</td><td>Logs JSON correlacionados e seguros, falhas traduzidas e cobertura automatizada de runtime, tools, integrações e persistência.</td></tr>
+          <tr><td><a href="development/013-vps-deployment.html">013 · Deployment na VPS</a></td><td>Fase 13</td><td>Aplicação publicada em HTTPS pelo Traefik existente, PostgreSQL restrito ao host, suíte executada em Docker real e correção do claim no PostgreSQL.</td></tr>
+          <tr><td><a href="development/014-telegram-webhook-registration.html">014 · Registro do webhook Telegram</a></td><td>Fase 14</td><td>Webhook apontado para a VPS com secret, tipos restritos a <code>message</code>, recusa verificada por transporte e por usuário, e os três defeitos que o uso real revelou.</td></tr>
+          <tr><td><a href="development/015-board-surface.html">015 · Superfície do board</a></td><td>Pós-Fase 14</td><td>Classificação, pessoas e sinalizadores do Notion passam a ser lidos, filtrados e escritos, com vocabulário fechado e busca que ignora o que já foi concluído.</td></tr>
+          <tr><td><a href="development/016-end-to-end-test.html">016 · Teste end-to-end</a></td><td>Fase 15</td><td>Criar, consultar, adiar e concluir uma tarefa contra o ambiente publicado, com o rastro conferido em Notion, logs, PostgreSQL e <code>tool_calls</code>.</td></tr>
+          <tr><td><a href="development/017-telegram-formatting.html">017 · Formatação no Telegram</a></td><td>Fase 16</td><td>Respostas em HTML do Telegram renderizado pela aplicação, corte no limite de 4096 caracteres e reenvio em texto puro quando a formatação é recusada.</td></tr>
+          <tr><td><a href="development/018-telegram-rich-messages.html">018 · Rich Messages</a></td><td>Pós-Fase 16</td><td><code>sendRichMessage</code> com títulos, listas nativas, tabelas e seções recolhidas pelo renderizador, escada de três degraus até o texto puro, e rascunho <code>&lt;tg-thinking&gt;</code> transmitido enquanto o agente executa.</td></tr>
+          <tr><td><a href="development/019-scheduled-jobs.html">019 · Tarefas agendadas</a></td><td>Marco M8</td><td>O relógio como gatilho: claim com savepoint, backlog colapsado, execução abandonada como <code>unknown</code>, links ricos também no digest, mudança detectada no agente, cron de agente limitado e cancelamento auditável com fronteira <code>cancelled</code>/<code>delivering</code>.</td></tr>
+          <tr><td><a href="development/020-notion-mcp-fallback.html">020 · Fallback MCP do Notion</a></td><td>Revisão da ADR-002</td><td>MCP do Notion como canal de fallback, com o portão de aprovação generalizado de caminho de arquivo para payload de qualquer tool, uma aprovação só cobrindo chamada e dados, descoberta ao vivo cacheada por processo e Node.js pinado na imagem.</td></tr>
+          <tr><td><a href="development/021-people-relation.html">021 · Pessoas viram relação</a></td><td>Drift do board</td><td>A coluna de pessoas virou relação e ninguém percebeu: leitura tolerante devolvia vazio e só a escrita quebraria. Diretório de pessoas resolvendo nome ↔ página, recusa com candidatos em vez de palpite, e verificador de schema refeito para relatar também o que ignora.</td></tr>
+          <tr><td><a href="development/022-long-term-memory.html">022 · Memória de longo prazo</a></td><td>Marco M3</td><td>O que sobrevive ao fim da conversa: bloco congelado por execução, orçamento como recusa em vez de despejo, recusa estrutural de ids do Notion para que memória nunca vire autoridade, endereçamento por id com candidatos em vez de substring, e uma linha determinística na resposta dizendo o que foi registrado.</td></tr>
+          <tr><td><a href="development/023-live-progress-draft.html">023 · Rascunho ao vivo</a></td><td>Continuação da 018</td><td>O balão <code>&lt;tg-thinking&gt;</code> deixa de ser uma frase fixa e passa a seguir o <em>trace</em>: eventos de progresso emitidos pelo laço de stream de <code>run_agent</code>, atravessados até o event loop, colapsados por rajada e redesenhados antes de expirar — sempre em gerúndio, porque uma chamada pedida ainda não é uma chamada concluída.</td></tr>
+          <tr><td><a href="development/024-telegram-attachments.html">024 · Arquivos no Telegram</a></td><td>Marco M1</td><td>PDF, imagem, texto e Office deixam de ser recusados: o arquivo é baixado, gravado em <code>/anexos/</code> no workspace da thread e aberto pelo <code>read_file</code> que já existia — imagem e PDF chegam ao modelo como o documento de verdade, e só os pacotes OOXML precisam de extração, feita com a biblioteca padrão. Nenhuma dependência nova, nenhuma migração, nenhuma tool nova; a legenda vira instrução e o conteúdo do arquivo permanece dado.</td></tr>
+          <tr><td><a href="development/025-google-calendar.html">025 · Google Calendar</a></td><td>Marco M4</td><td>OAuth desktop com loopback, state, PKCE e grants separados; calendário primary com list/create/update, FreeBusy, all-day inclusivo, ETag, reconciliação por id e writes sem retry cego.</td></tr>
+          <tr><td><a href="development/026-gmail-drafts.html">026 · Gmail drafts</a></td><td>Marco M5</td><td>Busca estruturada, MIME paginado, attachments apenas como metadata e drafts plaintext sem SEND; auditoria persiste ids e fingerprints, nunca endereço, subject, snippet ou body.</td></tr>
+          <tr><td><a href="development/027-domain-subagents.html">027 · Subagentes de domínio</a></td><td>Marco M6</td><td>Task, Calendar e Email Agents stateless e read-only, com fontes compartilhadas, scratch isolado e descartável, DomainReport e proveniência refeita pelo único escritor durável: o Chief.</td></tr>
+          <tr><td><a href="development/028-radar-foundation.html">028 · Fundação RADAR</a></td><td>RADAR Fase 1</td><td>Dependência pinada, recursos normativos empacotados, identidade Telegram convertida em Principal, preflight fail-closed e ABox persistente fora da imagem — ainda sem tools.</td></tr>
+          <tr><td><a href="development/029-radar-read-tools.html">029 · Consultas RADAR</a></td><td>RADAR Fase 2</td><td>Cinco leituras específicas, DTOs e limites, contexto confiável fora do schema, auditoria minimizada, memória sem ids RADAR e ABox Markdown comprovadamente imutável durante consultas.</td></tr>
+          <tr><td><a href="development/030-radar-management-queries.html">030 · Consultas gerenciais RADAR</a></td><td>RADAR Fase 3</td><td>Cinco relatórios compostos para riscos, atenção, decisões, compromissos e contexto de reunião/caso; cálculo no service, auditoria minimizada e decisão fundamentada de não criar um management-agent ainda.</td></tr>
+          <tr><td><a href="development/031-radar-approved-mutations.html">031 · Mutações RADAR aprovadas</a></td><td>RADAR Fase 4</td><td>Proposta persistida, aprovação Telegram single-use, revisão otimista, idempotência e reconciliação sem replay por LLM.</td></tr>
+          <tr><td><a href="development/032-radar-human-interaction.html">032 · Interação humana com o RADAR</a></td><td>Hardening RADAR</td><td>Nomes e rótulos humanos, seleção exclusiva com TTL, referências sem autoridade, proveniência fechada e recibos coerentes com o estado real.</td></tr>
+          <tr><td><a href="development/037-radar-advanced-query-resilience.html">037 · Resiliência das consultas avançadas RADAR</a></td><td>Plano RADAR · Fases 0–1</td><td>Matriz T01–T14 em vault descartável, métricas seguras do run, resolução em lote, briefing operacional e limites separados de passos e tools.</td></tr>
+          <tr><td><a href="development/038-radar-measurement-semantic-idempotency.html">038 · Medição e idempotência semântica RADAR</a></td><td>Plano RADAR · Fases 2–3</td><td>Medição com Evidence inline atômica, prioridade/owner no Issue, proveniência Telegram imutável, fingerprint v1, deduplicação e override explícito de uso único.</td></tr>
+          <tr><td><a href="development/039-radar-public-language-integrity.html">039 · Linguagem pública e integridade RADAR</a></td><td>Plano RADAR · Fases 4–5</td><td>Barreira contra nomes internos, causas seguras, itálico compartilhado, revalidação por geração e promoção staging → backup → ativo.</td></tr>
+          <tr><td><a href="development/040-radar-api-connection.html">040 · API RADAR para cos-mariana</a></td><td>Marco M10</td><td>Endpoints /v1/threads protegidos por Bearer, idempotência PostgreSQL e agente sem tools para respostas sintéticas sem acesso a dados pessoais.</td></tr>
+          <tr><td><a href="development/041-radar-integration-port.html">041 · Integração RADAR no JMR_Personal-CoS</a></td><td>Integração</td><td>Patch de três vias do RADAR-CoS-v1, pacote radar-vault pinado, migrations reencadeadas e documentação renumerada.</td></tr>
+          <tr><td><a href="development/042-radar-command-layer.html">042 · Command Layer no COS_AGENT_V2</a></td><td>Integração local</td><td>Adapter HTTP, aprovação persistida e transferência para a cópia dedicada; ativação pendente.</td></tr>
+          <tr><td><a href="development/043-radar-agent-runtime.html">043 · RADAR Agent Runtime</a></td><td>Fase 1.3</td><td>Execução isolada por sessão Plane, contexto limitado, eventos persistidos e pausa/retomada cooperativa.</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Mapa do projeto</h2>
+      <table>
+        <thead><tr><th>Área</th><th>Estado atual</th><th>Próximo passo</th></tr></thead>
+        <tbody>
+          <tr><td>Foundation</td><td>Ambiente e API mínima</td><td>Manter paridade com Docker</td></tr>
+          <tr><td>Integrations</td><td>Notion, Google Calendar, Gmail, Telegram, web e RADAR opcional versionado</td><td>Fixar ownership/backup do bind mount RADAR na VPS</td></tr>
+          <tr><td>Services</td><td>Regras determinísticas para tarefas, projetos, Calendar, Gmail, memória, lembretes, consultas RADAR em lote/briefing e preparação de propostas</td><td>Homologar T04, T10 e T12 com provider real</td></tr>
+          <tr><td>Tools</td><td>Superfície específica por domínio, leituras RADAR e propostas condicionais, Google condicional e MCP Notion sob política</td><td>Manter schemas, projeções, limites e outcomes explícitos</td></tr>
+          <tr><td>Agent</td><td>Chief como único escritor; três filhos de pesquisa com allowlists próprias</td><td>Validar o cenário cross-domain live</td></tr>
+          <tr><td>Interface</td><td>Health, webhook Telegram, escolha RADAR/Notion exclusiva, rótulos humanos, confirmação e logs seguros</td><td>Validar a revisão em conversa real controlada</td></tr>
+          <tr><td>Persistence</td><td>Schema migrado, auditoria, histórico, seleções, referências RADAR com TTL, métricas e intents semânticos versionados</td><td>Aplicar migrations até 0011 no deployment</td></tr>
+          <tr><td>Deployment</td><td>VPS com HTTPS pelo Traefik, PostgreSQL restrito ao host e restart automático</td><td>Webhook do Telegram e teste end-to-end</td></tr>
+        </tbody>
+      </table>
+      <p class="footer">Construir como engenheiro e documentar como professor.</p>
+    </main>
+  </div>
+</body>
+</html>

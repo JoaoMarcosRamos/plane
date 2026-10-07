@@ -1,0 +1,41 @@
+
+ RUN  v4.1.11 /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web
+
+(node:83760) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ store/radar/root.store.test.ts (22 tests | 1 failed) 85ms
+     × retains pending approval intent and adds its ID only after explicit resume 10ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  store/radar/root.store.test.ts > RADAR mutation intentions > retains pending approval intent and adds its ID only after explicit resume
+AssertionError: expected { expected_versions: {}, …(3) } to deeply equal { expected_versions: {}, …(2) }
+
+- Expected
++ Received
+
+  {
+    "approval_id": "approval",
++   "expected_schema_revision": 0,
+    "expected_versions": {},
+    "idempotency_key": "f0127b7d-9b7c-4371-ba3c-f25f4900b9af",
+  }
+
+ ❯ store/radar/root.store.test.ts:334:62
+    332|     store.resumePendingMutation("approval");
+    333|     await store.createObject(payload);
+    334|     expect(vi.mocked(service.createObject).mock.calls[2][2]).toEqual({
+       |                                                              ^
+    335|       expected_versions: {},
+    336|       idempotency_key: key,
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 14 passed (15)
+      Tests  1 failed | 105 passed (106)
+   Start at  09:06:02
+   Duration  1.66s (transform 1.22s, setup 0ms, import 3.95s, tests 544ms, environment 4ms)
+

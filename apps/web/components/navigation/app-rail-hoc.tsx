@@ -6,6 +6,7 @@
 
 // hoc/withDockItems.tsx
 import React from "react";
+import { RadarIcon } from "lucide-react";
 import { observer } from "mobx-react";
 import { useParams } from "next/navigation";
 import { Projects } from "@makeplane/propel/icons";
@@ -19,7 +20,7 @@ type WithDockItemsProps = {
 export function withDockItems<P extends WithDockItemsProps>(WrappedComponent: React.ComponentType<P>) {
   const ComponentWithDockItems = observer(function ComponentWithDockItems(props: Omit<P, keyof WithDockItemsProps>) {
     const { workspaceSlug } = useParams();
-    const { isProjectsPath, isNotificationsPath } = useWorkspacePaths();
+    const { isProjectsPath, isRadarPath, isNotificationsPath } = useWorkspacePaths();
 
     const dockItems: (AppSidebarItemData & { shouldRender: boolean })[] = [
       {
@@ -27,6 +28,13 @@ export function withDockItems<P extends WithDockItemsProps>(WrappedComponent: Re
         icon: <Projects className="size-5" />,
         href: `/${workspaceSlug}/`,
         isActive: isProjectsPath && !isNotificationsPath,
+        shouldRender: true,
+      },
+      {
+        label: "RADAR",
+        icon: <RadarIcon className="size-5" />,
+        href: `/${workspaceSlug}/radar/`,
+        isActive: isRadarPath,
         shouldRender: true,
       },
     ];

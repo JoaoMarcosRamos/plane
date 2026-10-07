@@ -1,0 +1,206 @@
+{
+  "private_imports": [
+    {
+      "file": "apps/api/plane/radar/agent_config.py",
+      "line": 8,
+      "module": "plane.radar.commands.control",
+      "names": [
+        "_admin"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/agent_runtime.py",
+      "line": 15,
+      "module": "plane.radar.commands.execution",
+      "names": [
+        "_human_member"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/agent_runtime.py",
+      "line": 16,
+      "module": "plane.radar.commands.handlers",
+      "names": [
+        "_values"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/api/runtime_views.py",
+      "line": 20,
+      "module": "plane.radar.commands.execution",
+      "names": [
+        "_human_member"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/api/runtime_views.py",
+      "line": 21,
+      "module": "plane.radar.commands.handlers",
+      "names": [
+        "_values"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/api/semantic_views.py",
+      "line": 15,
+      "module": "plane.radar.commands.objects",
+      "names": [
+        "_authorize"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/api/semantic_views.py",
+      "line": 16,
+      "module": "plane.radar.commands.semantic",
+      "names": [
+        "_object"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/control.py",
+      "line": 8,
+      "module": "execution",
+      "names": [
+        "_human_member",
+        "_versions"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/control.py",
+      "line": 9,
+      "module": "handlers",
+      "names": [
+        "_lookup"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/governance.py",
+      "line": 11,
+      "module": "objects",
+      "names": [
+        "_authorize"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/handlers.py",
+      "line": 332,
+      "module": "operations",
+      "names": [
+        "_identify"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/handlers.py",
+      "line": 444,
+      "module": "execution",
+      "names": [
+        "_human_member"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/objects.py",
+      "line": 5,
+      "module": "primitives_objects",
+      "names": [
+        "_authorize"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/operations.py",
+      "line": 12,
+      "module": "handlers",
+      "names": [
+        "_actor",
+        "_ensure_evidence",
+        "_link",
+        "_lookup",
+        "_new",
+        "_object_data",
+        "_patch_properties",
+        "_user_id",
+        "_values"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/primitives_semantic.py",
+      "line": 14,
+      "module": "primitives_objects",
+      "names": [
+        "_authorize"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/runtime_control.py",
+      "line": 10,
+      "module": "control",
+      "names": [
+        "_admin"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/runtime_control.py",
+      "line": 12,
+      "module": "handlers",
+      "names": [
+        "_lookup"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/semantic.py",
+      "line": 6,
+      "module": "primitives_semantic",
+      "names": [
+        "_object"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/commands/semantic.py",
+      "line": 26,
+      "module": "execution",
+      "names": [
+        "_versions"
+      ]
+    },
+    {
+      "file": "apps/api/plane/radar/management/commands/radar_runtime_provision.py",
+      "line": 10,
+      "module": "plane.radar.commands.control",
+      "names": [
+        "_admin"
+      ]
+    }
+  ],
+  "operational_record": {
+    "storage": "OperationalRecord.data JSON",
+    "writers": [
+      "commands/operations.py:_record",
+      "api/runtime_views.py:Commitment response/acceptance paths"
+    ],
+    "fields": [
+      "assignment",
+      "review",
+      "reviews",
+      "measurement",
+      "measurements"
+    ],
+    "live_stack": {
+      "radar_installed": false,
+      "radar_tables": 0,
+      "radar_migrations": 0,
+      "data_inventory": "Não há dados RADAR nesse stack; não extrapola para outros ambientes."
+    }
+  },
+  "catalog_consumers": [
+    "api/runtime_views.py:RuntimeCapabilitiesView",
+    "agent_config.py:permissions validation",
+    "agent_runtime.py:context/port",
+    "COS_AGENT_V2 adapter (contrato HTTP documentado em COS_INTEGRATION.md)"
+  ],
+  "compatibility": {
+    "command_version": 1,
+    "object_result": "data.object com ObjectSerializer atual; preservar representação e replays existentes",
+    "relation_result": "data.relation com RelationSerializer atual",
+    "trusted_python": "versions opcionais preenchidas por compatibility.invoke; transport exige snapshot",
+    "runtime": "sem alteração do catálogo/escopo externo nesta fase"
+  }
+}

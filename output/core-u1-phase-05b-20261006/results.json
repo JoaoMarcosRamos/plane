@@ -1,0 +1,13 @@
+{
+  "backend_passed": 544,
+  "radar_passed": 542,
+  "plane_passed": 2,
+  "new_c18_cases": 26,
+  "skipped": 3,
+  "frontend_passed": 147,
+  "frontend_files": 20,
+  "workspace_checks": 56,
+  "directed_runtime_passed": 41,
+  "migration_verified": true,
+  "browser_verified": true
+}

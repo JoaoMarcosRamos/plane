@@ -1,0 +1,194 @@
+ Container plane-radar-tests-test-db-1 Running 
+ Container plane-radar-tests-test-redis-1 Running 
+ Container plane-radar-tests-test-mq-1 Running 
+ Container plane-radar-tests-test-minio-1 Running 
+ Container plane-radar-tests-test-redis-1 Waiting 
+ Container plane-radar-tests-test-mq-1 Waiting 
+ Container plane-radar-tests-test-minio-1 Waiting 
+ Container plane-radar-tests-test-db-1 Waiting 
+ Container plane-radar-tests-test-db-1 Healthy 
+ Container plane-radar-tests-test-redis-1 Healthy 
+ Container plane-radar-tests-test-mq-1 Healthy 
+ Container plane-radar-tests-test-minio-1 Healthy 
+ Container plane-radar-tests-api-tests-run-7f55cfc75ec0 Creating 
+ Container plane-radar-tests-api-tests-run-7f55cfc75ec0 Created 
+Requirement already satisfied: Django==5.2.15 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 4)) (5.2.15)
+Requirement already satisfied: djangorestframework==3.17.2 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 6)) (3.17.2)
+Requirement already satisfied: psycopg==3.3.4 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 8)) (3.3.4)
+Requirement already satisfied: psycopg-binary==3.3.4 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 9)) (3.3.4)
+Requirement already satisfied: psycopg-c==3.3.4 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 10)) (3.3.4)
+Requirement already satisfied: dj-database-url==3.0.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 11)) (3.0.1)
+Requirement already satisfied: redis==5.0.4 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 13)) (5.0.4)
+Requirement already satisfied: django-redis==7.0.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 14)) (7.0.0)
+Requirement already satisfied: django-cors-headers==4.9.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 16)) (4.9.0)
+Requirement already satisfied: celery==5.5.3 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 18)) (5.5.3)
+Requirement already satisfied: django_celery_beat==2.9.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 19)) (2.9.0)
+Requirement already satisfied: django-celery-results==2.6.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 20)) (2.6.0)
+Requirement already satisfied: whitenoise==6.12.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 22)) (6.12.0)
+Requirement already satisfied: faker==25.0.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 24)) (25.0.0)
+Requirement already satisfied: django-filter==25.2 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 26)) (25.2)
+Requirement already satisfied: jsonmodels==2.7.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 28)) (2.7.0)
+Requirement already satisfied: django-storages==1.14.6 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 30)) (1.14.6)
+Requirement already satisfied: django-crum==0.7.9 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 32)) (0.7.9)
+Requirement already satisfied: uvicorn==0.29.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 34)) (0.29.0)
+Requirement already satisfied: channels==4.3.2 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 36)) (4.3.2)
+Requirement already satisfied: openai==1.63.2 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 38)) (1.63.2)
+Requirement already satisfied: slack-sdk==3.27.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 40)) (3.27.1)
+Requirement already satisfied: scout-apm==3.5.3 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 42)) (3.5.3)
+Requirement already satisfied: openpyxl==3.1.2 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 44)) (3.1.2)
+Requirement already satisfied: python-json-logger==4.0.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 46)) (4.0.0)
+Requirement already satisfied: beautifulsoup4==4.12.3 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 48)) (4.12.3)
+Requirement already satisfied: cryptography==50.0.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 50)) (50.0.0)
+Requirement already satisfied: lxml==6.1.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 52)) (6.1.0)
+Requirement already satisfied: boto3==1.34.96 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 54)) (1.34.96)
+Requirement already satisfied: urllib3>=2.7.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 56)) (2.8.0)
+Requirement already satisfied: requests==2.33.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 59)) (2.33.0)
+Requirement already satisfied: zxcvbn==4.4.28 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 61)) (4.4.28)
+Requirement already satisfied: pytz==2024.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 63)) (2024.1)
+Requirement already satisfied: PyJWT==2.13.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 65)) (2.13.0)
+Requirement already satisfied: opentelemetry-api==1.28.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 67)) (1.28.1)
+Requirement already satisfied: opentelemetry-sdk==1.28.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 68)) (1.28.1)
+Requirement already satisfied: opentelemetry-instrumentation-django==0.49b1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 69)) (0.49b1)
+Requirement already satisfied: opentelemetry-exporter-otlp==1.28.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 70)) (1.28.1)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-grpc==1.28.1 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 71)) (1.28.1)
+Requirement already satisfied: drf-spectacular==0.29.0 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 73)) (0.29.0)
+Requirement already satisfied: nh3==0.2.18 in /usr/local/lib/python3.12/site-packages (from -r requirements/base.txt (line 75)) (0.2.18)
+Collecting pytest==9.0.3 (from -r requirements/test.txt (line 3))
+  Downloading pytest-9.0.3-py3-none-any.whl.metadata (7.6 kB)
+Collecting pytest-django==4.12.0 (from -r requirements/test.txt (line 4))
+  Downloading pytest_django-4.12.0-py3-none-any.whl.metadata (8.0 kB)
+Collecting pytest-cov==4.1.0 (from -r requirements/test.txt (line 5))
+  Downloading pytest_cov-4.1.0-py3-none-any.whl.metadata (26 kB)
+Collecting pytest-xdist==3.3.1 (from -r requirements/test.txt (line 6))
+  Downloading pytest_xdist-3.3.1-py3-none-any.whl.metadata (3.1 kB)
+Collecting pytest-mock==3.11.1 (from -r requirements/test.txt (line 7))
+  Downloading pytest_mock-3.11.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting factory-boy==3.3.0 (from -r requirements/test.txt (line 8))
+  Downloading factory_boy-3.3.0-py2.py3-none-any.whl.metadata (15 kB)
+Collecting freezegun==1.2.2 (from -r requirements/test.txt (line 9))
+  Downloading freezegun-1.2.2-py3-none-any.whl.metadata (11 kB)
+Collecting coverage==7.2.7 (from -r requirements/test.txt (line 10))
+  Downloading coverage-7.2.7-cp312-cp312-musllinux_1_1_aarch64.whl.metadata (9.7 kB)
+Collecting httpx==0.24.1 (from -r requirements/test.txt (line 11))
+  Downloading httpx-0.24.1-py3-none-any.whl.metadata (7.4 kB)
+Requirement already satisfied: asgiref>=3.8.1 in /usr/local/lib/python3.12/site-packages (from Django==5.2.15->-r requirements/base.txt (line 4)) (3.12.1)
+Requirement already satisfied: sqlparse>=0.3.1 in /usr/local/lib/python3.12/site-packages (from Django==5.2.15->-r requirements/base.txt (line 4)) (0.6.0)
+Requirement already satisfied: typing-extensions>=4.6 in /usr/local/lib/python3.12/site-packages (from psycopg==3.3.4->-r requirements/base.txt (line 8)) (4.16.0)
+Requirement already satisfied: billiard<5.0,>=4.2.1 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (4.3.0)
+Requirement already satisfied: kombu<5.6,>=5.5.2 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (5.5.4)
+Requirement already satisfied: vine<6.0,>=5.1.0 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (5.1.0)
+Requirement already satisfied: click<9.0,>=8.1.2 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (8.5.0)
+Requirement already satisfied: click-didyoumean>=0.3.0 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (0.3.1)
+Requirement already satisfied: click-repl>=0.2.0 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (0.4.0)
+Requirement already satisfied: click-plugins>=1.1.1 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (1.1.1.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.12/site-packages (from celery==5.5.3->-r requirements/base.txt (line 18)) (2.9.0.post0)
+Requirement already satisfied: django-timezone-field>=5.0 in /usr/local/lib/python3.12/site-packages (from django_celery_beat==2.9.0->-r requirements/base.txt (line 19)) (7.2.2)
+Requirement already satisfied: tzdata in /usr/local/lib/python3.12/site-packages (from django_celery_beat==2.9.0->-r requirements/base.txt (line 19)) (2026.5)
+Requirement already satisfied: python-crontab>=2.3.4 in /usr/local/lib/python3.12/site-packages (from django_celery_beat==2.9.0->-r requirements/base.txt (line 19)) (3.4.0)
+Requirement already satisfied: cron-descriptor<2.0.0,>=1.2.32 in /usr/local/lib/python3.12/site-packages (from django_celery_beat==2.9.0->-r requirements/base.txt (line 19)) (1.4.5)
+Requirement already satisfied: h11>=0.8 in /usr/local/lib/python3.12/site-packages (from uvicorn==0.29.0->-r requirements/base.txt (line 34)) (0.16.0)
+Requirement already satisfied: anyio<5,>=3.5.0 in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (4.15.1)
+Requirement already satisfied: distro<2,>=1.7.0 in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (1.9.0)
+Requirement already satisfied: jiter<1,>=0.4.0 in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (0.17.0)
+Requirement already satisfied: pydantic<3,>=1.9.0 in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (2.13.5)
+Requirement already satisfied: sniffio in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (1.3.1)
+Requirement already satisfied: tqdm>4 in /usr/local/lib/python3.12/site-packages (from openai==1.63.2->-r requirements/base.txt (line 38)) (4.70.1)
+Requirement already satisfied: psutil>=5 in /usr/local/lib/python3.12/site-packages (from scout-apm==3.5.3->-r requirements/base.txt (line 42)) (7.2.2)
+Requirement already satisfied: certifi in /usr/local/lib/python3.12/site-packages (from scout-apm==3.5.3->-r requirements/base.txt (line 42)) (2026.7.22)
+Requirement already satisfied: wrapt<2.0,>=1.10 in /usr/local/lib/python3.12/site-packages (from scout-apm==3.5.3->-r requirements/base.txt (line 42)) (1.17.3)
+Requirement already satisfied: et-xmlfile in /usr/local/lib/python3.12/site-packages (from openpyxl==3.1.2->-r requirements/base.txt (line 44)) (2.0.0)
+Requirement already satisfied: soupsieve>1.2 in /usr/local/lib/python3.12/site-packages (from beautifulsoup4==4.12.3->-r requirements/base.txt (line 48)) (2.10)
+Requirement already satisfied: cffi>=2.0.0 in /usr/local/lib/python3.12/site-packages (from cryptography==50.0.0->-r requirements/base.txt (line 50)) (2.1.1)
+Requirement already satisfied: botocore<1.35.0,>=1.34.96 in /usr/local/lib/python3.12/site-packages (from boto3==1.34.96->-r requirements/base.txt (line 54)) (1.34.162)
+Requirement already satisfied: jmespath<2.0.0,>=0.7.1 in /usr/local/lib/python3.12/site-packages (from boto3==1.34.96->-r requirements/base.txt (line 54)) (1.1.0)
+Requirement already satisfied: s3transfer<0.11.0,>=0.10.0 in /usr/local/lib/python3.12/site-packages (from boto3==1.34.96->-r requirements/base.txt (line 54)) (0.10.4)
+Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/site-packages (from requests==2.33.0->-r requirements/base.txt (line 59)) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /usr/local/lib/python3.12/site-packages (from requests==2.33.0->-r requirements/base.txt (line 59)) (3.20)
+Requirement already satisfied: deprecated>=1.2.6 in /usr/local/lib/python3.12/site-packages (from opentelemetry-api==1.28.1->-r requirements/base.txt (line 67)) (3.0.0)
+Requirement already satisfied: importlib-metadata<=8.5.0,>=6.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-api==1.28.1->-r requirements/base.txt (line 67)) (8.5.0)
+Requirement already satisfied: opentelemetry-semantic-conventions==0.49b1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-sdk==1.28.1->-r requirements/base.txt (line 68)) (0.49b1)
+Requirement already satisfied: opentelemetry-instrumentation-wsgi==0.49b1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-instrumentation-django==0.49b1->-r requirements/base.txt (line 69)) (0.49b1)
+Requirement already satisfied: opentelemetry-instrumentation==0.49b1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-instrumentation-django==0.49b1->-r requirements/base.txt (line 69)) (0.49b1)
+Requirement already satisfied: opentelemetry-util-http==0.49b1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-instrumentation-django==0.49b1->-r requirements/base.txt (line 69)) (0.49b1)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-http==1.28.1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp==1.28.1->-r requirements/base.txt (line 70)) (1.28.1)
+Requirement already satisfied: googleapis-common-protos~=1.52 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.28.1->-r requirements/base.txt (line 71)) (1.75.0)
+Requirement already satisfied: grpcio<2.0.0,>=1.63.2 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.28.1->-r requirements/base.txt (line 71)) (1.84.0)
+Requirement already satisfied: opentelemetry-exporter-otlp-proto-common==1.28.1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.28.1->-r requirements/base.txt (line 71)) (1.28.1)
+Requirement already satisfied: opentelemetry-proto==1.28.1 in /usr/local/lib/python3.12/site-packages (from opentelemetry-exporter-otlp-proto-grpc==1.28.1->-r requirements/base.txt (line 71)) (1.28.1)
+Requirement already satisfied: uritemplate>=2.0.0 in /usr/local/lib/python3.12/site-packages (from drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (4.2.0)
+Requirement already satisfied: PyYAML>=5.1 in /usr/local/lib/python3.12/site-packages (from drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (6.0.3)
+Requirement already satisfied: jsonschema>=2.6.0 in /usr/local/lib/python3.12/site-packages (from drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (4.26.0)
+Requirement already satisfied: inflection>=0.3.1 in /usr/local/lib/python3.12/site-packages (from drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (0.5.1)
+Collecting iniconfig>=1.0.1 (from pytest==9.0.3->-r requirements/test.txt (line 3))
+  Downloading iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Requirement already satisfied: packaging>=22 in /usr/local/lib/python3.12/site-packages (from pytest==9.0.3->-r requirements/test.txt (line 3)) (26.3)
+Collecting pluggy<2,>=1.5 (from pytest==9.0.3->-r requirements/test.txt (line 3))
+  Downloading pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest==9.0.3->-r requirements/test.txt (line 3))
+  Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting execnet>=1.1 (from pytest-xdist==3.3.1->-r requirements/test.txt (line 6))
+  Downloading execnet-2.1.2-py3-none-any.whl.metadata (2.9 kB)
+Collecting httpcore<0.18.0,>=0.15.0 (from httpx==0.24.1->-r requirements/test.txt (line 11))
+  Downloading httpcore-0.17.3-py3-none-any.whl.metadata (18 kB)
+Requirement already satisfied: protobuf<6.0,>=5.0 in /usr/local/lib/python3.12/site-packages (from opentelemetry-proto==1.28.1->opentelemetry-exporter-otlp-proto-grpc==1.28.1->-r requirements/base.txt (line 71)) (5.29.6)
+Requirement already satisfied: pycparser in /usr/local/lib/python3.12/site-packages (from cffi>=2.0.0->cryptography==50.0.0->-r requirements/base.txt (line 50)) (3.0)
+Requirement already satisfied: prompt_toolkit>=3.0.36 in /usr/local/lib/python3.12/site-packages (from click-repl>=0.2.0->celery==5.5.3->-r requirements/base.txt (line 18)) (3.0.53)
+Collecting h11>=0.8 (from uvicorn==0.29.0->-r requirements/base.txt (line 34))
+  Downloading h11-0.14.0-py3-none-any.whl.metadata (8.2 kB)
+Requirement already satisfied: zipp>=3.20 in /usr/local/lib/python3.12/site-packages (from importlib-metadata<=8.5.0,>=6.0->opentelemetry-api==1.28.1->-r requirements/base.txt (line 67)) (4.1.0)
+Requirement already satisfied: attrs>=22.2.0 in /usr/local/lib/python3.12/site-packages (from jsonschema>=2.6.0->drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (26.1.0)
+Requirement already satisfied: jsonschema-specifications>=2023.03.6 in /usr/local/lib/python3.12/site-packages (from jsonschema>=2.6.0->drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (2025.9.1)
+Requirement already satisfied: referencing>=0.28.4 in /usr/local/lib/python3.12/site-packages (from jsonschema>=2.6.0->drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (0.37.0)
+Requirement already satisfied: rpds-py>=0.25.0 in /usr/local/lib/python3.12/site-packages (from jsonschema>=2.6.0->drf-spectacular==0.29.0->-r requirements/base.txt (line 73)) (2026.6.3)
+Requirement already satisfied: amqp<6.0.0,>=5.1.1 in /usr/local/lib/python3.12/site-packages (from kombu<5.6,>=5.5.2->celery==5.5.3->-r requirements/base.txt (line 18)) (5.4.0)
+Requirement already satisfied: annotated-types>=0.6.0 in /usr/local/lib/python3.12/site-packages (from pydantic<3,>=1.9.0->openai==1.63.2->-r requirements/base.txt (line 38)) (0.8.0)
+Requirement already satisfied: pydantic-core==2.46.5 in /usr/local/lib/python3.12/site-packages (from pydantic<3,>=1.9.0->openai==1.63.2->-r requirements/base.txt (line 38)) (2.46.5)
+Requirement already satisfied: typing-inspection>=0.4.2 in /usr/local/lib/python3.12/site-packages (from pydantic<3,>=1.9.0->openai==1.63.2->-r requirements/base.txt (line 38)) (0.4.4)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.12/site-packages (from python-dateutil>=2.8.2->celery==5.5.3->-r requirements/base.txt (line 18)) (1.17.0)
+Requirement already satisfied: wcwidth>=0.1.4 in /usr/local/lib/python3.12/site-packages (from prompt_toolkit>=3.0.36->click-repl>=0.2.0->celery==5.5.3->-r requirements/base.txt (line 18)) (0.9.1)
+Downloading pytest-9.0.3-py3-none-any.whl (375 kB)
+Downloading pytest_django-4.12.0-py3-none-any.whl (26 kB)
+Downloading pytest_cov-4.1.0-py3-none-any.whl (21 kB)
+Downloading pytest_xdist-3.3.1-py3-none-any.whl (41 kB)
+Downloading pytest_mock-3.11.1-py3-none-any.whl (9.6 kB)
+Downloading factory_boy-3.3.0-py2.py3-none-any.whl (36 kB)
+Downloading freezegun-1.2.2-py3-none-any.whl (17 kB)
+Downloading coverage-7.2.7-cp312-cp312-musllinux_1_1_aarch64.whl (240 kB)
+Downloading httpx-0.24.1-py3-none-any.whl (75 kB)
+Downloading execnet-2.1.2-py3-none-any.whl (40 kB)
+Downloading httpcore-0.17.3-py3-none-any.whl (74 kB)
+Downloading h11-0.14.0-py3-none-any.whl (58 kB)
+Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
+Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 1.9 MB/s eta 0:00:00
+Installing collected packages: pygments, pluggy, iniconfig, h11, execnet, coverage, pytest, httpcore, freezegun, pytest-xdist, pytest-mock, pytest-django, pytest-cov, httpx, factory-boy
+  Attempting uninstall: h11
+    Found existing installation: h11 0.16.0
+    Uninstalling h11-0.16.0:
+      Successfully uninstalled h11-0.16.0
+  Attempting uninstall: httpcore
+    Found existing installation: httpcore 1.0.9
+    Uninstalling httpcore-1.0.9:
+      Successfully uninstalled httpcore-1.0.9
+  Attempting uninstall: httpx
+    Found existing installation: httpx 0.28.1
+    Uninstalling httpx-0.28.1:
+      Successfully uninstalled httpx-0.28.1
+Successfully installed coverage-7.2.7 execnet-2.1.2 factory-boy-3.3.0 freezegun-1.2.2 h11-0.14.0 httpcore-0.17.3 httpx-0.24.1 iniconfig-2.3.0 pluggy-1.6.0 pygments-2.21.0 pytest-9.0.3 pytest-cov-4.1.0 pytest-django-4.12.0 pytest-mock-3.11.1 pytest-xdist-3.3.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collected 130 items
+
+plane/radar/tests/test_core.py .........................................
+plane/radar/tests/test_governance.py ............
+plane/radar/tests/test_semantic.py ......................................................................
+plane/radar/tests/test_core.py ..
+plane/radar/tests/test_semantic.py .....
+
+============================= 130 passed in 26.90s =============================

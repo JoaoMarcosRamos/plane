@@ -1,0 +1,18 @@
+{
+  "workspace": "radar-governance-zero",
+  "actor": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+  "objects": {
+    "objective": "050be699-1b34-4fd7-b713-bd62318d33bb",
+    "project": "6a440ebe-520a-4fa6-b935-aefe08895a76",
+    "decision": "469b3513-8370-4a5b-a3b0-51f6a03f4ed6",
+    "action": "e2eb8963-4f14-4191-831b-d03000e0842e",
+    "risk": "1d84203c-29a2-4922-bc04-5f4275fb2d24"
+  },
+  "urls": {
+    "objective": "/radar-governance-zero/radar/objects/050be699-1b34-4fd7-b713-bd62318d33bb/",
+    "project": "/radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/",
+    "decision": "/radar-governance-zero/radar/objects/469b3513-8370-4a5b-a3b0-51f6a03f4ed6/",
+    "action": "/radar-governance-zero/radar/objects/e2eb8963-4f14-4191-831b-d03000e0842e/",
+    "risk": "/radar-governance-zero/radar/objects/1d84203c-29a2-4922-bc04-5f4275fb2d24/"
+  }
+}

@@ -1,0 +1,49 @@
+### Result
+[GET] http://localhost:8001/api/instances/ => [200] OK
+[GET] http://localhost:8001/api/users/me/ => [200] OK
+[GET] http://localhost:8001/api/users/me/profile/ => [200] OK
+[GET] http://localhost:8001/api/users/me/settings/ => [200] OK
+[GET] http://localhost:8001/api/users/me/workspaces/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/workspace-members/me/ => [200] OK
+[GET] http://localhost:8001/api/users/me/workspaces/radar-projects/project-roles/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/members/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/states/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/sidebar-preferences/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/user-properties/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/users/notifications/unread/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/work-items/RADAR-8/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/user-favorites/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/history/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/history/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/sub-issues/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/issue-relation/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/states/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/project-members/me/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/user-properties/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issue-labels/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/members/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/states/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/ => [404] Not Found
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/estimates/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/cycles/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/modules/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/modules/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/views/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/work-items/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/description-versions/ => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/ => [404] Not Found
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/ => [404] Not Found
+[POST] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/comments/ => [201] Created
+[PATCH] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/ => [204] No Content
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/history/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/ => [200] OK
+[POST] http://localhost:8001/api/assets/v2/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/attachments/ => [400] Bad Request
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/history/?<redacted> => [200] OK
+[GET] http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/ => [404] Not Found
+### Page
+- Page URL: http://localhost:3000/radar-projects/browse/RADAR-8/
+- Page Title: RADAR-8 Baseline Fase 0.6 — regressão do Plane
+- Console: 10 errors, 29 warnings
+### Events
+- New console entries: .playwright-cli/console-2026-10-03T17-33-50-243Z.log#L134

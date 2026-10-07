@@ -1,0 +1,4 @@
+$ python3 scripts/check-radar-contracts.py
+RADAR contract parity: 11 kinds and 5 config keys and 3 cardinalities match.
+RADAR capability contract parity: 9 field types match.
+RADAR runtime contract parity: 1 identity strategy and 2 context kinds match.

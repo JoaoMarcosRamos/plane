@@ -1,0 +1,83 @@
+ Container radar-core-u1-phase03-test-minio-1 Running 
+ Container radar-core-u1-phase03-test-db-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Running 
+ Container radar-core-u1-phase03-test-mq-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Waiting 
+ Container radar-core-u1-phase03-test-mq-1 Waiting 
+ Container radar-core-u1-phase03-test-minio-1 Waiting 
+ Container radar-core-u1-phase03-test-db-1 Waiting 
+ Container radar-core-u1-phase03-test-mq-1 Healthy 
+ Container radar-core-u1-phase03-test-minio-1 Healthy 
+ Container radar-core-u1-phase03-test-redis-1 Healthy 
+ Container radar-core-u1-phase03-test-db-1 Healthy 
+ Container radar-core-u1-phase03-api-tests-run-bd0bcb9fdf84 Creating 
+ Container radar-core-u1-phase03-api-tests-run-bd0bcb9fdf84 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 95 items
+
+plane/radar/tests/test_commands.py::test_all_mutations_capture_complete_provenance_and_atomic_events Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_commands.py::test_agent_pending_accept_execute_preserves_both_actors_and_is_idempotent PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[agent] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[system] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[integration] PASSED
+plane/radar/tests/test_commands.py::test_decision_approval_taken_action_and_completion_workflow FAILED
+
+=================================== FAILURES ===================================
+_________ test_decision_approval_taken_action_and_completion_workflow __________
+
+ready = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 18, 58, 6, 836990, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_decision_approval_taken_action_and_completion_workflow(ready):
+        ctx = ready
+>       decision, document, person = decision_with_evidence(ctx)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_commands.py:254: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:128: in decision_with_evidence
+    decision = create(
+plane/radar/tests/test_commands.py:81: in create
+    return create_object(
+plane/radar/commands/objects.py:34: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:42: in invoke
+    plan = plan_command(actor=actor, workspace=workspace, name=name, data=serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/effects.py:139: in plan_command
+    return resolve(capability.planner)(actor=actor, workspace=workspace, capability=capability, data=data, refs=refs, upload=upload)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/effects.py:124: in plan_handler
+    capability.execute(workspace, data)
+plane/radar/commands/capabilities.py:58: in execute
+    return resolve(self.handler)(workspace, data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = <Workspace: RADAR>
+data = {'object_type_id': UUID('5bc40d3e-65c0-4812-9f36-df492045ac23'), 'properties': {'context': 'Sandbox governance', 'decision': 'Use enterprise licenses', 'rationale': 'Centralized control'}, 'title': 'decision'}
+
+    def _create_object(workspace, data):
+        specialized, payload = _special_input(workspace, data)
+        if specialized:
+>           return dispatch(workspace, specialized, payload, content=data.get("content"))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           TypeError: dispatch() got an unexpected keyword argument 'content'
+
+plane/radar/commands/handlers.py:311: TypeError
+-------- generated xml file: /code/output/core-u1-phase-03-initial.xml ---------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_commands.py::test_decision_approval_taken_action_and_completion_workflow
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 1 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+========================= 1 failed, 5 passed in 2.49s ==========================
+

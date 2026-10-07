@@ -1,0 +1,305 @@
+ Container radar-core-u1-02-test-test-db-1 Running 
+ Container radar-core-u1-02-test-test-redis-1 Running 
+ Container radar-core-u1-02-test-test-mq-1 Running 
+ Container radar-core-u1-02-test-test-minio-1 Running 
+ Container radar-core-u1-02-test-test-minio-1 Waiting 
+ Container radar-core-u1-02-test-test-db-1 Waiting 
+ Container radar-core-u1-02-test-test-redis-1 Waiting 
+ Container radar-core-u1-02-test-test-mq-1 Waiting 
+ Container radar-core-u1-02-test-test-db-1 Healthy 
+ Container radar-core-u1-02-test-test-redis-1 Healthy 
+ Container radar-core-u1-02-test-test-minio-1 Healthy 
+ Container radar-core-u1-02-test-test-mq-1 Healthy 
+ Container radar-core-u1-02-test-api-tests-run-dab54d0c49bf Creating 
+ Container radar-core-u1-02-test-api-tests-run-dab54d0c49bf Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 61 items
+
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human] Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_deleted_human_and_missing_provenance_have_distinct_fallbacks PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_legacy_human_without_provenance_is_resolved PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_list_resolves_humans_in_a_constant_query_budget PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_application_results_preserve_v1_object_relation_and_property_representation PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_replay_precedes_stale_version_check_and_preserves_historical_snapshot PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_http_replays_confirmed_snapshot_after_lost_response FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_trusted_defaults_caller_reuses_saved_versions_when_only_key_is_supplied PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_key_conflict_noop_and_authority_revocation PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_invalid_defaults_roll_back_ledger_properties_and_provenance PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_command_modules_do_not_depend_on_api_serializers_or_private_cross_module_interfaces PASSED
+plane/radar/tests/test_core.py::test_system_types_idempotent_and_scoped PASSED
+plane/radar/tests/test_core.py::test_type_uniqueness_and_deleted_behavior FAILED
+plane/radar/tests/test_core.py::test_type_key_can_exist_in_different_workspace PASSED
+plane/radar/tests/test_core.py::test_create_and_update_explicit_actor_preserves_creator PASSED
+plane/radar/tests/test_core.py::test_stale_instance_updates_increment_database_version PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[created_by] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[updated_by] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[workspace] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[version] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[deleted_at] PASSED
+plane/radar/tests/test_core.py::test_cross_workspace_object_and_type_denied FAILED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[nonmember] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[inactive_membership] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[guest] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[inactive_user] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[agent] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[system] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[integration] PASSED
+plane/radar/tests/test_core.py::test_inactive_and_deleted_types_rejected PASSED
+plane/radar/tests/test_core.py::test_create_rolls_back_lazy_initialization_on_failure PASSED
+plane/radar/tests/test_core.py::test_update_is_atomic_on_storage_failure PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[   ] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[None] PASSED
+plane/radar/tests/test_core.py::test_html_is_sanitized PASSED
+plane/radar/tests/test_core.py::test_delete_blocked_and_deleted_objects_hidden PASSED
+plane/radar/tests/test_core.py::test_api_member_create_update_list_retrieve FAILED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-object-types/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-post-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-patch-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-object-types/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-post-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-patch-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_guest_can_read_but_not_write FAILED
+plane/radar/tests/test_core.py::test_api_cross_workspace_and_read_only_payload FAILED
+plane/radar/tests/test_core.py::test_api_session_authentication PASSED
+plane/radar/tests/test_core.py::test_concurrent_updates_serialize_versions PASSED
+plane/radar/tests/test_core.py::test_concurrent_initialization_is_idempotent PASSED
+
+=================================== FAILURES ===================================
+______ test_defaults_http_replays_confirmed_snapshot_after_lost_response _______
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 7, 18, 552531, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_defaults_http_replays_confirmed_snapshot_after_lost_response(seeded):
+        obj = create(seeded)
+        add_default(seeded, obj)
+        client = APIClient()
+        client.force_authenticate(seeded[0])
+        headers = {"HTTP_IDEMPOTENCY_KEY": "http-defaults", "HTTP_X_RADAR_EXPECTED_VERSIONS": '{"%s":1}' % obj.pk}
+        path = url(seeded, f"objects/{obj.pk}/properties/")
+        first = client.post(path, {}, format="json", **headers)
+>       assert first.status_code == 200 and first.data["object"]["version"] == 2
+E       assert (400 == 200)
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_core_u1_phase01.py:238: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/objects/bbbc84c1-ab65-4ac7-b06a-56ba302247ea/properties/
+__________________ test_type_uniqueness_and_deleted_behavior ___________________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u...6, 12, 7, 24, 16988, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_type_uniqueness_and_deleted_behavior(context):
+        selected = objective(context)
+        with pytest.raises(IntegrityError), transaction.atomic():
+            fixture_write(
+                lambda: ObjectType.objects.create(workspace=selected.workspace, key="objective", name="Duplicate")
+            )
+        fixture_write(lambda: ObjectType.all_objects.filter(pk=selected.pk).update(deleted_at=timezone.now()))
+        assert not ObjectType.objects.filter(pk=selected.pk).exists()
+>       replacement = objective(context)
+                      ^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_core.py:66: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u...6, 12, 7, 24, 16988, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def objective(context):
+        *_, workspace, other, actor = context
+>       return next(item for item in initialize_object_types(actor=actor, workspace=workspace) if item.key == "objective")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+plane/radar/tests/test_core.py:21: StopIteration
+_________________ test_cross_workspace_object_and_type_denied __________________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 7, 27, 683169, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_cross_workspace_object_and_type_denied(context):
+        user, second, outsider, workspace, other, actor = context
+        result = create(context)
+        WorkspaceMember.objects.create(workspace=other, member=user, role=15)
+        foreign_type = next(
+>           item for item in initialize_object_types(actor=actor, workspace=other) if item.key == "objective"
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        )
+
+plane/radar/tests/test_core.py:124: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/objects.py:10: in initialize_object_types
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/objects.py:15: in <lambda>
+    operation=lambda: primitives.initialize_object_types(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_objects.py:63: in initialize_object_types
+    install_schema(actor=actor, workspace=workspace)
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:110: in operation
+    require_workspace_admin(actor, workspace)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actor = Actor(actor_type='human', actor_id=UUID('6d6e55dc-5e70-41bd-98cb-49607997289b'), reason='Test', source='pytest', corre...6, 12, 7, 27, 683169, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})
+workspace = <Workspace: Other>
+
+    def require_workspace_admin(actor, workspace):
+        require_human_membership(actor, workspace)
+        if (
+            workspace.owner_id != actor.actor_id
+            and not WorkspaceMember.objects.filter(
+                workspace=workspace, member_id=actor.actor_id, role=20, is_active=True
+            ).exists()
+        ):
+>           raise PermissionDenied("Only the workspace owner or admin may provision RADAR authority.")
+E           rest_framework.exceptions.PermissionDenied: Only the workspace owner or admin may provision RADAR authority.
+
+plane/radar/commands/control.py:30: PermissionDenied
+_________________ test_api_member_create_update_list_retrieve __________________
+
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffff8a1c3650>
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 7, 33, 177373, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_api_member_create_update_list_retrieve(client, context):
+        types = client.get(url(context, "object-types/"))
+        assert types.status_code == 200
+>       selected = next(item for item in types.data if item["key"] == "objective")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+plane/radar/tests/test_core.py:208: StopIteration
+____________________ test_api_guest_can_read_but_not_write _____________________
+
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffff89fadca0>
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 7, 37, 213188, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_api_guest_can_read_but_not_write(client, context):
+        WorkspaceMember.objects.filter(workspace=context[3], member=context[0]).update(role=5)
+        assert client.get(url(context, "object-types/")).status_code == 200
+        assert client.get(url(context)).status_code == 200
+>       selected = objective(context)
+                   ^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_core.py:244: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_core.py:21: in objective
+    return next(item for item in initialize_object_types(actor=actor, workspace=workspace) if item.key == "objective")
+                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/objects.py:10: in initialize_object_types
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/objects.py:15: in <lambda>
+    operation=lambda: primitives.initialize_object_types(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_objects.py:63: in initialize_object_types
+    install_schema(actor=actor, workspace=workspace)
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:110: in operation
+    require_workspace_admin(actor, workspace)
+plane/radar/commands/control.py:23: in require_workspace_admin
+    require_human_membership(actor, workspace)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+actor = Actor(actor_type='human', actor_id=UUID('5f530884-81c8-4f7c-99ec-8c00734e9b74'), reason='Test', source='pytest', corre...6, 12, 7, 37, 213188, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})
+workspace = <Workspace: RADAR>
+
+    def require_human_membership(actor: Actor, workspace: Workspace, *, write=True) -> None:
+        roles = [15, 20] if write else [5, 15, 20]
+        if (
+            actor.actor_type != "human"
+            or not User.objects.filter(pk=actor.actor_id, is_active=True, is_bot=False).exists()
+            or not WorkspaceMember.objects.filter(
+                workspace=workspace, member_id=actor.actor_id, role__in=roles, is_active=True
+            ).exists()
+        ):
+>           raise PermissionDenied("Active workspace membership does not permit this operation.")
+E           rest_framework.exceptions.PermissionDenied: Active workspace membership does not permit this operation.
+
+plane/radar/commands/access.py:17: PermissionDenied
+________________ test_api_cross_workspace_and_read_only_payload ________________
+
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffff89faddc0>
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 7, 37, 275439, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_api_cross_workspace_and_read_only_payload(client, context):
+        result = create(context)
+        WorkspaceMember.objects.create(workspace=context[4], member=context[0], role=15)
+        foreign_url = f"/api/workspaces/{context[4].slug}/radar/objects/{result.pk}/"
+        assert client.get(foreign_url).status_code == 404
+>       assert client.patch(foreign_url, {"title": "Denied"}, format="json").status_code == 404
+E       assert 409 == 404
+E        +  where 409 = <Response status_code=409, "application/json">.status_code
+E        +    where <Response status_code=409, "application/json"> = patch('/api/workspaces/radar-unit-other/radar/objects/d3f23e57-90e5-4277-abe9-adf1950a8c32/', {'title': 'Denied'}, format='json')
+E        +      where patch = <plane.radar.tests.conftest.SnapshotClient object at 0xffff89faddc0>.patch
+
+plane/radar/tests/test_core.py:256: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Not Found: /api/workspaces/radar-unit-other/radar/objects/d3f23e57-90e5-4277-abe9-adf1950a8c32/
+WARNING  django.request:log.py:253 Conflict: /api/workspaces/radar-unit-other/radar/objects/d3f23e57-90e5-4277-abe9-adf1950a8c32/
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_defaults_http_replays_confirmed_snapshot_after_lost_response
+FAILED plane/radar/tests/test_core.py::test_type_uniqueness_and_deleted_behavior
+FAILED plane/radar/tests/test_core.py::test_cross_workspace_object_and_type_denied
+FAILED plane/radar/tests/test_core.py::test_api_member_create_update_list_retrieve
+FAILED plane/radar/tests/test_core.py::test_api_guest_can_read_but_not_write
+FAILED plane/radar/tests/test_core.py::test_api_cross_workspace_and_read_only_payload
+======================== 6 failed, 55 passed in 29.80s =========================
+

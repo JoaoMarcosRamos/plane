@@ -1,0 +1,29 @@
+{
+  "source_hashes_checked": 2738,
+  "documents_checked": 13,
+  "local_links_checked": 238,
+  "final_xml": [
+    {
+      "path": "apps/api/output/general-validation-20261004/plane-tests.xml",
+      "tests": 899,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "apps/api/output/general-validation-20261004/radar-final-tests.xml",
+      "tests": 202,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "output/general-validation-20261004/cos-tests.xml",
+      "tests": 1179,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 9
+    }
+  ],
+  "errors": []
+}

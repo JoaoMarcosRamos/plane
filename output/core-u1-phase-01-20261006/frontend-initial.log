@@ -1,0 +1,13 @@
+
+ RUN  v4.1.11 /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web
+
+(node:60224) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ Test Files  15 passed (15)
+      Tests  98 passed (98)
+   Start at  08:05:35
+   Duration  2.57s (transform 2.40s, setup 0ms, import 5.72s, tests 718ms, environment 1ms)
+

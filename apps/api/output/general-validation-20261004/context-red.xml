@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="3" time="32.295" timestamp="2026-10-04T22:27:22.353010+00:00" hostname="d36735048298"><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[42-1]" time="21.330"><failure message="AssertionError: assert {} == {'field_42': 'field_42'}&#10;  &#10;  Right contains 1 more item:&#10;  {'field_42': 'field_42'}&#10;  Use -v to get more diff">context = (&lt;User: radar-unit &lt;radar-unit@plane.local&gt;&gt;, &lt;User: radar-second &lt;radar-second@plane.local&gt;&gt;, &lt;User: radar-outsider-u... 22, 27, 40, 177313, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+hidden_count = 42, visible_count = 1
+
+    @pytest.mark.parametrize("hidden_count,visible_count", [(42, 1), (0, 20), (0, 21)])
+    def test_context_property_budget_counts_only_authorized_fields(context, hidden_count, visible_count):
+        obj = create(context)
+        allowed = []
+        for index in range(hidden_count + visible_count):
+            key = f"field_{index}"
+            definition = PropertyDefinition.objects.create(
+                workspace=obj.workspace, object_type=obj.object_type, key=key, name=key, value_type="string"
+            )
+            PropertyValue.objects.create(
+                id=UUID(int=index + 1), workspace=obj.workspace, object=obj, definition=definition, value=key
+            )
+            if index &gt;= hidden_count:
+                allowed.append(key)
+        snapshot = load_context(Object.objects.filter(pk=obj.pk), SimpleNamespace(fields=allowed), [obj.pk])
+        properties = snapshot["objects"][0]["properties"]
+&gt;       assert properties == {key: key for key in allowed[:20]}
+E       AssertionError: assert {} == {'field_42': 'field_42'}
+E         
+E         Right contains 1 more item:
+E         {'field_42': 'field_42'}
+E         Use -v to get more diff
+
+plane/radar/tests/test_context_bounds.py:31: AssertionError</failure></testcase><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[0-20]" time="6.471"><failure message="assert True is (20 &gt; 20)">context = (&lt;User: radar-unit &lt;radar-unit@plane.local&gt;&gt;, &lt;User: radar-second &lt;radar-second@plane.local&gt;&gt;, &lt;User: radar-outsider-u... 22, 27, 44, 328428, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+hidden_count = 0, visible_count = 20
+
+    @pytest.mark.parametrize("hidden_count,visible_count", [(42, 1), (0, 20), (0, 21)])
+    def test_context_property_budget_counts_only_authorized_fields(context, hidden_count, visible_count):
+        obj = create(context)
+        allowed = []
+        for index in range(hidden_count + visible_count):
+            key = f"field_{index}"
+            definition = PropertyDefinition.objects.create(
+                workspace=obj.workspace, object_type=obj.object_type, key=key, name=key, value_type="string"
+            )
+            PropertyValue.objects.create(
+                id=UUID(int=index + 1), workspace=obj.workspace, object=obj, definition=definition, value=key
+            )
+            if index &gt;= hidden_count:
+                allowed.append(key)
+        snapshot = load_context(Object.objects.filter(pk=obj.pk), SimpleNamespace(fields=allowed), [obj.pk])
+        properties = snapshot["objects"][0]["properties"]
+        assert properties == {key: key for key in allowed[:20]}
+&gt;       assert snapshot["truncated"] is (visible_count &gt; 20)
+E       assert True is (20 &gt; 20)
+
+plane/radar/tests/test_context_bounds.py:32: AssertionError</failure></testcase><testcase classname="plane.radar.tests.test_context_bounds" name="test_context_property_budget_counts_only_authorized_fields[0-21]" time="3.780" /></testsuite></testsuites>

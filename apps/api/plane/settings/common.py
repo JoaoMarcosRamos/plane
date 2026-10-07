@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     "plane.space",
     "plane.bgtasks",
     "plane.db",
+    "plane.radar.apps.RadarConfig",
     "plane.utils",
     "plane.web",
     "plane.middleware",
@@ -564,3 +565,20 @@ if ENABLE_DRF_SPECTACULAR:
     REST_FRAMEWORK["DEFAULT_SCHEMA_CLASS"] = "drf_spectacular.openapi.AutoSchema"
     INSTALLED_APPS.append("drf_spectacular")
     from .openapi import SPECTACULAR_SETTINGS  # noqa: F401
+
+# Optional server-to-server RADAR product runtime. Disabled until explicitly configured.
+RADAR_AGENT_RUNTIME_URL = os.environ.get("RADAR_AGENT_RUNTIME_URL", "")
+RADAR_AGENT_RUNTIME_TOKEN = os.environ.get("RADAR_AGENT_RUNTIME_TOKEN", "")
+# The web app calls the API cross-origin; RADAR session mutations carry these request headers.
+CORS_ALLOW_HEADERS = [
+    *CORS_ALLOW_HEADERS,
+    "Idempotency-Key",
+    "X-Radar-Expected-Versions",
+    "X-Radar-Expected-Schema-Revision",
+    "X-Radar-Reason",
+    "X-Radar-Approval-Id",
+    "X-Radar-Correlation-Id",
+]
+
+# Versioned RADAR list/detail adapters consume this metadata revision across origins.
+CORS_EXPOSE_HEADERS = [*globals().get("CORS_EXPOSE_HEADERS", []), "X-Radar-Schema-Revision"]

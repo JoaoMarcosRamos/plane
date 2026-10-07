@@ -1,0 +1,27 @@
+ Container radar-core-u1-phase04-test-redis-1 Running 
+ Container radar-core-u1-phase04-test-mq-1 Running 
+ Container radar-core-u1-phase04-test-minio-1 Running 
+ Container radar-core-u1-phase04-test-db-1 Running 
+ Container radar-core-u1-phase04-test-db-1 Waiting 
+ Container radar-core-u1-phase04-test-redis-1 Waiting 
+ Container radar-core-u1-phase04-test-mq-1 Waiting 
+ Container radar-core-u1-phase04-test-minio-1 Waiting 
+ Container radar-core-u1-phase04-test-mq-1 Healthy 
+ Container radar-core-u1-phase04-test-minio-1 Healthy 
+ Container radar-core-u1-phase04-test-redis-1 Healthy 
+ Container radar-core-u1-phase04-test-db-1 Healthy 
+ Container radar-core-u1-phase04-api-tests-run-97a4e40c0a23 Creating 
+ Container radar-core-u1-phase04-api-tests-run-97a4e40c0a23 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+collected 123 items
+
+plane/radar/tests/test_runtime_contract.py .
+plane/radar/tests/test_core_u1_phase03.py ...........................................
+plane/radar/tests/test_core_u1_phase03bc.py .....................................................
+plane/radar/tests/test_core_u1_phase04.py .........................
+plane/radar/tests/test_core_u1_phase01.py .
+
+------- generated xml file: /code/output/core-u1-phase-04-contracts.xml --------
+======================== 123 passed in 81.05s (0:01:21) ========================
+exit=0

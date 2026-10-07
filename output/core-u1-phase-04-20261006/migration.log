@@ -1,0 +1,33 @@
+ Network radar-core-u1-phase04_test_env Creating 
+ Network radar-core-u1-phase04_test_env Creating 
+ Network radar-core-u1-phase04_test_env Created 
+ Network radar-core-u1-phase04_test_env Created 
+ Container radar-core-u1-phase04-test-db-1 Creating 
+ Container radar-core-u1-phase04-test-redis-1 Creating 
+ Container radar-core-u1-phase04-test-mq-1 Creating 
+ Container radar-core-u1-phase04-test-minio-1 Creating 
+ Container radar-core-u1-phase04-test-redis-1 Created 
+ Container radar-core-u1-phase04-test-minio-1 Created 
+ Container radar-core-u1-phase04-test-db-1 Created 
+ Container radar-core-u1-phase04-test-mq-1 Created 
+ Container radar-core-u1-phase04-test-minio-1 Starting 
+ Container radar-core-u1-phase04-test-mq-1 Starting 
+ Container radar-core-u1-phase04-test-redis-1 Starting 
+ Container radar-core-u1-phase04-test-db-1 Starting 
+ Container radar-core-u1-phase04-test-minio-1 Started 
+ Container radar-core-u1-phase04-test-mq-1 Started 
+ Container radar-core-u1-phase04-test-redis-1 Started 
+ Container radar-core-u1-phase04-test-db-1 Started 
+ Container radar-core-u1-phase04-test-minio-1 Waiting 
+ Container radar-core-u1-phase04-test-db-1 Waiting 
+ Container radar-core-u1-phase04-test-redis-1 Waiting 
+ Container radar-core-u1-phase04-test-mq-1 Waiting 
+ Container radar-core-u1-phase04-test-redis-1 Healthy 
+ Container radar-core-u1-phase04-test-db-1 Healthy 
+ Container radar-core-u1-phase04-test-minio-1 Healthy 
+ Container radar-core-u1-phase04-test-mq-1 Healthy 
+ Container radar-core-u1-phase04-api-tests-run-c8fc69299882 Creating 
+ Container radar-core-u1-phase04-api-tests-run-c8fc69299882 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+{"migration": "0014_type_presentation", "seeded_types_installed": 11, "creation_lifecycle_invariants_preserved": true, "installed_base_updated_for_managed_ids": true, "schema_revision": {"before": 5, "forward": 6, "reverse": 7, "reapplied": 8}, "package_hash_unchanged_until_explicit_upgrade": true, "preexisting_local_presentation_preserved_on_forward": true, "fact_version_and_content_preserved": {"version": 4, "content": "<p>Kept</p>"}, "live_effective_schema_valid": true, "live_upgrade_plan_without_changes_or_conflicts": true, "reverse_strips_presentation_including_local": true, "reverse_forward_passed": true}
+exit=0

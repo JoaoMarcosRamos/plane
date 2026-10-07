@@ -1,0 +1,63 @@
+[author] console In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <form> form 
+
+  ...
+    <Router basename={undefined} location={{pathname:"...", ...}} navigationType="PUSH" navigator={{action:"PUSH", ...}} ...>
+      <RadarStoreProvider workspaceSlug="u1-phase04...">
+        <RadarSe
+[author] console <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. form <form>
+STEP create_custom_type_from_metadata {"initial":"Starts as Open. Later changes follow the type's lifecycle.","createDisabledBeforeRequired":true,"narrative":"Third floor printer is offline","notes":"Notes","stamp":"Recorded by UpdateObject when the transition happens."}
+STEP custom_transitions_saved {"working":200,"closed":200}
+STEP custom_lifecycle_to_terminal {"closedAt":"2026-10-06T19:06","statusEditable":"false"}
+[author] console In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <form> form 
+
+  ...
+    <Router basename={undefined} location={{pathname:"...", ...}} navigationType="POP" navigator={{action:"POP", ...}} ...>
+      <RadarStoreProvider workspaceSlug="u1-phase04...">
+        <RadarSess
+[author] console <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. form <form>
+STEP risk_derived_and_sections {"scoreEditable":"false","scoreReason":"Calculated from other properties.","likelihoodEditable":"true","sections":["radar-section-assessment","radar-section-response"]}
+[author] console In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <form> form 
+
+  ...
+    <Router basename={undefined} location={{pathname:"...", ...}} navigationType="POP" navigator={{action:"POP", ...}} ...>
+      <RadarStoreProvider workspaceSlug="u1-phase04...">
+        <RadarSess
+[author] console <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. form <form>
+STEP complete_action_with_review {"preview":"Changes: Completed at, Status.\n\nTakes effect immediately.","executed":200,"statusEditable":"false","completedAt":"2026-10-06T19:06","completeAvailable":0}
+[author] console In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <form> form 
+
+  ...
+    <Router basename={undefined} location={{pathname:"...", ...}} navigationType="POP" navigator={{action:"POP", ...}} ...>
+      <RadarStoreProvider workspaceSlug="u1-phase04...">
+        <RadarSess
+[author] console <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. form <form>
+STEP decision_author_unavailable {"take":"Move to Decided\nHuman decision\n\nRequires a current, independent approval of this version.","approve":"ApproveDecision\nHuman decision\n\nYou don't have the authority for this."}
+[reviewer] console In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <form> form 
+
+  ...
+    <Router basename={undefined} location={{pathname:"...", ...}} navigationType="POP" navigator={{action:"POP", ...}} ...>
+      <RadarStoreProvider workspaceSlug="u1-phase04...">
+        <RadarSess
+[reviewer] console <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. form <form>
+[reviewer] console Failed to load resource: the server responded with a status of 409 (Conflict)
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.waitForResponse: Timeout 20000ms exceeded while waiting for event "response"
+    at /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/output/core-u1-phase-04-20261006/browser-proof.mjs:42:10 {
+  name: 'TimeoutError'
+}
+
+Node.js v25.6.1
+exit=1

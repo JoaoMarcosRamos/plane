@@ -1,4 +1,5 @@
 node_modules
+.pnpm-store/
 .next
 .yarn
 
@@ -111,6 +112,9 @@ build/
 temp/
 scripts/
 !packages/i18n/scripts/
+!/scripts/
+/scripts/*
+!/scripts/check-radar-contracts.py
 
 # i18n auto-generated types (regenerated on every build)
 packages/i18n/src/types/keys.generated.ts

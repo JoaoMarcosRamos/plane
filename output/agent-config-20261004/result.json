@@ -1,0 +1,36 @@
+{
+  "phase": "1.4",
+  "status": "implemented_and_verified_locally",
+  "checks": {
+    "plane": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "199",
+      "time": "506.121",
+      "timestamp": "2026-10-04T20:50:38.629215+00:00",
+      "hostname": "36faa329516a"
+    },
+    "cos": {
+      "name": "pytest",
+      "errors": "0",
+      "failures": "0",
+      "skipped": "0",
+      "tests": "67",
+      "time": "9.273",
+      "timestamp": "2026-10-04T17:46:23.329017-03:00",
+      "hostname": "192.168.0.24"
+    },
+    "web": {
+      "tests": 58,
+      "files": 8,
+      "passed": true
+    }
+  },
+  "ui": "real form and MobX, isolated browser fixture",
+  "transport": "real HTTP adapter, deterministic generation",
+  "migrations": "Plane 0007 tested in isolated PostgreSQL",
+  "published_environment_changed": false,
+  "next_phase": "1.5"
+}

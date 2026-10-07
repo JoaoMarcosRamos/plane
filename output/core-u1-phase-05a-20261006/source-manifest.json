@@ -1,0 +1,30 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "head": "8fa56b19d7864da0c80a4ae92dc4371d5487699e",
+  "note": "Worktree includes preexisting staged and unstaged deliveries. This manifest identifies final files; it is not a diff against HEAD.",
+  "files": {
+    ".gitignore": "6a01249c39282de23ea1d2a3e90e8d837fbb10ddb0d3c1004b7210c43e103cfc",
+    "scripts/check-radar-contracts.py": "3a37b3b1b89945e4598238d798b7778279c0c9c375c4e8ab805ce407dbf2a3a1",
+    "apps/web/services/radar/types.ts": "3d2bf2968cfe7b7382c9dcdbf10194f5c9eafd990920469ab248ff71ea50e58d",
+    "apps/api/plane/radar/runtime_identity.py": "f13ca8fd8f0435d91f1c88e189aaf44f885a1f0d8f5ad100d866c0bd73e18162",
+    "apps/api/plane/radar/commands/runtime_control.py": "0bde10bbe2a003a33a399bb5def6c6f8f22f6030f066882e888a977cd66215d9",
+    "apps/api/plane/radar/commands/operations.py": "1667766ce717e19e86185386676c03f14b7f9c84654b7f1f0aef11fee3b58d14",
+    "apps/api/plane/radar/commands/primitives_semantic.py": "95ad81b334a0d6cc795cbc4a86ae69c62ac672670d45e75158564452d3518efe",
+    "apps/api/plane/radar/commands/rules.py": "31647dca0d8eb2eee1a23ecaf3961068634632122e839368347d8971e21ac953",
+    "apps/api/plane/radar/commands/schema.py": "edeb6106177a8166444806b374dcfa31968679fa2580fc1368e533cbc554196d",
+    "apps/api/plane/radar/commands/capabilities.py": "2f55c9735f761a47d48af433a1d17cf49f0b1b3b4c0b72766a32fd0342d82168",
+    "apps/api/plane/radar/agent_runtime.py": "d281cd16821364dc1a3a9184d50f6b40b48f7f0e98f15e347a89491c96b9b496",
+    "apps/api/plane/radar/api/runtime_views.py": "e6cfd73e9477072d2567a47f4e2f0020e7288159e34d83e022d576f4899b4e1c",
+    "apps/api/plane/radar/ontology/package.py": "1f65eacc5ecb98b41d3e2e2552074f3f41bdaa2ad61412633833bb62f302a0f1",
+    "apps/api/plane/radar/tests/test_core_u1_phase05a.py": "89ededb6587718439170734cbbb994d42cac87bbe3f310d553c7e77ca8e13afb",
+    "apps/api/plane/radar/management/commands/radar_runtime_provision.py": "18c36e8dd4f605e7dea6e4df0237b4e380411c88815b1101dd22b655be0e7e70",
+    "apps/api/plane/radar/migrations/0015_type_runtime.py": "40d4b2b013eb321b43ebc378ccb18abd9129f6c2f1ad20d0dd9378374df2405e",
+    "apps/api/output/core-u1-phase-05a-verify-migration.py": "ac1e9ac6f05cfbfda150d826ea90f60c6e8e744894b890d9f932db664f332fad",
+    "docs/radar/CORE_AUDIT.md": "8bc16aa53de5ef282bb882015c26cce53ef0ef4d199c9fd8c9042e6550990d12",
+    "docs/radar/CORE_U1_IMPLEMENTATION_PLAN.md": "80716a87cefeb6a4d0dc4225be23b2e32e96d6295b09a5325a39e992d487985e",
+    "docs/radar/CORE_U1_PHASE_05A_REPORT.md": "a2f49fbb0e790093bad1f4735a816a9f6a812cbac87838771db93f252153232e",
+    "docs/radar/CORE_U1_PHASE_05A_ADR.md": "2e7e4a2f3bf2441e2076edf648914e2558826f75b068b58aa1a091d53ef5a9d7",
+    "docs/radar/README.md": "a2a976faf2e6c67cc1745617563cca65dbc977821151d7d0d1c544d823680cef"
+  }
+}

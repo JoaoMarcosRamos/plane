@@ -1,0 +1,12 @@
+{
+  "stack": "plane",
+  "read_only": true,
+  "showmigrations": {
+    "exit_code": 2,
+    "output": "No installed app with label 'radar'.\n"
+  },
+  "database": {
+    "exit_code": 0,
+    "counts_migrations_then_tables": ["0", "0"]
+  }
+}

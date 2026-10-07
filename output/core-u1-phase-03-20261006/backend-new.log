@@ -1,0 +1,86 @@
+ Container radar-core-u1-phase03-test-minio-1 Running 
+ Container radar-core-u1-phase03-test-db-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Running 
+ Container radar-core-u1-phase03-test-mq-1 Running 
+ Container radar-core-u1-phase03-test-db-1 Waiting 
+ Container radar-core-u1-phase03-test-redis-1 Waiting 
+ Container radar-core-u1-phase03-test-mq-1 Waiting 
+ Container radar-core-u1-phase03-test-minio-1 Waiting 
+ Container radar-core-u1-phase03-test-redis-1 Healthy 
+ Container radar-core-u1-phase03-test-minio-1 Healthy 
+ Container radar-core-u1-phase03-test-mq-1 Healthy 
+ Container radar-core-u1-phase03-test-db-1 Healthy 
+ Container radar-core-u1-phase03-api-tests-run-1d71190d01d4 Creating 
+ Container radar-core-u1-phase03-api-tests-run-1d71190d01d4 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 58 items
+
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[CreateObject] Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[UpdateObject] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[InitializeObjectProperties] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[LinkObjects] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[UnlinkObjects] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[CreateAction] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[RegisterRisk] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[CreateDecision] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[ApproveDecision] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[CompleteAction] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[AddEvidence] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[CaptureIssue] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[DelegateAction] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[ReviewObject] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[RecordMeasurement] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[AddComment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[EditComment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[DeleteComment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[AddAttachment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[RenameAttachment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_every_registered_capability_has_one_input_handler_planner_and_contract[DeleteAttachment] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_new_registration_reaches_session_runtime_and_execution_without_other_lists PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_runtime_parameters_and_new_operations_are_generated_from_inputs PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_preview_is_symbolic_complete_and_does_not_persist_anything PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_partial_grant_cannot_authorize_only_part_of_a_compound_effect[type] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_partial_grant_cannot_authorize_only_part_of_a_compound_effect[relation] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_partial_grant_cannot_authorize_only_part_of_a_compound_effect[derived] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_omitted_reference_declaration_is_still_discovered_from_actual_effects PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_effects_outside_the_plan_fail_atomically[event] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_effects_outside_the_plan_fail_atomically[field] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_effects_outside_the_plan_fail_atomically[dependency] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_review_detects_dependency_change_and_cannot_consume_old_approval PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_registered_policy_change_invalidates_pending_review PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_confirmed_replay_uses_persisted_plan_and_current_grant_without_replanning PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_human_only_minimums_are_not_weakened_by_a_nonhuman_grant PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_generated_numeric_contract_matches_measurement_validation[True] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_generated_numeric_contract_matches_measurement_validation[3] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_generated_numeric_contract_matches_measurement_validation[inf] PASSED
+plane/radar/tests/test_core_u1_phase03.py::test_preview_rejects_guests_stale_schema_unknown_commands_and_forged_actors PASSED
+plane/radar/tests/test_commands.py::test_all_mutations_capture_complete_provenance_and_atomic_events PASSED
+plane/radar/tests/test_commands.py::test_agent_pending_accept_execute_preserves_both_actors_and_is_idempotent PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[agent] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[system] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[integration] PASSED
+plane/radar/tests/test_commands.py::test_decision_approval_taken_action_and_completion_workflow PASSED
+plane/radar/tests/test_commands.py::test_generic_writers_cannot_bypass_specialized_guards PASSED
+plane/radar/tests/test_commands.py::test_stale_revision_modified_intent_and_approval_expiry_do_not_write PASSED
+plane/radar/tests/test_commands.py::test_grant_revocation_scope_and_policy_changes_are_enforced PASSED
+plane/radar/tests/test_commands.py::test_failure_rolls_back_domain_provenance_outbox_and_context PASSED
+plane/radar/tests/test_commands.py::test_final_patch_validates_dates_atomically_and_noop_emits_no_fact PASSED
+plane/radar/tests/test_commands.py::test_api_same_layer_provenance_forgery_and_required_snapshot PASSED
+plane/radar/tests/test_commands.py::test_cross_workspace_and_independent_approver_enforced PASSED
+plane/radar/tests/test_commands.py::test_schema_default_change_invalidates_review_and_execution PASSED
+plane/radar/tests/test_commands.py::test_generic_specialized_creation_checks_embedded_reference_versions_and_scope PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[title-42] PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[description-True] PASSED
+plane/radar/tests/test_commands.py::test_observation_timestamp_requires_explicit_timezone PASSED
+plane/radar/tests/test_commands.py::test_concurrent_same_command_key_commits_once PASSED
+
+---------- generated xml file: /code/output/core-u1-phase-03-new.xml -----------
+============================= 58 passed in 15.37s ==============================

@@ -1,0 +1,499 @@
+ Container radar-core-u0-test-api-tests-run-e2a0ad20f00d Creating 
+ Container radar-core-u0-test-api-tests-run-e2a0ad20f00d Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+error: Failed to parse plane/radar/tests/test_risk_review.py:39:113: Simple statements must be separated by newlines or semicolons
+16 files reformatted, 11 files left unchanged
+plane/radar/commands/handlers.py:20:5: F401 [*] `plane.radar.models.PropertyValue` imported but unused
+   |
+18 |     PersonIdentity,
+19 |     PropertyDefinition,
+20 |     PropertyValue,
+   |     ^^^^^^^^^^^^^ F401
+21 |     Provenance,
+22 |     Relation,
+   |
+   = help: Remove unused import: `plane.radar.models.PropertyValue`
+
+plane/radar/tests/test_agent_config.py:5:1: E402 Module level import not at top of file
+  |
+3 | """Config lifecycle, grant ceilings and execution scope, without a provider."""
+4 |
+5 | from copy import deepcopy
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+6 | import os
+7 | from uuid import uuid4
+  |
+
+plane/radar/tests/test_agent_config.py:6:1: E402 Module level import not at top of file
+  |
+5 | from copy import deepcopy
+6 | import os
+  | ^^^^^^^^^ E402
+7 | from uuid import uuid4
+  |
+
+plane/radar/tests/test_agent_config.py:7:1: E402 Module level import not at top of file
+  |
+5 | from copy import deepcopy
+6 | import os
+7 | from uuid import uuid4
+  | ^^^^^^^^^^^^^^^^^^^^^^ E402
+8 |
+9 | import pytest
+  |
+
+plane/radar/tests/test_agent_config.py:9:1: E402 Module level import not at top of file
+   |
+ 7 | from uuid import uuid4
+ 8 |
+ 9 | import pytest
+   | ^^^^^^^^^^^^^ E402
+10 | from rest_framework.test import APIClient
+   |
+
+plane/radar/tests/test_agent_config.py:10:1: E402 Module level import not at top of file
+   |
+ 9 | import pytest
+10 | from rest_framework.test import APIClient
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+11 |
+12 | from plane.db.models import WorkspaceMember
+   |
+
+plane/radar/tests/test_agent_config.py:12:1: E402 Module level import not at top of file
+   |
+10 | from rest_framework.test import APIClient
+11 |
+12 | from plane.db.models import WorkspaceMember
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+13 | from plane.radar.api import agent_views
+14 | from plane.radar.commands.runtime_control import bind_runtime_object
+   |
+
+plane/radar/tests/test_agent_config.py:13:1: E402 Module level import not at top of file
+   |
+12 | from plane.db.models import WorkspaceMember
+13 | from plane.radar.api import agent_views
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+14 | from plane.radar.commands.runtime_control import bind_runtime_object
+15 | from plane.radar.models import (
+   |
+
+plane/radar/tests/test_agent_config.py:14:1: E402 Module level import not at top of file
+   |
+12 | from plane.db.models import WorkspaceMember
+13 | from plane.radar.api import agent_views
+14 | from plane.radar.commands.runtime_control import bind_runtime_object
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+15 | from plane.radar.models import (
+16 |     ActorGrant,
+   |
+
+plane/radar/tests/test_agent_config.py:15:1: E402 Module level import not at top of file
+   |
+13 |   from plane.radar.api import agent_views
+14 |   from plane.radar.commands.runtime_control import bind_runtime_object
+15 | / from plane.radar.models import (
+16 | |     ActorGrant,
+17 | |     AgentConfiguration,
+18 | |     AgentRuntimeRun,
+19 | |     Object,
+20 | |     Provenance,
+21 | |     Relation,
+22 | |     RelationType,
+23 | | )
+   | |_^ E402
+24 |   from .test_agent_runtime import product as product_fixture, endpoint, payload
+25 |   from .test_runtime_contract import runtime  # noqa: F401
+   |
+
+plane/radar/tests/test_agent_config.py:24:1: E402 Module level import not at top of file
+   |
+22 |     RelationType,
+23 | )
+24 | from .test_agent_runtime import product as product_fixture, endpoint, payload
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+25 | from .test_runtime_contract import runtime  # noqa: F401
+26 | from .test_commands import create
+   |
+
+plane/radar/tests/test_agent_config.py:25:1: E402 Module level import not at top of file
+   |
+23 | )
+24 | from .test_agent_runtime import product as product_fixture, endpoint, payload
+25 | from .test_runtime_contract import runtime  # noqa: F401
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+26 | from .test_commands import create
+   |
+
+plane/radar/tests/test_agent_config.py:26:1: E402 Module level import not at top of file
+   |
+24 | from .test_agent_runtime import product as product_fixture, endpoint, payload
+25 | from .test_runtime_contract import runtime  # noqa: F401
+26 | from .test_commands import create
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+27 |
+28 | pytestmark = [pytest.mark.django_db, pytest.mark.unit]
+   |
+
+plane/radar/tests/test_agent_runtime.py:5:1: E402 Module level import not at top of file
+  |
+3 | """Authenticated product facade: authority, bounded context and stable remote intent."""
+4 |
+5 | import json
+  | ^^^^^^^^^^^ E402
+6 | import os
+7 | from uuid import uuid4
+  |
+
+plane/radar/tests/test_agent_runtime.py:6:1: E402 Module level import not at top of file
+  |
+5 | import json
+6 | import os
+  | ^^^^^^^^^ E402
+7 | from uuid import uuid4
+  |
+
+plane/radar/tests/test_agent_runtime.py:7:1: E402 Module level import not at top of file
+  |
+5 | import json
+6 | import os
+7 | from uuid import uuid4
+  | ^^^^^^^^^^^^^^^^^^^^^^ E402
+8 |
+9 | import pytest
+  |
+
+plane/radar/tests/test_agent_runtime.py:9:1: E402 Module level import not at top of file
+   |
+ 7 | from uuid import uuid4
+ 8 |
+ 9 | import pytest
+   | ^^^^^^^^^^^^^ E402
+10 | from django.conf import settings
+11 | from rest_framework.test import APIClient
+   |
+
+plane/radar/tests/test_agent_runtime.py:10:1: E402 Module level import not at top of file
+   |
+ 9 | import pytest
+10 | from django.conf import settings
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+11 | from rest_framework.test import APIClient
+   |
+
+plane/radar/tests/test_agent_runtime.py:11:1: E402 Module level import not at top of file
+   |
+ 9 | import pytest
+10 | from django.conf import settings
+11 | from rest_framework.test import APIClient
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+12 |
+13 | from plane.radar.commands.runtime_control import issue_runtime_credential
+   |
+
+plane/radar/tests/test_agent_runtime.py:13:1: E402 Module level import not at top of file
+   |
+11 | from rest_framework.test import APIClient
+12 |
+13 | from plane.radar.commands.runtime_control import issue_runtime_credential
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+14 | from plane.radar.models import ActorGrant, AgentRuntimeRun, Object, RuntimeCredential
+15 | from plane.radar.api import agent_views
+   |
+
+plane/radar/tests/test_agent_runtime.py:14:1: E402 Module level import not at top of file
+   |
+13 | from plane.radar.commands.runtime_control import issue_runtime_credential
+14 | from plane.radar.models import ActorGrant, AgentRuntimeRun, Object, RuntimeCredential
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+15 | from plane.radar.api import agent_views
+16 | from .test_runtime_contract import runtime  # noqa: F401
+   |
+
+plane/radar/tests/test_agent_runtime.py:15:1: E402 Module level import not at top of file
+   |
+13 | from plane.radar.commands.runtime_control import issue_runtime_credential
+14 | from plane.radar.models import ActorGrant, AgentRuntimeRun, Object, RuntimeCredential
+15 | from plane.radar.api import agent_views
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+16 | from .test_runtime_contract import runtime  # noqa: F401
+17 | from .test_commands import create
+   |
+
+plane/radar/tests/test_agent_runtime.py:16:1: E402 Module level import not at top of file
+   |
+14 | from plane.radar.models import ActorGrant, AgentRuntimeRun, Object, RuntimeCredential
+15 | from plane.radar.api import agent_views
+16 | from .test_runtime_contract import runtime  # noqa: F401
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+17 | from .test_commands import create
+   |
+
+plane/radar/tests/test_agent_runtime.py:17:1: E402 Module level import not at top of file
+   |
+15 | from plane.radar.api import agent_views
+16 | from .test_runtime_contract import runtime  # noqa: F401
+17 | from .test_commands import create
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+18 |
+19 | pytestmark = [pytest.mark.django_db, pytest.mark.unit]
+   |
+
+plane/radar/tests/test_context_bounds.py:5:1: E402 Module level import not at top of file
+  |
+3 | """Authorized fields must be selected before the runtime property budget."""
+4 |
+5 | from types import SimpleNamespace
+  | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+6 | from uuid import UUID
+  |
+
+plane/radar/tests/test_context_bounds.py:6:1: E402 Module level import not at top of file
+  |
+5 | from types import SimpleNamespace
+6 | from uuid import UUID
+  | ^^^^^^^^^^^^^^^^^^^^^ E402
+7 |
+8 | import pytest
+  |
+
+plane/radar/tests/test_context_bounds.py:8:1: E402 Module level import not at top of file
+   |
+ 6 | from uuid import UUID
+ 7 |
+ 8 | import pytest
+   | ^^^^^^^^^^^^^ E402
+ 9 |
+10 | from plane.radar.agent_runtime import load_context
+   |
+
+plane/radar/tests/test_context_bounds.py:10:1: E402 Module level import not at top of file
+   |
+ 8 | import pytest
+ 9 |
+10 | from plane.radar.agent_runtime import load_context
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+11 | from plane.radar.models import Object, PropertyDefinition, PropertyValue
+12 | from .test_core import create
+   |
+
+plane/radar/tests/test_context_bounds.py:11:1: E402 Module level import not at top of file
+   |
+10 | from plane.radar.agent_runtime import load_context
+11 | from plane.radar.models import Object, PropertyDefinition, PropertyValue
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+12 | from .test_core import create
+   |
+
+plane/radar/tests/test_context_bounds.py:12:1: E402 Module level import not at top of file
+   |
+10 | from plane.radar.agent_runtime import load_context
+11 | from plane.radar.models import Object, PropertyDefinition, PropertyValue
+12 | from .test_core import create
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+13 |
+14 | pytestmark = [pytest.mark.django_db, pytest.mark.unit]
+   |
+
+plane/radar/tests/test_core_u0.py:19:5: F401 [*] `plane.radar.models.PropertyValue` imported but unused
+   |
+17 |     ObjectType,
+18 |     PropertyDefinition,
+19 |     PropertyValue,
+   |     ^^^^^^^^^^^^^ F401
+20 |     Provenance,
+21 |     Relation,
+   |
+   = help: Remove unused import
+
+plane/radar/tests/test_core_u0.py:21:5: F401 [*] `plane.radar.models.Relation` imported but unused
+   |
+19 |     PropertyValue,
+20 |     Provenance,
+21 |     Relation,
+   |     ^^^^^^^^ F401
+22 |     RelationType,
+23 | )
+   |
+   = help: Remove unused import
+
+plane/radar/tests/test_risk_review.py:39:113: SyntaxError: Simple statements must be separated by newlines or semicolons
+   |
+37 |     project = create(ctx, "project", description="Sandbox IA depende do licenciamento")
+38 |     fixture_write(lambda: Object.objects.filter(pk=risk.pk).update(title="Licenciamento pode atrasar"))
+39 |     fixture_write(lambda: Object.objects.filter(pk=objective.pk).update(title="Implantar Governança de IA"))    fixture_write(lambda: …
+   |                                                                                                                 ^
+40 |     for obj in [risk, objective, project]:
+41 |         bind_runtime_object(
+   |
+
+plane/radar/tests/test_risk_review.py:39:121: E501 Line too long (198 > 120)
+   |
+37 | …
+38 | …rasar"))
+39 | …ança de IA"))    fixture_write(lambda: Object.objects.filter(pk=project.pk).update(title="Sandbox IA"))
+   |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E501
+40 | …
+41 | …
+   |
+
+plane/radar/tests/test_runtime_contract.py:5:1: E402 Module level import not at top of file
+  |
+3 | """Contract and integration tests for the actual CoS adapter and shared dispatcher."""
+4 |
+5 | import hashlib
+  | ^^^^^^^^^^^^^^ E402
+6 | import json
+7 | import os
+  |
+
+plane/radar/tests/test_runtime_contract.py:6:1: E402 Module level import not at top of file
+  |
+5 | import hashlib
+6 | import json
+  | ^^^^^^^^^^^ E402
+7 | import os
+8 | import sys
+  |
+
+plane/radar/tests/test_runtime_contract.py:7:1: E402 Module level import not at top of file
+  |
+5 | import hashlib
+6 | import json
+7 | import os
+  | ^^^^^^^^^ E402
+8 | import sys
+9 | from datetime import timedelta
+  |
+
+plane/radar/tests/test_runtime_contract.py:8:1: E402 Module level import not at top of file
+   |
+ 6 | import json
+ 7 | import os
+ 8 | import sys
+   | ^^^^^^^^^^ E402
+ 9 | from datetime import timedelta
+10 | from uuid import uuid4
+   |
+
+plane/radar/tests/test_runtime_contract.py:9:1: E402 Module level import not at top of file
+   |
+ 7 | import os
+ 8 | import sys
+ 9 | from datetime import timedelta
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+10 | from uuid import uuid4
+   |
+
+plane/radar/tests/test_runtime_contract.py:10:1: E402 Module level import not at top of file
+   |
+ 8 | import sys
+ 9 | from datetime import timedelta
+10 | from uuid import uuid4
+   | ^^^^^^^^^^^^^^^^^^^^^^ E402
+11 |
+12 | import pytest
+   |
+
+plane/radar/tests/test_runtime_contract.py:12:1: E402 Module level import not at top of file
+   |
+10 | from uuid import uuid4
+11 |
+12 | import pytest
+   | ^^^^^^^^^^^^^ E402
+13 | from django.utils import timezone
+14 | from rest_framework.test import APIClient
+   |
+
+plane/radar/tests/test_runtime_contract.py:13:1: E402 Module level import not at top of file
+   |
+12 | import pytest
+13 | from django.utils import timezone
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+14 | from rest_framework.test import APIClient
+15 | from plane.radar.commands import configure_person_identity, register_actor_grant
+   |
+
+plane/radar/tests/test_runtime_contract.py:14:1: E402 Module level import not at top of file
+   |
+12 | import pytest
+13 | from django.utils import timezone
+14 | from rest_framework.test import APIClient
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+15 | from plane.radar.commands import configure_person_identity, register_actor_grant
+16 | from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+   |
+
+plane/radar/tests/test_runtime_contract.py:15:1: E402 Module level import not at top of file
+   |
+13 | from django.utils import timezone
+14 | from rest_framework.test import APIClient
+15 | from plane.radar.commands import configure_person_identity, register_actor_grant
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+16 | from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+17 | from plane.radar.commands.operations import OPERATIONS
+   |
+
+plane/radar/tests/test_runtime_contract.py:16:1: E402 Module level import not at top of file
+   |
+14 | from rest_framework.test import APIClient
+15 | from plane.radar.commands import configure_person_identity, register_actor_grant
+16 | from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+17 | from plane.radar.commands.operations import OPERATIONS
+18 | from plane.radar.models import (
+   |
+
+plane/radar/tests/test_runtime_contract.py:17:1: E402 Module level import not at top of file
+   |
+15 | from plane.radar.commands import configure_person_identity, register_actor_grant
+16 | from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+17 | from plane.radar.commands.operations import OPERATIONS
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+18 | from plane.radar.models import (
+19 |     ActorGrant,
+   |
+
+plane/radar/tests/test_runtime_contract.py:18:1: E402 Module level import not at top of file
+   |
+16 |   from plane.radar.commands.runtime_control import bind_runtime_object, issue_runtime_credential
+17 |   from plane.radar.commands.operations import OPERATIONS
+18 | / from plane.radar.models import (
+19 | |     ActorGrant,
+20 | |     CommandApproval,
+21 | |     CommandExecution,
+22 | |     DomainEvent,
+23 | |     Object,
+24 | |     OperationalRecord,
+25 | |     Provenance,
+26 | |     Relation,
+27 | |     RuntimeObjectIdentity,
+28 | | )
+   | |_^ E402
+29 |   from .test_commands import create, execute
+30 |   from plane.radar.commands import initialize_semantic_model
+   |
+
+plane/radar/tests/test_runtime_contract.py:29:1: E402 Module level import not at top of file
+   |
+27 |     RuntimeObjectIdentity,
+28 | )
+29 | from .test_commands import create, execute
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+30 | from plane.radar.commands import initialize_semantic_model
+   |
+
+plane/radar/tests/test_runtime_contract.py:30:1: E402 Module level import not at top of file
+   |
+28 | )
+29 | from .test_commands import create, execute
+30 | from plane.radar.commands import initialize_semantic_model
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ E402
+31 |
+32 | pytestmark = [pytest.mark.django_db, pytest.mark.unit]
+   |
+
+Found 49 errors.
+[*] 3 fixable with the `--fix` option.
+

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="21" time="748.711" timestamp="2026-10-04T20:36:40.426385+00:00" hostname="b224e5f71eea"><testcase classname="plane.radar.tests.test_agent_config" name="test_defaults_are_structured_read_only_and_secret_free" time="660.735" /><testcase classname="plane.radar.tests.test_agent_config" name="test_save_reload_version_and_provenance_without_domain_write" time="2.577" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[extra]" time="2.263" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[nested_extra]" time="1.913" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[markdown]" time="2.409" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[approval]" time="2.722" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[read_only]" time="1.467" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[bool_string]" time="2.592" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[empty_name]" time="1.714" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[oversize]" time="1.633" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[duplicate]" time="5.596" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[foreign_object]" time="4.717" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[command]" time="1.746" /><testcase classname="plane.radar.tests.test_agent_config" name="test_invalid_configuration_rejected_atomically[version_string]" time="2.624" /><testcase classname="plane.radar.tests.test_agent_config" name="test_only_own_admin_binding_is_editable_and_revocation_hides_it" time="3.541" /><testcase classname="plane.radar.tests.test_agent_config" name="test_configuration_cannot_expand_explicit_ceiling[object_types]" time="3.810" /><testcase classname="plane.radar.tests.test_agent_config" name="test_configuration_cannot_expand_explicit_ceiling[fields]" time="12.291" /><testcase classname="plane.radar.tests.test_agent_config" name="test_permissions_filter_objects_relations_and_fields_before_run" time="9.166"><failure message="rest_framework.exceptions.ValidationError: {'description': [ErrorDetail(string='This field is required.', code='required')]}">product = (((&lt;User: radar-unit &lt;radar-unit@plane.local&gt;&gt;, &lt;User: radar-second &lt;radar-second@plane.local&gt;&gt;, &lt;User: radar-outsider...imeCredential object (1e0ec638-e605-4487-b9c4-d330a505d600)&gt;, &lt;rest_framework.test.APIClient object at 0xffffb21a4d40&gt;)
+monkeypatch = &lt;_pytest.monkeypatch.MonkeyPatch object at 0xffffb21a78f0&gt;
+
+&gt;   ???
+
+plane/radar/tests/test_agent_config.py:170: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/test_commands.py:80: in create
+    return create_object(
+plane/radar/commands/objects.py:33: in create_object
+    result = invoke(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/compatibility.py:27: in invoke
+    refs = references(workspace, name, serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:122: in references
+    specialized, payload = _special_input(workspace, data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/handlers.py:180: in _special_input
+    serializer.is_valid(raise_exception=True)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = RegisterRiskInput(data={'title': 'risk'}):
+    title = CharField(max_length=255)
+    description = CharField()
+    lik...atens_object_ids = ListField(child=UUIDField(), default=&lt;class 'list'&gt;)
+    owner_person_id = UUIDField(required=False)
+
+    def is_valid(self, *, raise_exception=False):
+        assert hasattr(self, 'initial_data'), (
+            'Cannot call `.is_valid()` as no `data=` keyword argument was '
+            'passed when instantiating the serializer instance.'
+        )
+    
+        if not hasattr(self, '_validated_data'):
+            try:
+                self._validated_data = self.run_validation(self.initial_data)
+            except ValidationError as exc:
+                self._validated_data = {}
+                self._errors = exc.detail
+            else:
+                self._errors = {}
+    
+        if self._errors and raise_exception:
+&gt;           raise ValidationError(self.errors)
+E           rest_framework.exceptions.ValidationError: {'description': [ErrorDetail(string='This field is required.', code='required')]}
+
+/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py:233: ValidationError</failure></testcase><testcase classname="plane.radar.tests.test_agent_config" name="test_config_edit_invalidates_run_and_preserves_saved_intent" time="4.674" /><testcase classname="plane.radar.tests.test_agent_config" name="test_reduced_grant_is_intersected_even_with_old_wildcard_configuration" time="4.361" /><testcase classname="plane.radar.tests.test_agent_config" name="test_cross_workspace_and_guest_do_not_read_configuration" time="5.209" /></testsuite></testsuites>

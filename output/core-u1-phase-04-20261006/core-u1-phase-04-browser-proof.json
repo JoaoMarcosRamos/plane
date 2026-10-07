@@ -1,0 +1,64 @@
+{
+  "schema_revision": 2,
+  "ticket": {
+    "values": {
+      "status": "closed",
+      "summary": "Third floor printer is offline",
+      "closed_at": "2026-10-06T22:13:35.658033+00:00",
+      "severity": "low"
+    },
+    "version": 3
+  },
+  "action": {
+    "status": "done",
+    "completed_at": "2026-10-06T22:13:39.179933+00:00"
+  },
+  "decision": {
+    "status": "decided",
+    "decided_at": "2026-10-06T22:13:43.711209+00:00"
+  },
+  "completion_outcome": "Enterprise terms signed",
+  "approvals": 1,
+  "commands": [
+    {
+      "command": "CreateObject",
+      "status": "executed",
+      "expected_schema_revision": 2
+    },
+    {
+      "command": "UpdateObject",
+      "status": "executed",
+      "expected_schema_revision": 2
+    },
+    {
+      "command": "UpdateObject",
+      "status": "executed",
+      "expected_schema_revision": 2
+    },
+    {
+      "command": "CompleteAction",
+      "status": "executed",
+      "expected_schema_revision": 2
+    },
+    {
+      "command": "ApproveDecision",
+      "status": "executed",
+      "expected_schema_revision": 2
+    },
+    {
+      "command": "UpdateObject",
+      "status": "executed",
+      "expected_schema_revision": 2
+    }
+  ],
+  "provenance_commands": [
+    "ApproveDecision",
+    "CompleteAction",
+    "CreateObject",
+    "InitializeSemanticModel",
+    "LinkObjects",
+    "PersonIdentityConfigured",
+    "UpdateObject",
+    "UpgradeWorkspaceSchema"
+  ]
+}

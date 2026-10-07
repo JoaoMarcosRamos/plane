@@ -1,0 +1,35 @@
+ Network radar-core-u1-phase05b_test_env Creating 
+ Network radar-core-u1-phase05b_test_env Creating 
+ Network radar-core-u1-phase05b_test_env Created 
+ Network radar-core-u1-phase05b_test_env Created 
+ Container radar-core-u1-phase05b-test-redis-1 Creating 
+ Container radar-core-u1-phase05b-test-db-1 Creating 
+ Container radar-core-u1-phase05b-test-mq-1 Creating 
+ Container radar-core-u1-phase05b-test-minio-1 Creating 
+ Container radar-core-u1-phase05b-test-redis-1 Created 
+ Container radar-core-u1-phase05b-test-minio-1 Created 
+ Container radar-core-u1-phase05b-test-mq-1 Created 
+ Container radar-core-u1-phase05b-test-db-1 Created 
+ Container radar-core-u1-phase05b-test-mq-1 Starting 
+ Container radar-core-u1-phase05b-test-db-1 Starting 
+ Container radar-core-u1-phase05b-test-redis-1 Starting 
+ Container radar-core-u1-phase05b-test-minio-1 Starting 
+ Container radar-core-u1-phase05b-test-mq-1 Started 
+ Container radar-core-u1-phase05b-test-db-1 Started 
+ Container radar-core-u1-phase05b-test-redis-1 Started 
+ Container radar-core-u1-phase05b-test-minio-1 Started 
+ Container radar-core-u1-phase05b-test-db-1 Waiting 
+ Container radar-core-u1-phase05b-test-redis-1 Waiting 
+ Container radar-core-u1-phase05b-test-mq-1 Waiting 
+ Container radar-core-u1-phase05b-test-minio-1 Waiting 
+ Container radar-core-u1-phase05b-test-db-1 Healthy 
+ Container radar-core-u1-phase05b-test-redis-1 Healthy 
+ Container radar-core-u1-phase05b-test-mq-1 Healthy 
+ Container radar-core-u1-phase05b-test-minio-1 Healthy 
+ Container radar-core-u1-phase05b-api-tests-run-98d3a3e10490 Creating 
+ Container radar-core-u1-phase05b-api-tests-run-98d3a3e10490 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Migrations for 'radar':
+  plane/radar/migrations/0016_operational_history.py
+    + Add field backfill_hash to operationalrecord
+    + Create model OperationalEntry

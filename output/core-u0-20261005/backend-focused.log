@@ -1,0 +1,44 @@
+ Container radar-core-u0-test-api-tests-run-bc019c70f73d Creating 
+ Container radar-core-u0-test-api-tests-run-bc019c70f73d Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 28 items
+
+plane/radar/tests/test_core_u0.py::test_names_from_risk_and_decision_are_not_globally_reserved Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[command] PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[primitive] PASSED
+plane/radar/tests/test_core_u0.py::test_derived_authority_follows_workspace_rule_keys PASSED
+plane/radar/tests/test_core_u0.py::test_invalid_batch_rolls_back_values_versions_events_and_provenance PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules0] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules1] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules2] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules3] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_mandatory_relation_allows_assembly_but_guards_activation_and_binding PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_command_context_still_rejects_foreign_fks_and_workspace_reassignment PASSED
+plane/radar/tests/test_core_u0.py::test_successful_command_flush_records_provenance_and_exact_replay PASSED
+
+------------- generated xml file: /code/output/core-u0-focused.xml -------------
+============================= 28 passed in 19.18s ==============================

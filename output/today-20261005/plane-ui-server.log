@@ -1,0 +1,24 @@
+ Container plane-radar-phase-0-spike-api-tests-run-d45846cfebb4 Creating 
+ Container plane-radar-phase-0-spike-api-tests-run-d45846cfebb4 Created 
+Traceback (most recent call last):
+  File "/evidence/plane-ui-server.py", line 24, in <module>
+    obj = create_object(actor=actor, workspace=workspace, object_type=ObjectType.objects.get(workspace=workspace, key=key).pk, title=title, properties=props)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/plane/radar/commands/objects.py", line 33, in create_object
+    result = invoke(
+             ^^^^^^^
+  File "/usr/local/lib/python3.12/contextlib.py", line 81, in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/code/plane/radar/commands/compatibility.py", line 27, in invoke
+    refs = references(workspace, name, serializer.validated_data)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/plane/radar/commands/handlers.py", line 122, in references
+    specialized, payload = _special_input(workspace, data)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/plane/radar/commands/handlers.py", line 180, in _special_input
+    serializer.is_valid(raise_exception=True)
+  File "/usr/local/lib/python3.12/site-packages/rest_framework/serializers.py", line 233, in is_valid
+    raise ValidationError(self.errors)
+rest_framework.exceptions.ValidationError: {'score': ErrorDetail(string='Unknown or read-only field.', code='invalid')}
+

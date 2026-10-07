@@ -1,0 +1,432 @@
+[     204ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     204ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     204ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     205ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     206ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     226ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[     227ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[     285ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[     791ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[    1122ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[   42131ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88518ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88519ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88519ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[   88552ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[   88553ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[   88603ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[   88873ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[   89048ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[   89187ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152872ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152873ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  152890ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[  152892ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[  152930ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[  153218ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[  153369ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[  153534ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[  250085ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250086ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250087ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  250105ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[  250106ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[  250148ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[  250519ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[  250677ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[  250909ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355111ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355112ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  355130ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[  355131ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[  355181ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[  355519ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[  355651ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[  355984ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484327ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484328ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[  484345ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[  484347ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[  484434ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[  484890ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[  485030ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[  485248ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524

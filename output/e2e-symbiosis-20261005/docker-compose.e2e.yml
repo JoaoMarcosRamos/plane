@@ -1,0 +1,9 @@
+# Phase 1.8 E2E: adds the Plane -> CoS runtime transport to the isolated plane-radar stack.
+# The key lives only in the gitignored .secrets/radar-e2e-runtime.env (generated per environment).
+#   docker compose -p plane-radar -f docker-compose-local.yml -f docker-compose.radar.yml \
+#     -f output/e2e-symbiosis-20261005/docker-compose.e2e.yml up -d
+services:
+  api:
+    env_file:
+      - ./apps/api/.env
+      - ./.secrets/radar-e2e-runtime.env

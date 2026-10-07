@@ -1,0 +1,271 @@
+{
+  "checks": [
+    {
+      "name": "one scripted run for the replayed start",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "one review for the run, prepared once",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "exactly one threatens relation Risk -> Objective",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "rejected Risk -> Project threat was not created",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "Action mitigates Risk exactly once",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "exactly one Action exists (retries and rejection created none)",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "Action has a canonical runtime identity in the agent context",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: executed once; single-use human approval consumed",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance actor is the agent",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance names the human (on behalf of + approver)",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance approval_id links the human approval",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance reason is the agent explanation",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance source is the skill",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance run_id is the Risk Review run",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: provenance confidence is the suggestion confidence",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "relation: domain event persisted in the same commit",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: executed once; single-use human approval consumed",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance actor is the agent",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance names the human (on behalf of + approver)",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance approval_id links the human approval",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance reason is the agent explanation",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance source is the skill",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance run_id is the Risk Review run",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: provenance confidence is the suggestion confidence",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "action: domain event persisted in the same commit",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "rejected relation: not executed, rationale stored",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "rejected relation: human review provenance recorded",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "rejected action: not executed, rationale stored",
+      "ok": true,
+      "detail": null
+    },
+    {
+      "name": "rejected action: human review provenance recorded",
+      "ok": true,
+      "detail": null
+    }
+  ],
+  "accepted": {
+    "relation": {
+      "command": "LinkObjects",
+      "execution_status": "executed",
+      "approval": {
+        "status": "consumed",
+        "approver_id": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+        "rationale": "O atraso do licenciamento ameaça o objetivo."
+      },
+      "provenance": [
+        {
+          "command": "LinkObjects",
+          "actor_type": "agent",
+          "actor_id": "7fda3760-c571-48fd-a965-a7f62ec0d676",
+          "reason": "O licenciamento pode atrasar 'Implantar Governança de IA'. Esta é uma inferência para revisão humana.",
+          "source": "radar.skill.risk_review",
+          "run_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "approval_id": null,
+          "confidence": 0.8,
+          "correlation_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "on_behalf_of": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+          "outcome": "pending_approval"
+        },
+        {
+          "command": "LinkObjects",
+          "actor_type": "agent",
+          "actor_id": "7fda3760-c571-48fd-a965-a7f62ec0d676",
+          "reason": "O licenciamento pode atrasar 'Implantar Governança de IA'. Esta é uma inferência para revisão humana.",
+          "source": "radar.skill.risk_review",
+          "run_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "approval_id": "9e71b854-80de-433d-b3d1-20a6a699ccc3",
+          "confidence": 0.8,
+          "correlation_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "on_behalf_of": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+          "outcome": "executed"
+        }
+      ],
+      "events": [
+        "CommandApprovalRequested",
+        "ObjectLinked"
+      ]
+    },
+    "action": {
+      "command": "CreateAction",
+      "execution_status": "executed",
+      "approval": {
+        "status": "consumed",
+        "approver_id": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+        "rationale": "Mitigação adequada para o atraso."
+      },
+      "provenance": [
+        {
+          "command": "CreateAction",
+          "actor_type": "agent",
+          "actor_id": "7fda3760-c571-48fd-a965-a7f62ec0d676",
+          "reason": "O licenciamento pode atrasar 'Implantar Governança de IA'. Esta é uma inferência para revisão humana.",
+          "source": "radar.skill.risk_review",
+          "run_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "approval_id": null,
+          "confidence": 0.8,
+          "correlation_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "on_behalf_of": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+          "outcome": "pending_approval"
+        },
+        {
+          "command": "CreateAction",
+          "actor_type": "agent",
+          "actor_id": "7fda3760-c571-48fd-a965-a7f62ec0d676",
+          "reason": "O licenciamento pode atrasar 'Implantar Governança de IA'. Esta é uma inferência para revisão humana.",
+          "source": "radar.skill.risk_review",
+          "run_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "approval_id": "6933d619-ee80-4d26-980e-212b5e0848f0",
+          "confidence": 0.8,
+          "correlation_id": "7be3e847-44c8-45a9-916d-aea900207244",
+          "on_behalf_of": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+          "outcome": "executed"
+        }
+      ],
+      "events": [
+        "CommandApprovalRequested",
+        "ObjectCreated",
+        "ObjectLinked",
+        "ActionCreated"
+      ]
+    }
+  },
+  "rejected": {
+    "relation": {
+      "execution_status": "rejected",
+      "approval": {
+        "status": "rejected",
+        "approver_id": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+        "rationale": "O Sandbox IA tem licença temporária; não é ameaça."
+      },
+      "human_review_provenance": [
+        {
+          "command_name": "ReviewCommand",
+          "actor_type": "human",
+          "reason": "O Sandbox IA tem licença temporária; não é ameaça.",
+          "source": "radar.session.risk_review",
+          "outcome": "executed"
+        }
+      ]
+    },
+    "action": {
+      "execution_status": "rejected",
+      "approval": {
+        "status": "rejected",
+        "approver_id": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+        "rationale": "Plano B desnecessário com licença temporária."
+      },
+      "human_review_provenance": [
+        {
+          "command_name": "ReviewCommand",
+          "actor_type": "human",
+          "reason": "Plano B desnecessário com licença temporária.",
+          "source": "radar.session.risk_review",
+          "outcome": "executed"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,16 @@
+ Container radar-core-u1-phase05b-test-minio-1 Running 
+ Container radar-core-u1-phase05b-test-db-1 Running 
+ Container radar-core-u1-phase05b-test-redis-1 Running 
+ Container radar-core-u1-phase05b-test-mq-1 Running 
+ Container radar-core-u1-phase05b-test-db-1 Waiting 
+ Container radar-core-u1-phase05b-test-redis-1 Waiting 
+ Container radar-core-u1-phase05b-test-mq-1 Waiting 
+ Container radar-core-u1-phase05b-test-minio-1 Waiting 
+ Container radar-core-u1-phase05b-test-db-1 Healthy 
+ Container radar-core-u1-phase05b-test-redis-1 Healthy 
+ Container radar-core-u1-phase05b-test-mq-1 Healthy 
+ Container radar-core-u1-phase05b-test-minio-1 Healthy 
+ Container radar-core-u1-phase05b-api-tests-run-4a44d4c43c19 Creating 
+ Container radar-core-u1-phase05b-api-tests-run-4a44d4c43c19 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+1 file reformatted, 1 file left unchanged

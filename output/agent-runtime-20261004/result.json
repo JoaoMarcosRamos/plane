@@ -1,0 +1,13 @@
+{
+  "destination": "/Users/joaomarcosramos/Documents/Github/COS_AGENT_V2",
+  "files_applied": 22,
+  "hashes_verified": true,
+  "test_exit_code": 0,
+  "plane_tests_passed": 177,
+  "cos_prepared_tests_passed": 95,
+  "cos_destination_tests_passed": 95,
+  "isolated_stack_removed": true,
+  "temporary_http_servers_stopped": true,
+  "original_JMR_clean": true,
+  "production_activated": false
+}

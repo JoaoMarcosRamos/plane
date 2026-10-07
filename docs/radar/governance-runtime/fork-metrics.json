@@ -1,0 +1,193 @@
+{
+  "baseline": "1ee511b642babd4ec9f9cb734883b51d7a217a50",
+  "head": "8fa56b19d7864da0c80a4ae92dc4371d5487699e",
+  "branch": "radar-phase-0-spike",
+  "upstream_touch_points": [
+    {
+      "path": "apps/api/plane/settings/common.py",
+      "added": 1,
+      "removed": 0
+    },
+    {
+      "path": "apps/api/plane/urls.py",
+      "added": 1,
+      "removed": 0
+    },
+    {
+      "path": "apps/web/app/(all)/[workspaceSlug]/layout.tsx",
+      "added": 1,
+      "removed": 1
+    },
+    {
+      "path": "apps/web/app/routes/extended.ts",
+      "added": 2,
+      "removed": 1
+    },
+    {
+      "path": "apps/web/components/navigation/app-rail-hoc.tsx",
+      "added": 9,
+      "removed": 1
+    },
+    {
+      "path": "apps/web/hooks/use-workspace-paths.ts",
+      "added": 4,
+      "removed": 1
+    },
+    {
+      "path": "apps/web/package.json",
+      "added": 4,
+      "removed": 2
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "added": 3,
+      "removed": 0
+    }
+  ],
+  "upstream_totals": {
+    "files": 8,
+    "added": 25,
+    "removed": 6
+  },
+  "radar_tracked_delta": [
+    {
+      "path": "docker-compose.radar.yml",
+      "added": 30,
+      "removed": 0
+    }
+  ],
+  "radar_files": [
+    "apps/api/plane/radar/__init__.py",
+    "apps/api/plane/radar/api/__init__.py",
+    "apps/api/plane/radar/api/semantic_views.py",
+    "apps/api/plane/radar/api/serializers.py",
+    "apps/api/plane/radar/api/urls.py",
+    "apps/api/plane/radar/api/views.py",
+    "apps/api/plane/radar/apps.py",
+    "apps/api/plane/radar/commands/__init__.py",
+    "apps/api/plane/radar/commands/actor.py",
+    "apps/api/plane/radar/commands/governance.py",
+    "apps/api/plane/radar/commands/objects.py",
+    "apps/api/plane/radar/commands/semantic.py",
+    "apps/api/plane/radar/management/__init__.py",
+    "apps/api/plane/radar/management/commands/__init__.py",
+    "apps/api/plane/radar/management/commands/radar_governance_scenario.py",
+    "apps/api/plane/radar/migrations/0001_initial.py",
+    "apps/api/plane/radar/migrations/0002_propertydefinition_propertyvalue_relationtype_and_more.py",
+    "apps/api/plane/radar/migrations/__init__.py",
+    "apps/api/plane/radar/models/__init__.py",
+    "apps/api/plane/radar/models/core.py",
+    "apps/api/plane/radar/models/semantic.py",
+    "apps/api/plane/radar/ontology/__init__.py",
+    "apps/api/plane/radar/ontology/core-3.2.0.json",
+    "apps/api/plane/radar/ontology/schema.py",
+    "apps/api/plane/radar/ontology/snapshot.py",
+    "apps/api/plane/radar/tests/__init__.py",
+    "apps/api/plane/radar/tests/conftest.py",
+    "apps/api/plane/radar/tests/test_core.py",
+    "apps/api/plane/radar/tests/test_governance.py",
+    "apps/api/plane/radar/tests/test_semantic.py",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/layout.tsx",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/objects/[objectId]/page.tsx",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/page.tsx",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/spike/object/page.tsx",
+    "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/spike/page.tsx",
+    "apps/web/app/routes/radar.ts",
+    "apps/web/components/radar/choice-field.tsx",
+    "apps/web/components/radar/create-object-dialog.tsx",
+    "apps/web/components/radar/header.tsx",
+    "apps/web/components/radar/home.tsx",
+    "apps/web/components/radar/notes-editor.tsx",
+    "apps/web/components/radar/object-page.tsx",
+    "apps/web/components/radar/objects-list.tsx",
+    "apps/web/components/radar/property-editor.test.ts",
+    "apps/web/components/radar/property-editor.tsx",
+    "apps/web/components/radar/relation-dialog.tsx",
+    "apps/web/components/radar/sections.ts",
+    "apps/web/components/radar/semantic-panel.tsx",
+    "apps/web/components/radar/semantic-utils.test.ts",
+    "apps/web/components/radar/semantic-utils.ts",
+    "apps/web/components/radar/sidebar.tsx",
+    "apps/web/components/radar/spike/generic-layouts.tsx",
+    "apps/web/components/radar/spike/mock-data.ts",
+    "apps/web/components/radar/spike/mock-object-page.tsx",
+    "apps/web/components/radar/spike/notes-editor.tsx",
+    "apps/web/components/radar/spike/overlays.tsx",
+    "apps/web/components/radar/spike/playground.tsx",
+    "apps/web/components/radar/spike/section.tsx",
+    "apps/web/services/radar/radar.service.test.ts",
+    "apps/web/services/radar/radar.service.ts",
+    "apps/web/services/radar/types.ts",
+    "apps/web/store/radar/provider.tsx",
+    "apps/web/store/radar/root.store.test.ts",
+    "apps/web/store/radar/root.store.ts",
+    "apps/web/vitest.radar.config.ts"
+  ],
+  "radar_totals": {
+    "files": 66,
+    "lines": 6533,
+    "test_files": 7,
+    "migrations": 2
+  },
+  "reused_imports_in_real_ui": {
+    "@/components/base-layouts/list/layout": ["apps/web/components/radar/objects-list.tsx"],
+    "@/components/common/breadcrumb-link": ["apps/web/components/radar/header.tsx"],
+    "@/components/core/app-header": [
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx",
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/objects/[objectId]/page.tsx",
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/page.tsx"
+    ],
+    "@/components/core/content-wrapper": [
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx",
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/objects/[objectId]/page.tsx",
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/page.tsx"
+    ],
+    "@/components/core/page-title": [
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx",
+      "apps/web/app/(all)/[workspaceSlug]/(radar)/radar/page.tsx"
+    ],
+    "@/components/dropdowns/member/member-select": ["apps/web/components/radar/property-editor.tsx"],
+    "@/components/editor/rich-text": ["apps/web/components/radar/notes-editor.tsx"],
+    "@/components/sidebar/resizable-sidebar": ["apps/web/components/radar/sidebar.tsx"],
+    "@/components/sidebar/sidebar-navigation": ["apps/web/components/radar/sidebar.tsx"],
+    "@/components/sidebar/sidebar-wrapper": ["apps/web/components/radar/sidebar.tsx"],
+    "@makeplane/propel/components/badge": ["apps/web/components/radar/home.tsx"],
+    "@makeplane/propel/components/button": [
+      "apps/web/components/radar/create-object-dialog.tsx",
+      "apps/web/components/radar/object-page.tsx",
+      "apps/web/components/radar/objects-list.tsx",
+      "apps/web/components/radar/property-editor.tsx",
+      "apps/web/components/radar/relation-dialog.tsx",
+      "apps/web/components/radar/semantic-panel.tsx"
+    ],
+    "@makeplane/propel/components/dialog": [
+      "apps/web/components/radar/create-object-dialog.tsx",
+      "apps/web/components/radar/relation-dialog.tsx",
+      "apps/web/components/radar/semantic-panel.tsx"
+    ],
+    "@makeplane/propel/components/input-field": [
+      "apps/web/components/radar/create-object-dialog.tsx",
+      "apps/web/components/radar/object-page.tsx",
+      "apps/web/components/radar/property-editor.tsx"
+    ],
+    "@makeplane/propel/components/select": ["apps/web/components/radar/choice-field.tsx"],
+    "@makeplane/propel/components/text-area-field": ["apps/web/components/radar/property-editor.tsx"],
+    "@makeplane/propel/icons": ["apps/web/components/radar/sidebar.tsx"],
+    "@plane/blocks/breadcrumb": ["apps/web/components/radar/header.tsx"],
+    "@plane/blocks/layout": ["apps/web/components/radar/header.tsx"],
+    "@plane/blocks/select": ["apps/web/components/radar/create-object-dialog.tsx"],
+    "@plane/blocks/toast": [
+      "apps/web/components/radar/create-object-dialog.tsx",
+      "apps/web/components/radar/object-page.tsx",
+      "apps/web/components/radar/semantic-panel.tsx"
+    ]
+  },
+  "ontology": {
+    "version": "3.2.0",
+    "source_sha256": "8ea1a14a17c25ff1e6a4945bf75f51982b7ce2243b3509df18a5f74a3bfd6ab7",
+    "snapshot_sha256": "8843431724fb203e3bd1a4d7d1395167304562c4647864a4c53540f25359a2b1"
+  },
+  "scope": "Working tree vs radar-baseline; code includes tests/config/seed, excludes docs/screenshots/mock data artifacts",
+  "delivery": "Local uncommitted implementation; no merge or deployment"
+}

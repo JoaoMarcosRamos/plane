@@ -1,0 +1,18 @@
+ Container radar-risk-review-tests-test-db-1 Running 
+ Container radar-risk-review-tests-test-redis-1 Running 
+ Container radar-risk-review-tests-test-mq-1 Running 
+ Container radar-risk-review-tests-test-minio-1 Running 
+ Container radar-risk-review-tests-test-db-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Waiting 
+ Container radar-risk-review-tests-test-mq-1 Waiting 
+ Container radar-risk-review-tests-test-minio-1 Waiting 
+ Container radar-risk-review-tests-test-redis-1 Healthy 
+ Container radar-risk-review-tests-test-minio-1 Healthy 
+ Container radar-risk-review-tests-test-db-1 Healthy 
+ Container radar-risk-review-tests-test-mq-1 Healthy 
+ Container radar-risk-review-tests-api-tests-run-3b45e31fe61b Creating 
+ Container radar-risk-review-tests-api-tests-run-3b45e31fe61b Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Migrations for 'radar':
+  plane/radar/migrations/0009_risk_review_preview.py
+    + Add field reviewed_context to riskreviewproposal

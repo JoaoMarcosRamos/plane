@@ -1,0 +1,12 @@
+{
+  "mode": "read_only_before_migration",
+  "records": [],
+  "counts": {
+    "records": 0,
+    "reviews": 0,
+    "measurements": 0,
+    "executor_divergences": 0,
+    "coexisting_deadlines": 0
+  },
+  "legacy_table_present": false
+}

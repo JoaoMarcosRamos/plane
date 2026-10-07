@@ -1,0 +1,23 @@
+{
+  "object_id": "6b57f396-a612-4279-8f55-7ba75b1ad058",
+  "object_version": 3,
+  "schema_revision": 2,
+  "property_name": "Revised narrative",
+  "property_value": "Narrativa ainda n\u00e3o enviada",
+  "fact_intentions": [
+    {
+      "expected_schema_revision": 2,
+      "expected_versions": {
+        "6b57f396-a612-4279-8f55-7ba75b1ad058": 1
+      },
+      "result_version": 2
+    },
+    {
+      "expected_schema_revision": 2,
+      "expected_versions": {
+        "6b57f396-a612-4279-8f55-7ba75b1ad058": 2
+      },
+      "result_version": 3
+    }
+  ]
+}

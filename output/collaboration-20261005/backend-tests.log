@@ -1,0 +1,114 @@
+ Container radar-collaboration-test-test-mq-1 Running 
+ Container radar-collaboration-test-test-minio-1 Running 
+ Container radar-collaboration-test-test-db-1 Running 
+ Container radar-collaboration-test-test-redis-1 Running 
+ Container radar-collaboration-test-test-minio-1 Waiting 
+ Container radar-collaboration-test-test-db-1 Waiting 
+ Container radar-collaboration-test-test-redis-1 Waiting 
+ Container radar-collaboration-test-test-mq-1 Waiting 
+ Container radar-collaboration-test-test-redis-1 Healthy 
+ Container radar-collaboration-test-test-mq-1 Healthy 
+ Container radar-collaboration-test-test-db-1 Healthy 
+ Container radar-collaboration-test-test-minio-1 Healthy 
+ Container radar-collaboration-test-api-tests-run-c188b83bfdae Creating 
+ Container radar-collaboration-test-api-tests-run-c188b83bfdae Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 24 items
+
+plane/radar/tests/test_collaboration.py::test_comment_lifecycle_authorship_revision_activity_and_replay Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[EditComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[RenameAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_attachment_real_bytes_private_download_rename_delete_and_replay FAILED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[anonymous] FAILED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[outsider] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_membership] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_user] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[guest] PASSED
+plane/radar/tests/test_collaboration.py::test_cross_workspace_and_cross_object_items_are_not_accessible PASSED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[empty] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[oversized] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_read_and_database_failures_are_atomic PASSED
+plane/radar/tests/test_collaboration.py::test_upload_strict_contract_conflict_and_revocation PASSED
+plane/radar/tests/test_collaboration.py::test_commands_reject_forged_author_empty_text_and_missing_upload PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[../a.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[a\\b.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[bad\n.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[..] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[ ] PASSED
+plane/radar/tests/test_collaboration.py::test_deleted_object_blocks_discussion_upload_download PASSED
+plane/radar/tests/test_collaboration.py::test_activity_pagination_is_scoped_and_reads_do_not_mutate PASSED
+
+=================================== FAILURES ===================================
+_____ test_attachment_real_bytes_private_download_rename_delete_and_replay _____
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 12, 35, 55, 595279, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa6bec230>
+obj = <Object: Object object (dc1e517f-ef7e-405e-b3f5-642719486751)>
+
+    def test_attachment_real_bytes_private_download_rename_delete_and_replay(context, client, obj):
+        key = str(uuid4())
+        response = upload(client, context, obj, key=key)
+        assert response.status_code == 200
+        assert upload(client, context, obj, key=key).json() == response.json()
+        pk = response.json()["data"]["item_id"]
+        item = ObjectAttachment.objects.get(pk=pk)
+        assert item.created_by_id == context[0].pk and item.sha256 == hashlib.sha256(b"evidence").hexdigest()
+        assert AttachmentPayload.objects.count() == 1
+>       assert "evidence" not in json.dumps(CommandExecution.objects.get(pk=response.json()["command_id"]).envelope).replace("evidence.txt", "")
+E       assert 'evidence' not in '{"input": {...486751": 1}}'
+E         
+E         'evidence' is contained here:
+E         ?                                                                                                                                                                                                                                                 ^^^^^^
+E           {"input": {"size": 8, "sha256": "ee8250fb76e094b34b471f13a73dbbe51d1ae142e9df59d7c0d31ec20f0a0a8e", "filename": "", "object_id": "dc1e517f-ef7e-405e-b3f5-642719486751"}, "reason": "Add Object attachment", "assertion": {"kind": "asserted", "evidence_ids": []}, "schema_hash": "d0f2800c7c143072e9539b622c1ca9be610bd4b...
+E         
+E         ...Full output truncated (2 lines hidden), use '-vv' to show
+
+plane/radar/tests/test_collaboration.py:109: AssertionError
+______________ test_read_write_and_download_membership[anonymous] ______________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 12, 35, 55, 813135, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa6bbc800>
+obj = <Object: Object object (adcefd87-0651-46a3-a5f5-87b5733f8ba2)>
+state = 'anonymous'
+
+    @pytest.mark.parametrize("state", ["anonymous", "outsider", "inactive_membership", "inactive_user", "guest"])
+    def test_read_write_and_download_membership(context, client, obj, state):
+        pk = upload(client, context, obj).json()["data"]["item_id"]
+        if state == "anonymous":
+            client.force_authenticate(user=None)
+        elif state == "outsider":
+            client.force_authenticate(user=context[2])
+        elif state == "inactive_membership":
+            WorkspaceMember.objects.filter(workspace=context[3], member=context[0]).update(is_active=False)
+        elif state == "inactive_user":
+            context[0].is_active = False
+            context[0].save()
+        else:
+            WorkspaceMember.objects.filter(workspace=context[3], member=context[0]).update(role=5)
+        for endpoint in ["/collaboration/", f"/attachments/{pk}/download/"]:
+>           assert client.get(url(context, obj) + endpoint).status_code == (200 if state == "guest" else 403)
+E           assert 401 == 403
+E            +  where 401 = <Response status_code=401, "application/json">.status_code
+E            +    where <Response status_code=401, "application/json"> = get(('/api/workspaces/radar-unit/radar/objects/adcefd87-0651-46a3-a5f5-87b5733f8ba2' + '/collaboration/'))
+E            +      where get = <plane.radar.tests.conftest.SnapshotClient object at 0xffffa6bbc800>.get
+E            +      and   '/api/workspaces/radar-unit/radar/objects/adcefd87-0651-46a3-a5f5-87b5733f8ba2' = url((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-unit <radar-outsider-unit@plane.local>>, <Workspace: RADAR>, <Workspace: Other>, Actor(actor_type='human', actor_id=UUID('c340cba5-089e-4422-ba68-6d20fca5affa'), reason='Test', source='pytest', correlation_id=UUID('c7b95e8c-c292-4c7f-9dde-4ed458ff0921'), run_id=None, timestamp=datetime.datetime(2026, 10, 5, 12, 35, 55, 813135, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})), <Object: Object object (adcefd87-0651-46a3-a5f5-87b5733f8ba2)>)
+
+plane/radar/tests/test_collaboration.py:142: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Unauthorized: /api/workspaces/radar-unit/radar/objects/adcefd87-0651-46a3-a5f5-87b5733f8ba2/collaboration/
+----------- generated xml file: /code/output/collaboration-tests.xml -----------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_collaboration.py::test_attachment_real_bytes_private_download_rename_delete_and_replay
+FAILED plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[anonymous]
+========================= 2 failed, 22 passed in 5.71s =========================
+

@@ -1,0 +1,513 @@
+{
+  "checks": [
+    {
+      "name": "login: real Plane sign-in reaches RADAR Today in the shell",
+      "ok": true,
+      "detail": "http://localhost:3000/radar-e2e-clean/radar/today/",
+      "at": "2026-10-05T13:47:58.107Z"
+    },
+    {
+      "name": "create: human created Risk, Objective and Project through the RADAR UI",
+      "ok": true,
+      "detail": "{\"objective\":\"0bab61c9-8434-4260-85d2-248778287489\",\"project\":\"4dc17425-b851-46bf-955c-6fb5728fcd19\",\"risk\":\"1e2e6285-45b0-46ad-88bb-956c08f2ed38\"}",
+      "at": "2026-10-05T13:48:16.554Z"
+    },
+    {
+      "name": "bind: admin CLI bound the objective to the agent context",
+      "ok": true,
+      "detail": "OBJ-20261005-B5CC9D",
+      "at": "2026-10-05T13:48:25.413Z"
+    },
+    {
+      "name": "bind: admin CLI bound the project to the agent context",
+      "ok": true,
+      "detail": "PRJ-20261005-B5CC9D",
+      "at": "2026-10-05T13:48:31.496Z"
+    },
+    {
+      "name": "bind: admin CLI bound the risk to the agent context",
+      "ok": true,
+      "detail": "RSK-20261005-B5CC9D",
+      "at": "2026-10-05T13:48:37.001Z"
+    },
+    {
+      "name": "review: run started from the shell with skill risk_review",
+      "ok": true,
+      "detail": "run 2376944f-794d-4b68-9feb-6dff287be994",
+      "at": "2026-10-05T13:48:50.521Z"
+    },
+    {
+      "name": "review: context roots are the human-created Risk, Objective and Project",
+      "ok": true,
+      "detail": "1e2e6285-45b0-46ad-88bb-956c08f2ed38,0bab61c9-8434-4260-85d2-248778287489,4dc17425-b851-46bf-955c-6fb5728fcd19",
+      "at": "2026-10-05T13:48:50.522Z"
+    },
+    {
+      "name": "review: agent suggested THREATENS and a mitigating action",
+      "ok": true,
+      "detail": "4 proposal cards",
+      "at": "2026-10-05T13:48:50.530Z"
+    },
+    {
+      "name": "review: UI shows Accept",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:48:50.533Z"
+    },
+    {
+      "name": "review: UI shows Edit",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:48:50.536Z"
+    },
+    {
+      "name": "review: UI shows Reject",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:48:50.539Z"
+    },
+    {
+      "name": "idempotency: replayed run start returns the same run",
+      "ok": true,
+      "detail": "202 2376944f-794d-4b68-9feb-6dff287be994",
+      "at": "2026-10-05T13:48:51.096Z"
+    },
+    {
+      "name": "idempotency: preparing the same run twice keeps the same proposals",
+      "ok": true,
+      "detail": "200/200",
+      "at": "2026-10-05T13:48:51.951Z"
+    },
+    {
+      "name": "accept: relation applied through the Command Layer",
+      "ok": true,
+      "detail": "200 LinkObjects",
+      "at": "2026-10-05T13:48:56.395Z"
+    },
+    {
+      "name": "accept: sibling action reports the version conflict and asks for review",
+      "ok": true,
+      "detail": "409 {\"code\":\"revision_conflict\",\"object_id\":\"0bab61c9-8434-4260-85d2-248778287489\"} / UI: Objects changed since this preview. Use Edit to save a fresh proposal, then review it before accepting.",
+      "at": "2026-10-05T13:48:56.637Z"
+    },
+    {
+      "name": "edit: saved a new intent (revision 2) without executing",
+      "ok": true,
+      "detail": "200 rev 2",
+      "at": "2026-10-05T13:48:56.943Z"
+    },
+    {
+      "name": "accept: revised action applied",
+      "ok": true,
+      "detail": "a3edb8ea-1418-44ff-b9f8-43d18ecd953d",
+      "at": "2026-10-05T13:48:58.175Z"
+    },
+    {
+      "name": "reject: both components of the second suggestion rejected with rationale",
+      "ok": true,
+      "detail": "O Sandbox IA tem licença temporária; não é ameaça.",
+      "at": "2026-10-05T13:48:59.235Z"
+    },
+    {
+      "name": "idempotency: retried Accept returns the executed proposal",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:49:00.265Z"
+    },
+    {
+      "name": "idempotency: retried Reject returns the rejected proposal",
+      "ok": true,
+      "detail": "200",
+      "at": "2026-10-05T13:49:00.551Z"
+    },
+    {
+      "name": "rejection: a rejected proposal cannot be accepted later",
+      "ok": true,
+      "detail": "409 {\"code\":\"proposal_closed\"}",
+      "at": "2026-10-05T13:49:00.786Z"
+    },
+    {
+      "name": "object page: Risk shows threatens -> Implantar Governança de IA",
+      "ok": true,
+      "detail": "Relations Add relation → Threatens Implantar Governança de IA Objective Remove",
+      "at": "2026-10-05T13:49:06.334Z"
+    },
+    {
+      "name": "object page: Risk shows the mitigating Action as backlink",
+      "ok": true,
+      "detail": "Backlinks ← Mitigated by Validar licenciamento de IA Action Remove",
+      "at": "2026-10-05T13:49:06.334Z"
+    },
+    {
+      "name": "rejection: rejected Sandbox IA threat is absent from the Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:06.335Z"
+    },
+    {
+      "name": "object page: Action shows mitigates -> Licenciamento pode atrasar",
+      "ok": true,
+      "detail": "Relations Add relation → Mitigates Licenciamento pode atrasar Risk Remove",
+      "at": "2026-10-05T13:49:12.726Z"
+    },
+    {
+      "name": "object page: Objective shows the Risk as backlink",
+      "ok": true,
+      "detail": "Backlinks ← Threatened by Licenciamento pode atrasar Risk Remove",
+      "at": "2026-10-05T13:49:17.007Z"
+    },
+    {
+      "name": "object page: state survives a full reload",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:21.448Z"
+    },
+    {
+      "name": "db: one scripted run for the replayed start",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.513Z"
+    },
+    {
+      "name": "db: one review for the run, prepared once",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.515Z"
+    },
+    {
+      "name": "db: exactly one threatens relation Risk -> Objective",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.516Z"
+    },
+    {
+      "name": "db: rejected Risk -> Project threat was not created",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.518Z"
+    },
+    {
+      "name": "db: Action mitigates Risk exactly once",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.518Z"
+    },
+    {
+      "name": "db: exactly one Action exists (retries and rejection created none)",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.522Z"
+    },
+    {
+      "name": "db: Action has a canonical runtime identity in the agent context",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.523Z"
+    },
+    {
+      "name": "db: relation: executed once; single-use human approval consumed",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.523Z"
+    },
+    {
+      "name": "db: relation: provenance actor is the agent",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.524Z"
+    },
+    {
+      "name": "db: relation: provenance names the human (on behalf of + approver)",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.524Z"
+    },
+    {
+      "name": "db: relation: provenance approval_id links the human approval",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.524Z"
+    },
+    {
+      "name": "db: relation: provenance reason is the agent explanation",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.524Z"
+    },
+    {
+      "name": "db: relation: provenance source is the skill",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.525Z"
+    },
+    {
+      "name": "db: relation: provenance run_id is the Risk Review run",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.525Z"
+    },
+    {
+      "name": "db: relation: provenance confidence is the suggestion confidence",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.525Z"
+    },
+    {
+      "name": "db: relation: domain event persisted in the same commit",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.525Z"
+    },
+    {
+      "name": "db: action: executed once; single-use human approval consumed",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.525Z"
+    },
+    {
+      "name": "db: action: provenance actor is the agent",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.526Z"
+    },
+    {
+      "name": "db: action: provenance names the human (on behalf of + approver)",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.526Z"
+    },
+    {
+      "name": "db: action: provenance approval_id links the human approval",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.533Z"
+    },
+    {
+      "name": "db: action: provenance reason is the agent explanation",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.537Z"
+    },
+    {
+      "name": "db: action: provenance source is the skill",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: action: provenance run_id is the Risk Review run",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: action: provenance confidence is the suggestion confidence",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: action: domain event persisted in the same commit",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: rejected relation: not executed, rationale stored",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: rejected relation: human review provenance recorded",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: rejected action: not executed, rationale stored",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.538Z"
+    },
+    {
+      "name": "db: rejected action: human review provenance recorded",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:24.539Z"
+    },
+    {
+      "name": "permission: member without binding sees no agent and no foreign reviews",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:36.082Z"
+    },
+    {
+      "name": "permission: member can read the Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:36.528Z"
+    },
+    {
+      "name": "permission: member cannot start a run with another user's agent binding",
+      "ok": true,
+      "detail": "404",
+      "at": "2026-10-05T13:49:37.223Z"
+    },
+    {
+      "name": "permission: member cannot resolve another user's proposal",
+      "ok": true,
+      "detail": "404",
+      "at": "2026-10-05T13:49:37.346Z"
+    },
+    {
+      "name": "permission: guest has no Run Risk Review control",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:51.430Z"
+    },
+    {
+      "name": "permission: guest cannot start runs",
+      "ok": true,
+      "detail": "403",
+      "at": "2026-10-05T13:49:51.622Z"
+    },
+    {
+      "name": "permission: outsider cannot see the workspace Risk",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:49:59.927Z"
+    },
+    {
+      "name": "permission: outsider API read is denied",
+      "ok": true,
+      "detail": "403",
+      "at": "2026-10-05T13:50:00.331Z"
+    },
+    {
+      "name": "permission: anonymous resolve is rejected",
+      "ok": true,
+      "detail": "401",
+      "at": "2026-10-05T13:50:00.404Z"
+    },
+    {
+      "name": "permission: narrowed agent grant blocks the pending suggestion",
+      "ok": true,
+      "detail": "409 {\"code\":\"authorization_stale\"}",
+      "at": "2026-10-05T13:50:16.002Z"
+    },
+    {
+      "name": "permission: UI disables Run Risk Review without CreateAction",
+      "ok": true,
+      "detail": "",
+      "at": "2026-10-05T13:50:16.007Z"
+    },
+    {
+      "name": "permission: restoring the grant does not revive a run authorized under the old policy",
+      "ok": true,
+      "detail": "409 {\"code\":\"authorization_stale\"}",
+      "at": "2026-10-05T13:50:19.785Z"
+    }
+  ],
+  "workspace": "radar-e2e-clean",
+  "objects": {
+    "objective": "0bab61c9-8434-4260-85d2-248778287489",
+    "project": "4dc17425-b851-46bf-955c-6fb5728fcd19",
+    "risk": "1e2e6285-45b0-46ad-88bb-956c08f2ed38"
+  },
+  "runs": {
+    "scripted": {
+      "run_id": "2376944f-794d-4b68-9feb-6dff287be994",
+      "status": "queued",
+      "http": 202,
+      "key": "82b62032-eaf7-4004-b58b-9c4eccb785d9",
+      "body": {
+        "binding_id": "f4e4408a-715b-42b4-9b82-08a5b4e9a4c8",
+        "root_ids": [
+          "1e2e6285-45b0-46ad-88bb-956c08f2ed38",
+          "0bab61c9-8434-4260-85d2-248778287489",
+          "4dc17425-b851-46bf-955c-6fb5728fcd19"
+        ],
+        "skill": "risk_review",
+        "prompt": "Review Risks that may threaten the supplied Objectives or Projects."
+      },
+      "prepare_status": 200
+    },
+    "authority": {
+      "run_id": "8484c3ab-3663-4479-b71d-28b71ba6915a",
+      "status": "queued",
+      "http": 202,
+      "key": "0aeb5a2a-585e-4da5-809d-c75aa85af707",
+      "body": {
+        "binding_id": "f4e4408a-715b-42b4-9b82-08a5b4e9a4c8",
+        "root_ids": [
+          "1e2e6285-45b0-46ad-88bb-956c08f2ed38",
+          "0bab61c9-8434-4260-85d2-248778287489",
+          "4dc17425-b851-46bf-955c-6fb5728fcd19"
+        ],
+        "skill": "risk_review",
+        "prompt": "Review Risks that may threaten the supplied Objectives or Projects."
+      },
+      "prepare_status": 200
+    }
+  },
+  "proposals": [
+    {
+      "id": "2bd55ac2-7b15-4a17-b388-a66d709357aa",
+      "component": "action",
+      "ordinal": 0,
+      "status": "pending_approval",
+      "target": null,
+      "title": "Validar licenciamento de IA"
+    },
+    {
+      "id": "a16c9e44-7e61-4738-99dc-69ce369fb32e",
+      "component": "relation",
+      "ordinal": 0,
+      "status": "pending_approval",
+      "target": "0bab61c9-8434-4260-85d2-248778287489",
+      "title": null
+    },
+    {
+      "id": "3d4dde0e-4fec-401d-ab0b-e6e523b2b80d",
+      "component": "action",
+      "ordinal": 1,
+      "status": "pending_approval",
+      "target": null,
+      "title": "Preparar plano B do Sandbox IA"
+    },
+    {
+      "id": "f5713bbd-befa-4b40-848b-448a5df58968",
+      "component": "relation",
+      "ordinal": 1,
+      "status": "pending_approval",
+      "target": "4dc17425-b851-46bf-955c-6fb5728fcd19",
+      "title": null
+    }
+  ],
+  "accepted_relation": {
+    "proposal": "a16c9e44-7e61-4738-99dc-69ce369fb32e",
+    "intent_hash": "9dd98a14036c2f387edc6925e35e4f906dd245afc2254083f25a2433d4b6c9db"
+  },
+  "action": "a3edb8ea-1418-44ff-b9f8-43d18ecd953d",
+  "accepted_action": {
+    "proposal": "177ff6ee-1f94-46a4-8d4b-be1a10a4e0c2",
+    "intent_hash": "af3ef6f86a5623bef98729ec24ec5277efec4d21c3f0f62f11c7929ade3ffaf6"
+  },
+  "rejected": {
+    "relation": {
+      "proposal": "f5713bbd-befa-4b40-848b-448a5df58968",
+      "intent_hash": "1be678432b901abbf379b8c29545332db6440355529f980ad4401d54f369967d"
+    },
+    "action": {
+      "proposal": "3d4dde0e-4fec-401d-ab0b-e6e523b2b80d",
+      "intent_hash": "2f08ea745a20a6568374e2a6146fde2f3fe4b9fd0740f6ebd0769fcb483460cb"
+    }
+  },
+  "authority": {
+    "run_id": "8484c3ab-3663-4479-b71d-28b71ba6915a",
+    "proposal": "dea4cfb9-ffda-4acd-9a69-007310128438",
+    "grant_after": "GRANT ['CaptureIssue', 'DelegateAction', 'ReviewObject', 'RecordMeasurement', 'LinkObjects'] 3",
+    "grant_restored": "GRANT ['CaptureIssue', 'DelegateAction', 'ReviewObject', 'RecordMeasurement', 'LinkObjects', 'CreateAction'] 4"
+  }
+}

@@ -1,0 +1,194 @@
+ Container radar-core-u1-01-test-test-redis-1 Running 
+ Container radar-core-u1-01-test-test-mq-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Running 
+ Container radar-core-u1-01-test-test-db-1 Running 
+ Container radar-core-u1-01-test-test-redis-1 Waiting 
+ Container radar-core-u1-01-test-test-mq-1 Waiting 
+ Container radar-core-u1-01-test-test-minio-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Healthy 
+ Container radar-core-u1-01-test-test-mq-1 Healthy 
+ Container radar-core-u1-01-test-test-redis-1 Healthy 
+ Container radar-core-u1-01-test-test-minio-1 Healthy 
+ Container radar-core-u1-01-test-api-tests-run-2f381b0b935d Creating 
+ Container radar-core-u1-01-test-api-tests-run-2f381b0b935d Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 18 items
+
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human] Using existing test database for alias 'default'...
+FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_deleted_human_and_missing_provenance_have_distinct_fallbacks FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_legacy_human_without_provenance_is_resolved PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_list_resolves_humans_in_a_constant_query_budget PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_application_results_preserve_v1_object_relation_and_property_representation FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_replay_precedes_stale_version_check_and_preserves_historical_snapshot PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_http_replays_confirmed_snapshot_after_lost_response FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_trusted_defaults_caller_reuses_saved_versions_when_only_key_is_supplied PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_key_conflict_noop_and_authority_revocation PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_invalid_defaults_roll_back_ledger_properties_and_provenance PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_command_modules_do_not_depend_on_api_serializers_or_private_cross_module_interfaces PASSED
+
+=================================== FAILURES ===================================
+__________________ test_author_summary_uses_real_actor[human] __________________
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 17, 45, 712047, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+actor_type = 'human'
+
+    @pytest.mark.parametrize("actor_type", ["human", "agent", "system", "integration"])
+    def test_author_summary_uses_real_actor(seeded, actor_type):
+        ctx = seeded
+        actor = ctx[5] if actor_type == "human" else approved_agent(ctx, actor_type, requires_approval=False)
+        data = {"object_type_id": str(ObjectType.objects.get(workspace=ctx[3], key="objective").pk), "title": "Authored"}
+        request = envelope(ctx, "CreateObject", data, actor=actor)
+        result = execute_command(actor=actor, workspace=ctx[3], envelope=request)
+        if result["status"] == "pending_approval":
+            vote = accept(ctx, result)
+            result = execute_command(actor=replace(actor, approval_id=vote.pk), workspace=ctx[3], envelope=request)
+        obj = Object.objects.get(pk=result["data"]["object"]["id"])
+        result = snapshot(obj)
+        assert result["created_actor"]["actor_type"] == actor_type
+        assert result["created_actor"]["actor_id"] == str(actor.actor_id)
+        assert result["created_actor"]["source"] == actor.source
+        assert result["created_actor"]["provenance_id"]
+        assert result["updated_actor"] == result["created_actor"]
+>       assert result["created_by"] == (str(actor.actor_id) if actor_type == "human" else None)
+E       AssertionError: assert UUID('8799a7c5-ffb9-47d0-849e-002a409b4cb6') == '8799a7c5-ffb9-47d0-849e-002a409b4cb6'
+
+plane/radar/tests/test_core_u1_phase01.py:80: AssertionError
+___________ test_authorship_tracks_editor_without_replacing_creator ____________
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 17, 48, 937442, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_authorship_tracks_editor_without_replacing_creator(seeded):
+        obj = create(seeded)
+        actor = approved_agent(seeded, "integration", requires_approval=False)
+        result = execute_command(
+            actor=actor,
+            workspace=seeded[3],
+            envelope=envelope(
+                seeded,
+                "UpdateObject",
+                {"object_id": str(obj.pk), "changes": {"title": "Edited by integration"}},
+                actor=actor,
+            ),
+        )
+        data = snapshot(obj)
+        assert data["created_actor"]["actor_id"] == str(seeded[0].pk)
+        assert data["updated_actor"]["actor_id"] == str(actor.actor_id)
+        assert data["updated_actor"]["actor_type"] == "integration"
+        assert data["updated_actor"]["provenance_id"] == result["provenance_id"]
+>       assert data["created_by"] == str(seeded[0].pk) and data["updated_by"] is None
+E       AssertionError: assert (UUID('cb931ce4-e917-483e-865a-5b7316c146f3') == 'cb931ce4-e917-483e-865a-5b7316c146f3')
+E        +  where 'cb931ce4-e917-483e-865a-5b7316c146f3' = str(UUID('cb931ce4-e917-483e-865a-5b7316c146f3'))
+E        +    where UUID('cb931ce4-e917-483e-865a-5b7316c146f3') = <User: radar-unit <radar-unit@plane.local>>.pk
+
+plane/radar/tests/test_core_u1_phase01.py:102: AssertionError
+______ test_deleted_human_and_missing_provenance_have_distinct_fallbacks _______
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 17, 49, 578938, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_deleted_human_and_missing_provenance_have_distinct_fallbacks(seeded):
+        actor = replace(seeded[5], actor_id=seeded[1].pk)
+        obj = create(seeded, actor)
+>       User.objects.filter(pk=actor.actor_id).delete()
+
+plane/radar/tests/test_core_u1_phase01.py:108: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:1201: in delete
+    num_deleted, num_deleted_per_model = collector.delete()
+                                         ^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/deletion.py:485: in delete
+    combined_updates.update(**{field.name: value})
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[TransactionManagementError("An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.") raised in repr()] RadarQuerySet object at 0xffff7539f500>
+kwargs = {'created_by': None}
+current_mutation = <ContextVar name='radar_mutation' default=None at 0xffff7c476980>
+pointers = {'created_provenance_id', 'last_provenance_id'}
+
+    def update(self, **kwargs):
+        from plane.radar.mutation import current_mutation
+    
+        context = current_mutation.get()
+        pointers = {"created_provenance_id", "last_provenance_id"}
+        if (
+            context is None
+            or context.provenance_id is None
+            or not kwargs
+            or set(kwargs) - pointers
+            or any(value != context.provenance_id for value in kwargs.values())
+        ):
+>           raise PermissionDenied("RADAR bulk writes require individual commands.")
+E           rest_framework.exceptions.PermissionDenied: RADAR bulk writes require individual commands.
+
+plane/radar/models/core.py:20: PermissionDenied
+_ test_application_results_preserve_v1_object_relation_and_property_representation _
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 17, 51, 909105, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_application_results_preserve_v1_object_relation_and_property_representation(seeded):
+        obj, target = create(seeded), create(seeded)
+        object_payload = dict(snapshot(obj))
+        object_payload.pop("created_actor")
+        object_payload.pop("updated_actor")
+>       assert object_data(obj) == object_payload
+E       AssertionError: assert {'content': '...aa56a78', ...} == {'content': '...aa56a78', ...}
+E         
+E         Omitting 6 identical items, use -vv to show
+E         Differing items:
+E         {'workspace': '6bb0c501-aaab-4fd4-a046-16867c01e8c1'} != {'workspace': UUID('6bb0c501-aaab-4fd4-a046-16867c01e8c1')}
+E         {'object_type': '33956e8f-d990-4d73-a72f-d1c16872c6a3'} != {'object_type': UUID('33956e8f-d990-4d73-a72f-d1c16872c6a3')}
+E         {'created_by': 'b491b2c0-ac2f-4353-b84b-d7a937a703ac'} != {'created_by': UUID('b491b2c0-ac2f-4353-b84b-d7a937a703ac')}
+E         {'object_type_detail': {'created_at': '2026-10-06T11:17:51.911795Z', 'created_by': 'b491b2c0-ac2f-4353-b84b-d7a937a703ac', 'description': '', 'icon': '', ...}} != ...
+E         
+E         ...Full output truncated (53 lines hidden), use '-vv' to show
+
+plane/radar/tests/test_core_u1_phase01.py:149: AssertionError
+______ test_defaults_http_replays_confirmed_snapshot_after_lost_response _______
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 11, 17, 53, 497294, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_defaults_http_replays_confirmed_snapshot_after_lost_response(seeded):
+        obj = create(seeded)
+        add_default(seeded, obj)
+        client = APIClient()
+        client.force_authenticate(seeded[0])
+        headers = {"HTTP_IDEMPOTENCY_KEY": "http-defaults", "HTTP_X_RADAR_EXPECTED_VERSIONS": '{"%s":1}' % obj.pk}
+>       path = url(seeded[3], f"objects/{obj.pk}/properties/")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_core_u1_phase01.py:213: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+context = <Workspace: RADAR>
+suffix = 'objects/f8bf5237-5beb-4729-a26f-a8b8a05d3b29/properties/'
+
+    def url(context, suffix="objects/"):
+>       return f"/api/workspaces/{context[3].slug}/radar/{suffix}"
+                                  ^^^^^^^^^^
+E       TypeError: 'Workspace' object is not subscriptable
+
+plane/radar/tests/test_core.py:202: TypeError
+---------- generated xml file: /code/output/core-u1-phase-01-unit.xml ----------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human]
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_deleted_human_and_missing_provenance_have_distinct_fallbacks
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_application_results_preserve_v1_object_relation_and_property_representation
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_defaults_http_replays_confirmed_snapshot_after_lost_response
+======================== 5 failed, 13 passed in 13.67s =========================
+

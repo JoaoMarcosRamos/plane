@@ -1,0 +1,50 @@
+{
+  "date": "2026-10-03",
+  "result": "PASS WITH CAVEATS",
+  "ontology": {
+    "version": "3.2.0",
+    "sha256": "8ea1a14a17c25ff1e6a4945bf75f51982b7ce2243b3509df18a5f74a3bfd6ab7",
+    "source_matches_snapshot": true
+  },
+  "backend": {
+    "command": "pytest plane/radar/tests --migrations",
+    "database": "PostgreSQL, radar-semantic-tests",
+    "passed": 118,
+    "core": 43,
+    "semantic": 75,
+    "migrations_enabled": true
+  },
+  "frontend": {
+    "command": "pnpm --filter web test:radar",
+    "passed": 13
+  },
+  "checks": {
+    "web_types": "PASS",
+    "web_format": "PASS",
+    "web_lint": {
+      "errors": 0,
+      "preexisting_warnings": 538
+    },
+    "radar_strict_lint": {
+      "errors": 0,
+      "warnings": 0
+    },
+    "ruff_check": "PASS",
+    "ruff_format": "PASS",
+    "django_check": "PASS",
+    "migration_drift": "NONE",
+    "git_diff_check": "PASS"
+  },
+  "runtime": {
+    "stack": "plane-radar",
+    "migration": "radar.0002",
+    "applied": true,
+    "evidence": "validation-evidence.json"
+  },
+  "scope": {
+    "ui_semantic": "0.4 pending",
+    "connected_visual_scenario": "0.5 pending",
+    "go_no_go": "0.6 pending",
+    "new_upstream_touch_points": 0
+  }
+}

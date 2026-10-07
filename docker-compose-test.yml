@@ -55,6 +55,8 @@ services:
 
   test-mq:
     image: rabbitmq:3.13.6-management-alpine
+    # The broker and its health check must share the Erlang cookie owner.
+    user: rabbitmq
     networks:
       - test_env
     env_file:
@@ -64,7 +66,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-plane}
       RABBITMQ_DEFAULT_VHOST: ${RABBITMQ_VHOST:-plane}
     tmpfs:
-      - /var/lib/rabbitmq
+      - /var/lib/rabbitmq:uid=100,gid=101,mode=0700
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
       interval: 10s

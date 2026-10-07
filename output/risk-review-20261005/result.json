@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-05",
+  "implementation": "1.5 Risk Review",
+  "status": "implemented and validated locally",
+  "backend": {
+    "passed": 229,
+    "failed": 0,
+    "risk_review_cases": 27
+  },
+  "cos": {
+    "tests": 1193,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 11,
+    "passed": 1182
+  },
+  "frontend": {
+    "passed": 72,
+    "failed": 0
+  },
+  "checks": {
+    "types": "passed",
+    "lint": "0 warnings / 0 errors",
+    "migration_drift": "No changes detected",
+    "git_diff_check": "passed"
+  },
+  "browser": {
+    "transport": "real HTTP Plane -> CoS",
+    "engine": "actual Deep Agents graph with scripted model",
+    "database": "isolated PostgreSQL",
+    "covered": [
+      "Accept relation",
+      "action version conflict",
+      "Edit action and fresh Accept",
+      "reload persistence",
+      "Reject duplicate action with provenance",
+      "Action Page and Risk semantic links"
+    ],
+    "action_count": 1,
+    "threatens_count": 1,
+    "mitigates_count": 1
+  },
+  "pending": [
+    "activation/migrations in chosen environment",
+    "real provider and full shell/login verification",
+    "pilot"
+  ],
+  "deployment": false
+}

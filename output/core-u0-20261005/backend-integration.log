@@ -1,0 +1,16 @@
+ Container radar-core-u0-test-api-tests-run-be698bc00927 Creating 
+ Container radar-core-u0-test-api-tests-run-be698bc00927 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2 files reformatted, 4 files left unchanged
+plane/radar/tests/test_core_u0.py:368:21: F821 Undefined name `PropertyValue`
+    |
+366 |         schema_write(
+367 |             ctx,
+368 |             lambda: PropertyValue.objects.create(
+    |                     ^^^^^^^^^^^^^ F821
+369 |                 workspace=ctx[3], object=obj, definition=foreign_definition, value="ignored"
+370 |             ),
+    |
+
+Found 1 error.
+

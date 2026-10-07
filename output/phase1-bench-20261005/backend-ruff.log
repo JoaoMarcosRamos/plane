@@ -1,0 +1,4 @@
+All checks passed!
+ruff plane EXIT=0
+63 files already formatted
+ruff format plane EXIT=0

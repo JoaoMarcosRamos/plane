@@ -1,0 +1,6 @@
+### Result
+{"anonymousRedirect":"PASS","url":"http://localhost:3000/?next_path=/radar-zero/radar/objects/8b79f670-fc63-48df-b511-184c1823621d/"}
+### Ran Playwright code
+```js
+await (async (page) => { const context = await page.context().browser().newContext(); try { const anonymous = await context.newPage(); await anonymous.goto("http://localhost:3000/radar-zero/radar/objects/8b79f670-fc63-48df-b511-184c1823621d/"); await anonymous.getByRole("textbox",{name:"Email",exact:true}).waitFor(); if (!anonymous.url().includes("next_path=")) throw new Error("Unauthenticated route not redirected"); await anonymous.screenshot({path:"output/playwright/core-anonymous-redirect.png"}); return {anonymousRedirect:"PASS",url:anonymous.url()}; } finally { await context.close(); } })(page);
+```

@@ -1,0 +1,137 @@
+{
+  "stage": "0.5 / 0.6",
+  "result": "PASS WITH CAVEATS",
+  "validated_at": "2026-10-03T17:31:07.807971+00:00",
+  "workspace": "radar-governance-zero",
+  "actor": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+  "plane_projects": 0,
+  "objects": [
+    {
+      "id": "1d84203c-29a2-4922-bc04-5f4275fb2d24",
+      "type": "risk",
+      "title": "Licenciamento pode atrasar",
+      "version": 6,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "properties": {
+        "status": "monitoring",
+        "description": "Contratação pode atrasar o sandbox",
+        "likelihood": 4,
+        "impact": 4,
+        "score": 16,
+        "response_strategy": "reduce"
+      }
+    },
+    {
+      "id": "e2eb8963-4f14-4191-831b-d03000e0842e",
+      "type": "action",
+      "title": "Negociar licenças",
+      "version": 5,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "properties": {
+        "status": "todo",
+        "description": "Negociar condições e prazo com o fornecedor",
+        "next_step": "",
+        "priority": "medium",
+        "due_date": "2026-11-03"
+      }
+    },
+    {
+      "id": "469b3513-8370-4a5b-a3b0-51f6a03f4ed6",
+      "type": "decision",
+      "title": "Adotar GitHub Enterprise",
+      "version": 10,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "properties": {
+        "status": "decided",
+        "context": "Governar o acesso às ferramentas do Sandbox IA",
+        "rationale": "Acesso centralizado e licenciamento governado para o Sandbox IA",
+        "decision": "Adotar GitHub Enterprise para o sandbox",
+        "decided_at": "2026-10-03T12:00:00-03:00",
+        "consequences": ["Negociar licenças", "Revisar prazo de contratação"]
+      }
+    },
+    {
+      "id": "6a440ebe-520a-4fa6-b935-aefe08895a76",
+      "type": "project",
+      "title": "Sandbox IA",
+      "version": 6,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "properties": {
+        "status": "active",
+        "description": "Sandbox controlado para validar a Governança de IA"
+      }
+    },
+    {
+      "id": "050be699-1b34-4fd7-b713-bd62318d33bb",
+      "type": "objective",
+      "title": "Implantar Governança de IA",
+      "version": 9,
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "properties": {
+        "status": "active",
+        "description": "",
+        "outcome": "Uso de IA governado, com decisões e riscos rastreáveis",
+        "timeframe": "short_term",
+        "priority": "medium",
+        "start_date": "2026-10-03",
+        "due_date": "2026-12-31",
+        "progress": 25
+      }
+    }
+  ],
+  "relations": [
+    {
+      "id": "63ae3e15-7bce-44c5-b8c6-ee03cfc44638",
+      "key": "advances",
+      "source": "6a440ebe-520a-4fa6-b935-aefe08895a76",
+      "target": "050be699-1b34-4fd7-b713-bd62318d33bb",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "96a11126-c172-423c-85c7-2bfd175354e1",
+      "key": "contains",
+      "source": "6a440ebe-520a-4fa6-b935-aefe08895a76",
+      "target": "469b3513-8370-4a5b-a3b0-51f6a03f4ed6",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "306ff1d0-8853-490e-952a-f05363bf216d",
+      "key": "threatens",
+      "source": "1d84203c-29a2-4922-bc04-5f4275fb2d24",
+      "target": "050be699-1b34-4fd7-b713-bd62318d33bb",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    },
+    {
+      "id": "8dd534b7-2743-4082-8375-7f834ed850e1",
+      "key": "creates",
+      "source": "469b3513-8370-4a5b-a3b0-51f6a03f4ed6",
+      "target": "e2eb8963-4f14-4191-831b-d03000e0842e",
+      "created_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16",
+      "updated_by": "44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16"
+    }
+  ],
+  "generic_type_probe": {
+    "workspace": "radar-audit-generic",
+    "object": "f14f8c4a-14a7-45e7-9a51-876d145301a1",
+    "type": "audit_probe",
+    "reading": 42,
+    "schema_setup": "test fixture, no builder"
+  },
+  "assertions": [
+    "five_objects",
+    "four_normative_edges",
+    "zero_plane_projects",
+    "all_five_browser_edits_persisted",
+    "derived_risk_score_16",
+    "human_authorship_preserved",
+    "additional_type_value_persisted"
+  ]
+}

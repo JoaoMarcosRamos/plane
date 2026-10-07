@@ -1,0 +1,21 @@
+ Container radar-agent-config-tests-test-db-1 Running 
+ Container radar-agent-config-tests-test-redis-1 Running 
+ Container radar-agent-config-tests-test-minio-1 Running 
+ Container radar-agent-config-tests-test-mq-1 Recreate 
+ Container radar-agent-config-tests-test-mq-1 Recreated 
+ Container radar-agent-config-tests-test-mq-1 Starting 
+ Container radar-agent-config-tests-test-mq-1 Started 
+ Container radar-agent-config-tests-test-redis-1 Waiting 
+ Container radar-agent-config-tests-test-mq-1 Waiting 
+ Container radar-agent-config-tests-test-minio-1 Waiting 
+ Container radar-agent-config-tests-test-db-1 Waiting 
+ Container radar-agent-config-tests-test-db-1 Healthy 
+ Container radar-agent-config-tests-test-redis-1 Healthy 
+ Container radar-agent-config-tests-test-minio-1 Healthy 
+ Container radar-agent-config-tests-test-mq-1 Healthy 
+ Container radar-agent-config-tests-api-tests-run-baea8ccecfb1 Creating 
+ Container radar-agent-config-tests-api-tests-run-baea8ccecfb1 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+Migrations for 'radar':
+  plane/radar/migrations/0007_agent_configuration.py
+    + Create model AgentConfiguration

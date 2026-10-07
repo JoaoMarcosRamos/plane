@@ -1,0 +1,7 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]:
+      - heading "Today" [level=1] [ref=e6]
+      - paragraph [ref=e7]: O que precisa da sua atenção gerencial.
+    - button "Atualizar" [disabled] [ref=e8]
+  - status [ref=e10]: Carregando atenção de hoje…

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>043 · RADAR Agent Runtime</title><link rel="stylesheet" href="../assets/styles.css"></head>
+<body><div class="layout"><aside class="sidebar"><div class="brand"><strong>COS_AGENT_V2</strong><span>Diário de desenvolvimento</span></div><nav class="nav"><a href="../index.html">Índice</a><a href="042-radar-command-layer.html">042 · Command Layer</a><a class="active" href="043-radar-agent-runtime.html">043 · Agent Runtime</a></nav></aside><main class="content">
+<p class="eyebrow">Fase 1.3 · 04/10/2026</p><h1>RADAR Agent Runtime</h1>
+<h2>Objetivo e problema</h2><p>Permitir que o Plane inicie e acompanhe uma execução do agente com contexto autorizado. O adapter anterior atendia ao caminho inverso: o CoS usava os commands do RADAR. A execução do produto agora possui contrato próprio, sem depender da API de simulação.</p>
+<h2>Arquitetura</h2><pre><code>Sessão Plane → membership + vínculo + grant → snapshot limitado
+                         ↓
+                fachada agent-runtime
+                         ↓ Bearer servidor a servidor
+COS_AGENT_V2 → RadarAgentRuntime → DeepAgentsAdapter → motor existente
+                         ↓
+                 ledger de runs + eventos</code></pre>
+<p>O Plane controla autoridade e dados; o CoS controla execução. As estruturas públicas são JSON com tipos de produto. BaseMessage e estados LangGraph ficam no motor. O executor dedicado recebe o snapshot fornecido, sem histórico pessoal, integrações, memória, filesystem ou subagentes.</p>
+<h2>Conceitos e decisões</h2><p>Idempotência associa uma chave à mesma intenção: um retry não cria nova execução. Compare-and-swap atualiza a linha somente se sua versão ainda é a lida; isso resolve concorrência de workers sem exigir um broker. Um lease delimita a validade do worker: sua expiração marca o resultado como desconhecido e impede uma repetição silenciosa.</p>
+<p>Interrupção cooperativa tem uma fronteira concreta. Antes da inferência, o run pode permanecer interrompido. Durante a inferência, pause_requested conserva o resultado ao final e a retomada o publica sem outro LLM. Isso permite testar reinício usando persistência de aplicação; não representa checkpoint arbitrário dentro do grafo. Cancelamento descarta o resultado tardio.</p>
+<p>O stream entrega lotes finitos SSE de eventos persistidos, com sequence, timestamp e cursor. O cliente reconecta para obter eventos posteriores. Não há streaming de tokens nesta versão. A origem é plane.session; nenhum evento do navegador vira uma mensagem Telegram fictícia.</p>
+<h2>Implementação</h2><ol><li>Contracts fechados definem identidade, contexto, requests, resultados e snapshots.</li><li>A migration 0014 cria radar_agent_runs, independente dos ledgers pessoal e de simulação.</li><li>AgentRuntimeRepository registra intenção, estado, resultado e eventos. DeepAgentsAdapter reutiliza run_agent e um builder com allowlist vazia.</li><li>A API /agent-runtime/v1 exige RADAR_AGENT_RUNTIME_TOKEN; a ausência mantém a superfície desabilitada.</li><li>O Plane seleciona um RuntimeCredential de canal plane pertencente ao usuário autenticado, monta um snapshot de até 21 Objects e 40 relações, e revalida o escopo em cada acesso.</li></ol>
+<h2>Interface</h2><table><thead><tr><th>Método</th><th>Comportamento</th></tr></thead><tbody><tr><td>run</td><td>Cria ou recupera a intenção e agenda a execução local.</td></tr><tr><td>stream</td><td>Eventos a partir do cursor e snapshot final do lote.</td></tr><tr><td>invoke_skill</td><td>Skill diagnóstica context_summary; desconhecidas são recusadas.</td></tr><tr><td>load_context</td><td>Snapshot de dados autorizado pelo Plane.</td></tr><tr><td>interrupt / resume</td><td>Pausa cooperativa e retomada sem regenerar resultado persistido.</td></tr><tr><td>cancel</td><td>Encerramento lógico e descarte de resultado tardio.</td></tr></tbody></table>
+<p>Uma inferência interrompida por queda do processo não é refeita: após 180 segundos, o lease expirado produz unknown. A construção padrão limita o provider a timeout de 120 segundos e zero retries. Unknown precisa de uma nova intenção explícita. Runs queued sobrevivem ao reinício e podem ser retomados por replay/resume.</p>
+<h2>Configuração e migração</h2><pre><code># COS_AGENT_V2: chave exclusiva do host Plane, pelo menos 32 caracteres ASCII
+RADAR_AGENT_RUNTIME_TOKEN=&lt;segredo-do-host&gt;
+.venv/bin/alembic upgrade head
+
+# Plane, ambiente escolhido explicitamente
+RADAR_AGENT_RUNTIME_URL=http://&lt;host-cos&gt;:8000/agent-runtime/v1
+RADAR_AGENT_RUNTIME_TOKEN=&lt;mesmo-segredo-do-host&gt;
+python manage.py migrate
+python manage.py radar_runtime_provision --channel plane \
+  --workspace &lt;slug&gt; --admin-id &lt;admin-uuid&gt; --context company:&lt;contexto&gt; \
+  --agent-id &lt;agent-uuid&gt; --reviewer-id &lt;user-uuid&gt; --person-id &lt;person-object-uuid&gt;</code></pre>
+<p>Os objetos e a Person precisam de vínculos canônicos no contexto. O provisionamento do canal plane retorna o UUID do vínculo para binding_id; não retorna token ao navegador. A chave do host é configuração protegida do servidor. HTTPS é necessário no transporte remoto. As migrations não importam ABox e esta implementação não ativou um ambiente publicado.</p>
+<h2>Como testar e saber que funcionou</h2><pre><code>.venv/bin/python -m pytest tests/unit/test_agent_runtime_product.py \
+  tests/agent/test_product_runtime_engine.py tests/unit/test_migrations.py</code></pre><p>Testes determinísticos comprovam execução única concorrente, escopo, conflito, reinício em pausa, recuperação do resultado sem LLM, cancelamento, lease expirado, auth, cursores e o harness real com modelo scripted. No Plane, test_agent_runtime cobre replay após resposta perdida, falsificação de identidade, contexto obsoleto, revogação e HTTP real entre processos. O <a href="../../../plane-radar-phase-0-spike/docs/radar/AGENT_RUNTIME.md">contrato do Plane</a> registra os comandos completos e os resultados da validação.</p>
+<h2>Diagnóstico</h2><p>503 indica configuração ou transporte indisponível. 404 não confirma existência de um run fora do escopo. 409 exige conferir versão do contexto, grant, intenção e estado terminal. Falhas do provider usam generation_failed, sem expor payload ou segredo. Um stream vazio de eventos pode ser esperado quando o cursor já está atualizado.</p>
+<h2>Limites e próxima etapa</h2><p>O contexto usa orçamento de caracteres, não tokens exatos. A execução é somente leitura. Aprovar um comando continua sendo uma operação do Command Layer, não resume deste runtime. A próxima etapa é a configuração estruturada mínima do agente (1.4), seguida de Risk Review e revisão humana na UI. Nenhum segundo runtime de domínio ou catálogo amplo de skills foi criado.</p>
+<p class="footer">Identidade no produto, execução no adapter e fatos no RADAR.</p></main></div></body></html>

@@ -1,0 +1,242 @@
+- generic [ref=f16e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f16e3]:
+    - generic [ref=f16e4]:
+      - generic [ref=f16e5]:
+        - button [ref=f16e311] [cursor=pointer]:
+          - generic [ref=f16e9]:
+            - generic [ref=f16e10]: R
+            - heading [level=4] [ref=f16e312]: RADAR Semantic UI
+        - button [ref=f16e17] [cursor=pointer]:
+          - textbox [ref=f16e313]:
+            - /placeholder: Search commands...
+        - generic [ref=f16e22]:
+          - link [ref=f16e23] [cursor=pointer]:
+            - /url: /radar-ui-zero/notifications/
+          - button [ref=f16e314] [cursor=pointer]
+          - link [ref=f16e315] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - generic [ref=f16e34]: Star us on GitHub
+          - button [ref=f16e316] [cursor=pointer]:
+            - img [ref=f16e317]:
+              - generic [ref=f16e40]: R
+      - generic [ref=f16e41]:
+        - generic [ref=f16e45]:
+          - link [ref=f16e318] [cursor=pointer]:
+            - /url: /radar-ui-zero/
+            - generic [ref=f16e51]: Projects
+          - link [ref=f16e319] [cursor=pointer]:
+            - /url: /radar-ui-zero/radar/
+            - generic [ref=f16e61]: RADAR
+          - link [ref=f16e320] [cursor=pointer]:
+            - /url: /radar-ui-zero/settings/
+            - generic [ref=f16e67]: Settings
+        - generic [ref=f16e70]:
+          - complementary [ref=f16e321]:
+            - complementary [ref=f16e72]:
+              - generic [ref=f16e73]:
+                - generic [ref=f16e75]:
+                  - generic [ref=f16e76]: RADAR
+                  - button [ref=f16e322] [cursor=pointer]
+                - generic [ref=f16e83]:
+                  - navigation [ref=f16e323]:
+                    - link [ref=f16e324] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/today/
+                      - paragraph [ref=f16e90]: Today
+                    - link [ref=f16e325] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/objects/
+                      - paragraph [ref=f16e96]: Objects
+                    - link [ref=f16e326] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/decisions/
+                      - paragraph [ref=f16e102]: Decisions
+                    - link [ref=f16e327] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/risks/
+                      - paragraph [ref=f16e108]: Risks
+                  - navigation [ref=f16e328]:
+                    - link [ref=f16e329] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/spike/
+                      - paragraph [ref=f16e116]: Spike Components
+                - button [ref=f16e330] [cursor=pointer]:
+                  - generic [ref=f16e119]: Community
+              - separator [ref=f16e331]
+          - complementary:
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: RADAR
+                    - generic:
+                      - button
+                - generic:
+                  - generic:
+                    - navigation:
+                      - link:
+                        - /url: /radar-ui-zero/radar/today/
+                        - generic:
+                          - generic:
+                            - paragraph: Today
+                      - link:
+                        - /url: /radar-ui-zero/radar/objects/
+                        - generic:
+                          - generic:
+                            - paragraph: Objects
+                      - link:
+                        - /url: /radar-ui-zero/radar/decisions/
+                        - generic:
+                          - generic:
+                            - paragraph: Decisions
+                      - link:
+                        - /url: /radar-ui-zero/radar/risks/
+                        - generic:
+                          - generic:
+                            - paragraph: Risks
+                    - navigation:
+                      - link:
+                        - /url: /radar-ui-zero/radar/spike/
+                        - generic:
+                          - generic:
+                            - paragraph: Spike Components
+                - generic:
+                  - button:
+                    - generic: Community
+              - separator
+          - main [ref=f16e121]:
+            - navigation [ref=f16e332]:
+              - list [ref=f16e129]:
+                - listitem [ref=f16e130]:
+                  - link [ref=f16e333] [cursor=pointer]:
+                    - /url: /radar-ui-zero/radar/
+                    - generic [ref=f16e132]: RADAR
+                - listitem [aria-hidden] [ref=f16e142]
+                - listitem [ref=f16e145]:
+                  - link [ref=f16e334] [cursor=pointer]:
+                    - /url: /radar-ui-zero/radar/objects/
+                    - generic [ref=f16e147]: Objects
+                - listitem [aria-hidden] [ref=f16e149]
+                - listitem [ref=f16e152]:
+                  - generic [ref=f16e153]: Object
+            - generic [ref=f16e157]:
+              - link [ref=f16e335] [cursor=pointer]:
+                - /url: /radar-ui-zero/radar/objects/
+                - text: All objects
+              - generic [ref=f16e159]:
+                - paragraph [ref=f16e160]: Risk
+                - generic [ref=f16e161]:
+                  - generic [ref=f16e163]:
+                    - text: Title
+                    - generic [aria-hidden] [ref=f16e164]: "*"
+                  - textbox [ref=f16e336]: UI — Risco de atraso
+                - generic [ref=f16e168]:
+                  - heading [level=2] [ref=f16e337]: Content
+                  - generic [ref=f16e173]:
+                    - paragraph [ref=f16e175]: Write here. Select text to format, type / for blocks, @ to mention a member.
+                    - generic:
+                      - button
+                - generic [ref=f16e176]:
+                  - term [ref=f16e177]: Created by
+                  - definition [ref=f16e178]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=f16e179]: Updated by
+                  - definition [ref=f16e180]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=f16e181]: Version
+                  - definition [ref=f16e182]: "3"
+                - button [disabled] [ref=f16e338]:
+                  - generic [ref=f16e184]: Save changes
+              - generic [ref=f16e185]:
+                - region [ref=f16e339]:
+                  - heading [level=2] [ref=f16e340]: Properties
+                  - generic [ref=f16e188]:
+                    - generic [ref=f16e189]:
+                      - generic [ref=f16e190]:
+                        - generic [ref=f16e191]: Description
+                        - textbox [ref=f16e341]
+                      - generic [ref=f16e196]:
+                        - generic [ref=f16e197]: Saved
+                        - button [disabled] [ref=f16e342]:
+                          - generic [ref=f16e200]: Save
+                    - generic [ref=f16e201]:
+                      - generic [ref=f16e202]:
+                        - generic [ref=f16e203]: Impact
+                        - spinbutton [ref=f16e343]: "5"
+                      - generic [ref=f16e208]:
+                        - generic [ref=f16e209]: Saved
+                        - button [disabled] [ref=f16e344]:
+                          - generic [ref=f16e212]: Save
+                    - generic [ref=f16e213]:
+                      - generic [ref=f16e214]:
+                        - generic [ref=f16e215]: Likelihood
+                        - spinbutton [ref=f16e345]: "4"
+                      - generic [ref=f16e220]:
+                        - generic [ref=f16e221]: Saved
+                        - button [disabled] [ref=f16e346]:
+                          - generic [ref=f16e224]: Save
+                    - generic [ref=f16e225]:
+                      - generic [ref=f16e226]:
+                        - generic [ref=f16e227]: Response strategy
+                        - combobox [ref=f16e347] [cursor=pointer]:
+                          - generic [ref=f16e348]: Reduce
+                        - textbox [aria-hidden] [ref=f16e233]: reduce
+                      - generic [ref=f16e234]:
+                        - generic [ref=f16e235]: Saved
+                        - button [disabled] [ref=f16e349]:
+                          - generic [ref=f16e238]: Save
+                    - generic [ref=f16e239]:
+                      - generic [ref=f16e240]:
+                        - generic [ref=f16e241]: Review date
+                        - textbox [ref=f16e350]
+                      - generic [ref=f16e246]:
+                        - generic [ref=f16e247]: Not set
+                        - button [ref=f16e351] [cursor=pointer]:
+                          - generic [ref=f16e250]: Save
+                    - generic [ref=f16e251]:
+                      - generic [ref=f16e252]:
+                        - generic [ref=f16e253]: Score
+                        - spinbutton [ref=f16e352]: "20"
+                      - generic [ref=f16e258]:
+                        - generic [ref=f16e259]: Saved
+                        - button [disabled] [ref=f16e353]:
+                          - generic [ref=f16e262]: Save
+                    - generic [ref=f16e263]:
+                      - generic [ref=f16e264]:
+                        - generic [ref=f16e265]: Status
+                        - combobox [ref=f16e354] [cursor=pointer]:
+                          - generic [ref=f16e355]: Identified
+                        - textbox [aria-hidden] [ref=f16e271]: identified
+                      - generic [ref=f16e272]:
+                        - generic [ref=f16e273]: Saved
+                        - button [disabled] [ref=f16e356]:
+                          - generic [ref=f16e276]: Save
+                - region [ref=f16e357]:
+                  - generic [ref=f16e278]:
+                    - heading [level=2] [ref=f16e358]: Relations
+                    - button [ref=f16e359] [cursor=pointer]:
+                      - generic [ref=f16e281]: Add relation
+                  - paragraph [ref=f16e282]: No outgoing relations.
+                - region [ref=f16e360]:
+                  - heading [level=2] [ref=f16e361]: Backlinks
+                  - paragraph [ref=f16e285]: No incoming relations.
+  - dialog [ref=f16e365]:
+    - generic [ref=f16e366]:
+      - generic [ref=f16e367]:
+        - heading "Add relation" [level=2] [ref=f16e370]
+        - generic [ref=f16e372]:
+          - paragraph [ref=f16e373]: UI — Risco de atraso
+          - generic [ref=f16e374]:
+            - generic [ref=f16e375]: Direction
+            - combobox "Direction" [ref=f16e376] [cursor=pointer]:
+              - generic "From this object" [ref=f16e377]
+            - textbox [aria-hidden] [ref=f16e381]: outgoing
+          - generic [ref=f16e382]:
+            - generic [ref=f16e383]: Relation
+            - combobox "Relation" [active] [ref=f16e384] [cursor=pointer]:
+              - generic "Threatens" [ref=f16e418]
+            - textbox [aria-hidden] [ref=f16e403]: 1f9ab0aa-b635-421d-a0c2-72bf00b55c6e
+          - generic [ref=f16e404]:
+            - generic [ref=f16e405]: Related object
+            - combobox "Related object" [ref=f16e406] [cursor=pointer]:
+              - generic "Select…" [ref=f16e407]
+            - textbox [aria-hidden] [ref=f16e411]
+          - paragraph [ref=f16e419]: threatens
+      - generic [ref=f16e412]:
+        - button "Cancel" [ref=f16e413] [cursor=pointer]
+        - button "Add relation" [disabled] [ref=f16e415]

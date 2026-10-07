@@ -1,0 +1,579 @@
+- generic [ref=e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button [ref=e884] [cursor=pointer]:
+          - generic [ref=e10]:
+            - generic [ref=e11]: R
+            - heading [level=4] [ref=e885]: RADAR Projects
+          - img [ref=e13]
+        - button [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+          - textbox [ref=e886]:
+            - /placeholder: Search commands...
+        - generic [ref=e23]:
+          - link [ref=e24] [cursor=pointer]:
+            - /url: /radar-projects/notifications/
+            - img [ref=e27]
+          - button [ref=e887] [cursor=pointer]:
+            - img [ref=e31]
+          - link [ref=e888] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - img [ref=e34]
+            - generic [ref=e35]: Star us on GitHub
+          - button [ref=e889] [cursor=pointer]:
+            - img [ref=e890]:
+              - generic [ref=e41]: R
+      - generic [ref=e42]:
+        - generic [ref=e46]:
+          - link [ref=e891] [cursor=pointer]:
+            - /url: /radar-projects/
+            - img [ref=e49]
+            - generic [ref=e52]: Projects
+          - link [ref=e892] [cursor=pointer]:
+            - /url: /radar-projects/radar/
+            - img [ref=e55]
+            - generic [ref=e62]: RADAR
+          - link [ref=e893] [cursor=pointer]:
+            - /url: /radar-projects/settings/
+            - img [ref=e66]
+            - generic [ref=e68]: Settings
+        - generic [ref=e72]:
+          - complementary [ref=e894]:
+            - complementary [ref=e74]:
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - generic [ref=e77]:
+                    - generic [ref=e78]: Projects
+                    - generic [ref=e79]:
+                      - button [ref=e895] [cursor=pointer]:
+                        - img [ref=e82]
+                      - button [ref=e896] [cursor=pointer]:
+                        - img [ref=e86]
+                  - button [ref=e897] [cursor=pointer]:
+                    - generic [ref=e90]:
+                      - img [ref=e91]
+                      - generic [ref=e93]: New work item
+                - generic [ref=e95]:
+                  - generic [ref=e96]:
+                    - link [ref=e898] [cursor=pointer]:
+                      - /url: /radar-projects/
+                      - generic [ref=e99]:
+                        - img [ref=e100]
+                        - paragraph [ref=e102]: Home
+                    - link [ref=e899] [cursor=pointer]:
+                      - /url: /radar-projects/drafts/
+                      - generic [ref=e105]:
+                        - img [ref=e106]
+                        - paragraph [ref=e108]: Drafts
+                    - link [ref=e900] [cursor=pointer]:
+                      - /url: /radar-projects/profile/fc5f4640-ea13-4959-9996-d5862d7555d0/
+                      - generic [ref=e111]:
+                        - img [ref=e112]
+                        - paragraph [ref=e115]: Your work
+                    - link [ref=e901] [cursor=pointer]:
+                      - /url: /radar-projects/stickies/
+                      - generic [ref=e118]:
+                        - img [ref=e119]
+                        - paragraph [ref=e121]: Stickies
+                  - generic [ref=e122]:
+                    - button [expanded] [ref=e902] [cursor=pointer]:
+                      - generic [ref=e126]: Workspace
+                      - img [ref=e128]
+                    - generic [ref=e132]:
+                      - link [ref=e903] [cursor=pointer]:
+                        - /url: /radar-projects/projects/
+                        - generic [ref=e135]:
+                          - img [ref=e136]
+                          - paragraph [ref=e138]: Projects
+                      - button [ref=e904] [cursor=pointer]:
+                        - img [ref=e141]
+                        - generic [ref=e144]: More
+                  - generic [ref=e146]:
+                    - button [expanded] [ref=e905] [cursor=pointer]:
+                      - generic [ref=e150]: Projects
+                      - img [ref=e152]
+                    - generic [ref=e158]:
+                      - generic [ref=e160]:
+                        - link [ref=e906] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues
+                          - button [expanded] [ref=e907]:
+                            - generic [ref=e164]: 👇
+                            - paragraph [ref=e165]: RADAR Projects
+                        - generic [ref=e166]:
+                          - generic:
+                            - button:
+                              - generic:
+                                - img
+                      - generic [ref=e167]:
+                        - link [ref=e908] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/
+                          - generic [ref=e172]:
+                            - img [ref=e173]
+                            - generic [ref=e175]: Work items
+                        - link [ref=e909] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/cycles/
+                          - generic [ref=e179]:
+                            - img [ref=e180]
+                            - generic [ref=e184]: Cycles
+                        - link [ref=e910] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/modules/
+                          - generic [ref=e188]:
+                            - img [ref=e189]
+                            - generic [ref=e193]: Modules
+                        - link [ref=e911] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/views/
+                          - generic [ref=e197]:
+                            - img [ref=e198]
+                            - generic [ref=e200]: Views
+                        - link [ref=e912] [cursor=pointer]:
+                          - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/pages/
+                          - generic [ref=e204]:
+                            - img [ref=e205]
+                            - generic [ref=e207]: Pages
+                - button [ref=e913] [cursor=pointer]:
+                  - generic [ref=e211]: Community
+              - separator [ref=e914]
+          - complementary:
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Projects
+                    - generic:
+                      - button:
+                        - generic:
+                          - img
+                      - button:
+                        - generic:
+                          - img
+                  - generic:
+                    - button:
+                      - generic:
+                        - img
+                        - generic: New work item
+                - generic:
+                  - generic:
+                    - generic:
+                      - link:
+                        - /url: /radar-projects/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Home
+                      - link:
+                        - /url: /radar-projects/drafts/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Drafts
+                      - link:
+                        - /url: /radar-projects/profile/fc5f4640-ea13-4959-9996-d5862d7555d0/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Your work
+                      - link:
+                        - /url: /radar-projects/stickies/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Stickies
+                    - generic:
+                      - generic:
+                        - button [expanded]:
+                          - generic:
+                            - generic: Workspace
+                          - generic:
+                            - img
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link:
+                              - /url: /radar-projects/projects/
+                              - generic:
+                                - generic:
+                                  - img
+                                  - paragraph: Projects
+                            - generic:
+                              - button:
+                                - img
+                                - generic: More
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button [expanded]:
+                            - generic:
+                              - generic: Projects
+                            - generic:
+                              - img
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues
+                                      - button [expanded]:
+                                        - generic:
+                                          - generic: 👇
+                                        - paragraph: RADAR Projects
+                                    - generic:
+                                      - generic:
+                                        - button:
+                                          - generic:
+                                            - img
+                                  - generic:
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                            - generic: Work items
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/cycles/
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                            - generic: Cycles
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/modules/
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                            - generic: Modules
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/views/
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                            - generic: Views
+                                    - link:
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/pages/
+                                      - generic:
+                                        - generic:
+                                          - generic:
+                                            - img
+                                            - generic: Pages
+                - generic:
+                  - button:
+                    - generic: Community
+              - separator
+          - main [ref=e213]:
+            - generic [ref=e217]:
+              - generic [ref=e219]:
+                - navigation [ref=e915]:
+                  - list [ref=e222]:
+                    - listitem [ref=e223]:
+                      - generic [ref=e224]:
+                        - button [ref=e916] [cursor=pointer]:
+                          - generic [ref=e228]: 👇
+                          - generic [ref=e229]: RADAR Projects
+                        - button [ref=e917] [cursor=pointer]:
+                          - img [ref=e231]
+                    - listitem [ref=e233]:
+                      - link [ref=e918] [cursor=pointer]:
+                        - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/
+                        - generic [ref=e235]:
+                          - img [ref=e237]
+                          - generic [ref=e239]: Work Items
+                - generic [ref=e240]: "7"
+              - generic [ref=e241]:
+                - generic [ref=e242]:
+                  - button [ref=e919] [cursor=pointer]:
+                    - generic [ref=e246]:
+                      - img [ref=e247]
+                      - img [ref=e249]
+                  - button [ref=e920] [cursor=pointer]:
+                    - img [ref=e253]
+                  - button [ref=e921] [cursor=pointer]:
+                    - img [ref=e258]
+                  - button [ref=e922] [cursor=pointer]:
+                    - img [ref=e263]
+                - button [ref=e923] [cursor=pointer]:
+                  - generic [ref=e266]: Add work item
+            - generic [ref=e275]:
+              - generic [ref=e277]:
+                - img [ref=e279]
+                - generic [ref=e288] [cursor=pointer]:
+                  - generic [ref=e289]: All work items
+                  - generic [ref=e290]: "7"
+                - button [ref=e924] [cursor=pointer]:
+                  - img [ref=e292]
+              - generic [ref=e294]:
+                - generic [ref=e295]:
+                  - link [ref=e925] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-7/
+                    - generic [ref=e300]:
+                      - button [disabled] [ref=e926]: RADAR-7
+                      - generic [ref=e308]:
+                        - generic [ref=e309]:
+                          - button [ref=e927]:
+                            - img [ref=e313]
+                            - generic [ref=e344]: Backlog
+                          - button [ref=e928]:
+                            - img [ref=e348]
+                            - generic [ref=e350]: None
+                          - button [ref=e929]:
+                            - img [ref=e354]
+                            - generic [ref=e356]: Start date
+                          - button [ref=e930]:
+                            - img [ref=e360]
+                            - generic [ref=e362]: Due date
+                          - button [ref=e931]:
+                            - img [ref=e366]
+                            - generic [ref=e368]: Assignees
+                          - button [ref=e932]:
+                            - img [ref=e372]
+                            - generic [ref=e376]: 2 modules
+                          - button [ref=e933]:
+                            - img [ref=e380]
+                            - generic [ref=e383]: "Cycle 2: Collaboration & Customization"
+                          - button [ref=e934]:
+                            - img [ref=e386]
+                        - button [ref=e935]:
+                          - img [ref=e393]
+                  - link [ref=e936] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-6/
+                    - generic [ref=e400]:
+                      - button [disabled] [ref=e937]: RADAR-6
+                      - generic [ref=e408]:
+                        - generic [ref=e409]:
+                          - button [ref=e938]:
+                            - img [ref=e413]
+                            - generic [ref=e444]: Backlog
+                          - button [ref=e939]:
+                            - img [ref=e448]
+                            - generic [ref=e451]: Low
+                          - button [ref=e940]:
+                            - img [ref=e455]
+                            - generic [ref=e457]: Start date
+                          - button [ref=e941]:
+                            - img [ref=e461]
+                            - generic [ref=e463]: Due date
+                          - button [ref=e942]:
+                            - img [ref=e467]
+                            - generic [ref=e469]: Assignees
+                          - button [ref=e943]:
+                            - img [ref=e473]
+                            - generic [ref=e477]: 2 modules
+                          - button [ref=e944]:
+                            - img [ref=e481]
+                            - generic [ref=e484]: "Cycle 2: Collaboration & Customization"
+                          - button [ref=e945]:
+                            - generic [ref=e488]: concepts
+                        - button [ref=e946]:
+                          - img [ref=e492]
+                  - link [ref=e947] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-5/
+                    - generic [ref=e499]:
+                      - button [disabled] [ref=e948]: RADAR-5
+                      - generic [ref=e505]:
+                        - generic [ref=e506]:
+                          - button [ref=e949]:
+                            - img [ref=e510]
+                            - generic [ref=e514]: In Progress
+                          - button [ref=e950]:
+                            - img [ref=e518]
+                            - generic [ref=e520]: None
+                          - button [ref=e951]:
+                            - img [ref=e524]
+                            - generic [ref=e526]: Start date
+                          - button [ref=e952]:
+                            - img [ref=e530]
+                            - generic [ref=e532]: Due date
+                          - button [ref=e953]:
+                            - img [ref=e536]
+                            - generic [ref=e538]: Assignees
+                          - button [ref=e954]:
+                            - img [ref=e542]
+                            - generic [ref=e546]: Onboarding Flow (Feature)
+                          - button [ref=e955]:
+                            - img [ref=e550]
+                            - generic [ref=e553]: "Cycle 2: Collaboration & Customization"
+                          - button [ref=e956]:
+                            - img [ref=e556]
+                        - button [ref=e957]:
+                          - img [ref=e563]
+                  - link [ref=e958] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-4/
+                    - generic [ref=e570]:
+                      - button [disabled] [ref=e959]: RADAR-4
+                      - generic [ref=e576]:
+                        - generic [ref=e577]:
+                          - button [ref=e960]:
+                            - img [ref=e581]
+                            - generic [ref=e585]: In Progress
+                          - button [ref=e961]:
+                            - img [ref=e589]
+                            - generic [ref=e591]: High
+                          - button [ref=e962]:
+                            - img [ref=e595]
+                            - generic [ref=e597]: Start date
+                          - button [ref=e963]:
+                            - img [ref=e601]
+                            - generic [ref=e603]: Due date
+                          - button [ref=e964]:
+                            - img [ref=e607]
+                            - generic [ref=e609]: Assignees
+                          - button [ref=e965]:
+                            - img [ref=e613]
+                            - generic [ref=e617]: 2 modules
+                          - button [ref=e966]:
+                            - img [ref=e621]
+                            - generic [ref=e625]: "Cycle 1: Getting Started with Plane"
+                          - button [ref=e967]:
+                            - generic [ref=e629]: concepts
+                        - button [ref=e968]:
+                          - img [ref=e633]
+                  - link [ref=e969] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-3/
+                    - generic [ref=e640]:
+                      - button [disabled] [ref=e970]: RADAR-3
+                      - generic [ref=e648]:
+                        - generic [ref=e649]:
+                          - button [ref=e971]:
+                            - img [ref=e653]
+                            - generic [ref=e684]: Backlog
+                          - button [ref=e972]:
+                            - img [ref=e688]
+                            - generic [ref=e690]: High
+                          - button [ref=e973]:
+                            - img [ref=e694]
+                            - generic [ref=e696]: Start date
+                          - button [ref=e974]:
+                            - img [ref=e700]
+                            - generic [ref=e702]: Due date
+                          - button [ref=e975]:
+                            - img [ref=e706]
+                            - generic [ref=e708]: Assignees
+                          - button [ref=e976]:
+                            - img [ref=e712]
+                            - generic [ref=e716]: 2 modules
+                          - button [ref=e977]:
+                            - img [ref=e720]
+                            - generic [ref=e724]: "Cycle 1: Getting Started with Plane"
+                          - button [ref=e978]:
+                            - img [ref=e727]
+                        - button [ref=e979]:
+                          - img [ref=e734]
+                  - link [ref=e980] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-2/
+                    - generic [ref=e741]:
+                      - button [disabled] [ref=e981]: RADAR-2
+                      - generic [ref=e747]:
+                        - generic [ref=e748]:
+                          - button [ref=e982]:
+                            - img [ref=e752]
+                            - generic [ref=e755]: Todo
+                          - button [ref=e983]:
+                            - img [ref=e759]
+                            - generic [ref=e761]: High
+                          - button [ref=e984]:
+                            - img [ref=e765]
+                            - generic [ref=e767]: Start date
+                          - button [ref=e985]:
+                            - img [ref=e771]
+                            - generic [ref=e773]: Due date
+                          - button [ref=e986]:
+                            - img [ref=e777]
+                            - generic [ref=e779]: Assignees
+                          - button [ref=e987]:
+                            - img [ref=e783]
+                            - generic [ref=e787]: Core Workflow (System)
+                          - button [ref=e988]:
+                            - img [ref=e791]
+                            - generic [ref=e795]: "Cycle 1: Getting Started with Plane"
+                          - button [ref=e989]:
+                            - generic [ref=e799]: concepts
+                        - button [ref=e990]:
+                          - img [ref=e803]
+                  - link [ref=e991] [cursor=pointer]:
+                    - /url: /radar-projects/browse/RADAR-1/
+                    - generic [ref=e810]:
+                      - button [disabled] [ref=e992]: RADAR-1
+                      - generic [ref=e816]:
+                        - generic [ref=e817]:
+                          - button [ref=e993]:
+                            - img [ref=e821]
+                            - generic [ref=e824]: Done
+                          - button [ref=e994]:
+                            - img [ref=e828]
+                            - generic [ref=e830]: Urgent
+                          - button [ref=e995]:
+                            - img [ref=e834]
+                            - generic [ref=e836]: Start date
+                          - button [ref=e996]:
+                            - img [ref=e840]
+                            - generic [ref=e842]: Due date
+                          - button [ref=e997]:
+                            - img [ref=e846]
+                            - generic [ref=e848]: Assignees
+                          - button [ref=e998]:
+                            - img [ref=e852]
+                            - generic [ref=e856]: Core Workflow (System)
+                          - button [ref=e999]:
+                            - img [ref=e860]
+                            - generic [ref=e864]: "Cycle 1: Getting Started with Plane"
+                          - button [ref=e1000]:
+                            - img [ref=e867]
+                        - button [ref=e1001]:
+                          - img [ref=e874]
+                - generic [ref=e880] [cursor=pointer]:
+                  - img [ref=e881]
+                  - generic [ref=e883]: New work item
+  - dialog "Create new work item" [ref=e1005]:
+    - generic [ref=e1007]:
+      - generic [ref=e1008]:
+        - generic [ref=e1009]:
+          - heading "Create new work item" [level=2] [ref=e1011]
+          - button "RADAR Projects" [ref=e1014] [cursor=pointer]:
+            - generic [ref=e1017]: 👇
+            - generic [ref=e1018]: RADAR Projects
+            - img [ref=e1019]
+          - textbox "Title" [active] [ref=e1024]
+        - paragraph [ref=e1032]: Click to add description
+        - generic [ref=e1035]:
+          - button "State, Backlog" [ref=e1036] [cursor=pointer]:
+            - img [ref=e1037]
+            - generic [ref=e1068]: Backlog
+          - button "Priority, None" [ref=e1069] [cursor=pointer]:
+            - img [ref=e1070]
+            - generic [ref=e1072]: None
+          - button "Assignees" [ref=e1073] [cursor=pointer]:
+            - img [ref=e1074]
+            - generic [ref=e1076]: Assignees
+          - button "Labels" [ref=e1077] [cursor=pointer]:
+            - img [ref=e1078]
+            - generic [ref=e1082]: Labels
+          - button "Start date" [ref=e1083] [cursor=pointer]:
+            - img [ref=e1084]
+            - generic [ref=e1086]: Start date
+          - button "Due date" [ref=e1087] [cursor=pointer]:
+            - img [ref=e1088]
+            - generic [ref=e1090]: Due date
+          - button "Cycle" [ref=e1091] [cursor=pointer]:
+            - img [ref=e1092]
+            - generic [ref=e1096]: Cycle
+          - button "Modules" [ref=e1097] [cursor=pointer]:
+            - img [ref=e1098]
+            - generic [ref=e1102]: Modules
+          - button "Add parent" [ref=e1103] [cursor=pointer]:
+            - img [ref=e1105]
+            - generic "Add parent" [ref=e1108]
+      - generic [ref=e1109]:
+        - generic [ref=e1110] [cursor=pointer]:
+          - switch "Create more Create more" [ref=e1111]
+          - checkbox [ref=e1113]
+          - generic [ref=e1114]: Create more
+        - button "Discard" [ref=e1116] [cursor=pointer]:
+          - generic [ref=e1117]: Discard
+        - button "Save" [ref=e1119] [cursor=pointer]:
+          - generic [ref=e1120]: Save

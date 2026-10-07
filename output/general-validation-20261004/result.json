@@ -1,0 +1,59 @@
+{
+  "date": "2026-10-04",
+  "timezone": "America/Bahia",
+  "status": "validated_locally_with_recorded_pilot_gates",
+  "phases": "0–1.4; 1.2 backend only",
+  "checks": {
+    "fresh_migration_backend_suite": {
+      "tests": 899,
+      "passed": 899,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "xml": "apps/api/output/general-validation-20261004/plane-tests.xml"
+    },
+    "current_radar_suite_on_migrated_database": {
+      "tests": 202,
+      "passed": 202,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "xml": "apps/api/output/general-validation-20261004/radar-final-tests.xml"
+    },
+    "unchanged_plane_cases": 700,
+    "unique_backend_cases": 902,
+    "radar_cases_overlapping_suites": 199,
+    "cos_full_suite": {
+      "tests": 1179,
+      "passed": 1170,
+      "skipped": 9,
+      "failures": 0,
+      "errors": 0,
+      "xml": "output/general-validation-20261004/cos-tests.xml"
+    },
+    "frontend": {
+      "passed": 58,
+      "files": 8
+    },
+    "unique_passed_total": 2130,
+    "monorepo_check_tasks_passed": 56,
+    "radar_strict_lint_warnings": 0,
+    "django_migrations_applied_from_empty": true,
+    "radar_migrations_applied": 7,
+    "django_check_passed": true,
+    "migration_check_passed": true,
+    "normative_core_sha256": "8ea1a14a17c25ff1e6a4945bf75f51982b7ce2243b3509df18a5f74a3bfd6ab7"
+  },
+  "fixes": [
+    "Authorized property filtering before context budget; three regression cases",
+    "RabbitMQ broker/health check user and tmpfs owner in isolated test compose",
+    "Two test formatting/lint corrections"
+  ],
+  "historical_manifests_preserved": true,
+  "published_environment_changed": false,
+  "new_browser_verification": false,
+  "real_provider_evaluation": false,
+  "next_phase": "1.5",
+  "manifest_files": 2738,
+  "cleanup_completed": true
+}

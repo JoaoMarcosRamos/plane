@@ -1,0 +1,63 @@
+
+  VITE v8.0.16  ready in 185 ms
+
+  ➜  Local:   http://127.0.0.1:3039/
+(node:3891) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+3:29:16 PM [vite] http proxy error: /api/workspaces/u1-phase02-browser/radar/schema/
+Error: socket hang up
+    at Socket.socketOnEnd (node:_http_client:599:25)
+    at Socket.emit (node:events:520:22)
+    at endReadableNT (node:internal/streams/readable:1729:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)
+3:29:48 PM [vite] (client) [console.warn] No routes matched location "/?next_path=%2Fu1-phase02-browser%2Fradar%2Fobjects%2F9d8dc1b9-6293-4c54-8aee-712ba5bfefe1" 
+3:30:18 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:30:48 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:31:18 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:31:48 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:32:18 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:32:48 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:33:18 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)
+3:33:48 PM [vite] (client) [console.error] RADAR schema refresh failed AxiosError: Request failed with status code 404
+    at settle (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:1838:14)
+    at XMLHttpRequest.onloadend (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:2231:4)
+    at Axios$1.request (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.vite/deps/axios.js?v=0ccef8f3:3024:37)
+    at async RadarService.getSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/services/radar/radar.service.ts:26:11)
+    at async RadarRootStore.loadSchema (http://127.0.0.1:3039/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web/store/radar/root.store.ts:87:20)

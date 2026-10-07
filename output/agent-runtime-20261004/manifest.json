@@ -1,0 +1,115 @@
+{
+  "destination": "/Users/joaomarcosramos/Documents/Github/COS_AGENT_V2",
+  "files": [
+    {
+      "path": "app/runtime/__init__.py",
+      "before_sha256": null,
+      "after_sha256": "ffb6be41f74196ecf6a4e88e58caf51fdfe38cae533baa95d4a3b754780c0170"
+    },
+    {
+      "path": "app/runtime/contracts.py",
+      "before_sha256": null,
+      "after_sha256": "0f98eb75438e2ffd1f54f75667ba40c1e9c7c54e866dc2adf37e173267f20ce1"
+    },
+    {
+      "path": "app/runtime/deep_agents.py",
+      "before_sha256": null,
+      "after_sha256": "62ba9e790540e0bf5f0483599cd227cf5dd260192db5895397781d57b9e2fe7f"
+    },
+    {
+      "path": "app/database/agent_runtime.py",
+      "before_sha256": null,
+      "after_sha256": "6e18671381883ff52e5e79aa6c7c3281eb155f3386960f7a0555970881cc1836"
+    },
+    {
+      "path": "app/api/agent_runtime.py",
+      "before_sha256": null,
+      "after_sha256": "720c524b5b7c835d3c620b03b08bfea63d31a32f2da0f0353be2a5211ab3ef53"
+    },
+    {
+      "path": "app/database/schema.py",
+      "before_sha256": "8f555e9c3ecd27bec75ce13d0a609aa25c23df66b91ed0e5a5a312394f2eb9ed",
+      "after_sha256": "1a8d8da82b265d206e37e46a17bbedd69f26b4c0eba344e98875d389e5a2f2d5"
+    },
+    {
+      "path": "migrations/versions/20261004_0014_radar_agent_runtime.py",
+      "before_sha256": null,
+      "after_sha256": "cf4ca641113b789f2d761491a4048c78792b364f01b36cc57f553ca4ff3f278d"
+    },
+    {
+      "path": "app/config.py",
+      "before_sha256": "59ab9dbbee2d2918b7a3b0b2db7ac02d7d636c3a2e6524530f276f5f3383f60c",
+      "after_sha256": "4ecc7fd0b18f4d1435d5dbbd4a2457acd18b407986b155c44fa3aff5c016c15b"
+    },
+    {
+      "path": "app/main.py",
+      "before_sha256": "5b2c92acb79564076ea75878947df2ddc118c49014374c4e322272efdf6ee7ad",
+      "after_sha256": "c1e9ceb1c67bf3b0176c4d2d1f61a131d53f38904bb1db1f7bc084c3af176007"
+    },
+    {
+      "path": "app/agent/agent.py",
+      "before_sha256": "30afcf95979df938bec7044e7000bf27af14b6b196a1892fc657d84a31f97d96",
+      "after_sha256": "e7075753fc08f92ee91a1fd18198b85999c5a26754595a09641663ad73f3b143"
+    },
+    {
+      "path": "app/agent/model.py",
+      "before_sha256": "b618bbccd7ba710003574806aa983003eb1b5b11f653315cb5fbbd389ed2173a",
+      "after_sha256": "a7e3148c0e76ac62792b797e4eab585f66599b885cfb8753eef3664f4744f4f4"
+    },
+    {
+      "path": ".env.example",
+      "before_sha256": "5afe7a687cf3a9765a3ff2f44c55215975121127b03f91334c882c60feb1cc9d",
+      "after_sha256": "149d17fa57713e016278f46f4f7e11174d0ae5721f90d3ce543cce82a7fc46f6"
+    },
+    {
+      "path": "docker-compose.yml",
+      "before_sha256": "f552cd52d988f00d32d87df5756bdbb96f0972c8a5443596bdccc88a8438f930",
+      "after_sha256": "a4bf05a63ad66e5e3a886fbab03b21f0eaa04cc299653d2a17dd248a2148f0cf"
+    },
+    {
+      "path": "tests/unit/test_container_contract.py",
+      "before_sha256": "0dc8aa7e668ba9a582f8a9b05f40f2fb25add5550d98344f08309d01768ddc24",
+      "after_sha256": "7290b8c6819869052044bb66a7b5ec3a10d883284aeeacafb1cb74a93d0b8688"
+    },
+    {
+      "path": "tests/unit/test_agent_runtime_product.py",
+      "before_sha256": null,
+      "after_sha256": "fe839a7526ec82c818449d9e0baab6f4e0d21621c93fa45a67a9c0e2006822df"
+    },
+    {
+      "path": "tests/agent/test_product_runtime_engine.py",
+      "before_sha256": null,
+      "after_sha256": "07ae7cfbb0126abba80fd1b63bc48ddf6d3724003dd62e32558c39680cee8fd7"
+    },
+    {
+      "path": "docs/development/043-radar-agent-runtime.html",
+      "before_sha256": null,
+      "after_sha256": "42f9c0e89c3556662214ec40f1d6f1a1a2e098dbfe83f6430f8020d57d45ab86"
+    },
+    {
+      "path": "docs/index.html",
+      "before_sha256": "bc515218a6804d3043a9929ae625da634263ec8c714652aa39df6c44abc28231",
+      "after_sha256": "97b58a8bb2c405be135a18c1f117121694150e5e3f451717db184ef12d9eb1fa"
+    },
+    {
+      "path": "SPEC.md",
+      "before_sha256": "b218f473bab6dbe294df3ca3e4bc950157a74fb14a1b0200c27cbf2a4447610b",
+      "after_sha256": "5fe336a67392672586577c7d57c07fb1db4961ba08c4c85e41a30828b2dc9538"
+    },
+    {
+      "path": "PLAN.MD",
+      "before_sha256": "ff20ed46b1de151a65ce831fd9262cb2a790cf39411a22d53d074b52850c5263",
+      "after_sha256": "ada99a4fd9fabffcc364019d0d43a26b62bf99409e4704814b4152cb07357dcb"
+    },
+    {
+      "path": "TASK_LIST.md",
+      "before_sha256": "a49f59f7af145c36de0bf21dc901952b7ac8287faa444382005f82ca019735dd",
+      "after_sha256": "f7c35e4e3d2d20bd8c83f3ba4b21a8f364ae3c39ba52c728dd9a84b678291e57"
+    },
+    {
+      "path": "docs/architecture/decisions.html",
+      "before_sha256": "74d02acb71016f3840e59aec06366e54b4cb78f3cdf7fc4be539ea628ba33f0c",
+      "after_sha256": "4e92b12d53680487aa6918df4a5de1173c51bbb280e8ac7bfb641dca653267be"
+    }
+  ]
+}

@@ -1,0 +1,256 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - button "Open workspace switcher" [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]:
+            - generic [ref=e10]: R
+            - heading "RADAR Projects" [level=4] [ref=e11]
+          - img [ref=e12]
+        - button [ref=e17] [cursor=pointer]:
+          - img [ref=e18]
+          - textbox "Search commands..." [ref=e20]
+        - generic [ref=e22]:
+          - link [ref=e23] [cursor=pointer]:
+            - /url: /radar-projects/notifications/
+            - img [ref=e26]
+          - button "Help" [ref=e28] [cursor=pointer]:
+            - img [ref=e30]
+          - link "Star us on GitHub" [ref=e32] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - img [ref=e33]
+            - generic [ref=e34]: Star us on GitHub
+          - button "Open user menu" [ref=e37] [cursor=pointer]:
+            - img "radar-audit-login" [ref=e39]:
+              - generic [ref=e40]: R
+      - generic [ref=e41]:
+        - generic [ref=e45]:
+          - link "Projects" [ref=e46] [cursor=pointer]:
+            - /url: /radar-projects/
+            - img [ref=e48]
+            - generic [ref=e51]: Projects
+          - link "RADAR" [ref=e52] [cursor=pointer]:
+            - /url: /radar-projects/radar/
+            - img [ref=e54]
+            - generic [ref=e61]: RADAR
+          - link "Settings" [ref=e63] [cursor=pointer]:
+            - /url: /radar-projects/settings/
+            - img [ref=e65]
+            - generic [ref=e67]: Settings
+        - generic [ref=e71]:
+          - complementary "Main sidebar" [ref=e72]:
+            - complementary [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e75]:
+                  - generic [ref=e76]:
+                    - generic [ref=e77]: Projects
+                    - generic [ref=e78]:
+                      - button "Customize navigation" [ref=e79] [cursor=pointer]:
+                        - img [ref=e81]
+                      - button "Collapse sidebar" [ref=e83] [cursor=pointer]:
+                        - img [ref=e85]
+                  - button "New work item" [ref=e88] [cursor=pointer]:
+                    - generic [ref=e89]:
+                      - img [ref=e90]
+                      - generic [ref=e92]: New work item
+                - generic [ref=e94]:
+                  - generic [ref=e95]:
+                    - link "Home" [ref=e96] [cursor=pointer]:
+                      - /url: /radar-projects/
+                      - generic [ref=e98]:
+                        - img [ref=e99]
+                        - paragraph [ref=e101]: Home
+                    - link "Drafts" [ref=e102] [cursor=pointer]:
+                      - /url: /radar-projects/drafts/
+                      - generic [ref=e104]:
+                        - img [ref=e105]
+                        - paragraph [ref=e107]: Drafts
+                    - link "Your work" [ref=e108] [cursor=pointer]:
+                      - /url: /radar-projects/profile/fc5f4640-ea13-4959-9996-d5862d7555d0/
+                      - generic [ref=e110]:
+                        - img [ref=e111]
+                        - paragraph [ref=e114]: Your work
+                    - link "Stickies" [ref=e115] [cursor=pointer]:
+                      - /url: /radar-projects/stickies/
+                      - generic [ref=e117]:
+                        - img [ref=e118]
+                        - paragraph [ref=e120]: Stickies
+                  - generic [ref=e121]:
+                    - button "Workspace" [expanded] [ref=e123] [cursor=pointer]:
+                      - generic [ref=e125]: Workspace
+                      - img [ref=e127]
+                    - generic [ref=e131]:
+                      - link "Projects" [ref=e132] [cursor=pointer]:
+                        - /url: /radar-projects/projects/
+                        - generic [ref=e134]:
+                          - img [ref=e135]
+                          - paragraph [ref=e137]: Projects
+                      - button "aria_labels.app_sidebar.open_extended_sidebar" [ref=e139] [cursor=pointer]:
+                        - img [ref=e140]
+                        - generic [ref=e143]: More
+                  - generic [ref=e145]:
+                    - button "Projects" [expanded] [ref=e147] [cursor=pointer]:
+                      - generic [ref=e149]: Projects
+                      - img [ref=e151]
+                    - generic [ref=e159]:
+                      - link "Open project menu" [ref=e160] [cursor=pointer]:
+                        - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues
+                        - button "Open project menu" [ref=e161]:
+                          - generic [ref=e163]: 👇
+                          - paragraph [ref=e164]: RADAR Projects
+                      - generic [ref=e165]:
+                        - generic:
+                          - button "Toggle quick actions menu":
+                            - generic:
+                              - img
+                - button "Open paid plans' modal" [ref=e168] [cursor=pointer]:
+                  - generic [ref=e169]: Community
+              - separator "Resize sidebar" [ref=e170]
+          - complementary "Sidebar peek view":
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: Projects
+                    - generic:
+                      - button "Customize navigation":
+                        - generic:
+                          - img
+                      - button "Collapse sidebar":
+                        - generic:
+                          - img
+                  - generic:
+                    - button "New work item":
+                      - generic:
+                        - img
+                        - generic: New work item
+                - generic:
+                  - generic:
+                    - generic:
+                      - link "Home":
+                        - /url: /radar-projects/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Home
+                      - link "Drafts":
+                        - /url: /radar-projects/drafts/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Drafts
+                      - link "Your work":
+                        - /url: /radar-projects/profile/fc5f4640-ea13-4959-9996-d5862d7555d0/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Your work
+                      - link "Stickies":
+                        - /url: /radar-projects/stickies/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Stickies
+                    - generic:
+                      - generic:
+                        - button "Workspace" [expanded]:
+                          - generic:
+                            - generic: Workspace
+                          - generic:
+                            - img
+                      - generic:
+                        - generic:
+                          - generic:
+                            - link "Projects":
+                              - /url: /radar-projects/projects/
+                              - generic:
+                                - generic:
+                                  - img
+                                  - paragraph: Projects
+                            - generic:
+                              - button "aria_labels.app_sidebar.open_extended_sidebar":
+                                - img
+                                - generic: More
+                    - generic:
+                      - generic:
+                        - generic:
+                          - button "Projects" [expanded]:
+                            - generic:
+                              - generic: Projects
+                            - generic:
+                              - img
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - generic:
+                                  - generic:
+                                    - link "Open project menu":
+                                      - /url: /radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues
+                                      - button "Open project menu":
+                                        - generic:
+                                          - generic: 👇
+                                        - paragraph: RADAR Projects
+                                    - generic:
+                                      - generic:
+                                        - button "Toggle quick actions menu":
+                                          - generic:
+                                            - img
+                - generic:
+                  - button "Open paid plans' modal":
+                    - generic: Community
+              - separator "Resize sidebar"
+          - main [ref=e171]:
+            - generic [ref=e175]:
+              - navigation "Breadcrumb" [ref=e179]:
+                - list [ref=e180]:
+                  - listitem [ref=e181]:
+                    - generic [ref=e182]:
+                      - img [ref=e184]
+                      - generic [ref=e186]: Home
+              - button "Manage widgets" [ref=e189] [cursor=pointer]:
+                - img [ref=e191]
+                - generic [ref=e195]: Manage widgets
+            - generic [ref=e219]:
+              - generic [ref=e220]:
+                - heading "Good afternoon," [level=2] [ref=e221]
+                - heading "🌥️ Saturday, Oct 3 17:31" [level=5] [ref=e222]:
+                  - generic [ref=e223]: 🌥️
+                  - generic [ref=e224]: Saturday, Oct 3 17:31
+              - generic [ref=e226]:
+                - generic [ref=e228]:
+                  - generic [ref=e229]:
+                    - generic [ref=e230]: Quicklinks
+                    - button "Add quick Link" [ref=e231] [cursor=pointer]:
+                      - img [ref=e232]
+                      - generic [ref=e234]: Add quick Link
+                  - generic [ref=e238]:
+                    - img [ref=e240]
+                    - paragraph [ref=e253]: Keep important references, resources, or docs handy for your work
+                - generic [ref=e255]:
+                  - generic [ref=e256]:
+                    - generic [ref=e257]: Recents
+                    - button "All" [ref=e259] [cursor=pointer]:
+                      - generic "All" [ref=e260]
+                      - img [ref=e262]
+                  - generic [ref=e267]:
+                    - img [ref=e269]
+                    - paragraph [ref=e282]: You don't have any recents yet.
+                - generic [ref=e284]:
+                  - generic [ref=e285]:
+                    - generic [ref=e286]: Your stickies
+                    - generic [ref=e287]:
+                      - generic [ref=e288]:
+                        - button "Search by title" [ref=e289] [cursor=pointer]:
+                          - img [ref=e291]
+                        - generic [ref=e293]:
+                          - img [ref=e294]
+                          - textbox "Search by title"
+                      - button "Add sticky" [ref=e296] [cursor=pointer]:
+                        - img [ref=e297]
+                        - generic [ref=e299]: Add sticky
+                  - generic [ref=e307]:
+                    - img [ref=e309]
+                    - paragraph [ref=e320]: Jot down an idea, capture an aha, or record a brainwave. Add a sticky to get started.

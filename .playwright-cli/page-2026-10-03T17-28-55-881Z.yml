@@ -1,0 +1,212 @@
+- generic [ref=e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - button [ref=e195] [cursor=pointer]:
+          - generic [ref=e10]:
+            - generic [ref=e11]: R
+            - heading [level=4] [ref=e196]: RADAR Audit — Generic Type
+          - img [ref=e13]
+        - button [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+          - textbox [ref=e197]:
+            - /placeholder: Search commands...
+        - generic [ref=e23]:
+          - link [ref=e24] [cursor=pointer]:
+            - /url: /radar-audit-generic/notifications/
+            - img [ref=e27]
+          - button [ref=e198] [cursor=pointer]:
+            - img [ref=e31]
+          - link [ref=e199] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - img [ref=e34]
+            - generic [ref=e35]: Star us on GitHub
+          - button [ref=e200] [cursor=pointer]:
+            - img [ref=e201]:
+              - generic [ref=e41]: R
+      - generic [ref=e42]:
+        - generic [ref=e46]:
+          - link [ref=e202] [cursor=pointer]:
+            - /url: /radar-audit-generic/
+            - img [ref=e49]
+            - generic [ref=e52]: Projects
+          - link [ref=e203] [cursor=pointer]:
+            - /url: /radar-audit-generic/radar/
+            - img [ref=e55]
+            - generic [ref=e62]: RADAR
+          - link [ref=e204] [cursor=pointer]:
+            - /url: /radar-audit-generic/settings/
+            - img [ref=e66]
+            - generic [ref=e68]: Settings
+        - generic [ref=e71]:
+          - complementary [ref=e205]:
+            - complementary [ref=e73]:
+              - generic [ref=e74]:
+                - generic [ref=e76]:
+                  - generic [ref=e77]: RADAR
+                  - button [ref=e206] [cursor=pointer]:
+                    - img [ref=e81]
+                - generic [ref=e84]:
+                  - navigation [ref=e207]:
+                    - link [ref=e208] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/today/
+                      - generic [ref=e88]:
+                        - img [ref=e89]
+                        - paragraph [ref=e91]: Today
+                    - link [ref=e209] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/objects/
+                      - generic [ref=e94]:
+                        - img [ref=e95]
+                        - paragraph [ref=e97]: Objects
+                    - link [ref=e210] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/decisions/
+                      - generic [ref=e100]:
+                        - img [ref=e101]
+                        - paragraph [ref=e103]: Decisions
+                    - link [ref=e211] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/risks/
+                      - generic [ref=e106]:
+                        - img [ref=e107]
+                        - paragraph [ref=e109]: Risks
+                  - navigation [ref=e212]:
+                    - link [ref=e213] [cursor=pointer]:
+                      - /url: /radar-audit-generic/radar/spike/
+                      - generic [ref=e114]:
+                        - img [ref=e115]
+                        - paragraph [ref=e117]: Spike Components
+                - button [ref=e214] [cursor=pointer]:
+                  - generic [ref=e120]: Community
+              - separator [ref=e215]
+          - complementary:
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: RADAR
+                    - generic:
+                      - button:
+                        - generic:
+                          - img
+                - generic:
+                  - generic:
+                    - navigation:
+                      - link:
+                        - /url: /radar-audit-generic/radar/today/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Today
+                      - link:
+                        - /url: /radar-audit-generic/radar/objects/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Objects
+                      - link:
+                        - /url: /radar-audit-generic/radar/decisions/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Decisions
+                      - link:
+                        - /url: /radar-audit-generic/radar/risks/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Risks
+                    - navigation:
+                      - link:
+                        - /url: /radar-audit-generic/radar/spike/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Spike Components
+                - generic:
+                  - button:
+                    - generic: Community
+              - separator
+          - main [ref=e122]:
+            - navigation [ref=e216]:
+              - list [ref=e130]:
+                - listitem [ref=e131]:
+                  - link [ref=e217] [cursor=pointer]:
+                    - /url: /radar-audit-generic/radar/
+                    - generic [ref=e133]:
+                      - img [ref=e135]
+                      - generic [ref=e142]: RADAR
+                - listitem [ref=e143]:
+                  - img [ref=e144]
+                - listitem [ref=e146]:
+                  - generic [ref=e148]: Objects
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - heading [level=1] [ref=e218]: Objects
+                - button [ref=e219] [cursor=pointer]:
+                  - generic [ref=e155]: Create object
+              - paragraph [ref=e156]: 0 objects in this workspace
+              - generic [ref=e159]:
+                - button [ref=e220] [cursor=pointer]:
+                  - generic [ref=e163]: Action
+                  - generic [ref=e164]: "0"
+                - button [ref=e221] [cursor=pointer]:
+                  - generic [ref=e168]: Audit probe
+                  - generic [ref=e169]: "0"
+                - button [ref=e222] [cursor=pointer]:
+                  - generic [ref=e173]: Decision
+                  - generic [ref=e174]: "0"
+                - button [ref=e223] [cursor=pointer]:
+                  - generic [ref=e178]: Objective
+                  - generic [ref=e179]: "0"
+                - button [ref=e224] [cursor=pointer]:
+                  - generic [ref=e183]: Person
+                  - generic [ref=e184]: "0"
+                - button [ref=e225] [cursor=pointer]:
+                  - generic [ref=e188]: Project
+                  - generic [ref=e189]: "0"
+                - button [ref=e226] [cursor=pointer]:
+                  - generic [ref=e193]: Risk
+                  - generic [ref=e194]: "0"
+  - dialog "Create object" [ref=e230]:
+    - generic [ref=e231]:
+      - generic [ref=e232]:
+        - heading "Create object" [level=2] [ref=e235]
+        - generic [ref=e237]:
+          - generic [ref=e238]:
+            - generic [ref=e240]:
+              - text: Title
+              - generic [ref=e241]: "*"
+            - textbox "Title" [ref=e244]
+          - generic [ref=e245]:
+            - text: Type
+            - combobox "Objective" [expanded] [ref=e257] [cursor=pointer]:
+              - generic [ref=e258]:
+                - generic [ref=e259]: Objective
+                - img [ref=e260]
+            - dialog "Options" [ref=e264]:
+              - generic [ref=e266]:
+                - status
+                - status
+                - listbox "Options" [active] [ref=e267]:
+                  - option "Action" [ref=e268]:
+                    - generic [ref=e270]: Action
+                  - option "Audit probe" [ref=e271]:
+                    - generic [ref=e273]: Audit probe
+                  - option "Decision" [ref=e274]:
+                    - generic [ref=e276]: Decision
+                  - option "Objective" [selected] [ref=e277]:
+                    - generic [ref=e279]: Objective
+                    - img [ref=e281]
+                  - option "Person" [ref=e283]:
+                    - generic [ref=e285]: Person
+                  - option "Project" [ref=e286]:
+                    - generic [ref=e288]: Project
+                  - option "Risk" [ref=e289]:
+                    - generic [ref=e291]: Risk
+            - textbox [ref=e294]: edb0863f-24eb-4c62-8788-a0248cfacf5b
+      - generic [ref=e251]:
+        - button "Cancel" [ref=e252] [cursor=pointer]:
+          - generic [ref=e253]: Cancel
+        - button "Create" [disabled] [ref=e254]:
+          - generic [ref=e255]: Create

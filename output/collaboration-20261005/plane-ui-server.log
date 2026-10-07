@@ -1,0 +1,140 @@
+ Container radar-collaboration-test-test-mq-1 Running 
+ Container radar-collaboration-test-test-minio-1 Running 
+ Container radar-collaboration-test-test-db-1 Running 
+ Container radar-collaboration-test-test-redis-1 Running 
+ Container radar-collaboration-test-test-redis-1 Waiting 
+ Container radar-collaboration-test-test-mq-1 Waiting 
+ Container radar-collaboration-test-test-minio-1 Waiting 
+ Container radar-collaboration-test-test-db-1 Waiting 
+ Container radar-collaboration-test-test-mq-1 Healthy 
+ Container radar-collaboration-test-test-redis-1 Healthy 
+ Container radar-collaboration-test-test-db-1 Healthy 
+ Container radar-collaboration-test-test-minio-1 Healthy 
+ Container radar-collaboration-test-api-tests-run-aaabb54cbb7c Creating 
+ Container radar-collaboration-test-api-tests-run-aaabb54cbb7c Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+COLLABORATION_BROWSER_READY
+192.168.65.1 - - [05/Oct/2026 12:47:03] "GET /fixture/login/author HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 455
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1354
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3953
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2370
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 358
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:47:09] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 441
+POST - /api/workspaces/collaboration-browser/radar/commands/ of Queries: 29
+192.168.65.1 - - [05/Oct/2026 12:47:47] "POST /api/workspaces/collaboration-browser/radar/commands/ HTTP/1.1" 200 392
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:47:47] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 726
+POST - /api/workspaces/collaboration-browser/radar/commands/ of Queries: 33
+192.168.65.1 - - [05/Oct/2026 12:50:52] "POST /api/workspaces/collaboration-browser/radar/commands/ HTTP/1.1" 200 345
+192.168.65.1 - - [05/Oct/2026 12:50:52] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 760
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:50:53] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2383
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 12:50:53] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 430
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 12:50:54] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1349
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 12:50:54] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 425
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:50:54] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3973
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:50:54] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 758
+192.168.65.1 - - [05/Oct/2026 12:51:26] "GET /fixture/info/ HTTP/1.1" 200 96
+192.168.65.1 - - [05/Oct/2026 12:51:26] "GET /fixture/login/author HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:51:27] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1726
+POST - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/ of Queries: 34
+192.168.65.1 - - [05/Oct/2026 12:51:27] "POST /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/ HTTP/1.1" 200 615
+POST - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/ of Queries: 18
+192.168.65.1 - - [05/Oct/2026 12:51:27] "POST /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/ HTTP/1.1" 200 615
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/6782d1d2-f60a-4f08-a9e3-2fc33bd2cbee/download/ of Queries: 10
+192.168.65.1 - - [05/Oct/2026 12:51:27] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/6782d1d2-f60a-4f08-a9e3-2fc33bd2cbee/download/ HTTP/1.1" 200 80
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:51:35] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 989
+POST - /api/workspaces/collaboration-browser/radar/commands/ of Queries: 33
+192.168.65.1 - - [05/Oct/2026 12:51:46] "POST /api/workspaces/collaboration-browser/radar/commands/ HTTP/1.1" 200 389
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:51:46] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1091
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/6782d1d2-f60a-4f08-a9e3-2fc33bd2cbee/download/ of Queries: 10
+192.168.65.1 - - [05/Oct/2026 12:51:46] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/attachments/6782d1d2-f60a-4f08-a9e3-2fc33bd2cbee/download/ HTTP/1.1" 200 170
+192.168.65.1 - - [05/Oct/2026 12:53:00] "GET /fixture/login/member HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 12:53:00] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1305
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 12:53:00] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 436
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:00] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2377
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:01] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3904
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 12:53:01] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 416
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:53:01] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1089
+192.168.65.1 - - [05/Oct/2026 12:53:01] "GET /fixture/login/guest HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1331
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3911
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 409
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 436
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2388
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:53:02] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1147
+192.168.65.1 - - [05/Oct/2026 12:53:15] "GET /fixture/login/admin HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 12:53:15] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1329
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 12:53:15] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 438
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:15] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3966
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 12:53:15] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2362
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 12:53:16] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 353
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:53:16] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1139
+POST - /api/workspaces/collaboration-browser/radar/commands/ of Queries: 33
+192.168.65.1 - - [05/Oct/2026 12:53:34] "POST /api/workspaces/collaboration-browser/radar/commands/ HTTP/1.1" 200 387
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 12:53:34] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1123
+192.168.65.1 - - [05/Oct/2026 12:53:34] "GET /fixture/login/outsider HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 3
+Forbidden: /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/
+192.168.65.1 - - [05/Oct/2026 12:53:35] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 403 63
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 3
+Forbidden: /api/workspaces/collaboration-browser/radar/property-definitions/
+192.168.65.1 - - [05/Oct/2026 12:53:35] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 403 63
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 3
+Forbidden: /api/workspaces/collaboration-browser/radar/relation-types/
+192.168.65.1 - - [05/Oct/2026 12:53:35] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 403 63
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 3
+Forbidden: /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/
+192.168.65.1 - - [05/Oct/2026 12:53:35] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 403 63
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 3
+Forbidden: /api/workspaces/collaboration-browser/radar/objects/
+192.168.65.1 - - [05/Oct/2026 12:53:35] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 403 63
+192.168.65.1 - - [05/Oct/2026 13:01:12] "GET /fixture/login/author HTTP/1.1" 302 0
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ of Queries: 118
+192.168.65.1 - - [05/Oct/2026 13:01:12] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/properties/ HTTP/1.1" 200 1305
+GET - /api/workspaces/collaboration-browser/radar/property-definitions/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 13:01:13] "GET /api/workspaces/collaboration-browser/radar/property-definitions/ HTTP/1.1" 200 3943
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ of Queries: 11
+192.168.65.1 - - [05/Oct/2026 13:01:13] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/relations/ HTTP/1.1" 200 393
+GET - /api/workspaces/collaboration-browser/radar/relation-types/ of Queries: 111
+192.168.65.1 - - [05/Oct/2026 13:01:13] "GET /api/workspaces/collaboration-browser/radar/relation-types/ HTTP/1.1" 200 2411
+GET - /api/workspaces/collaboration-browser/radar/objects/ of Queries: 5
+192.168.65.1 - - [05/Oct/2026 13:01:13] "GET /api/workspaces/collaboration-browser/radar/objects/ HTTP/1.1" 200 383
+GET - /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ of Queries: 14
+192.168.65.1 - - [05/Oct/2026 13:01:13] "GET /api/workspaces/collaboration-browser/radar/objects/d4623f4d-9140-411a-bf39-881e53760277/collaboration/ HTTP/1.1" 200 1102
+

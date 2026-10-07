@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-06",
+  "timezone": "America/Bahia",
+  "resolved_audit_ids": [
+    "C04",
+    "C05",
+    "C06",
+    "C08",
+    "C10"
+  ],
+  "backend": {
+    "tests": 305,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 4,
+    "passed": 301,
+    "new_u0_tests": 33
+  },
+  "frontend": {
+    "passed": 93
+  },
+  "migration": {
+    "legacy_types_backfilled": 2,
+    "custom_type_preserved": true,
+    "identities_preserved": true,
+    "reverse_forward_passed": true
+  },
+  "checks": {
+    "ruff": true,
+    "python_format": true,
+    "migration_check": true,
+    "typescript": true,
+    "oxlint": true,
+    "oxfmt": true
+  },
+  "local_document_links_checked": 126,
+  "published_environment_changed": false
+}

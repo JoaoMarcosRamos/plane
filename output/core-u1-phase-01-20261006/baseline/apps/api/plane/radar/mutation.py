@@ -1,0 +1,46 @@
+"""Transaction-local change collection, entered only by commands with an explicit Actor."""
+
+from contextvars import ContextVar
+from dataclasses import dataclass, field
+from datetime import date, datetime
+from typing import Any
+from uuid import UUID
+
+
+def json_value(value: Any) -> Any:
+    if isinstance(value, (UUID, date, datetime)):
+        return value.isoformat() if isinstance(value, (date, datetime)) else str(value)
+    if isinstance(value, dict):
+        return {str(key): json_value(item) for key, item in value.items()}
+    if isinstance(value, (list, tuple)):
+        return [json_value(item) for item in value]
+    return value
+
+
+@dataclass
+class MutationContext:
+    actor: Any
+    workspace_id: UUID
+    command_name: str
+    changes: dict = field(default_factory=dict)
+    events: list = field(default_factory=list)
+    touched: set = field(default_factory=set)
+    created_objects: set = field(default_factory=set)
+    special: str | None = None
+    upload: Any = None
+    provenance_id: UUID | None = None
+
+    def record(self, instance, before):
+        after = {
+            item.attname: json_value(getattr(instance, item.attname))
+            for item in instance._meta.concrete_fields
+            if item.name not in {"created_provenance", "last_provenance"}
+        }
+        key = (instance._meta.label, instance.pk)
+        first = self.changes.get(key, {}).get("before", before)
+        self.changes[key] = {"model": key[0], "id": str(key[1]), "before": first, "after": after}
+        if instance._meta.model_name == "object" and before is None:
+            self.created_objects.add(instance.pk)
+
+
+current_mutation: ContextVar[MutationContext | None] = ContextVar("radar_mutation", default=None)

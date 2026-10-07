@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="1" time="2.113" timestamp="2026-10-07T00:01:00.766562+00:00" hostname="6b826bdad8f9"><testcase classname="plane.radar.tests.test_core_u1_phase05b" name="test_runtime_deadline_projection_does_not_replace_a_workspace_property" time="1.922"><failure message="AssertionError: assert {'conflict': False, 'due_at': '2026-10-09T12:00:00+00:00', 'due_date': None, 'effective_at': '2026-10-09T12:00:00+00:00', ...} == 'A workspace planning note'">runtime = ((&lt;User: radar-unit &lt;radar-unit@plane.local&gt;&gt;, &lt;User: radar-second &lt;radar-second@plane.local&gt;&gt;, &lt;User: radar-outsider-... Object object (26c8ed01-f16b-40e8-b2ce-1a4622df7aa9)&gt;, &lt;Object: Object object (0204e1ef-e486-429d-b2ed-4fb063c8efb1)&gt;)
+
+    def test_runtime_deadline_projection_does_not_replace_a_workspace_property(runtime):
+        from plane.radar.commands.schema import preview_upgrade, upgrade_schema
+        from plane.radar.ontology.package import package_definitions
+        from plane.radar.workspace_schema import schema_revision
+        from plane.radar.models import RuntimeObjectIdentity
+    
+        ctx = runtime[0]
+        candidate = package_definitions()
+        candidate["properties:action.deadline"] = {"name": "Local planning note", "value_type": "string", "config": {}, "is_required": False, "is_active": True}
+        plan = preview_upgrade(actor=ctx[5], workspace=ctx[3], expected_revision=schema_revision(ctx[3]), definitions=candidate)
+        upgrade_schema(actor=ctx[5], workspace=ctx[3], expected_revision=plan["schema_revision"], reviewed_hash=plan["candidate_hash"], definitions=candidate, version="3.2.0+deadline")
+        action = create(ctx, "action", description="Preserve local semantics", deadline="A workspace planning note")
+        bind(runtime, action, "ACT")
+        execute(ctx, "DelegateAction", {"action_id": str(action.pk), "executor_id": str(runtime[5].pk), "context": "company:test", "due_at": "2026-10-09T12:00:00Z"})
+        response = runtime[1].post(endpoint(runtime, "query"), {"method": "read_entity", "parameters": {"entity_id": RuntimeObjectIdentity.objects.get(object=action).external_id, "timezone": "America/Bahia"}}, format="json")
+        assert response.status_code == 200
+&gt;       assert response.data["metadata"]["deadline"] == "A workspace planning note"
+E       AssertionError: assert {'conflict': False, 'due_at': '2026-10-09T12:00:00+00:00', 'due_date': None, 'effective_at': '2026-10-09T12:00:00+00:00', ...} == 'A workspace planning note'
+
+plane/radar/tests/test_core_u1_phase05b.py:495: AssertionError</failure></testcase></testsuite></testsuites>

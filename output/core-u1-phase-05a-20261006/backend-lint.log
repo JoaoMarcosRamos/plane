@@ -1,0 +1,129 @@
+ Container radar-core-u1-phase05a-test-db-1 Running 
+ Container radar-core-u1-phase05a-test-redis-1 Running 
+ Container radar-core-u1-phase05a-test-mq-1 Running 
+ Container radar-core-u1-phase05a-test-minio-1 Running 
+ Container radar-core-u1-phase05a-test-redis-1 Waiting 
+ Container radar-core-u1-phase05a-test-mq-1 Waiting 
+ Container radar-core-u1-phase05a-test-minio-1 Waiting 
+ Container radar-core-u1-phase05a-test-db-1 Waiting 
+ Container radar-core-u1-phase05a-test-redis-1 Healthy 
+ Container radar-core-u1-phase05a-test-mq-1 Healthy 
+ Container radar-core-u1-phase05a-test-db-1 Healthy 
+ Container radar-core-u1-phase05a-test-minio-1 Healthy 
+ Container radar-core-u1-phase05a-api-tests-run-091d47ba4b4d Creating 
+ Container radar-core-u1-phase05a-api-tests-run-091d47ba4b4d Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+plane/radar/tests/test_core_u1_phase05a.py:94:65: F811 Redefinition of unused `runtime` from line 30
+   |
+92 |     ],
+93 | )
+94 | def test_invalid_runtime_metadata_is_rejected_before_persisting(runtime, invalid):
+   |                                                                 ^^^^^^^ F811
+95 |     ctx = runtime[0]
+96 |     kind = ObjectType.objects.get(workspace=ctx[3], key="action")
+   |
+   = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:104:80: F811 Redefinition of unused `runtime` from line 30
+    |
+104 | def test_defaults_do_not_create_runtime_authority_and_custom_opt_in_is_audited(runtime, client):
+    |                                                                                ^^^^^^^ F811
+105 |     ctx = runtime[0]
+106 |     kind, obj = ticket(runtime)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:133:79: F811 Redefinition of unused `runtime` from line 30
+    |
+133 | def test_binding_is_immutable_idempotent_and_collisions_are_validation_errors(runtime):
+    |                                                                               ^^^^^^^ F811
+134 |     ctx = runtime[0]
+135 |     kind, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:155:44: F811 Redefinition of unused `runtime` from line 30
+    |
+153 |     "invalid", ["TKT-20261006-abc123", "ACT-20261006-ABC123", "TKT-20261006-ABC123x", "TKT-123456-ABC123", None]
+154 | )
+155 | def test_binding_uses_the_workspace_format(runtime, invalid):
+    |                                            ^^^^^^^ F811
+156 |     ctx = runtime[0]
+157 |     _, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:166:65: F811 Redefinition of unused `runtime` from line 30
+    |
+166 | def test_context_kind_schema_revision_and_admin_are_revalidated(runtime):
+    |                                                                 ^^^^^^^ F811
+167 |     ctx = runtime[0]
+168 |     kind, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:185:89: F811 Redefinition of unused `runtime` from line 30
+    |
+185 | def test_descriptor_change_preserves_historical_identities_and_revocation_hides_context(runtime):
+    |                                                                                         ^^^^^^^ F811
+186 |     ctx = runtime[0]
+187 |     kind, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:204:68: F811 Redefinition of unused `runtime` from line 30
+    |
+204 | def test_custom_review_uses_registered_effects_approval_and_replay(runtime):
+    |                                                                    ^^^^^^^ F811
+205 |     ctx = runtime[0]
+206 |     kind, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:226:86: F811 Redefinition of unused `runtime` from line 30
+    |
+226 | def test_internal_runtime_creation_uses_descriptor_and_retries_keep_the_generated_id(runtime):
+    |                                                                                      ^^^^^^^ F811
+227 |     ctx = runtime[0]
+228 |     kind, _ = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:249:70: F811 Redefinition of unused `runtime` from line 30
+    |
+249 | def test_grants_context_and_person_revocation_apply_to_both_channels(runtime):
+    |                                                                      ^^^^^^^ F811
+250 |     ctx = runtime[0]
+251 |     kind, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:291:79: F811 Redefinition of unused `runtime` from line 30
+    |
+291 | def test_cli_grants_current_eligible_custom_types_and_excludes_disabled_types(runtime):
+    |                                                                               ^^^^^^^ F811
+292 |     ctx = runtime[0]
+293 |     ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:312:76: F811 Redefinition of unused `runtime` from line 30
+    |
+312 | def test_migration_is_idempotent_and_preserves_custom_opt_out_and_bindings(runtime):
+    |                                                                            ^^^^^^^ F811
+313 |     ctx = runtime[0]
+314 |     migration = import_module("plane.radar.migrations.0015_type_runtime")
+    |
+    = help: Remove definition: `runtime`
+
+plane/radar/tests/test_core_u1_phase05a.py:341:72: F811 Redefinition of unused `runtime` from line 30
+    |
+341 | def test_pending_generic_runtime_intent_cannot_ignore_a_changed_schema(runtime):
+    |                                                                        ^^^^^^^ F811
+342 |     ctx = runtime[0]
+343 |     _, obj = ticket(runtime, enabled=True)
+    |
+    = help: Remove definition: `runtime`
+
+Found 15 errors (3 fixed, 12 remaining).
+

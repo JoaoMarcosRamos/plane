@@ -1,0 +1,14 @@
+services:
+  test-mq:
+    user: rabbitmq
+    tmpfs: !override
+      - /var/lib/rabbitmq:uid=100,gid=101,mode=0700
+  api-tests:
+    image: plane-radar-api
+    build: !reset null
+    environment:
+      PIP_QUIET: "1"
+      RADAR_COS_SOURCE: /cos
+      RADAR_AGENT_TEST_URL: http://host.docker.internal:8926/agent-runtime/v1
+    volumes:
+      - /Users/joaomarcosramos/Documents/Github/COS_AGENT_V2:/cos:ro

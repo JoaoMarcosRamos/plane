@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-03",
+  "stack": "plane-radar",
+  "workspace": "radar-semantic-validation",
+  "workspace_id": "7245cb70-1791-442d-9176-e3fb3b2b6d77",
+  "actor_id": "e317c022-7390-45aa-a0fa-23cf6966dc86",
+  "objects": {
+    "objective": "979fc739-0770-415c-ab1b-c1aa3189ed69",
+    "project": "616cb369-3bd4-436c-849b-01479274e47f",
+    "risk": "e2012533-cc67-4ff5-847a-ffc5338a69b7",
+    "person": "61835464-b921-4dbf-84a0-eedb40716d92"
+  },
+  "relations": [
+    "298fa285-f708-4e0d-88de-a219d4049309",
+    "39688f56-606f-4c32-b3a8-a266ed71e38c",
+    "8070e928-f65a-443f-8652-36b870ea4a27"
+  ],
+  "writes": [
+    {
+      "operation": "set_property",
+      "key": "start_date",
+      "status": 200,
+      "version": 2
+    },
+    {
+      "operation": "set_property",
+      "key": "due_date",
+      "status": 200,
+      "version": 3
+    },
+    {
+      "operation": "set_property",
+      "key": "status",
+      "status": 200,
+      "version": 4
+    },
+    {
+      "operation": "set_property",
+      "key": "likelihood",
+      "status": 200,
+      "version": 2
+    },
+    {
+      "operation": "set_property",
+      "key": "impact",
+      "status": 200,
+      "version": 3
+    }
+  ],
+  "incoming_labels": ["advanced_by", "threatened_by"],
+  "risk_score": 20,
+  "plane_projects": 0,
+  "objective_version": 6,
+  "result": "PASS"
+}

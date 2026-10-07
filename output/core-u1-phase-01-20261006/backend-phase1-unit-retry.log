@@ -1,0 +1,84 @@
+ Container radar-core-u1-01-test-test-redis-1 Running 
+ Container radar-core-u1-01-test-test-mq-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Running 
+ Container radar-core-u1-01-test-test-db-1 Running 
+ Container radar-core-u1-01-test-test-minio-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Waiting 
+ Container radar-core-u1-01-test-test-redis-1 Waiting 
+ Container radar-core-u1-01-test-test-mq-1 Waiting 
+ Container radar-core-u1-01-test-test-db-1 Healthy 
+ Container radar-core-u1-01-test-test-redis-1 Healthy 
+ Container radar-core-u1-01-test-test-minio-1 Healthy 
+ Container radar-core-u1-01-test-test-mq-1 Healthy 
+ Container radar-core-u1-01-test-api-tests-run-f173b4b76df5 Creating 
+ Container radar-core-u1-01-test-api-tests-run-f173b4b76df5 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 18 items
+
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human] Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_deleted_human_and_missing_provenance_have_distinct_fallbacks FAILED
+plane/radar/tests/test_core_u1_phase01.py::test_legacy_human_without_provenance_is_resolved PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_author_list_resolves_humans_in_a_constant_query_budget PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_application_results_preserve_v1_object_relation_and_property_representation PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_replay_precedes_stale_version_check_and_preserves_historical_snapshot PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_http_replays_confirmed_snapshot_after_lost_response PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_trusted_defaults_caller_reuses_saved_versions_when_only_key_is_supplied PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_key_conflict_noop_and_authority_revocation PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[agent] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[system] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_defaults_command_remains_human_only_even_with_forged_grant[integration] PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_invalid_defaults_roll_back_ledger_properties_and_provenance PASSED
+plane/radar/tests/test_core_u1_phase01.py::test_command_modules_do_not_depend_on_api_serializers_or_private_cross_module_interfaces PASSED
+
+=================================== FAILURES ===================================
+______ test_deleted_human_and_missing_provenance_have_distinct_fallbacks _______
+
+seeded = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 11, 19, 3, 970613, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_deleted_human_and_missing_provenance_have_distinct_fallbacks(seeded):
+        actor = replace(seeded[5], actor_id=seeded[1].pk)
+        obj = create(seeded, actor)
+>       fixture_write(lambda: User.objects.filter(pk=actor.actor_id).delete())
+
+plane/radar/tests/test_core_u1_phase01.py:110: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/tests/fixture_writes.py:17: in fixture_write
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/tests/test_core_u1_phase01.py:110: in <lambda>
+    fixture_write(lambda: User.objects.filter(pk=actor.actor_id).delete())
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:1201: in delete
+    num_deleted, num_deleted_per_model = collector.delete()
+                                         ^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/deletion.py:485: in delete
+    combined_updates.update(**{field.name: value})
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <[TransactionManagementError("An error occurred in the current transaction. You can't execute queries until the end of the 'atomic' block.") raised in repr()] CollaborationQuerySet object at 0xffff7a5cb6b0>
+kwargs = {'created_by': None}, context = None
+
+    def update(self, **kwargs):
+        context = current_mutation.get()
+        if context is None or set(kwargs) - {"created_provenance_id", "last_provenance_id"}:
+>           raise PermissionDenied("Collaboration changes require commands, including bulk writes.")
+E           rest_framework.exceptions.PermissionDenied: Collaboration changes require commands, including bulk writes.
+
+plane/radar/models/collaboration.py:14: PermissionDenied
+---------- generated xml file: /code/output/core-u1-phase-01-unit.xml ----------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_core_u1_phase01.py::test_deleted_human_and_missing_provenance_have_distinct_fallbacks
+======================== 1 failed, 17 passed in 11.11s =========================
+

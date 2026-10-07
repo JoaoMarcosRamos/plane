@@ -1,0 +1,76 @@
+== login
+PASS login: real Plane sign-in reaches RADAR Today in the shell — http://localhost:3000/radar-e2e-clean/radar/today/
+== create
+PASS create: human created Risk, Objective and Project through the RADAR UI — {"objective":"0bab61c9-8434-4260-85d2-248778287489","project":"4dc17425-b851-46bf-955c-6fb5728fcd19","risk":"1e2e6285-45b0-46ad-88bb-956c08f2ed38"}
+== bind
+PASS bind: admin CLI bound the objective to the agent context — OBJ-20261005-B5CC9D
+PASS bind: admin CLI bound the project to the agent context — PRJ-20261005-B5CC9D
+PASS bind: admin CLI bound the risk to the agent context — RSK-20261005-B5CC9D
+== review
+PASS review: run started from the shell with skill risk_review — run 2376944f-794d-4b68-9feb-6dff287be994
+PASS review: context roots are the human-created Risk, Objective and Project — 1e2e6285-45b0-46ad-88bb-956c08f2ed38,0bab61c9-8434-4260-85d2-248778287489,4dc17425-b851-46bf-955c-6fb5728fcd19
+PASS review: agent suggested THREATENS and a mitigating action — 4 proposal cards
+PASS review: UI shows Accept
+PASS review: UI shows Edit
+PASS review: UI shows Reject
+PASS idempotency: replayed run start returns the same run — 202 2376944f-794d-4b68-9feb-6dff287be994
+PASS idempotency: preparing the same run twice keeps the same proposals — 200/200
+== decide
+PASS accept: relation applied through the Command Layer — 200 LinkObjects
+PASS accept: sibling action reports the version conflict and asks for review — 409 {"code":"revision_conflict","object_id":"0bab61c9-8434-4260-85d2-248778287489"} / UI: Objects changed since this preview. Use Edit to save a fresh proposal, then review it before accepting.
+PASS edit: saved a new intent (revision 2) without executing — 200 rev 2
+PASS accept: revised action applied — a3edb8ea-1418-44ff-b9f8-43d18ecd953d
+PASS reject: both components of the second suggestion rejected with rationale — O Sandbox IA tem licença temporária; não é ameaça.
+PASS idempotency: retried Accept returns the executed proposal — 200
+PASS idempotency: retried Reject returns the rejected proposal — 200
+PASS rejection: a rejected proposal cannot be accepted later — 409 {"code":"proposal_closed"}
+== object-page
+PASS object page: Risk shows threatens -> Implantar Governança de IA — Relations Add relation → Threatens Implantar Governança de IA Objective Remove
+PASS object page: Risk shows the mitigating Action as backlink — Backlinks ← Mitigated by Validar licenciamento de IA Action Remove
+PASS rejection: rejected Sandbox IA threat is absent from the Risk
+PASS object page: Action shows mitigates -> Licenciamento pode atrasar — Relations Add relation → Mitigates Licenciamento pode atrasar Risk Remove
+PASS object page: Objective shows the Risk as backlink — Backlinks ← Threatened by Licenciamento pode atrasar Risk Remove
+PASS object page: state survives a full reload
+== verify-db
+PASS db: one scripted run for the replayed start
+PASS db: one review for the run, prepared once
+PASS db: exactly one threatens relation Risk -> Objective
+PASS db: rejected Risk -> Project threat was not created
+PASS db: Action mitigates Risk exactly once
+PASS db: exactly one Action exists (retries and rejection created none)
+PASS db: Action has a canonical runtime identity in the agent context
+PASS db: relation: executed once; single-use human approval consumed
+PASS db: relation: provenance actor is the agent
+PASS db: relation: provenance names the human (on behalf of + approver)
+PASS db: relation: provenance approval_id links the human approval
+PASS db: relation: provenance reason is the agent explanation
+PASS db: relation: provenance source is the skill
+PASS db: relation: provenance run_id is the Risk Review run
+PASS db: relation: provenance confidence is the suggestion confidence
+PASS db: relation: domain event persisted in the same commit
+PASS db: action: executed once; single-use human approval consumed
+PASS db: action: provenance actor is the agent
+PASS db: action: provenance names the human (on behalf of + approver)
+PASS db: action: provenance approval_id links the human approval
+PASS db: action: provenance reason is the agent explanation
+PASS db: action: provenance source is the skill
+PASS db: action: provenance run_id is the Risk Review run
+PASS db: action: provenance confidence is the suggestion confidence
+PASS db: action: domain event persisted in the same commit
+PASS db: rejected relation: not executed, rationale stored
+PASS db: rejected relation: human review provenance recorded
+PASS db: rejected action: not executed, rationale stored
+PASS db: rejected action: human review provenance recorded
+== permissions
+PASS permission: member without binding sees no agent and no foreign reviews
+PASS permission: member can read the Risk
+PASS permission: member cannot start a run with another user's agent binding — 404
+PASS permission: member cannot resolve another user's proposal — 404
+PASS permission: guest has no Run Risk Review control
+PASS permission: guest cannot start runs — 403
+PASS permission: outsider cannot see the workspace Risk
+PASS permission: outsider API read is denied — 403
+PASS permission: anonymous resolve is rejected — 401
+PASS permission: narrowed agent grant blocks the pending suggestion — 409 {"code":"authorization_stale"}
+PASS permission: UI disables Run Risk Review without CreateAction
+PASS permission: restoring the grant does not revive a run authorized under the old policy — 409 {"code":"authorization_stale"}

@@ -1,0 +1,222 @@
+ Network radar-core-u1-phase04_test_env Creating 
+ Network radar-core-u1-phase04_test_env Creating 
+ Network radar-core-u1-phase04_test_env Created 
+ Network radar-core-u1-phase04_test_env Created 
+ Container radar-core-u1-phase04-test-redis-1 Creating 
+ Container radar-core-u1-phase04-test-minio-1 Creating 
+ Container radar-core-u1-phase04-test-mq-1 Creating 
+ Container radar-core-u1-phase04-test-db-1 Creating 
+ Container radar-core-u1-phase04-test-redis-1 Created 
+ Container radar-core-u1-phase04-test-minio-1 Created 
+ Container radar-core-u1-phase04-test-db-1 Created 
+ Container radar-core-u1-phase04-test-mq-1 Created 
+ Container radar-core-u1-phase04-test-redis-1 Starting 
+ Container radar-core-u1-phase04-test-db-1 Starting 
+ Container radar-core-u1-phase04-test-minio-1 Starting 
+ Container radar-core-u1-phase04-test-mq-1 Starting 
+ Container radar-core-u1-phase04-test-redis-1 Started 
+ Container radar-core-u1-phase04-test-db-1 Started 
+ Container radar-core-u1-phase04-test-minio-1 Started 
+ Container radar-core-u1-phase04-test-mq-1 Started 
+ Container radar-core-u1-phase04-test-db-1 Waiting 
+ Container radar-core-u1-phase04-test-redis-1 Waiting 
+ Container radar-core-u1-phase04-test-mq-1 Waiting 
+ Container radar-core-u1-phase04-test-minio-1 Waiting 
+ Container radar-core-u1-phase04-test-redis-1 Healthy 
+ Container radar-core-u1-phase04-test-db-1 Healthy 
+ Container radar-core-u1-phase04-test-minio-1 Healthy 
+ Container radar-core-u1-phase04-test-mq-1 Healthy 
+ Container radar-phase04-browser-api Creating 
+ Container radar-phase04-browser-api Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+U1_PHASE04_BROWSER_READY
+172.22.0.1 - - [06/Oct/2026 22:10:35] "GET /fixture/info/ HTTP/1.1" 200 305
+172.22.0.1 - - [06/Oct/2026 22:10:35] "GET /fixture/login/author/?to=create HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:39] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9688
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:39] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 1875
+POST - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 151
+172.22.0.1 - - [06/Oct/2026 22:10:40] "POST /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 201 747
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ HTTP/1.1" 200 1245
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ HTTP/1.1" 200 739
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ of Queries: 83
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ HTTP/1.1" 200 560
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2075
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9674
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:40] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ HTTP/1.1" 200 366
+PUT - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/85af41bb-98d4-40c1-9ca3-a256dc0de800/ of Queries: 171
+172.22.0.1 - - [06/Oct/2026 22:10:41] "PUT /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/85af41bb-98d4-40c1-9ca3-a256dc0de800/ HTTP/1.1" 200 1332
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:41] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ HTTP/1.1" 200 467
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:41] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ HTTP/1.1" 200 1269
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:41] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ HTTP/1.1" 200 806
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ of Queries: 88
+172.22.0.1 - - [06/Oct/2026 22:10:41] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ HTTP/1.1" 200 578
+PUT - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/85af41bb-98d4-40c1-9ca3-a256dc0de800/ of Queries: 184
+172.22.0.1 - - [06/Oct/2026 22:10:42] "PUT /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/85af41bb-98d4-40c1-9ca3-a256dc0de800/ HTTP/1.1" 200 1312
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/properties/ HTTP/1.1" 200 1306
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/relations/ HTTP/1.1" 200 765
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/collaboration/ HTTP/1.1" 200 556
+GET - /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ of Queries: 20
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/551d2ff2-6570-4ee0-be53-5b476bde61ec/capabilities/ HTTP/1.1" 200 509
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /fixture/login/author/?to=objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65 HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/properties/ HTTP/1.1" 200 1694
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:42] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/relations/ HTTP/1.1" 200 861
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/capabilities/ of Queries: 84
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/capabilities/ HTTP/1.1" 200 698
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2083
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9688
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9661
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9709
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9715
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/collaboration/ HTTP/1.1" 200 425
+172.22.0.1 - - [06/Oct/2026 22:10:43] "GET /fixture/login/author/?to=objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0 HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ HTTP/1.1" 200 1427
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ HTTP/1.1" 200 781
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ of Queries: 86
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ HTTP/1.1" 200 710
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9710
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2108
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9706
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9721
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9641
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:44] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/collaboration/ HTTP/1.1" 200 393
+POST - /api/workspaces/u1-phase04-browser/radar/commands/preview/ of Queries: 99
+172.22.0.1 - - [06/Oct/2026 22:10:45] "POST /api/workspaces/u1-phase04-browser/radar/commands/preview/ HTTP/1.1" 200 1170
+POST - /api/workspaces/u1-phase04-browser/radar/commands/ of Queries: 214
+172.22.0.1 - - [06/Oct/2026 22:10:45] "POST /api/workspaces/u1-phase04-browser/radar/commands/ HTTP/1.1" 200 965
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ HTTP/1.1" 200 1559
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ HTTP/1.1" 200 1073
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ of Queries: 25
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ HTTP/1.1" 200 682
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/properties/ HTTP/1.1" 200 1626
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/collaboration/ HTTP/1.1" 200 490
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:45] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/relations/ HTTP/1.1" 200 1019
+GET - /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ of Queries: 25
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/4cebbaa8-339f-4b3a-ac83-abe0f8b1a1a0/capabilities/ HTTP/1.1" 200 680
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /fixture/login/author/?to=objects/b58d288b-df0d-4dba-93c1-2d7212b260b3 HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1548
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1154
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 49
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 709
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9639
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2193
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9687
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9701
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9694
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:46] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ HTTP/1.1" 200 476
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /fixture/login/reviewer/?to=objects/b58d288b-df0d-4dba-93c1-2d7212b260b3 HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1515
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1083
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 111
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 778
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9668
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2145
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9641
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9665
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:47] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9723
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:48] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ HTTP/1.1" 200 530
+POST - /api/workspaces/u1-phase04-browser/radar/commands/preview/ of Queries: 75
+172.22.0.1 - - [06/Oct/2026 22:10:48] "POST /api/workspaces/u1-phase04-browser/radar/commands/preview/ HTTP/1.1" 200 1161
+POST - /api/workspaces/u1-phase04-browser/radar/commands/ of Queries: 160
+172.22.0.1 - - [06/Oct/2026 22:10:48] "POST /api/workspaces/u1-phase04-browser/radar/commands/ HTTP/1.1" 200 1046
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:48] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1606
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:48] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1284
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 147
+172.22.0.1 - - [06/Oct/2026 22:10:49] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 742
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:49] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ HTTP/1.1" 200 630
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:49] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1621
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:49] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1358
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 147
+172.22.0.1 - - [06/Oct/2026 22:10:49] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 750
+POST - /api/workspaces/u1-phase04-browser/radar/commands/preview/ of Queries: 103
+172.22.0.1 - - [06/Oct/2026 22:10:49] "POST /api/workspaces/u1-phase04-browser/radar/commands/preview/ HTTP/1.1" 200 911
+POST - /api/workspaces/u1-phase04-browser/radar/commands/ of Queries: 207
+172.22.0.1 - - [06/Oct/2026 22:10:50] "POST /api/workspaces/u1-phase04-browser/radar/commands/ HTTP/1.1" 200 1006
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1618
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1317
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 76
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 719
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/properties/ HTTP/1.1" 200 1614
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/collaboration/ HTTP/1.1" 200 703
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/relations/ HTTP/1.1" 200 1311
+GET - /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ of Queries: 76
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /api/workspaces/u1-phase04-browser/radar/objects/b58d288b-df0d-4dba-93c1-2d7212b260b3/capabilities/ HTTP/1.1" 200 720
+172.22.0.1 - - [06/Oct/2026 22:10:50] "GET /fixture/login/guest/?to=objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65 HTTP/1.1" 302 0
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/properties/ of Queries: 17
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/properties/ HTTP/1.1" 200 1723
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/relations/ of Queries: 16
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/relations/ HTTP/1.1" 200 833
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/capabilities/ of Queries: 20
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/capabilities/ HTTP/1.1" 200 626
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9636
+GET - /api/workspaces/u1-phase04-browser/radar/objects/ of Queries: 10
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/objects/ HTTP/1.1" 200 2226
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9689
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9724
+GET - /api/workspaces/u1-phase04-browser/radar/schema/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/schema/ HTTP/1.1" 200 9674
+GET - /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/collaboration/ of Queries: 15
+172.22.0.1 - - [06/Oct/2026 22:10:51] "GET /api/workspaces/u1-phase04-browser/radar/objects/8a845e5e-c005-432d-91a4-2dbcca1f8e65/collaboration/ HTTP/1.1" 200 443
+

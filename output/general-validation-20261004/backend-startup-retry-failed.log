@@ -1,0 +1,16 @@
+ Container radar-general-validation-20261004-test-redis-1 Running 
+ Container radar-general-validation-20261004-test-minio-1 Running 
+ Container radar-general-validation-20261004-test-db-1 Running 
+ Container radar-general-validation-20261004-test-mq-1 Recreate 
+ Container radar-general-validation-20261004-test-mq-1 Recreated 
+ Container radar-general-validation-20261004-test-mq-1 Starting 
+ Container radar-general-validation-20261004-test-mq-1 Started 
+ Container radar-general-validation-20261004-test-redis-1 Waiting 
+ Container radar-general-validation-20261004-test-mq-1 Waiting 
+ Container radar-general-validation-20261004-test-minio-1 Waiting 
+ Container radar-general-validation-20261004-test-db-1 Waiting 
+ Container radar-general-validation-20261004-test-db-1 Healthy 
+ Container radar-general-validation-20261004-test-minio-1 Healthy 
+ Container radar-general-validation-20261004-test-redis-1 Healthy 
+ Container radar-general-validation-20261004-test-mq-1 Error dependency test-mq failed to start
+dependency failed to start: container radar-general-validation-20261004-test-mq-1 exited (1)

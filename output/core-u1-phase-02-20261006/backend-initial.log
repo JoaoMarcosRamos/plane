@@ -1,0 +1,446 @@
+ Container radar-core-u1-02-test-test-minio-1 Running 
+ Container radar-core-u1-02-test-test-db-1 Running 
+ Container radar-core-u1-02-test-test-redis-1 Running 
+ Container radar-core-u1-02-test-test-mq-1 Running 
+ Container radar-core-u1-02-test-test-mq-1 Waiting 
+ Container radar-core-u1-02-test-test-minio-1 Waiting 
+ Container radar-core-u1-02-test-test-db-1 Waiting 
+ Container radar-core-u1-02-test-test-redis-1 Waiting 
+ Container radar-core-u1-02-test-test-minio-1 Healthy 
+ Container radar-core-u1-02-test-test-mq-1 Healthy 
+ Container radar-core-u1-02-test-test-db-1 Healthy 
+ Container radar-core-u1-02-test-test-redis-1 Healthy 
+ Container radar-core-u1-02-test-api-tests-run-2ae599428caa Creating 
+ Container radar-core-u1-02-test-api-tests-run-2ae599428caa Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 61 items
+
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human] Using existing test database for alias 'default'...
+ERROR
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[agent] ERROR
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[system] ERROR
+plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[integration] ERROR
+plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator ERROR
+
+==================================== ERRORS ====================================
+_________ ERROR at setup of test_author_summary_uses_real_actor[human] _________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 5, 40, 127812, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    @pytest.fixture
+    def seeded(context):
+>       initialize_semantic_model(actor=context[5], workspace=context[3])
+
+plane/radar/tests/test_core_u1_phase01.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/semantic.py:14: in initialize_semantic_model
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/semantic.py:19: in <lambda>
+    operation=lambda: primitives.initialize_semantic_model(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_semantic.py:34: in initialize_semantic_model
+    return install_schema(actor=actor, workspace=workspace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:129: in operation
+    ids[key] = str(create_definition(workspace, key, spec, actor.actor_id).pk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:104: in create_definition
+    return MODELS[group].objects.create(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+plane/radar/models/core.py:103: in save
+    self.validate_domain_links()
+plane/radar/models/semantic.py:76: in validate_domain_links
+    validate_relation_descriptor(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+spec = {'allow_self': False, 'allowed_pairs': [], 'cardinality': '0..1', 'source_types': ['objective', 'management_item', 'action', 'risk', 'indicator', 'project', ...], ...}
+known_types = {'action', 'case', 'commitment', 'decision', 'document', 'indicator', ...}
+
+    def validate_relation_descriptor(spec, known_types):
+        def types(values):
+            return (
+                isinstance(values, list)
+                and bool(values)
+                and all(isinstance(v, str) and (v == "*" or re.fullmatch(r"[-a-zA-Z0-9_]{1,64}", v)) for v in values)
+                and len(set(values)) == len(values)
+                and ("*" not in values or values == ["*"])
+                and all(v == "*" or v in known_types for v in values)
+            )
+    
+        source, target = spec["source_types"], spec["target_types"]
+        if (
+            not types(source)
+            or not types(target)
+            or spec["cardinality"] not in CARDINALITIES
+            or type(spec["allow_self"]) is not bool
+        ):
+>           raise ValidationError({"relation_type": "Invalid domain, codomain, cardinality or self-link flag."})
+E           rest_framework.exceptions.ValidationError: {'relation_type': ErrorDetail(string='Invalid domain, codomain, cardinality or self-link flag.', code='invalid')}
+
+plane/radar/ontology/contracts.py:117: ValidationError
+_________ ERROR at setup of test_author_summary_uses_real_actor[agent] _________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 5, 40, 396079, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    @pytest.fixture
+    def seeded(context):
+>       initialize_semantic_model(actor=context[5], workspace=context[3])
+
+plane/radar/tests/test_core_u1_phase01.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/semantic.py:14: in initialize_semantic_model
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/semantic.py:19: in <lambda>
+    operation=lambda: primitives.initialize_semantic_model(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_semantic.py:34: in initialize_semantic_model
+    return install_schema(actor=actor, workspace=workspace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:129: in operation
+    ids[key] = str(create_definition(workspace, key, spec, actor.actor_id).pk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:104: in create_definition
+    return MODELS[group].objects.create(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+plane/radar/models/core.py:103: in save
+    self.validate_domain_links()
+plane/radar/models/semantic.py:76: in validate_domain_links
+    validate_relation_descriptor(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+spec = {'allow_self': False, 'allowed_pairs': [], 'cardinality': '0..1', 'source_types': ['objective', 'management_item', 'action', 'risk', 'indicator', 'project', ...], ...}
+known_types = {'action', 'case', 'commitment', 'decision', 'document', 'indicator', ...}
+
+    def validate_relation_descriptor(spec, known_types):
+        def types(values):
+            return (
+                isinstance(values, list)
+                and bool(values)
+                and all(isinstance(v, str) and (v == "*" or re.fullmatch(r"[-a-zA-Z0-9_]{1,64}", v)) for v in values)
+                and len(set(values)) == len(values)
+                and ("*" not in values or values == ["*"])
+                and all(v == "*" or v in known_types for v in values)
+            )
+    
+        source, target = spec["source_types"], spec["target_types"]
+        if (
+            not types(source)
+            or not types(target)
+            or spec["cardinality"] not in CARDINALITIES
+            or type(spec["allow_self"]) is not bool
+        ):
+>           raise ValidationError({"relation_type": "Invalid domain, codomain, cardinality or self-link flag."})
+E           rest_framework.exceptions.ValidationError: {'relation_type': ErrorDetail(string='Invalid domain, codomain, cardinality or self-link flag.', code='invalid')}
+
+plane/radar/ontology/contracts.py:117: ValidationError
+________ ERROR at setup of test_author_summary_uses_real_actor[system] _________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 5, 40, 609139, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    @pytest.fixture
+    def seeded(context):
+>       initialize_semantic_model(actor=context[5], workspace=context[3])
+
+plane/radar/tests/test_core_u1_phase01.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/semantic.py:14: in initialize_semantic_model
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/semantic.py:19: in <lambda>
+    operation=lambda: primitives.initialize_semantic_model(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_semantic.py:34: in initialize_semantic_model
+    return install_schema(actor=actor, workspace=workspace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:129: in operation
+    ids[key] = str(create_definition(workspace, key, spec, actor.actor_id).pk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:104: in create_definition
+    return MODELS[group].objects.create(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+plane/radar/models/core.py:103: in save
+    self.validate_domain_links()
+plane/radar/models/semantic.py:76: in validate_domain_links
+    validate_relation_descriptor(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+spec = {'allow_self': False, 'allowed_pairs': [], 'cardinality': '0..1', 'source_types': ['objective', 'management_item', 'action', 'risk', 'indicator', 'project', ...], ...}
+known_types = {'action', 'case', 'commitment', 'decision', 'document', 'indicator', ...}
+
+    def validate_relation_descriptor(spec, known_types):
+        def types(values):
+            return (
+                isinstance(values, list)
+                and bool(values)
+                and all(isinstance(v, str) and (v == "*" or re.fullmatch(r"[-a-zA-Z0-9_]{1,64}", v)) for v in values)
+                and len(set(values)) == len(values)
+                and ("*" not in values or values == ["*"])
+                and all(v == "*" or v in known_types for v in values)
+            )
+    
+        source, target = spec["source_types"], spec["target_types"]
+        if (
+            not types(source)
+            or not types(target)
+            or spec["cardinality"] not in CARDINALITIES
+            or type(spec["allow_self"]) is not bool
+        ):
+>           raise ValidationError({"relation_type": "Invalid domain, codomain, cardinality or self-link flag."})
+E           rest_framework.exceptions.ValidationError: {'relation_type': ErrorDetail(string='Invalid domain, codomain, cardinality or self-link flag.', code='invalid')}
+
+plane/radar/ontology/contracts.py:117: ValidationError
+______ ERROR at setup of test_author_summary_uses_real_actor[integration] ______
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 5, 41, 132551, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    @pytest.fixture
+    def seeded(context):
+>       initialize_semantic_model(actor=context[5], workspace=context[3])
+
+plane/radar/tests/test_core_u1_phase01.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/semantic.py:14: in initialize_semantic_model
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/semantic.py:19: in <lambda>
+    operation=lambda: primitives.initialize_semantic_model(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_semantic.py:34: in initialize_semantic_model
+    return install_schema(actor=actor, workspace=workspace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:129: in operation
+    ids[key] = str(create_definition(workspace, key, spec, actor.actor_id).pk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:104: in create_definition
+    return MODELS[group].objects.create(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+plane/radar/models/core.py:103: in save
+    self.validate_domain_links()
+plane/radar/models/semantic.py:76: in validate_domain_links
+    validate_relation_descriptor(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+spec = {'allow_self': False, 'allowed_pairs': [], 'cardinality': '0..1', 'source_types': ['objective', 'management_item', 'action', 'risk', 'indicator', 'project', ...], ...}
+known_types = {'action', 'case', 'commitment', 'decision', 'document', 'indicator', ...}
+
+    def validate_relation_descriptor(spec, known_types):
+        def types(values):
+            return (
+                isinstance(values, list)
+                and bool(values)
+                and all(isinstance(v, str) and (v == "*" or re.fullmatch(r"[-a-zA-Z0-9_]{1,64}", v)) for v in values)
+                and len(set(values)) == len(values)
+                and ("*" not in values or values == ["*"])
+                and all(v == "*" or v in known_types for v in values)
+            )
+    
+        source, target = spec["source_types"], spec["target_types"]
+        if (
+            not types(source)
+            or not types(target)
+            or spec["cardinality"] not in CARDINALITIES
+            or type(spec["allow_self"]) is not bool
+        ):
+>           raise ValidationError({"relation_type": "Invalid domain, codomain, cardinality or self-link flag."})
+E           rest_framework.exceptions.ValidationError: {'relation_type': ErrorDetail(string='Invalid domain, codomain, cardinality or self-link flag.', code='invalid')}
+
+plane/radar/ontology/contracts.py:117: ValidationError
+__ ERROR at setup of test_authorship_tracks_editor_without_replacing_creator ___
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 12, 5, 41, 312634, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    @pytest.fixture
+    def seeded(context):
+>       initialize_semantic_model(actor=context[5], workspace=context[3])
+
+plane/radar/tests/test_core_u1_phase01.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+plane/radar/commands/semantic.py:14: in initialize_semantic_model
+    return run_internal(
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:286: in run_internal
+    result = operation()
+             ^^^^^^^^^^^
+plane/radar/commands/semantic.py:19: in <lambda>
+    operation=lambda: primitives.initialize_semantic_model(actor=actor, workspace=workspace),
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/primitives_semantic.py:34: in initialize_semantic_model
+    return install_schema(actor=actor, workspace=workspace)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:149: in install_schema
+    result = run_internal(actor=actor, workspace=workspace, name="InstallWorkspaceSchema", operation=operation)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:280: in run_internal
+    return operation()
+           ^^^^^^^^^^^
+plane/radar/commands/schema.py:129: in operation
+    ids[key] = str(create_definition(workspace, key, spec, actor.actor_id).pk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/schema.py:104: in create_definition
+    return MODELS[group].objects.create(**args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+plane/radar/models/core.py:103: in save
+    self.validate_domain_links()
+plane/radar/models/semantic.py:76: in validate_domain_links
+    validate_relation_descriptor(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+spec = {'allow_self': False, 'allowed_pairs': [], 'cardinality': '0..1', 'source_types': ['objective', 'management_item', 'action', 'risk', 'indicator', 'project', ...], ...}
+known_types = {'action', 'case', 'commitment', 'decision', 'document', 'indicator', ...}
+
+    def validate_relation_descriptor(spec, known_types):
+        def types(values):
+            return (
+                isinstance(values, list)
+                and bool(values)
+                and all(isinstance(v, str) and (v == "*" or re.fullmatch(r"[-a-zA-Z0-9_]{1,64}", v)) for v in values)
+                and len(set(values)) == len(values)
+                and ("*" not in values or values == ["*"])
+                and all(v == "*" or v in known_types for v in values)
+            )
+    
+        source, target = spec["source_types"], spec["target_types"]
+        if (
+            not types(source)
+            or not types(target)
+            or spec["cardinality"] not in CARDINALITIES
+            or type(spec["allow_self"]) is not bool
+        ):
+>           raise ValidationError({"relation_type": "Invalid domain, codomain, cardinality or self-link flag."})
+E           rest_framework.exceptions.ValidationError: {'relation_type': ErrorDetail(string='Invalid domain, codomain, cardinality or self-link flag.', code='invalid')}
+
+plane/radar/ontology/contracts.py:117: ValidationError
+=========================== short test summary info ============================
+ERROR plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[human]
+ERROR plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[agent]
+ERROR plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[system]
+ERROR plane/radar/tests/test_core_u1_phase01.py::test_author_summary_uses_real_actor[integration]
+ERROR plane/radar/tests/test_core_u1_phase01.py::test_authorship_tracks_editor_without_replacing_creator
+!!!!!!!!!!!!!!!!!!!!!!!!!! stopping after 5 failures !!!!!!!!!!!!!!!!!!!!!!!!!!!
+============================== 5 errors in 3.03s ===============================
+

@@ -1,0 +1,289 @@
+- generic [active] [ref=e1]:
+  - region "Notifications" [ref=e400]:
+    - dialog "Property saved" [ref=e401]:
+      - img [ref=e403]
+      - heading "Property saved" [level=2] [ref=e407]
+      - button [ref=e409] [cursor=pointer]:
+        - img [ref=e411]
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - button "Open workspace switcher" [ref=e8] [cursor=pointer]:
+          - generic [ref=e9]:
+            - generic [ref=e10]: G
+            - heading "Governança de IA — Fase 0.5" [level=4] [ref=e11]
+          - img [ref=e12]
+        - button [ref=e17] [cursor=pointer]:
+          - img [ref=e18]
+          - textbox "Search commands..." [ref=e20]
+        - generic [ref=e22]:
+          - link [ref=e23] [cursor=pointer]:
+            - /url: /radar-governance-zero/notifications/
+            - img [ref=e26]
+          - button "Help" [ref=e28] [cursor=pointer]:
+            - img [ref=e30]
+          - link "Star us on GitHub" [ref=e32] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+            - img [ref=e33]
+            - generic [ref=e34]: Star us on GitHub
+          - button "Open user menu" [ref=e37] [cursor=pointer]:
+            - img "radar-tester" [ref=e39]:
+              - generic [ref=e40]: R
+      - generic [ref=e41]:
+        - generic [ref=e45]:
+          - link "Projects" [ref=e46] [cursor=pointer]:
+            - /url: /radar-governance-zero/
+            - img [ref=e48]
+            - generic [ref=e51]: Projects
+          - link "RADAR" [ref=e52] [cursor=pointer]:
+            - /url: /radar-governance-zero/radar/
+            - img [ref=e54]
+            - generic [ref=e61]: RADAR
+          - link "Settings" [ref=e63] [cursor=pointer]:
+            - /url: /radar-governance-zero/settings/
+            - img [ref=e65]
+            - generic [ref=e67]: Settings
+        - generic [ref=e70]:
+          - complementary "Main sidebar" [ref=e71]:
+            - complementary [ref=e72]:
+              - generic [ref=e73]:
+                - generic [ref=e75]:
+                  - generic [ref=e76]: RADAR
+                  - button "Collapse sidebar" [ref=e78] [cursor=pointer]:
+                    - img [ref=e80]
+                - generic [ref=e83]:
+                  - navigation "RADAR" [ref=e84]:
+                    - link "Today" [ref=e85] [cursor=pointer]:
+                      - /url: /radar-governance-zero/radar/today/
+                      - generic [ref=e87]:
+                        - img [ref=e88]
+                        - paragraph [ref=e90]: Today
+                    - link "Objects" [ref=e91] [cursor=pointer]:
+                      - /url: /radar-governance-zero/radar/objects/
+                      - generic [ref=e93]:
+                        - img [ref=e94]
+                        - paragraph [ref=e96]: Objects
+                    - link "Decisions" [ref=e97] [cursor=pointer]:
+                      - /url: /radar-governance-zero/radar/decisions/
+                      - generic [ref=e99]:
+                        - img [ref=e100]
+                        - paragraph [ref=e102]: Decisions
+                    - link "Risks" [ref=e103] [cursor=pointer]:
+                      - /url: /radar-governance-zero/radar/risks/
+                      - generic [ref=e105]:
+                        - img [ref=e106]
+                        - paragraph [ref=e108]: Risks
+                  - navigation "RADAR spike" [ref=e110]:
+                    - link "Spike Components" [ref=e111] [cursor=pointer]:
+                      - /url: /radar-governance-zero/radar/spike/
+                      - generic [ref=e113]:
+                        - img [ref=e114]
+                        - paragraph [ref=e116]: Spike Components
+                - button "Open paid plans' modal" [ref=e118] [cursor=pointer]:
+                  - generic [ref=e119]: Community
+              - separator "Resize sidebar" [ref=e120]
+          - complementary "Sidebar peek view":
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: RADAR
+                    - generic:
+                      - button "Collapse sidebar":
+                        - generic:
+                          - img
+                - generic:
+                  - generic:
+                    - navigation "RADAR":
+                      - link "Today":
+                        - /url: /radar-governance-zero/radar/today/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Today
+                      - link "Objects":
+                        - /url: /radar-governance-zero/radar/objects/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Objects
+                      - link "Decisions":
+                        - /url: /radar-governance-zero/radar/decisions/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Decisions
+                      - link "Risks":
+                        - /url: /radar-governance-zero/radar/risks/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Risks
+                    - navigation "RADAR spike":
+                      - link "Spike Components":
+                        - /url: /radar-governance-zero/radar/spike/
+                        - generic:
+                          - generic:
+                            - img
+                            - paragraph: Spike Components
+                - generic:
+                  - button "Open paid plans' modal":
+                    - generic: Community
+              - separator "Resize sidebar"
+          - main [ref=e121]:
+            - navigation "Breadcrumb" [ref=e210]:
+              - list [ref=e211]:
+                - listitem [ref=e212]:
+                  - link "RADAR" [ref=e213] [cursor=pointer]:
+                    - /url: /radar-governance-zero/radar/
+                    - generic [ref=e214]:
+                      - img [ref=e216]
+                      - generic [ref=e223]: RADAR
+                - listitem [ref=e224]:
+                  - img [ref=e225]
+                - listitem [ref=e227]:
+                  - link "Objects" [ref=e228] [cursor=pointer]:
+                    - /url: /radar-governance-zero/radar/objects/
+                    - generic [ref=e230]: Objects
+                - listitem [ref=e231]:
+                  - img [ref=e232]
+                - listitem [ref=e234]:
+                  - generic [ref=e236]: Object
+            - generic [ref=e239]:
+              - link "All objects" [ref=e240] [cursor=pointer]:
+                - /url: /radar-governance-zero/radar/objects/
+              - generic [ref=e241]:
+                - paragraph [ref=e242]: Objective
+                - generic [ref=e243]:
+                  - generic [ref=e245]:
+                    - text: Title
+                    - generic [ref=e246]: "*"
+                  - textbox "Title" [ref=e249]: Implantar Governança de IA
+                - generic [ref=e250]:
+                  - heading "Content" [level=2] [ref=e251]
+                  - generic [ref=e255]:
+                    - paragraph [ref=e257]: "Cenário demonstrativo de Governança de IA: Implantar Governança de IA."
+                    - generic:
+                      - button:
+                        - generic:
+                          - img
+                        - generic:
+                          - img
+                - generic [ref=e258]:
+                  - term [ref=e259]: Created by
+                  - definition [ref=e260]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=e261]: Updated by
+                  - definition [ref=e262]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=e263]: Version
+                  - definition [ref=e264]: "9"
+                - button "Save changes" [ref=e265] [cursor=pointer]:
+                  - generic [ref=e266]: Save changes
+              - generic [ref=e267]:
+                - region "Properties" [ref=e268]:
+                  - heading "Properties" [level=2] [ref=e269]
+                  - generic [ref=e270]:
+                    - generic [ref=e271]:
+                      - generic [ref=e272]:
+                        - generic [ref=e274]: Description
+                        - textbox "Description" [ref=e277]
+                      - generic [ref=e278]:
+                        - generic [ref=e279]: Saved
+                        - button "Save Description" [disabled] [ref=e281]:
+                          - generic [ref=e282]: Save
+                    - generic [ref=e283]:
+                      - generic [ref=e284]:
+                        - generic [ref=e286]: Due date
+                        - textbox "Due date" [ref=e289]: 2026-12-31
+                      - generic [ref=e290]:
+                        - generic [ref=e291]: Saved
+                        - generic [ref=e292]:
+                          - button "Clear Due date" [ref=e293] [cursor=pointer]:
+                            - generic [ref=e294]: Clear
+                          - button "Save Due date" [disabled] [ref=e295]:
+                            - generic [ref=e296]: Save
+                    - generic [ref=e297]:
+                      - generic [ref=e298]:
+                        - generic [ref=e300]: Outcome
+                        - textbox "Outcome" [ref=e303]: Uso de IA governado, com decisões e riscos rastreáveis
+                      - generic [ref=e304]:
+                        - generic [ref=e305]: Saved
+                        - button "Save Outcome" [disabled] [ref=e307]:
+                          - generic [ref=e308]: Save
+                    - generic [ref=e309]:
+                      - generic [ref=e310]:
+                        - generic [ref=e311]: Priority
+                        - combobox "Priority" [ref=e312] [cursor=pointer]:
+                          - generic "Medium" [ref=e313]
+                          - img [ref=e315]
+                        - textbox [ref=e317]: medium
+                      - generic [ref=e318]:
+                        - generic [ref=e319]: Saved
+                        - button "Save Priority" [disabled] [ref=e321]:
+                          - generic [ref=e322]: Save
+                    - generic [ref=e323]:
+                      - generic [ref=e324]:
+                        - generic [ref=e326]: Progress
+                        - spinbutton "Progress" [ref=e329]: "25"
+                      - generic [ref=e330]:
+                        - generic [ref=e331]: Saved
+                        - button "Save Progress" [disabled] [ref=e333]:
+                          - generic [ref=e334]: Save
+                    - generic [ref=e335]:
+                      - generic [ref=e336]:
+                        - generic [ref=e338]: Start date
+                        - textbox "Start date" [ref=e341]: 2026-10-03
+                      - generic [ref=e342]:
+                        - generic [ref=e343]: Saved
+                        - generic [ref=e344]:
+                          - button "Clear Start date" [ref=e345] [cursor=pointer]:
+                            - generic [ref=e346]: Clear
+                          - button "Save Start date" [disabled] [ref=e347]:
+                            - generic [ref=e348]: Save
+                    - generic [ref=e349]:
+                      - generic [ref=e350]:
+                        - generic [ref=e351]: Status
+                        - combobox "Status" [ref=e352] [cursor=pointer]:
+                          - generic "Active" [ref=e353]
+                          - img [ref=e355]
+                        - textbox [ref=e357]: active
+                      - generic [ref=e358]:
+                        - generic [ref=e359]: Saved
+                        - button "Save Status" [disabled] [ref=e361]:
+                          - generic [ref=e362]: Save
+                    - generic [ref=e363]:
+                      - generic [ref=e364]:
+                        - generic [ref=e365]: Timeframe
+                        - combobox "Timeframe" [ref=e366] [cursor=pointer]:
+                          - generic "Short term" [ref=e367]
+                          - img [ref=e369]
+                        - textbox [ref=e371]: short_term
+                      - generic [ref=e372]:
+                        - generic [ref=e373]: Saved
+                        - button "Save Timeframe" [disabled] [ref=e375]:
+                          - generic [ref=e376]: Save
+                - region "Relations" [ref=e377]:
+                  - generic [ref=e378]:
+                    - heading "Relations" [level=2] [ref=e379]
+                    - button "Add relation" [ref=e380] [cursor=pointer]:
+                      - generic [ref=e381]: Add relation
+                  - list
+                  - paragraph [ref=e382]: No outgoing relations.
+                - region "Backlinks" [ref=e383]:
+                  - heading "Backlinks" [level=2] [ref=e384]
+                  - list [ref=e385]:
+                    - listitem [ref=e386]:
+                      - generic [ref=e387]: ←
+                      - generic [ref=e388]: Advanced by
+                      - link "Sandbox IA" [ref=e389] [cursor=pointer]:
+                        - /url: /radar-governance-zero/radar/objects/6a440ebe-520a-4fa6-b935-aefe08895a76/
+                      - generic [ref=e390]: Project
+                      - button "Remove Advances relation with Sandbox IA" [ref=e391] [cursor=pointer]:
+                        - generic [ref=e392]: Remove
+                    - listitem [ref=e393]:
+                      - generic [ref=e394]: ←
+                      - generic [ref=e395]: Threatened by
+                      - link "Licenciamento pode atrasar" [ref=e396] [cursor=pointer]:
+                        - /url: /radar-governance-zero/radar/objects/1d84203c-29a2-4922-bc04-5f4275fb2d24/
+                      - generic [ref=e397]: Risk
+                      - button "Remove Threatens relation with Licenciamento pode atrasar" [ref=e398] [cursor=pointer]:
+                        - generic [ref=e399]: Remove

@@ -5,5 +5,6 @@
  */
 
 import type { RouteConfigEntry } from "@react-router/dev/routes";
+import { radarRoutes } from "./radar";
 
-export const extendedRoutes: RouteConfigEntry[] = [];
+export const extendedRoutes: RouteConfigEntry[] = [...radarRoutes];

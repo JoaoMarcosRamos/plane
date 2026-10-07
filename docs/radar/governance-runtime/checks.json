@@ -1,0 +1,36 @@
+{
+  "backend": {
+    "tests": 130,
+    "new_governance_tests": 12,
+    "result": "PASS",
+    "settings": "plane.settings.test",
+    "compose_project": "plane-radar-tests",
+    "image": "plane-radar-api:latest",
+    "current_source_mounted": true,
+    "image_rebuilt": false,
+    "teardown": "down -v completed for test project only"
+  },
+  "frontend": {
+    "tests": 42,
+    "result": "PASS",
+    "types": "PASS",
+    "format": "PASS",
+    "strict_radar_lint": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "new_backend_ruff": "PASS",
+  "migration_drift": "No changes detected in radar",
+  "git_diff_check": "PASS",
+  "ontology_snapshot_matches_source": true,
+  "ontology_version": "3.2.0",
+  "upstream_touch_points_added_in_05_06": 0,
+  "formal_decision": "CONDITIONAL GO",
+  "remaining_release_conditions": [
+    "valid attachment upload/download with isolated storage",
+    "pristine baseline replay",
+    "version delivery and measure real upgrade maintenance",
+    "reevaluate UI reuse with same capability inventory"
+  ]
+}

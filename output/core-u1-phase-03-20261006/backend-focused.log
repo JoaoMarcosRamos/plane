@@ -1,0 +1,177 @@
+ Container radar-core-u1-phase03-test-db-1 Running 
+ Container radar-core-u1-phase03-test-redis-1 Running 
+ Container radar-core-u1-phase03-test-mq-1 Running 
+ Container radar-core-u1-phase03-test-minio-1 Running 
+ Container radar-core-u1-phase03-test-minio-1 Waiting 
+ Container radar-core-u1-phase03-test-db-1 Waiting 
+ Container radar-core-u1-phase03-test-redis-1 Waiting 
+ Container radar-core-u1-phase03-test-mq-1 Waiting 
+ Container radar-core-u1-phase03-test-redis-1 Healthy 
+ Container radar-core-u1-phase03-test-db-1 Healthy 
+ Container radar-core-u1-phase03-test-minio-1 Healthy 
+ Container radar-core-u1-phase03-test-mq-1 Healthy 
+ Container radar-core-u1-phase03-api-tests-run-5069ec28f4ee Creating 
+ Container radar-core-u1-phase03-api-tests-run-5069ec28f4ee Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 95 items
+
+plane/radar/tests/test_commands.py::test_all_mutations_capture_complete_provenance_and_atomic_events Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_commands.py::test_agent_pending_accept_execute_preserves_both_actors_and_is_idempotent PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[agent] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[system] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[integration] PASSED
+plane/radar/tests/test_commands.py::test_decision_approval_taken_action_and_completion_workflow PASSED
+plane/radar/tests/test_commands.py::test_generic_writers_cannot_bypass_specialized_guards PASSED
+plane/radar/tests/test_commands.py::test_stale_revision_modified_intent_and_approval_expiry_do_not_write PASSED
+plane/radar/tests/test_commands.py::test_grant_revocation_scope_and_policy_changes_are_enforced PASSED
+plane/radar/tests/test_commands.py::test_failure_rolls_back_domain_provenance_outbox_and_context PASSED
+plane/radar/tests/test_commands.py::test_final_patch_validates_dates_atomically_and_noop_emits_no_fact PASSED
+plane/radar/tests/test_commands.py::test_api_same_layer_provenance_forgery_and_required_snapshot PASSED
+plane/radar/tests/test_commands.py::test_cross_workspace_and_independent_approver_enforced FAILED
+plane/radar/tests/test_commands.py::test_schema_default_change_invalidates_review_and_execution PASSED
+plane/radar/tests/test_commands.py::test_generic_specialized_creation_checks_embedded_reference_versions_and_scope PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[title-42] PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[description-True] PASSED
+plane/radar/tests/test_commands.py::test_observation_timestamp_requires_explicit_timezone PASSED
+plane/radar/tests/test_core_u0.py::test_names_from_risk_and_decision_are_not_globally_reserved PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[command] PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[primitive] PASSED
+plane/radar/tests/test_core_u0.py::test_derived_authority_follows_workspace_rule_keys PASSED
+plane/radar/tests/test_core_u0.py::test_invalid_batch_rolls_back_values_versions_events_and_provenance PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules0] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules1] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules2] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules3] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation_bytes-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation_bytes-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_mandatory_relation_allows_assembly_but_guards_activation_and_binding PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_command_context_still_rejects_foreign_fks_and_workspace_reassignment PASSED
+plane/radar/tests/test_core_u0.py::test_successful_command_flush_records_provenance_and_exact_replay PASSED
+plane/radar/tests/test_core_u0.py::test_command_context_cannot_forge_provenance_or_move_properties_between_types PASSED
+plane/radar/tests/test_core_u0.py::test_rules_contract_is_server_owned_and_removed_from_replay_input PASSED
+plane/radar/tests/test_core_u0.py::test_internal_object_write_revalidates_bound_mandatory_relations PASSED
+plane/radar/tests/test_collaboration.py::test_comment_lifecycle_authorship_revision_activity_and_replay PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[EditComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[RenameAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_attachment_real_bytes_private_download_rename_delete_and_replay PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[anonymous] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[outsider] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_membership] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_user] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[guest] PASSED
+plane/radar/tests/test_collaboration.py::test_cross_workspace_and_cross_object_items_are_not_accessible PASSED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[empty] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[oversized] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_read_and_database_failures_are_atomic PASSED
+plane/radar/tests/test_collaboration.py::test_upload_strict_contract_conflict_and_revocation PASSED
+plane/radar/tests/test_collaboration.py::test_commands_reject_forged_author_empty_text_and_missing_upload PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[../a.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[a\\b.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[bad\n.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[..] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[ ] PASSED
+plane/radar/tests/test_collaboration.py::test_deleted_object_blocks_discussion_upload_download PASSED
+plane/radar/tests/test_collaboration.py::test_activity_pagination_is_scoped_and_reads_do_not_mutate PASSED
+plane/radar/tests/test_collaboration.py::test_bulk_writes_and_payload_replacement_cannot_bypass_commands PASSED
+plane/radar/tests/test_collaboration.py::test_storage_integrity_failure_never_serves_corrupted_bytes PASSED
+plane/radar/tests/test_runtime_contract.py::test_prepare_approve_replay_preserves_actor_and_only_domain_ids PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[reject] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[expire] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[grant] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[version] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[forged_hash] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[credential] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[scope] PASSED
+plane/radar/tests/test_runtime_contract.py::test_delegate_supersedes_commitment_and_requires_owner PASSED
+plane/radar/tests/test_runtime_contract.py::test_measurement_review_and_temporal_rules PASSED
+plane/radar/tests/test_runtime_contract.py::test_authenticated_scope_and_source_cannot_be_supplied_by_payload PASSED
+plane/radar/tests/test_runtime_contract.py::test_actual_cos_http_adapter_prepares_and_replays SKIPPED
+plane/radar/tests/test_runtime_contract.py::test_ui_and_runtime_command_port_use_the_same_catalog PASSED
+plane/radar/tests/test_runtime_contract.py::test_commitment_identity_requires_its_mandatory_action PASSED
+plane/radar/tests/test_runtime_contract.py::test_human_collaboration_commands_are_not_advertised_to_runtime PASSED
+plane/radar/tests/test_commands.py::test_concurrent_same_command_key_commits_once PASSED
+plane/radar/tests/test_collaboration.py::test_concurrent_comment_edit_checks_child_revision PASSED
+plane/radar/tests/test_collaboration.py::test_concurrent_same_upload_intention_commits_one_payload PASSED
+
+=================================== FAILURES ===================================
+____________ test_cross_workspace_and_independent_approver_enforced ____________
+
+ready = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u..., 18, 59, 1, 577244, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+
+    def test_cross_workspace_and_independent_approver_enforced(ready):
+        ctx = ready
+        decision, document, person = decision_with_evidence(ctx)
+        configure_person_identity(
+            actor=ctx[5], workspace=ctx[3], user_id=ctx[0].pk, person_id=create(ctx, "person").pk, can_approve=True
+        )
+        own_person = person_identity_for(ctx, ctx[0].pk)
+        with pytest.raises(PermissionDenied):
+            execute(
+                ctx,
+                "ApproveDecision",
+                {"decision_id": str(decision.pk), "approver_person_id": str(own_person), "rationale": "Self approval"},
+            )
+        with pytest.raises(PermissionDenied):
+            execute(
+                ctx,
+                "ApproveDecision",
+                {"decision_id": str(decision.pk), "approver_person_id": str(person.pk), "rationale": "Fake identity"},
+            )
+        WorkspaceMember.objects.create(workspace=ctx[4], member=ctx[0], role=15)
+        foreign = envelope(
+            ctx,
+            "CompleteAction",
+            {"action_id": str(decision.pk), "evidence_id": str(document.pk), "outcome": "Wrong scope"},
+        )
+        foreign.pop("workspace_id")
+        with pytest.raises(NotFound):
+>           execute_command(actor=ctx[5], workspace=ctx[4], envelope=foreign)
+
+plane/radar/tests/test_commands.py:488: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/contextlib.py:81: in inner
+    return func(*args, **kwds)
+           ^^^^^^^^^^^^^^^^^^^
+plane/radar/commands/execution.py:402: in execute_command
+    require_schema(workspace)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+workspace = <Workspace: Other>
+
+    def require_schema(workspace):
+        if not schema_revision(workspace):
+>           raise SchemaConflict({"code": "schema_not_installed", "detail": "Install the workspace schema explicitly."})
+E           plane.radar.workspace_schema.SchemaConflict: {'code': ErrorDetail(string='schema_not_installed', code='schema_conflict'), 'detail': ErrorDetail(string='Install the workspace schema explicitly.', code='schema_conflict')}
+
+plane/radar/workspace_schema.py:32: SchemaConflict
+-------- generated xml file: /code/output/core-u1-phase-03-focused.xml ---------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_commands.py::test_cross_workspace_and_independent_approver_enforced
+=================== 1 failed, 93 passed, 1 skipped in 51.62s ===================
+

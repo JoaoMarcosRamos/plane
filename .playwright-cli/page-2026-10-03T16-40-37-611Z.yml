@@ -1,0 +1,223 @@
+- generic [active] [ref=f12e1]:
+  - generic:
+    - region "Notifications"
+  - main [ref=f12e3]:
+    - generic [ref=f12e4]:
+      - generic [ref=f12e5]:
+        - button "Open workspace switcher" [ref=f12e8] [cursor=pointer]:
+          - generic [ref=f12e9]:
+            - generic [ref=f12e10]: R
+            - heading "RADAR Semantic UI" [level=4] [ref=f12e11]
+        - button [ref=f12e17] [cursor=pointer]:
+          - textbox "Search commands..." [ref=f12e20]
+        - generic [ref=f12e22]:
+          - link [ref=f12e23] [cursor=pointer]:
+            - /url: /radar-ui-zero/notifications/
+          - button "Help" [ref=f12e28] [cursor=pointer]
+          - link "Star us on GitHub" [ref=f12e32] [cursor=pointer]:
+            - /url: https://github.com/makeplane/plane
+          - button "Open user menu" [ref=f12e37] [cursor=pointer]:
+            - img "radar-tester" [ref=f12e39]:
+              - generic [ref=f12e40]: R
+      - generic [ref=f12e41]:
+        - generic [ref=f12e45]:
+          - link "Projects" [ref=f12e46] [cursor=pointer]:
+            - /url: /radar-ui-zero/
+          - link "RADAR" [ref=f12e52] [cursor=pointer]:
+            - /url: /radar-ui-zero/radar/
+          - link "Settings" [ref=f12e63] [cursor=pointer]:
+            - /url: /radar-ui-zero/settings/
+        - generic [ref=f12e70]:
+          - complementary "Main sidebar" [ref=f12e71]:
+            - complementary [ref=f12e72]:
+              - generic [ref=f12e73]:
+                - generic [ref=f12e75]:
+                  - generic [ref=f12e76]: RADAR
+                  - button "Collapse sidebar" [ref=f12e78] [cursor=pointer]
+                - generic [ref=f12e83]:
+                  - navigation "RADAR" [ref=f12e84]:
+                    - link [ref=f12e85] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/today/
+                      - paragraph [ref=f12e90]: Today
+                    - link [ref=f12e91] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/objects/
+                      - paragraph [ref=f12e96]: Objects
+                    - link [ref=f12e97] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/decisions/
+                      - paragraph [ref=f12e102]: Decisions
+                    - link [ref=f12e103] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/risks/
+                      - paragraph [ref=f12e108]: Risks
+                  - navigation "RADAR spike" [ref=f12e110]:
+                    - link [ref=f12e111] [cursor=pointer]:
+                      - /url: /radar-ui-zero/radar/spike/
+                      - paragraph [ref=f12e116]: Spike Components
+                - button "Open paid plans' modal" [ref=f12e118] [cursor=pointer]:
+                  - generic [ref=f12e119]: Community
+              - separator "Resize sidebar" [ref=f12e120]
+          - complementary "Sidebar peek view":
+            - complementary:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic: RADAR
+                    - generic:
+                      - button "Collapse sidebar"
+                - generic:
+                  - generic:
+                    - navigation "RADAR":
+                      - link "Today":
+                        - /url: /radar-ui-zero/radar/today/
+                        - generic:
+                          - generic:
+                            - paragraph: Today
+                      - link "Objects":
+                        - /url: /radar-ui-zero/radar/objects/
+                        - generic:
+                          - generic:
+                            - paragraph: Objects
+                      - link "Decisions":
+                        - /url: /radar-ui-zero/radar/decisions/
+                        - generic:
+                          - generic:
+                            - paragraph: Decisions
+                      - link "Risks":
+                        - /url: /radar-ui-zero/radar/risks/
+                        - generic:
+                          - generic:
+                            - paragraph: Risks
+                    - navigation "RADAR spike":
+                      - link "Spike Components":
+                        - /url: /radar-ui-zero/radar/spike/
+                        - generic:
+                          - generic:
+                            - paragraph: Spike Components
+                - generic:
+                  - button "Open paid plans' modal":
+                    - generic: Community
+              - separator "Resize sidebar"
+          - main [ref=f12e121]:
+            - navigation "Breadcrumb" [ref=f12e128]:
+              - list [ref=f12e129]:
+                - listitem [ref=f12e130]:
+                  - link "RADAR" [ref=f12e131] [cursor=pointer]:
+                    - /url: /radar-ui-zero/radar/
+                - listitem [aria-hidden] [ref=f12e142]
+                - listitem [ref=f12e145]:
+                  - link "Objects" [ref=f12e146] [cursor=pointer]:
+                    - /url: /radar-ui-zero/radar/objects/
+                - listitem [aria-hidden] [ref=f12e149]
+                - listitem [ref=f12e152]:
+                  - generic [ref=f12e153]: Object
+            - generic [ref=f12e157]:
+              - link "All objects" [ref=f12e158] [cursor=pointer]:
+                - /url: /radar-ui-zero/radar/objects/
+              - generic [ref=f12e159]:
+                - paragraph [ref=f12e160]: Objective
+                - generic [ref=f12e161]:
+                  - generic [ref=f12e163]:
+                    - text: Title
+                    - generic [aria-hidden] [ref=f12e164]: "*"
+                  - textbox "Title" [ref=f12e167]: UI — Governança de IA (rascunho)
+                - generic [ref=f12e168]:
+                  - heading "Content" [level=2] [ref=f12e169]
+                  - generic [ref=f12e173]:
+                    - paragraph [ref=f12e175]: Write here. Select text to format, type / for blocks, @ to mention a member.
+                    - generic:
+                      - button
+                - generic [ref=f12e176]:
+                  - term [ref=f12e177]: Created by
+                  - definition [ref=f12e178]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=f12e179]: Updated by
+                  - definition [ref=f12e180]: 44bd8c7c-ca1e-4eb3-b1a7-f016262d6a16
+                  - term [ref=f12e181]: Version
+                  - definition [ref=f12e182]: "2"
+                - button "Save changes" [ref=f12e183] [cursor=pointer]
+              - generic [ref=f12e185]:
+                - region [ref=f12e186]:
+                  - heading "Properties" [level=2] [ref=f12e187]
+                  - generic [ref=f12e188]:
+                    - generic [ref=f12e189]:
+                      - generic [ref=f12e190]:
+                        - generic [ref=f12e191]: Description
+                        - textbox "Description" [ref=f12e195]
+                      - generic [ref=f12e196]:
+                        - generic [ref=f12e197]: Saved
+                        - button "Save Description" [disabled] [ref=f12e199]:
+                          - generic [ref=f12e200]: Save
+                    - generic [ref=f12e201]:
+                      - generic [ref=f12e202]:
+                        - generic [ref=f12e203]: Due date
+                        - textbox "Due date" [ref=f12e207]: 2026-10-02
+                      - generic [ref=f12e208]:
+                        - generic [ref=f12e209]: Not set
+                        - button "Save Due date" [ref=f12e211] [cursor=pointer]:
+                          - generic [ref=f12e212]: Save
+                      - alert [ref=f12e315]: due_date cannot precede start_date.
+                    - generic [ref=f12e213]:
+                      - generic [ref=f12e214]:
+                        - generic [ref=f12e215]: Outcome
+                        - textbox "Outcome" [ref=f12e219]: Resultado ainda não salvo
+                      - generic [ref=f12e220]:
+                        - generic [ref=f12e221]: Saved
+                        - button "Save Outcome" [ref=f12e223] [cursor=pointer]:
+                          - generic [ref=f12e224]: Save
+                    - generic [ref=f12e225]:
+                      - generic [ref=f12e226]:
+                        - generic [ref=f12e227]: Priority
+                        - combobox "Priority" [ref=f12e228] [cursor=pointer]:
+                          - generic "Medium" [ref=f12e229]
+                        - textbox [aria-hidden] [ref=f12e233]: medium
+                      - generic [ref=f12e234]:
+                        - generic [ref=f12e235]: Saved
+                        - button "Save Priority" [disabled] [ref=f12e237]:
+                          - generic [ref=f12e238]: Save
+                    - generic [ref=f12e239]:
+                      - generic [ref=f12e240]:
+                        - generic [ref=f12e241]: Progress
+                        - spinbutton "Progress" [ref=f12e245]: "0"
+                      - generic [ref=f12e246]:
+                        - generic [ref=f12e247]: Saved
+                        - button "Save Progress" [disabled] [ref=f12e249]:
+                          - generic [ref=f12e250]: Save
+                    - generic [ref=f12e251]:
+                      - generic [ref=f12e252]:
+                        - generic [ref=f12e253]: Start date
+                        - textbox "Start date" [ref=f12e257]: 2026-10-03
+                      - generic [ref=f12e258]:
+                        - generic [ref=f12e259]: Saved
+                        - generic [ref=f12e260]:
+                          - button "Clear Start date" [ref=f12e313] [cursor=pointer]:
+                            - generic [ref=f12e314]: Clear
+                          - button "Save Start date" [disabled] [ref=f12e261]:
+                            - generic [ref=f12e262]: Save
+                    - generic [ref=f12e263]:
+                      - generic [ref=f12e264]:
+                        - generic [ref=f12e265]: Status
+                        - combobox "Status" [ref=f12e266] [cursor=pointer]:
+                          - generic "Draft" [ref=f12e267]
+                        - textbox [aria-hidden] [ref=f12e271]: draft
+                      - generic [ref=f12e272]:
+                        - generic [ref=f12e273]: Saved
+                        - button "Save Status" [disabled] [ref=f12e275]:
+                          - generic [ref=f12e276]: Save
+                    - generic [ref=f12e277]:
+                      - generic [ref=f12e278]:
+                        - generic [ref=f12e279]: Timeframe
+                        - combobox "Timeframe" [ref=f12e280] [cursor=pointer]:
+                          - generic "Short term" [ref=f12e281]
+                        - textbox [aria-hidden] [ref=f12e285]: short_term
+                      - generic [ref=f12e286]:
+                        - generic [ref=f12e287]: Saved
+                        - button "Save Timeframe" [disabled] [ref=f12e289]:
+                          - generic [ref=f12e290]: Save
+                - region [ref=f12e291]:
+                  - generic [ref=f12e292]:
+                    - heading "Relations" [level=2] [ref=f12e293]
+                    - button "Add relation" [ref=f12e294] [cursor=pointer]
+                  - list
+                  - paragraph [ref=f12e296]: No outgoing relations.
+                - region [ref=f12e297]:
+                  - heading "Backlinks" [level=2] [ref=f12e298]
+                  - list
+                  - paragraph [ref=f12e299]: No incoming relations.

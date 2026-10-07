@@ -1,0 +1,617 @@
+ Container radar-core-u0-test-api-tests-run-41122dfdf9d7 Creating 
+ Container radar-core-u0-test-api-tests-run-41122dfdf9d7 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2 files reformatted, 3 files left unchanged
+All checks passed!
+No changes detected in app 'radar'
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 300 items
+
+plane/radar/tests/test_agent_config.py::test_defaults_are_structured_read_only_and_secret_free Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_agent_config.py::test_save_reload_version_and_provenance_without_domain_write PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[extra] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[nested_extra] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[markdown] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[approval] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[read_only] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[bool_string] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[empty_name] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[oversize] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[duplicate] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[foreign_object] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[command] PASSED
+plane/radar/tests/test_agent_config.py::test_invalid_configuration_rejected_atomically[version_string] PASSED
+plane/radar/tests/test_agent_config.py::test_only_own_admin_binding_is_editable_and_revocation_hides_it PASSED
+plane/radar/tests/test_agent_config.py::test_configuration_cannot_expand_explicit_ceiling[object_types] PASSED
+plane/radar/tests/test_agent_config.py::test_configuration_cannot_expand_explicit_ceiling[fields] PASSED
+plane/radar/tests/test_agent_config.py::test_permissions_filter_objects_relations_and_fields_before_run PASSED
+plane/radar/tests/test_agent_config.py::test_config_edit_invalidates_run_and_preserves_saved_intent PASSED
+plane/radar/tests/test_agent_config.py::test_reduced_grant_is_intersected_even_with_old_wildcard_configuration PASSED
+plane/radar/tests/test_agent_config.py::test_cross_workspace_and_guest_do_not_read_configuration PASSED
+plane/radar/tests/test_agent_config.py::test_configured_http_cycle_preserves_identity_policy_and_scope SKIPPED
+plane/radar/tests/test_agent_runtime.py::test_session_identity_not_payload_and_retries_preserve_snapshot PASSED
+plane/radar/tests/test_agent_runtime.py::test_recovery_after_response_loss_uses_same_remote_run PASSED
+plane/radar/tests/test_agent_runtime.py::test_cross_user_and_revocation_prevent_remote_calls PASSED
+plane/radar/tests/test_agent_runtime.py::test_changed_context_or_policy_blocks_resume PASSED
+plane/radar/tests/test_agent_runtime.py::test_context_hides_unbound_objects_and_limits_text PASSED
+plane/radar/tests/test_agent_runtime.py::test_plane_binding_cannot_impersonate_telegram PASSED
+plane/radar/tests/test_agent_runtime.py::test_real_http_product_cycle SKIPPED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[policy] PASSED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[binding] PASSED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[membership] PASSED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[person] PASSED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[deleted_person] PASSED
+plane/radar/tests/test_agent_runtime.py::test_authority_changes_block_existing_runs[schema] PASSED
+plane/radar/tests/test_collaboration.py::test_comment_lifecycle_authorship_revision_activity_and_replay PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[EditComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteComment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[RenameAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_other_member_cannot_edit_or_delete[DeleteAttachment] PASSED
+plane/radar/tests/test_collaboration.py::test_attachment_real_bytes_private_download_rename_delete_and_replay PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[anonymous] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[outsider] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_membership] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[inactive_user] PASSED
+plane/radar/tests/test_collaboration.py::test_read_write_and_download_membership[guest] PASSED
+plane/radar/tests/test_collaboration.py::test_cross_workspace_and_cross_object_items_are_not_accessible FAILED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[empty] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_size_rejected_without_any_persistence[oversized] PASSED
+plane/radar/tests/test_collaboration.py::test_upload_read_and_database_failures_are_atomic PASSED
+plane/radar/tests/test_collaboration.py::test_upload_strict_contract_conflict_and_revocation PASSED
+plane/radar/tests/test_collaboration.py::test_commands_reject_forged_author_empty_text_and_missing_upload PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[../a.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[a\\b.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[bad\n.txt] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[..] PASSED
+plane/radar/tests/test_collaboration.py::test_filename_validation[ ] PASSED
+plane/radar/tests/test_collaboration.py::test_deleted_object_blocks_discussion_upload_download FAILED
+plane/radar/tests/test_collaboration.py::test_activity_pagination_is_scoped_and_reads_do_not_mutate PASSED
+plane/radar/tests/test_collaboration.py::test_bulk_writes_and_payload_replacement_cannot_bypass_commands PASSED
+plane/radar/tests/test_collaboration.py::test_storage_integrity_failure_never_serves_corrupted_bytes PASSED
+plane/radar/tests/test_commands.py::test_all_mutations_capture_complete_provenance_and_atomic_events PASSED
+plane/radar/tests/test_commands.py::test_agent_pending_accept_execute_preserves_both_actors_and_is_idempotent PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[agent] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[system] PASSED
+plane/radar/tests/test_commands.py::test_nonhuman_requires_explicit_grant_and_records_principal_when_permitted[integration] PASSED
+plane/radar/tests/test_commands.py::test_decision_approval_taken_action_and_completion_workflow PASSED
+plane/radar/tests/test_commands.py::test_generic_writers_cannot_bypass_specialized_guards PASSED
+plane/radar/tests/test_commands.py::test_stale_revision_modified_intent_and_approval_expiry_do_not_write PASSED
+plane/radar/tests/test_commands.py::test_grant_revocation_scope_and_policy_changes_are_enforced PASSED
+plane/radar/tests/test_commands.py::test_failure_rolls_back_domain_provenance_outbox_and_context PASSED
+plane/radar/tests/test_commands.py::test_final_patch_validates_dates_atomically_and_noop_emits_no_fact PASSED
+plane/radar/tests/test_commands.py::test_api_same_layer_provenance_forgery_and_required_snapshot PASSED
+plane/radar/tests/test_commands.py::test_cross_workspace_and_independent_approver_enforced PASSED
+plane/radar/tests/test_commands.py::test_schema_default_change_invalidates_review_and_execution PASSED
+plane/radar/tests/test_commands.py::test_generic_specialized_creation_checks_embedded_reference_versions_and_scope PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[title-42] PASSED
+plane/radar/tests/test_commands.py::test_text_inputs_do_not_coerce_nontext[description-True] PASSED
+plane/radar/tests/test_commands.py::test_observation_timestamp_requires_explicit_timezone PASSED
+plane/radar/tests/test_context_bounds.py::test_context_property_budget_counts_only_authorized_fields[42-1] PASSED
+plane/radar/tests/test_context_bounds.py::test_context_property_budget_counts_only_authorized_fields[0-20] PASSED
+plane/radar/tests/test_context_bounds.py::test_context_property_budget_counts_only_authorized_fields[0-21] PASSED
+plane/radar/tests/test_core.py::test_system_types_idempotent_and_scoped PASSED
+plane/radar/tests/test_core.py::test_type_uniqueness_and_deleted_behavior PASSED
+plane/radar/tests/test_core.py::test_type_key_can_exist_in_different_workspace PASSED
+plane/radar/tests/test_core.py::test_create_and_update_explicit_actor_preserves_creator PASSED
+plane/radar/tests/test_core.py::test_stale_instance_updates_increment_database_version PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[created_by] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[updated_by] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[workspace] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[version] PASSED
+plane/radar/tests/test_core.py::test_command_rejects_immutable_fields[deleted_at] PASSED
+plane/radar/tests/test_core.py::test_cross_workspace_object_and_type_denied PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[nonmember] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[inactive_membership] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[guest] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[inactive_user] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[agent] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[system] PASSED
+plane/radar/tests/test_core.py::test_permission_enforced_inside_commands[integration] PASSED
+plane/radar/tests/test_core.py::test_inactive_and_deleted_types_rejected PASSED
+plane/radar/tests/test_core.py::test_create_rolls_back_lazy_initialization_on_failure PASSED
+plane/radar/tests/test_core.py::test_update_is_atomic_on_storage_failure PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[   ] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx] PASSED
+plane/radar/tests/test_core.py::test_command_validates_title[None] PASSED
+plane/radar/tests/test_core.py::test_html_is_sanitized PASSED
+plane/radar/tests/test_core.py::test_delete_blocked_and_deleted_objects_hidden PASSED
+plane/radar/tests/test_core.py::test_api_member_create_update_list_retrieve PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-object-types/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-post-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-get-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[anonymous-patch-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-object-types/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-post-objects/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-get-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_unauthorized[nonmember-patch-objects/{id}/] PASSED
+plane/radar/tests/test_core.py::test_api_guest_can_read_but_not_write PASSED
+plane/radar/tests/test_core.py::test_api_cross_workspace_and_read_only_payload PASSED
+plane/radar/tests/test_core.py::test_api_session_authentication PASSED
+plane/radar/tests/test_core_u0.py::test_names_from_risk_and_decision_are_not_globally_reserved PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[command] PASSED
+plane/radar/tests/test_core_u0.py::test_multi_factor_workspace_rule_is_shared_by_writers[primitive] PASSED
+plane/radar/tests/test_core_u0.py::test_derived_authority_follows_workspace_rule_keys PASSED
+plane/radar/tests/test_core_u0.py::test_invalid_batch_rolls_back_values_versions_events_and_provenance PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules0] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules1] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules2] PASSED
+plane/radar/tests/test_core_u0.py::test_rule_contract_rejects_unknown_or_invalid_operators[rules3] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[implementation-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-before_review] PASSED
+plane/radar/tests/test_core_u0.py::test_pending_approval_is_bound_to_effective_rules[metadata-after_review] PASSED
+plane/radar/tests/test_core_u0.py::test_mandatory_relation_allows_assembly_but_guards_activation_and_binding PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[save-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_create-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[bulk_update-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-objects] PASSED
+plane/radar/tests/test_core_u0.py::test_orm_writes_fail_closed_without_command[pointer-all_objects] PASSED
+plane/radar/tests/test_core_u0.py::test_command_context_still_rejects_foreign_fks_and_workspace_reassignment PASSED
+plane/radar/tests/test_core_u0.py::test_successful_command_flush_records_provenance_and_exact_replay PASSED
+plane/radar/tests/test_governance.py::test_connected_governance_uses_normative_commands_and_audit PASSED
+plane/radar/tests/test_governance.py::test_scenario_edits_survive_fresh_api_reads_and_invalid_edit_is_atomic PASSED
+plane/radar/tests/test_governance.py::test_scenario_isolation_for_every_endpoint PASSED
+plane/radar/tests/test_governance.py::test_scenario_rejects_nonhuman_actor_before_schema_writes[agent] PASSED
+plane/radar/tests/test_governance.py::test_scenario_rejects_nonhuman_actor_before_schema_writes[system] PASSED
+plane/radar/tests/test_governance.py::test_scenario_rejects_nonhuman_actor_before_schema_writes[integration] PASSED
+plane/radar/tests/test_governance.py::test_scenario_rejects_guest_and_outsider PASSED
+plane/radar/tests/test_governance.py::test_scenario_rerun_preserves_identity_edits_and_versions PASSED
+plane/radar/tests/test_governance.py::test_late_scenario_failure_rolls_back_schema_objects_properties_and_relations PASSED
+plane/radar/tests/test_governance.py::test_management_command_outputs_deep_links_and_rejects_rerun PASSED
+plane/radar/tests/test_governance.py::test_management_command_missing_workspace_is_readable PASSED
+plane/radar/tests/test_governance.py::test_generic_api_accepts_additional_type_without_structural_code PASSED
+plane/radar/tests/test_risk_review.py::test_prepare_preview_no_domain_writes_and_refresh_persists PASSED
+plane/radar/tests/test_risk_review.py::test_accept_relation_command_provenance_and_replay FAILED
+plane/radar/tests/test_risk_review.py::test_action_separate_stale_then_edit_preview_then_accept FAILED
+plane/radar/tests/test_risk_review.py::test_reject_feedback_preserves_domain_and_original_intention PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[quote] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[evidence_id] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[version] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[relation_id] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[target] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[risk] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[mitigation] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[confidence] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[extra] PASSED
+plane/radar/tests/test_risk_review.py::test_invalid_generation_never_becomes_a_proposal[duplicate] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[grant] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[config] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[binding] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[version] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[intent] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[user] PASSED
+plane/radar/tests/test_risk_review.py::test_accept_checks_current_authority_and_versions[membership] PASSED
+plane/radar/tests/test_risk_review.py::test_missing_create_action_grant_rolls_back_all_preparation PASSED
+plane/radar/tests/test_risk_review.py::test_edit_validation_is_atomic_and_target_edit_remains_in_snapshot FAILED
+plane/radar/tests/test_risk_review.py::test_empty_result_and_noncompleted_run PASSED
+plane/radar/tests/test_risk_review.py::test_real_http_skill_and_commands SKIPPED
+plane/radar/tests/test_risk_review.py::test_filtered_fields_never_leak_through_command_preview PASSED
+plane/radar/tests/test_risk_review.py::test_deleted_context_blocks_queue_and_accept PASSED
+plane/radar/tests/test_runtime_contract.py::test_prepare_approve_replay_preserves_actor_and_only_domain_ids FAILED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[reject] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[expire] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[grant] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[version] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[forged_hash] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[credential] PASSED
+plane/radar/tests/test_runtime_contract.py::test_invalid_approval_cannot_mutate_domain[scope] PASSED
+plane/radar/tests/test_runtime_contract.py::test_delegate_supersedes_commitment_and_requires_owner FAILED
+plane/radar/tests/test_runtime_contract.py::test_measurement_review_and_temporal_rules FAILED
+plane/radar/tests/test_runtime_contract.py::test_authenticated_scope_and_source_cannot_be_supplied_by_payload PASSED
+plane/radar/tests/test_runtime_contract.py::test_actual_cos_http_adapter_prepares_and_replays SKIPPED
+plane/radar/tests/test_runtime_contract.py::test_ui_and_runtime_command_port_use_the_same_catalog FAILED
+plane/radar/tests/test_runtime_contract.py::test_commitment_identity_requires_its_mandatory_action PASSED
+plane/radar/tests/test_runtime_contract.py::test_human_collaboration_commands_are_not_advertised_to_runtime PASSED
+plane/radar/tests/test_runtime_provision.py::test_provision_keeps_existing_decision_authority PASSED
+plane/radar/tests/test_semantic.py::test_normative_seed_idempotent_and_minimal PASSED
+plane/radar/tests/test_semantic.py::test_defaults_and_legacy_materialization PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[string-Text] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[string_list-value1] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[number-2.5] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[integer-2] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[boolean-False] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[enum-active] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[date-2026-10-03] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[datetime-2026-10-03T12:00:00Z] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[email-person@example.com] PASSED
+plane/radar/tests/test_semantic.py::test_supported_values[uri-https://example.com/evidence] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[string-1] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[string_list-value1] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[integer-True] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[integer-1.5] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[number-True] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[number-inf] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[number-nan] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[boolean-false] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[enum-invented] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[date-2026-02-30] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[date-20261003] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[datetime-2026-10-03T12:00:00] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[email-invalid] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[uri-javascript:alert(1)] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[user-invalid] PASSED
+plane/radar/tests/test_semantic.py::test_invalid_values_atomic[string-None] PASSED
+plane/radar/tests/test_semantic.py::test_numeric_bounds[progress--1] PASSED
+plane/radar/tests/test_semantic.py::test_numeric_bounds[progress-101] PASSED
+plane/radar/tests/test_semantic.py::test_user_reference_membership_and_type_validation PASSED
+plane/radar/tests/test_semantic.py::test_property_soft_delete_audit_recreate_and_protected_defaults PASSED
+plane/radar/tests/test_semantic.py::test_relation_direction_audit_duplicate_soft_delete_recreate PASSED
+plane/radar/tests/test_semantic.py::test_relation_cardinality_and_normative_pairs PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[deleted-object] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[deleted-type] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[deleted-definition] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[deleted-relation_type] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[inactive-object] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[inactive-type] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[inactive-definition] PASSED
+plane/radar/tests/test_semantic.py::test_inactive_deleted_resources_rejected[inactive-relation_type] PASSED
+plane/radar/tests/test_semantic.py::test_cross_workspace_schema_and_endpoints_rejected PASSED
+plane/radar/tests/test_semantic.py::test_all_semantic_commands_authorize[agent] PASSED
+plane/radar/tests/test_semantic.py::test_all_semantic_commands_authorize[system] PASSED
+plane/radar/tests/test_semantic.py::test_all_semantic_commands_authorize[integration] PASSED
+plane/radar/tests/test_semantic.py::test_all_semantic_commands_authorize[nonmember] PASSED
+plane/radar/tests/test_semantic.py::test_all_semantic_commands_authorize[guest] PASSED
+plane/radar/tests/test_semantic.py::test_semantic_writes_rollback_on_version_failure[value] PASSED
+plane/radar/tests/test_semantic.py::test_semantic_writes_rollback_on_version_failure[relation] PASSED
+plane/radar/tests/test_semantic.py::test_semantic_writes_rollback_on_version_failure[remove_value] PASSED
+plane/radar/tests/test_semantic.py::test_semantic_writes_rollback_on_version_failure[remove_relation] PASSED
+plane/radar/tests/test_semantic.py::test_semantic_writes_rollback_on_version_failure[defaults] PASSED
+plane/radar/tests/test_semantic.py::test_database_constraints PASSED
+plane/radar/tests/test_semantic.py::test_type_change_guard PASSED
+plane/radar/tests/test_semantic.py::test_api_semantic_flow_and_reverse_lookup PASSED
+plane/radar/tests/test_semantic.py::test_api_legacy_defaults_get_is_read_only PASSED
+plane/radar/tests/test_semantic.py::test_api_access_matrix[anonymous] PASSED
+plane/radar/tests/test_semantic.py::test_api_access_matrix[nonmember] PASSED
+plane/radar/tests/test_semantic.py::test_api_access_matrix[guest] PASSED
+plane/radar/tests/test_semantic.py::test_api_rejects_invalid_and_forged_payloads PASSED
+plane/radar/tests/test_semantic.py::test_normative_ordered_dates_in_both_edit_directions PASSED
+plane/radar/tests/test_semantic.py::test_normative_risk_score_derived_atomically PASSED
+plane/radar/tests/test_semantic.py::test_property_update_preserves_creator_and_rejects_cross_object_reads PASSED
+plane/radar/tests/test_semantic.py::test_api_uses_real_session_cookie PASSED
+plane/radar/tests/test_semantic.py::test_api_non_object_payload_rejected[payload0] PASSED
+plane/radar/tests/test_semantic.py::test_api_non_object_payload_rejected[payload1] PASSED
+plane/radar/tests/test_semantic.py::test_api_non_object_payload_rejected[123] PASSED
+plane/radar/tests/test_semantic.py::test_api_non_object_payload_rejected[active] PASSED
+plane/radar/tests/test_semantic.py::test_required_definition_without_default_blocks_incomplete_create PASSED
+plane/radar/tests/test_today.py::test_attention_filters_defaults_ordering_and_no_writes PASSED
+plane/radar/tests/test_today.py::test_local_day_boundary_and_timezone_validation PASSED
+plane/radar/tests/test_today.py::test_workspace_access_and_empty_read_does_not_seed PASSED
+plane/radar/tests/test_today.py::test_only_live_properties_and_types_contribute PASSED
+plane/radar/tests/test_today.py::test_pending_proposals_focus_and_human_resolution PASSED
+plane/radar/tests/test_today.py::test_expired_inaccessible_and_superseded_suggestions[expires] PASSED
+plane/radar/tests/test_today.py::test_expired_inaccessible_and_superseded_suggestions[grant] PASSED
+plane/radar/tests/test_today.py::test_expired_inaccessible_and_superseded_suggestions[deleted_context] PASSED
+plane/radar/tests/test_today.py::test_expired_inaccessible_and_superseded_suggestions[edit] PASSED
+plane/radar/tests/test_collaboration.py::test_concurrent_comment_edit_checks_child_revision PASSED
+plane/radar/tests/test_collaboration.py::test_concurrent_same_upload_intention_commits_one_payload PASSED
+plane/radar/tests/test_commands.py::test_concurrent_same_command_key_commits_once PASSED
+plane/radar/tests/test_core.py::test_concurrent_updates_serialize_versions PASSED
+plane/radar/tests/test_core.py::test_concurrent_initialization_is_idempotent PASSED
+plane/radar/tests/test_semantic.py::test_real_concurrency[cardinality] PASSED
+plane/radar/tests/test_semantic.py::test_real_concurrency[duplicate] PASSED
+plane/radar/tests/test_semantic.py::test_real_concurrency[properties] PASSED
+plane/radar/tests/test_semantic.py::test_real_concurrency[seed] PASSED
+plane/radar/tests/test_semantic.py::test_reverse_concurrent_links_share_deterministic_locks PASSED
+plane/radar/tests/test_session_transport.py::test_preflight_allows_radar_session_headers[objects/] PASSED
+plane/radar/tests/test_session_transport.py::test_preflight_allows_radar_session_headers[agent-runtime/runs/] PASSED
+plane/radar/tests/test_session_transport.py::test_preflight_allows_radar_session_headers[risk-reviews/] PASSED
+plane/radar/tests/test_session_transport.py::test_preflight_allows_radar_session_headers[commands/] PASSED
+plane/radar/tests/test_session_transport.py::test_preflight_still_rejects_unlisted_origins PASSED
+
+=================================== FAILURES ===================================
+________ test_cross_workspace_and_cross_object_items_are_not_accessible ________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u...6, 1, 1, 13, 636365, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffff8826d5b0>
+obj = <Object: Object object (b1990fab-edcb-41a0-9732-5c71ffe0db28)>
+
+    def test_cross_workspace_and_cross_object_items_are_not_accessible(context, client, obj):
+        pk = upload(client, context, obj).json()["data"]["item_id"]
+        WorkspaceMember.objects.create(workspace=context[4], member=context[0], role=15)
+        other_url = f"/api/workspaces/{context[4].slug}/radar/objects/{obj.pk}"
+        assert client.get(other_url + "/collaboration/").status_code == 404
+        assert client.get(other_url + f"/attachments/{pk}/download/").status_code == 404
+>       foreign = Object.objects.create(workspace=context[4], object_type=obj.object_type, title="foreign")
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+plane/radar/tests/test_collaboration.py:181: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/usr/local/lib/python3.12/site-packages/django/db/models/manager.py:87: in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+/usr/local/lib/python3.12/site-packages/django/db/models/query.py:665: in create
+    obj.save(force_insert=True, using=self.db)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Object: Object object (50c1305d-fa13-4b6d-9497-0e2006dc0337)>, args = ()
+kwargs = {'force_insert': True, 'using': 'default'}
+current_mutation = <ContextVar name='radar_mutation' default=None at 0xffff90672980>
+json_value = <function json_value at 0xffff90a13100>, context = None
+
+    def save(self, *args, **kwargs):
+        from plane.radar.mutation import current_mutation, json_value
+    
+        context = current_mutation.get()
+        if context is None or self.workspace_id != context.workspace_id:
+>           raise PermissionDenied("RADAR writes require a command in the same workspace.")
+E           rest_framework.exceptions.PermissionDenied: RADAR writes require a command in the same workspace.
+
+plane/radar/models/core.py:76: PermissionDenied
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Not Found: /api/workspaces/radar-unit-other/radar/objects/b1990fab-edcb-41a0-9732-5c71ffe0db28/collaboration/
+WARNING  django.request:log.py:253 Not Found: /api/workspaces/radar-unit-other/radar/objects/b1990fab-edcb-41a0-9732-5c71ffe0db28/attachments/246cc7c5-b63e-44b1-909b-a616fc0bc206/download/
+____________ test_deleted_object_blocks_discussion_upload_download _____________
+
+context = (<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-u... 6, 1, 1, 23, 81788, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={}))
+client = <plane.radar.tests.conftest.SnapshotClient object at 0xffff89ab9220>
+obj = <Object: Object object (a7cc9318-f2d3-4b1a-a633-516755a9fffb)>
+
+    def test_deleted_object_blocks_discussion_upload_download(context, client, obj):
+        pk = upload(client, context, obj).json()["data"]["item_id"]
+>       Object.all_objects.filter(pk=obj.pk).update(deleted_at=timezone.now())
+
+plane/radar/tests/test_collaboration.py:283: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <RadarQuerySet [<Object: Object object (a7cc9318-f2d3-4b1a-a633-516755a9fffb)>]>
+kwargs = {'deleted_at': datetime.datetime(2026, 10, 6, 1, 1, 23, 858969, tzinfo=datetime.timezone.utc)}
+current_mutation = <ContextVar name='radar_mutation' default=None at 0xffff90672980>
+pointers = {'created_provenance_id', 'last_provenance_id'}
+
+    def update(self, **kwargs):
+        from plane.radar.mutation import current_mutation
+    
+        context = current_mutation.get()
+        pointers = {"created_provenance_id", "last_provenance_id"}
+        if (
+            context is None
+            or context.provenance_id is None
+            or not kwargs
+            or set(kwargs) - pointers
+            or any(value != context.provenance_id for value in kwargs.values())
+        ):
+>           raise PermissionDenied("RADAR bulk writes require individual commands.")
+E           rest_framework.exceptions.PermissionDenied: RADAR bulk writes require individual commands.
+
+plane/radar/models/core.py:20: PermissionDenied
+______________ test_accept_relation_command_provenance_and_replay ______________
+
+scenario = ((((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outside...ct object (dd5553e7-55ff-4d06-85b1-392f033b3c30)>, <Object: Object object (847347f0-997a-41a7-9ea3-5876c895ea31)>, ...)
+
+    def test_accept_relation_command_provenance_and_replay(scenario):
+        proposals = prepare(scenario).data["proposals"]
+        relation = next(p for p in proposals if p["component"] == "relation")
+        accepted = resolve(scenario, relation, "accept")
+>       assert accepted.status_code == 200, accepted.data
+E       AssertionError: {'rules_contract': ErrorDetail(string='Unknown or read-only field.', code='invalid')}
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_risk_review.py:152: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/risk-reviews/2bdee41b-819f-467d-b81f-2d4fc12163ce/resolve/
+___________ test_action_separate_stale_then_edit_preview_then_accept ___________
+
+scenario = ((((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outside...ct object (139b91f1-dc52-412b-9143-57b5cd7fd58f)>, <Object: Object object (e161aac0-47ed-4768-93e9-2c5bfa0368bf)>, ...)
+
+    def test_action_separate_stale_then_edit_preview_then_accept(scenario):
+        proposals = prepare(scenario).data["proposals"]
+        relation, action = [next(p for p in proposals if p["component"] == kind) for kind in ["relation", "action"]]
+>       assert resolve(scenario, relation, "accept").status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+E        +    where <Response status_code=400, "application/json"> = resolve(((((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-unit <radar-outsider-unit@plane.local>>, <Workspace: RADAR>, <Workspace: Other>, Actor(actor_type='human', actor_id=UUID('7362f83e-0903-4350-a540-c9d35afe5dbf'), reason='Test', source='pytest', correlation_id=UUID('909d74f5-4adf-435c-b14c-ceb01fb0410e'), run_id=None, timestamp=datetime.datetime(2026, 10, 6, 1, 59, 36, 950080, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})), <rest_framework.test.APIClient object at 0xffff8a3e72f0>, <RuntimeCredential: RuntimeCredential object (28c629cd-90b7-411a-825c-11f7068557c0)>, 'vSvXPCJlDIcXU8E0XwWYXezrOzE_--e81a-c85paDLI7elfL4G8DhpE0Qs-EzF5e', <Object: Object object (05633fed-3430-4b21-a839-2ec0f65f096c)>, <Object: Object object (2c76c232-ff13-46b0-949d-58113963ec7d)>), <RuntimeCredential: RuntimeCredential object (28c546c3-c3c3-4dbf-a5d1-f849665b19b3)>, <rest_framework.test.APIClient object at 0xffff8b766000>), '0ffaf7dd-f2db-4f42-badf-1ba4d74efd1b', {'suggestions': [{'confidence': 0.8, 'context_used': [], 'evidence': [{'field': 'title', 'object_id': '139b91f1-dc52-412b-91..., 'version': 1}, {'field': 'title', 'object_id': 'e161aac0-47ed-4768-93e9-2c5bfa0368bf', 'quote': 'Implantar Governança de IA', 'version': 1}], 'explanation': 'A dependência de licenciamento pode ameaçar a implantação.', ...}], 'summary': 'Licenciamento pode afetar a entrega; inferência sujeita à revisão humana.'}, {'objects': [{'content': '', 'id': '0d097ff1-32ed-45d1-a576-39ddd5d357e9', 'properties': {'description': 'Sandbox IA depende do licenciamento', 'status': 'draft'}, 'title': 'Sandbox IA', ...}, {'content': '', 'id': '139b91f1-dc52-412b-9143-57b5cd7fd58f', 'properties': {'description': 'Licenciamento pode atrasar a governança de IA e o Sandbox IA', 'impact': 3, 'likelihood': 3, 'response_strategy': 'reduce', ...}, 'title': 'Licenciamento pode atrasar', ...}, {'content': '', 'id': 'e161aac0-47ed-4768-93e9-2c5bfa0368bf', 'properties': {'description': 'Implantar Governança de IA depende do licenciamento', 'outcome': '', 'priority': 'medium', 'progress': 0, ...}, 'title': 'Implantar Governança de IA', ...}], 'relations': [], 'truncated': False}, <Object: Object object (139b91f1-dc52-412b-9143-57b5cd7fd58f)>, <Object: Object object (e161aac0-47ed-4768-93e9-2c5bfa0368bf)>, ...), {'approval': {'expires_at': datetime.datetime(2026, 10, 6, 2, 29, 39, 728814, tzinfo=datetime.timezone.utc), 'rationale': '', 'status': 'pending'}, 'command_name': 'LinkObjects', 'component': 'relation', 'expected_versions': {'139b91f1-dc52-412b-9143-57b5cd7fd58f': 1, 'e161aac0-47ed-4768-93e9-2c5bfa0368bf': 1}, ...}, 'accept')
+
+plane/radar/tests/test_risk_review.py:169: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/risk-reviews/50af1757-94de-4e92-b711-8b571f5bb1ed/resolve/
+______ test_edit_validation_is_atomic_and_target_edit_remains_in_snapshot ______
+
+scenario = ((((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outside...ct object (a73e3961-af24-4f21-9738-b4b08de2be32)>, <Object: Object object (8fc23cd2-e1be-4d6b-a208-9567a72f7b8d)>, ...)
+
+    def test_edit_validation_is_atomic_and_target_edit_remains_in_snapshot(scenario):
+        proposals = prepare(scenario).data["proposals"]
+        relation = next(p for p in proposals if p["component"] == "relation")
+        malformed = resolve(scenario, relation, "edit", edited_input={**relation["input"], "target_id": str(uuid4())})
+        assert malformed.status_code in {400, 403, 404}
+        assert RiskReviewProposal.objects.get(pk=relation["id"]).execution.status == "pending_approval"
+        edited = resolve(scenario, relation, "edit", edited_input={**relation["input"], "target_id": str(scenario[6].pk)})
+        assert edited.status_code == 200, edited.data
+>       assert resolve(scenario, edited.data, "accept").status_code == 200
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+E        +    where <Response status_code=400, "application/json"> = resolve(((((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-unit <radar-outsider-unit@plane.local>>, <Workspace: RADAR>, <Workspace: Other>, Actor(actor_type='human', actor_id=UUID('3a8733e4-627d-4406-9dca-94aa9eef0a45'), reason='Test', source='pytest', correlation_id=UUID('6bb31b44-a8dc-46df-8c99-322c4f4ab3d9'), run_id=None, timestamp=datetime.datetime(2026, 10, 6, 4, 25, 16, 700440, tzinfo=datetime.timezone.utc), approval_id=None, confidence=None, on_behalf_of=None, metadata={})), <rest_framework.test.APIClient object at 0xffff8a2a77d0>, <RuntimeCredential: RuntimeCredential object (1457011a-d4ed-4a66-ba24-50865e5a0c41)>, 'c_plm7ABmNzTLk3iWxayNfNyTLjcU61EqpdaySf3ALTsiIXCfyrQ6xYEEl1CTfUo', <Object: Object object (f9e92ec2-e9cd-4cdb-8d06-401c7a9729a2)>, <Object: Object object (d237b3d4-87f0-48c7-9833-c5d26cff7ff5)>), <RuntimeCredential: RuntimeCredential object (22292536-f69d-4dca-bd75-21b6c24cd673)>, <rest_framework.test.APIClient object at 0xffff88586c90>), '71026388-af7b-4555-aade-d175143495ad', {'suggestions': [{'confidence': 0.8, 'context_used': [], 'evidence': [{'field': 'title', 'object_id': 'a73e3961-af24-4f21-97..., 'version': 1}, {'field': 'title', 'object_id': '8fc23cd2-e1be-4d6b-a208-9567a72f7b8d', 'quote': 'Implantar Governança de IA', 'version': 1}], 'explanation': 'A dependência de licenciamento pode ameaçar a implantação.', ...}], 'summary': 'Licenciamento pode afetar a entrega; inferência sujeita à revisão humana.'}, {'objects': [{'content': '', 'id': '8fc23cd2-e1be-4d6b-a208-9567a72f7b8d', 'properties': {'description': 'Implantar Governança de IA depende do licenciamento', 'outcome': '', 'priority': 'medium', 'progress': 0, ...}, 'title': 'Implantar Governança de IA', ...}, {'content': '', 'id': 'a73e3961-af24-4f21-9738-b4b08de2be32', 'properties': {'description': 'Licenciamento pode atrasar a governança de IA e o Sandbox IA', 'impact': 3, 'likelihood': 3, 'response_strategy': 'reduce', ...}, 'title': 'Licenciamento pode atrasar', ...}, {'content': '', 'id': 'f5b44b80-c5a0-490e-b273-cc3414d050da', 'properties': {'description': 'Sandbox IA depende do licenciamento', 'status': 'draft'}, 'title': 'Sandbox IA', ...}], 'relations': [], 'truncated': False}, <Object: Object object (a73e3961-af24-4f21-9738-b4b08de2be32)>, <Object: Object object (8fc23cd2-e1be-4d6b-a208-9567a72f7b8d)>, ...), {'approval': {'expires_at': datetime.datetime(2026, 10, 6, 4, 55, 20, 575661, tzinfo=datetime.timezone.utc), 'rationale': '', 'status': 'pending'}, 'command_name': 'LinkObjects', 'component': 'relation', 'expected_versions': {'8fc23cd2-e1be-4d6b-a208-9567a72f7b8d': 1, 'a73e3961-af24-4f21-9738-b4b08de2be32': 1, 'f5b44b80-c5a0-490e-b273-cc3414d050da': 1}, ...}, 'accept')
+E        +      where {'approval': {'expires_at': datetime.datetime(2026, 10, 6, 4, 55, 20, 575661, tzinfo=datetime.timezone.utc), 'rationale': '', 'status': 'pending'}, 'command_name': 'LinkObjects', 'component': 'relation', 'expected_versions': {'8fc23cd2-e1be-4d6b-a208-9567a72f7b8d': 1, 'a73e3961-af24-4f21-9738-b4b08de2be32': 1, 'f5b44b80-c5a0-490e-b273-cc3414d050da': 1}, ...} = <Response status_code=200, "application/json">.data
+
+plane/radar/tests/test_risk_review.py:311: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/risk-reviews/8d6afc2f-9af4-4af7-9bf2-5eb90d10aa85/resolve/
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/risk-reviews/7fadaf20-c007-421d-a253-335c49e44f84/resolve/
+_______ test_prepare_approve_replay_preserves_actor_and_only_domain_ids ________
+
+runtime = ((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-... Object object (999ff9b4-c473-44e5-973a-6771f9f2f579)>, <Object: Object object (447f341b-564c-49c8-9700-ff4e648c7fc4)>)
+
+    def test_prepare_approve_replay_preserves_actor_and_only_domain_ids(runtime):
+        count = Object.objects.count()
+        pending = prepare(runtime)
+        assert pending.status_code == 202, pending.data
+        assert Object.objects.count() == count
+        stored = CommandExecution.objects.get(pk=pending.data["execution_context"]["command_id"])
+        original = stored.actor_context
+        result = resolve(runtime, pending.data)
+>       assert result.status_code == 200, result.data
+E       AssertionError: {'code': 'invalid_parameters', 'created_ids': [], 'operation_id': None, 'revision': None, ...}
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_runtime_contract.py:143: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/runtime/v1/resolve/
+____________ test_delegate_supersedes_commitment_and_requires_owner ____________
+
+runtime = ((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-... Object object (21ca4f6a-71ef-432c-ae33-5800f28c8aeb)>, <Object: Object object (bdc07465-cdb3-48f1-a097-6482a886d117)>)
+
+    def test_delegate_supersedes_commitment_and_requires_owner(runtime):
+        from plane.radar.models import RelationType
+    
+        action = create(runtime[0], "action", description="Deliver")
+        action_id = bind(runtime, action, "ACT")
+        executor_id = RuntimeObjectIdentity.objects.get(object=runtime[5]).external_id
+        parameters = {
+            "executor_id": executor_id,
+            "due_at": (timezone.now() + timedelta(days=2)).isoformat(),
+            "next_review_at": (timezone.now() + timedelta(days=1)).isoformat(),
+        }
+        assert prepare(runtime, "delegate", action_id, parameters).status_code == 403
+        execute(
+            runtime[0],
+            "LinkObjects",
+            {
+                "source_id": str(action.pk),
+                "target_id": str(runtime[4].pk),
+                "relation_type_id": str(RelationType.objects.get(workspace=runtime[0][3], key="owned_by").pk),
+            },
+        )
+        commitment = create(runtime[0], "commitment")
+        # Historical accepted terms, as they would exist after an explicit data import.
+        from plane.radar.models import PropertyValue
+    
+        fixture_write(
+            lambda: PropertyValue.objects.filter(object=commitment, definition__key="status").update(value="confirmed")
+        )
+        execute(
+            runtime[0],
+            "LinkObjects",
+            {
+                "source_id": str(commitment.pk),
+                "target_id": str(action.pk),
+                "relation_type_id": str(RelationType.objects.get(workspace=runtime[0][3], key="commits_to").pk),
+            },
+        )
+        bind(runtime, commitment, "CMT")
+        pending = prepare(runtime, "delegate", action_id, parameters)
+        assert pending.status_code == 202, pending.data
+        result = resolve(runtime, pending.data)
+>       assert result.status_code == 200, result.data
+E       AssertionError: {'code': 'invalid_parameters', 'created_ids': [], 'operation_id': None, 'revision': None, ...}
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_runtime_contract.py:259: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Forbidden: /api/workspaces/radar-unit/radar/runtime/v1/prepare/
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/runtime/v1/resolve/
+__________________ test_measurement_review_and_temporal_rules __________________
+
+runtime = ((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-... Object object (b52879e0-d8aa-4335-b2e2-596e650d376a)>, <Object: Object object (7c3b26a8-3585-4219-8eed-9efa2e65ef66)>)
+
+    def test_measurement_review_and_temporal_rules(runtime):
+        from plane.radar.commands.handlers import _values
+    
+        indicator = create(runtime[0], "indicator")
+        external = bind(runtime, indicator, "IND")
+        source = message("Observed 12")
+        parameters = {
+            "value": 12,
+            "measured_at": (timezone.now() - timedelta(hours=1)).isoformat(),
+            "evidence_title": "Observation",
+            "evidence_source": evidence_source(source),
+            "evidence_text": "Observed 12",
+        }
+        pending = prepare(runtime, "record_measurement", external, parameters, source)
+        assert pending.status_code == 202, pending.data
+        result = resolve(runtime, pending.data)
+>       assert result.status_code == 200, result.data
+E       AssertionError: {'code': 'invalid_parameters', 'created_ids': [], 'operation_id': None, 'revision': None, ...}
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_runtime_contract.py:283: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/runtime/v1/resolve/
+____________ test_ui_and_runtime_command_port_use_the_same_catalog _____________
+
+runtime = ((<User: radar-unit <radar-unit@plane.local>>, <User: radar-second <radar-second@plane.local>>, <User: radar-outsider-... Object object (6a7eeeaa-5127-4bb9-99d7-d4b3fabc53e5)>, <Object: Object object (3c5024ca-8588-4533-ad1b-5238c177ac9f)>)
+
+    def test_ui_and_runtime_command_port_use_the_same_catalog(runtime):
+        from plane.radar.models import ObjectType
+    
+        common_input = {
+            "object_type_id": str(ObjectType.objects.get(workspace=runtime[0][3], key="objective").pk),
+            "title": "Shared objective",
+            "properties": {},
+        }
+        human = execute(runtime[0], "CreateObject", common_input)
+        assert human["status"] == "executed"
+        source = message()
+        envelope = {
+            "command_name": "CreateObject",
+            "command_version": 1,
+            "idempotency_key": str(uuid4()),
+            "expected_versions": {},
+            "reason": "Common command",
+            "input": common_input,
+            "assertion": {"kind": "asserted", "evidence_ids": []},
+        }
+        pending = runtime[1].post(
+            endpoint(runtime, "commands/prepare"),
+            {
+                "envelope": envelope,
+                "provenance": {
+                    "run_id": str(uuid4()),
+                    "correlation_id": str(uuid4()),
+                    "reason": "Common command",
+                    "source": source,
+                },
+            },
+            format="json",
+        )
+        assert pending.status_code == 202, pending.data
+        resolved = runtime[1].post(
+            endpoint(runtime, "resolve"),
+            {
+                **{k: pending.data[k] for k in ("command_id", "intent_hash", "idempotency_key")},
+                "approve": True,
+                "rationale": "Confirmed",
+                "source": message("sim", update=2),
+            },
+            format="json",
+        )
+>       assert resolved.status_code == 200, resolved.data
+E       AssertionError: {'code': 'invalid_parameters', 'created_ids': [], 'operation_id': None, 'revision': None, ...}
+E       assert 400 == 200
+E        +  where 400 = <Response status_code=400, "application/json">.status_code
+
+plane/radar/tests/test_runtime_contract.py:498: AssertionError
+------------------------------ Captured log call -------------------------------
+WARNING  django.request:log.py:253 Bad Request: /api/workspaces/radar-unit/radar/runtime/v1/resolve/
+----------- generated xml file: /code/output/core-u0-regression.xml ------------
+=========================== short test summary info ============================
+FAILED plane/radar/tests/test_collaboration.py::test_cross_workspace_and_cross_object_items_are_not_accessible
+FAILED plane/radar/tests/test_collaboration.py::test_deleted_object_blocks_discussion_upload_download
+FAILED plane/radar/tests/test_risk_review.py::test_accept_relation_command_provenance_and_replay
+FAILED plane/radar/tests/test_risk_review.py::test_action_separate_stale_then_edit_preview_then_accept
+FAILED plane/radar/tests/test_risk_review.py::test_edit_validation_is_atomic_and_target_edit_remains_in_snapshot
+FAILED plane/radar/tests/test_runtime_contract.py::test_prepare_approve_replay_preserves_actor_and_only_domain_ids
+FAILED plane/radar/tests/test_runtime_contract.py::test_delegate_supersedes_commitment_and_requires_owner
+FAILED plane/radar/tests/test_runtime_contract.py::test_measurement_review_and_temporal_rules
+FAILED plane/radar/tests/test_runtime_contract.py::test_ui_and_runtime_command_port_use_the_same_catalog
+============= 9 failed, 287 passed, 4 skipped in 674.45s (0:11:14) =============
+

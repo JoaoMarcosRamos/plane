@@ -1,0 +1,4 @@
+- generic [ref=f2e3]:
+  - link "All objects" [ref=f2e4] [cursor=pointer]:
+    - /url: /c18-browser-21c27b5e/radar/objects/
+  - status [ref=f2e5]: Loading object…

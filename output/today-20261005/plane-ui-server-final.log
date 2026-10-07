@@ -1,0 +1,42 @@
+ Container plane-radar-phase-0-spike-api-tests-run-e6661301e99e Creating 
+ Container plane-radar-phase-0-spike-api-tests-run-e6661301e99e Created 
+POST - /api/workspaces/today-browser/radar/agent-runtime/runs/ of Queries: 45
+ISOLATED_REVIEW_SERVER_READY
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:54:52] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 524
+GET - /api/workspaces/today-browser/radar/agent-config/ of Queries: 21
+192.168.65.1 - - [05/Oct/2026 11:55:20] "GET /api/workspaces/today-browser/radar/agent-config/ HTTP/1.1" 200 729
+GET - /api/workspaces/today-browser/radar/risk-reviews/?proposal=166a5d76-4475-41e4-b1b6-3eaa3209a300 of Queries: 26
+192.168.65.1 - - [05/Oct/2026 11:55:20] "GET /api/workspaces/today-browser/radar/risk-reviews/?proposal=166a5d76-4475-41e4-b1b6-3eaa3209a300 HTTP/1.1" 200 1708
+POST - /api/workspaces/today-browser/radar/risk-reviews/166a5d76-4475-41e4-b1b6-3eaa3209a300/resolve/ of Queries: 43
+192.168.65.1 - - [05/Oct/2026 11:56:18] "POST /api/workspaces/today-browser/radar/risk-reviews/166a5d76-4475-41e4-b1b6-3eaa3209a300/resolve/ HTTP/1.1" 200 1380
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:56:18] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 474
+GET - /api/workspaces/today-browser/radar/objects/11c256e0-f43e-4012-972f-9a2c342f9c18/properties/ of Queries: 116
+192.168.65.1 - - [05/Oct/2026 11:57:01] "GET /api/workspaces/today-browser/radar/objects/11c256e0-f43e-4012-972f-9a2c342f9c18/properties/ HTTP/1.1" 200 1287
+GET - /api/workspaces/today-browser/radar/objects/11c256e0-f43e-4012-972f-9a2c342f9c18/relations/ of Queries: 9
+192.168.65.1 - - [05/Oct/2026 11:57:01] "GET /api/workspaces/today-browser/radar/objects/11c256e0-f43e-4012-972f-9a2c342f9c18/relations/ HTTP/1.1" 200 434
+GET - /api/workspaces/today-browser/radar/property-definitions/ of Queries: 109
+192.168.65.1 - - [05/Oct/2026 11:57:01] "GET /api/workspaces/today-browser/radar/property-definitions/ HTTP/1.1" 200 3957
+GET - /api/workspaces/today-browser/radar/relation-types/ of Queries: 109
+192.168.65.1 - - [05/Oct/2026 11:57:01] "GET /api/workspaces/today-browser/radar/relation-types/ HTTP/1.1" 200 2378
+GET - /api/workspaces/today-browser/radar/objects/ of Queries: 3
+192.168.65.1 - - [05/Oct/2026 11:57:01] "GET /api/workspaces/today-browser/radar/objects/ HTTP/1.1" 200 1087
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:57:16] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 480
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:57:34] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 476
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:58:09] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 517
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:58:30] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 426
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 11:58:30] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 506
+GET - /api/workspaces/today-browser-empty/radar/today/?timezone=America%2FBahia of Queries: 5
+192.168.65.1 - - [05/Oct/2026 11:59:16] "GET /api/workspaces/today-browser-empty/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 112
+GET - /api/workspaces/today-browser-unavailable/radar/today/?timezone=America%2FBahia of Queries: 1
+Forbidden: /api/workspaces/today-browser-unavailable/radar/today/
+192.168.65.1 - - [05/Oct/2026 11:59:32] "GET /api/workspaces/today-browser-unavailable/radar/today/?timezone=America%2FBahia HTTP/1.1" 403 63
+GET - /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia of Queries: 23
+192.168.65.1 - - [05/Oct/2026 12:00:01] "GET /api/workspaces/today-browser/radar/today/?timezone=America%2FBahia HTTP/1.1" 200 456
+

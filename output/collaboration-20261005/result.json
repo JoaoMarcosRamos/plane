@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-05",
+  "scope": "MVP collaboration on RADAR Objects",
+  "backend": {
+    "passed": 263,
+    "skipped": 4,
+    "failures": 0,
+    "errors": 0
+  },
+  "frontend": {
+    "passed": 92
+  },
+  "checks": [
+    "Typegen + tsc",
+    "OxLint zero warnings/errors",
+    "Oxfmt",
+    "Ruff",
+    "migration check"
+  ],
+  "browser": {
+    "session": "real Django fixture session",
+    "comment_edit_reload": true,
+    "attachment_rename_download": true,
+    "other_member_authority": true,
+    "guest_readonly": true,
+    "admin_deletion": true,
+    "outsider_denied": true,
+    "ui_upload_selection_submit": "not homologated: extension file permission unavailable"
+  },
+  "http_upload": "real multipart, replay and byte-identical download passed",
+  "pilot_ready": false,
+  "deployed": false
+}

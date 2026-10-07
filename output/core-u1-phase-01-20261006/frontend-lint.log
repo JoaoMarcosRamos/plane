@@ -1,0 +1,12 @@
+
+  ! eslint-plugin-unicorn(no-array-sort): Use `Array#toSorted()` instead of `Array#sort()`.
+    ,-[apps/web/store/radar/mutation-intents.ts:17:10]
+ 16 |       Object.entries(value)
+ 17 |         .sort(([a], [b]) => a.localeCompare(b))
+    :          ^^^^
+ 18 |         .map(([key, item]) => [key, canonical(item)])
+    `----
+  help: `Array#sort()` mutates the original array. Use `Array#toSorted()` to return a new sorted array without modifying the original.
+
+Found 1 warning and 0 errors.
+Finished in 93ms on 10 files with 195 rules using 10 threads.

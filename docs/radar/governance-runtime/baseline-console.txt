@@ -1,0 +1,107 @@
+### Result
+Total messages: 43 (Errors: 10, Warnings: 29)
+Returning 10 messages for level "error"
+
+[ERROR] In HTML, %s cannot be a descendant of <%s>.
+This will cause a hydration error.%s <button> button 
+
+  ...
+    <div className="relative f...">
+      <ProjectAppSidebar>
+        <ResizableSidebar showPeek={undefined} defaultWidth={250} width={250} setWidth={function bound dispatchSetState} ...>
+          <div>
+          <div>
+          <ExtendedAppSidebar>
+            <ExtendedSidebarWrapper isExtendedSidebarOpened={false} extendedSidebarRef={{current:null}} ...>
+              <div id="extended-s..." ref={{current:null}} className="shadow-sm ..." style={{left:"250px", ...}}>
+                <ExtendedSidebarItem item={{key:"views", ...}} isLastChild={false} ...>
+                  <div id="sidebar-views" className="relative" ref={{current:null}}>
+                    <DropIndicator>
+                    <div className="group/proj..." id="views">
+                      <Tooltip$1 label="Drag to re..." align="start" disabled={false}>
+                        <TooltipRoot disabled={false}>
+                          <TooltipTrigger id={undefined} delay={undefined} render={<button>}>
+>                           <button
+>                             type="button"
+>                             className="absolute top-1/2 -left-3 flex -translate-y-1/2 cursor-grab items-center justi..."
+>                             ref={function}
+>                             aria-describedby={undefined}
+>                             onPointerDown={function}
+>                             onPointerEnter={function}
+>                             onMouseMove={function}
+>                             onMouseLeave={function}
+>                             onFocus={function}
+>                             onBlur={function}
+>                             onMouseOver={function}
+>                             onClick={function}
+>                             id="base-ui-_r_1p_"
+>                             data-trigger-disabled={undefined}
+>                             data-base-ui-tooltip-trigger=""
+>                           >
+                              <DragHandle$1 className="bg-transpa...">
+>                               <button
+>                                 type="button"
+>                                 className="flex flex-shrink-0 cursor-grab rounded-sm p-0.5 text-secondary bg-transpa..."
+>                                 onContextMenu={function onContextMenu}
+>                                 ref={null}
+>                                 aria-label="Drag to rearrange"
+>                               >
+                          ...
+                      ...
+                ...
+      ...
+ @ http://localhost:3000/@vite/client:524
+[ERROR] <%s> cannot contain a nested %s.
+See this log for the ancestor stack trace. button <button> @ http://localhost:3000/@vite/client:524
+[ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/:0
+[ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/:0
+[ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/:0
+[ERROR] Failed to load resource: the server responded with a status of 400 (Bad Request) @ http://localhost:8001/api/assets/v2/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/issues/87ee0439-49dd-46c3-b6c0-fa2c83512dbb/attachments/:0
+[ERROR] Error in uploading issue attachment: {error: Invalid file type., status: false} @ http://localhost:3000/@vite/client:524
+[ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:8001/api/workspaces/radar-projects/projects/701c6334-fb54-4914-a67c-96a96164a2cc/intake-state/:0
+Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?<redacted>
+Object

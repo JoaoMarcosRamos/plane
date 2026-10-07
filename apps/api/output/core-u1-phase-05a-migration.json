@@ -1,0 +1,19 @@
+{
+  "migration": "0015_type_runtime",
+  "forward_reverse_reapply": true,
+  "idempotent": true,
+  "managed_type_count": 11,
+  "custom_type_disabled_by_default": true,
+  "explicit_local_opt_out_preserved_on_forward": true,
+  "installed_base_updated_without_conflicts": true,
+  "existing_fact_version_and_content_preserved": true,
+  "identity_and_timestamps_preserved": true,
+  "schema_revision": [
+    5,
+    6,
+    7,
+    8
+  ],
+  "package_hash_unchanged_until_explicit_upgrade": true,
+  "reverse_removes_descriptors_requires_export": true
+}

@@ -1,0 +1,17 @@
+{
+  "destination": "/Users/joaomarcosramos/Documents/Github/COS_AGENT_V2",
+  "transferred_integration_files": 14,
+  "additional_documentation_files": 3,
+  "source_status": "",
+  "destination_status": " M .env.example\n M TASK_LIST.md\n M app/application/telegram.py\n M app/config.py\n M app/database/radar_operations.py\n M app/database/schema.py\n M app/services/radar_service.py\n M app/tools/dependencies.py\n M app/tools/radar.py\n M docs/index.html\n M tests/integration/test_radar_approval_flow.py\n M tests/unit/test_migrations.py\n?? app/integrations/radar_commands.py\n?? docs/development/042-radar-command-layer.html\n?? docs/development/RADAR_COMMAND_LAYER.md\n?? migrations/versions/20261004_0013_radar_command_context.py\n?? tests/unit/test_radar_command_runtime.py\n",
+  "destination_tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "18",
+    "time": "1.393",
+    "timestamp": "2026-10-04T15:24:37.335061-03:00",
+    "hostname": "192.168.0.24"
+  }
+}

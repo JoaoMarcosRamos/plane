@@ -1,0 +1,505 @@
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     228ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     229ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[     247ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[     251ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[     297ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[     641ms] [WARNING] Canvas2D: Multiple readback operations using getImageData are faster with the willReadFrequently attribute set to true. See: https://html.spec.whatwg.org/multipage/canvas.html#concept-canvas-will-read-frequently @ http://localhost:3000/node_modules/.vite/deps/is-emoji-supported.js?v=a0ee5fb4:59
+[     779ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[    1101ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[12121272ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:992
+[79319109ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/assets/images/logo-spinner-light.gif:0
+[79319202ms] [ERROR] Error fetching user project permissions undefined @ http://localhost:3000/@vite/client:524
+[79319213ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/users/me/workspaces/radar-ui-zero/project-roles/:0
+[79319239ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[79319243ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/users/me/:0
+[79319243ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/assets/instance/maintenance-mode-light.svg:0
+[79319245ms] [LOG] Failed to fetch project from workspace store @ http://localhost:3000/store/project/project.store.ts:212
+[79319245ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/projects/:0
+[79319311ms] [ERROR] Error fetching user workspace information undefined @ http://localhost:3000/@vite/client:524
+[79319311ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/workspace-members/me/:0
+[79319312ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/members/:0
+[79319440ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/states/:0
+[79319448ms] [ERROR] Failed to fetch project navigation preferences: undefined @ http://localhost:3000/@vite/client:524
+[79319449ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/user-properties/:0
+[79319450ms] [ERROR] Failed to fetch favorites from workspace store @ http://localhost:3000/@vite/client:524
+[79319450ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/user-favorites/?all=true:0
+[79319451ms] [ERROR] Failed to fetch sidebar preferences: undefined @ http://localhost:3000/@vite/client:524
+[79319451ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/sidebar-preferences/:0
+[79319453ms] [ERROR] WorkspaceNotificationStore -> getUnreadNotificationsCount -> error AxiosError: Network Error
+    at XMLHttpRequest.handleError (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:2260:16)
+    at Axios$1.request (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:3024:37)
+    at async WorkspaceNotificationService.fetchUnreadNotificationsCount (http://localhost:3000/services/workspace-notification.service.ts:17:21)
+    at async getUnreadNotificationsCount (http://localhost:3000/store/notifications/workspace-notifications.store.ts:217:36)
+    at async http://localhost:3000/node_modules/.vite/deps/swr.js?v=a0ee5fb4:682:14 @ http://localhost:3000/@vite/client:524
+[79319457ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/workspaces/radar-ui-zero/users/notifications/unread/:0
+[79330993ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[80190740ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[80230976ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[80306038ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[80541049ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[80821085ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[81267927ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[81273160ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[81298290ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[81348402ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[82348441ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[82961950ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[83009303ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[83269342ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[83639399ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[84634492ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[84867096ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[85699556ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[86197167ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[86419592ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[87862142ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[88284440ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[88767082ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[89094482ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[90299507ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[90602086ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[91414759ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[92347359ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[92694912ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[93760015ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[93857475ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[94582563ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[95525161ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[96022687ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[96767869ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[96870250ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[97700540ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[97928037ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[98843677ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[98991330ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[99851531ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[99883920ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[100921802ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[101344063ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[102802098ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[102874347ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[104087279ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[104229666ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[105202767ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[105869955ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[106302993ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[106570206ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[108123210ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[108205512ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[108783443ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[109645654ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[110068657ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[111490685ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[111503657ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[112833951ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[113181020ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[115898453ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[115909726ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[115934771ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[120812640ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[130907880ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[134768665ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[138904154ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[145818520ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[146406721ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148228052ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148238083ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148258086ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148724058ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148819097ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[148851512ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[148939118ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[149109152ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[149554241ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[149656972ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[149859966ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[150756613ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[151114482ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[151337054ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[151720045ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[152279503ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[152531587ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[152847033ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:8001/api/instances/:0
+[153185089ms] [ERROR] Failed to load resource: net::ERR_EMPTY_RESPONSE @ http://localhost:8001/api/instances/:0
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166215ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166216ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[155166313ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=dcd6f4dc:1524
+[155166334ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:14337
+[155166825ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=e7c67e2d:36:38)
+[155167839ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[155169316ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[155716551ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:992
+[159486061ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.fileURLToPath" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.existsSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "fs" has been externalized for browser compatibility. Cannot access "fs.readFileSync" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486061ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.isAbsolute" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.join" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.dirname" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.relative" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.resolve" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "path" has been externalized for browser compatibility. Cannot access "path.sep" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapConsumer" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "source-map-js" has been externalized for browser compatibility. Cannot access "source-map-js.SourceMapGenerator" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486062ms] [WARNING] Module "url" has been externalized for browser compatibility. Cannot access "url.pathToFileURL" in client code. See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details. @ http://localhost:3000/@vite/client:524
+[159486111ms] [INFO] 🌐 i18next is made possible by our own product, Locize — consider powering your project with managed localization (AI, CDN, integrations): https://locize.com 💙 @ http://localhost:3000/node_modules/.vite/deps/i18next.js?v=a0ee5fb4:1524
+[159486130ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:14337
+[159486658ms] Error: Hydration failed because the server rendered HTML didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <Router basename="/" location={{pathname:"...", ...}} navigationType="POP" navigator={{...}} ...>
+      <DataRoutes routes={[...]} manifest={{...}} future={{}} state={{...}} isStatic={false} onError={undefined}>
+        <RenderErrorBoundary location={{pathname:"...", ...}} revalidation="idle" component={<Layout>} error={undefined} ...>
+          <RenderedRoute match={{params:{...}, ...}} routeContext={{outlet:null, ...}}>
+            <Layout>
+              <html lang="en" suppressHydrationWarning={true}>
+                <head>
+                <body suppressHydrationWarning={true}>
+                  <div>
+                  <div>
+                  <J themes={[...]} defaultTheme="system">
+                    <V themes={[...]} defaultTheme="system">
+                      <script>
+                      <WithHydrateFallbackProps>
+                        <HydrateFallback params={{...}} loaderData={undefined} actionData={undefined}>
+                          <div
++                           className="relative flex h-screen w-full items-center justify-center bg-canvas"
+-                           className={null}
+                          >
+                            <LogoSpinner>
++                             <div className="flex items-center justify-center">
+                  ...
+
+    at throwOnHydrationMismatch (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:2968:51)
+    at beginWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:6200:914)
+    at runWithFiberInDEV (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:851:66)
+    at performUnitOfWork (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8429:92)
+    at workLoopConcurrentByScheduler (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8425:55)
+    at renderRootConcurrent (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:8408:64)
+    at performWorkOnRoot (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:7957:145)
+    at performWorkOnRootViaSchedulerTask (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:9059:4)
+    at MessagePort.performWorkUntilDeadline (http://localhost:3000/node_modules/.vite/deps/react-dom_client.js?v=a0ee5fb4:36:38)
+[159487785ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: IssueRootStore@31.workspaceSlug @ http://localhost:3000/@vite/client:524
+[159487802ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8001/api/instances/:0
+[159497863ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_RESET @ http://localhost:8001/api/instances/:0
+[159518253ms] [WARNING] [MobX] Since strict-mode is enabled, changing (observed) observable values without using an action is not allowed. Tried to modify: BaseWorkspaceRootStore@9.loader @ http://localhost:3000/@vite/client:524
+[161365162ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:3000/@vite/client:992
+[187920909ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/assets/images/logo-spinner-light.gif:0
+[187920927ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[187920934ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/users/me/:0
+[187920934ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/app/assets/instance/maintenance-mode-light.svg:0
+[187920938ms] [ERROR] Error fetching user workspace information undefined @ http://localhost:3000/@vite/client:524
+[187920943ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/workspace-members/me/:0
+[187920945ms] [ERROR] Error fetching user project permissions undefined @ http://localhost:3000/@vite/client:524
+[187920945ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/users/me/workspaces/radar-ui-zero/project-roles/:0
+[187920947ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/states/:0
+[187920948ms] [LOG] Failed to fetch project from workspace store @ http://localhost:3000/store/project/project.store.ts:212
+[187920948ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/projects/:0
+[187920949ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/members/:0
+[187920949ms] [ERROR] Failed to fetch sidebar preferences: undefined @ http://localhost:3000/@vite/client:524
+[187920950ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/sidebar-preferences/:0
+[187920950ms] [ERROR] Failed to fetch project navigation preferences: undefined @ http://localhost:3000/@vite/client:524
+[187920950ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/user-properties/:0
+[187920952ms] [ERROR] WorkspaceNotificationStore -> getUnreadNotificationsCount -> error AxiosError: Network Error
+    at XMLHttpRequest.handleError (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:2260:16)
+    at Axios$1.request (http://localhost:3000/node_modules/.vite/deps/axios.js?v=a0ee5fb4:3024:37)
+    at async WorkspaceNotificationService.fetchUnreadNotificationsCount (http://localhost:3000/services/workspace-notification.service.ts:17:21)
+    at async getUnreadNotificationsCount (http://localhost:3000/store/notifications/workspace-notifications.store.ts:217:36)
+    at async http://localhost:3000/node_modules/.vite/deps/swr.js?v=a0ee5fb4:682:14 @ http://localhost:3000/@vite/client:524
+[187920958ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/users/notifications/unread/:0
+[187920961ms] [ERROR] Failed to fetch favorites from workspace store @ http://localhost:3000/@vite/client:524
+[187920961ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/workspaces/radar-ui-zero/user-favorites/?all=true:0
+[187930963ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[187945989ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[188896603ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[189950219ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[189960312ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[189975363ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[189985523ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[190917262ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[191699715ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.pnpm/@fontsource-variable+inter@5.2.8/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2:0
+[191700000ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:3000/@fs/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/node_modules/.pnpm/@fontsource-variable+inter@5.2.8/node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2:0
+[191712518ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[191712636ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[191907590ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[191937683ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[192122691ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[192402766ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[192762803ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[193472921ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[193777804ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[194917795ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[195257929ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[195998103ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[196092907ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[196858015ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[197103156ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[197883101ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[197913189ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[198573297ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[198928114ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[199343224ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[200528084ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[201068353ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[201178178ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[221844360ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[223999838ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[230645989ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[230710689ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234510418ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234515577ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234525646ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234615130ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234862968ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234868005ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234868974ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234883122ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[234928221ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235003295ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235033991ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235097666ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235103316ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235224075ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235257362ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[235378372ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[236078434ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[236174113ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[236252703ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[236987402ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237014142ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237093468ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237482815ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237769227ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237945635ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237955663ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[237965681ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238010706ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238110735ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238295826ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238460876ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238533512ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238857514ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238885981ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[238907840ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[239049351ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[239551071ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[239987901ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[240354461ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[240396106ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[240408603ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[240542562ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[241234563ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[241328651ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[241487935ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[241896159ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[242137593ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[242648691ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[242821294ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[242964568ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[243172639ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[243397962ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[243868738ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[244004615ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[244303046ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[244561401ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[244692730ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[245138123ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[245268779ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[245591417ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[245809694ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[246472791ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[246533128ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[246596442ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[246883770ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[247004713ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[247308190ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[248051404ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[248147700ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[248198104ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[248693704ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[248849605ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[249541511ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[249698231ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[249757762ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[249963783ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[250314679ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[250898826ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[250996564ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[251083277ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[251554785ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[251572814ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[252088358ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[252106648ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[252647897ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[252723906ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[252944875ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[253497866ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[253643287ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[253929782ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[254006564ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[254468804ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[254512877ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[254784863ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[254938359ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[255418890ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[255671648ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[255879893ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[256208441ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[256343010ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[256716717ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[257270030ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[257333984ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[257523060ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258043510ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258081780ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258110078ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258244034ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258726881ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0
+[258803111ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:8001/api/instances/:0

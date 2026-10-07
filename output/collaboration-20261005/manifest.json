@@ -1,0 +1,32 @@
+{
+  "files": {
+    "apps/api/plane/radar/models/collaboration.py": "369d9f6ca3164d0be33a9ed568a916cf090155a1cfe9e3b81cda2880de480a6f",
+    "apps/api/plane/radar/models/__init__.py": "200b27a95fdb5ff14ecec33d644d9b1275def10454eca89891d4d4bba9ac487f",
+    "apps/api/plane/radar/collaboration.py": "c06c5514a703a5e974dd68e599e92a617433e87c0883cdb9b0ce837a2727c2cb",
+    "apps/api/plane/radar/mutation.py": "ca1a680e2a92e8257077966a7d1f80ce8b780dc3df9df6362e7b3644a94e4456",
+    "apps/api/plane/radar/commands/collaboration.py": "045a0b46b2e2c9ac413ddda558faef5fe42b07d3562bd3dc2d4a3964d82a34f1",
+    "apps/api/plane/radar/commands/execution.py": "8d93f0a601c919ac26759b78df11dfa12b71c07e8b973b75df1acb347ff2da12",
+    "apps/api/plane/radar/commands/handlers.py": "3bc71d738a4736e00f61ac934dfab04bee8544201ff3dfc58963aea92b0d61e6",
+    "apps/api/plane/radar/commands/inputs.py": "94499dff1c2dbe56f77a1be2a1d6372ab02ec0257a0747f557dfa3fd0ebdf970",
+    "apps/api/plane/radar/api/collaboration_views.py": "4961785c48e127c4d856bc191d983423f1f1703c7081a1329b22fee349672cb4",
+    "apps/api/plane/radar/api/command_views.py": "b23f99b8319ceec55a03f5a7324bf43b1f428595ff3b6ab74e6d16cf064ad61b",
+    "apps/api/plane/radar/api/runtime_views.py": "54bdeb1c4c77edee914c679b0e14828e603ebc7fcb8c5776c14b16c13fd39d14",
+    "apps/api/plane/radar/api/urls.py": "a9b924611536769f1ef206eb124c7e8fb2e62a1aadfc4598db829df121e04c72",
+    "apps/api/plane/radar/migrations/0010_object_collaboration.py": "57bdf122f04419d180da1a86bef1a02d3fcdd87b152f4f66b57823ec2da7b487",
+    "apps/api/plane/radar/tests/test_collaboration.py": "9abe4db47466d4e68cad96369058b9185630b8eaba700c818441c05215b5e212",
+    "apps/api/plane/radar/tests/test_runtime_contract.py": "92d99817c6cbfa984b54bc031150b9c19a7fecf1e33eadaceb404a64168b8694",
+    "apps/web/components/radar/collaboration-panel.tsx": "28a767563e00cc8e9ec1b434efe2aa250dc22298f54d2a709eea588b97749dbe",
+    "apps/web/components/radar/collaboration-panel.test.ts": "066897ef04e2d52b089130fefd7f9634def852c974b29fb6f1189433ee9fb62b",
+    "apps/web/components/radar/object-page.tsx": "f8641d4b08f6e7d10e3696bb297b91541eee348819ac55b892654419084a28ba",
+    "apps/web/services/radar/collaboration.types.ts": "e14aa2cad5bff0b06323f60be0d6fdde2d802e544fb1aee5b2ce20bd90878db8",
+    "apps/web/services/radar/radar.service.ts": "d98d07dfafb36ec39bff7257384f12bcb902547b687aa9e7ec674a37a12ab803",
+    "apps/web/services/radar/radar.service.test.ts": "4fffd977d4e1d129be78827289ff06a64bd9d316a2d20996a2f8b478ee3f7af0",
+    "apps/web/store/radar/collaboration.store.ts": "f50a4db0b3f72e3dd59a8ba86a22676ddbbd63d6b333a63eb00f649d0473c872",
+    "apps/web/store/radar/collaboration.store.test.ts": "50cb67fcf4227ec35a5ff6d09cad211450132dbc6f2b52470b6c4d3638fc52be",
+    "apps/web/store/radar/provider.tsx": "f2fbebeee76bc4f8bbdfdb7ac46ebd72cf64ef8c15af5ec11f3c56ecc8979f02",
+    "docs/radar/COLLABORATION.md": "3e242c0b448dedda0a958f8264cb3263854f2b82576475b62368d488c77b9bfd",
+    "docs/radar/README.md": "cc54de13bcc36900b579f60a53a75465e54aa77c9d714214f9a733d6345a8f23",
+    "docs/radar/NEXT_PHASE_READINESS.md": "91171ef4d1cab3d6c3814c5c4b7441e3829aeeb1887041e57272a12b3902a66f",
+    "docs/radar/COMMAND_LAYER.md": "2423a3e3298a40775afd29dfb1871f4fe72732b814bdd70f6ef157dd66eb43b5"
+  }
+}

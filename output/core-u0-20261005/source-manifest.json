@@ -1,0 +1,157 @@
+[
+  {
+    "path": "apps/api/plane/radar/api/command_views.py",
+    "sha256": "e1eb413139ec8476de8b81808ed54445d08360d3e4483cc470f77c62dd934e01",
+    "baseline_sha256": "b23f99b8319ceec55a03f5a7324bf43b1f428595ff3b6ab74e6d16cf064ad61b"
+  },
+  {
+    "path": "apps/api/plane/radar/api/runtime_views.py",
+    "sha256": "3ec5f17b1040a9012323a2affd1df217ffd52cd2410730d6975c58c95aaf819c",
+    "baseline_sha256": "54bdeb1c4c77edee914c679b0e14828e603ebc7fcb8c5776c14b16c13fd39d14"
+  },
+  {
+    "path": "apps/api/plane/radar/api/serializers.py",
+    "sha256": "8de98d6950f0f9244d6f00e9edc8e41988b2c6aca87588aa6fc2a375eb94fcd9",
+    "baseline_sha256": "726a0319cbeabfd91f62fe720ff91c83b3d3f246506ca2f57a48fa91ee2f23a0"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/execution.py",
+    "sha256": "40fef5388d1b8fbf0755794931733638c5e7cade59c4d86a08183a01cca5fd7a",
+    "baseline_sha256": "8d93f0a601c919ac26759b78df11dfa12b71c07e8b973b75df1acb347ff2da12"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/handlers.py",
+    "sha256": "c80fe9c78d39a0321fbccf45898c12f06a708815c4e13551f8e67e563f5744ca",
+    "baseline_sha256": "3bc71d738a4736e00f61ac934dfab04bee8544201ff3dfc58963aea92b0d61e6"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/operations.py",
+    "sha256": "aacb7827a4b71eebedef06a8143f067439edd3ae412b9e0965d7abcb79ffb8b2",
+    "baseline_sha256": "4d1189774f7a3f7489a8f69ebfe12a678fda4ca921a3be408203336c740a3d42"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/primitives_objects.py",
+    "sha256": "224da31e8e1e4b28d79389e27ee6da5a9af935c64023c27e85116aed50e33367",
+    "baseline_sha256": "c04d20bd0f0aaeb6e12c79d5545a7f636d4e9d1b392e5a9bc9918df53a6efcad"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/primitives_semantic.py",
+    "sha256": "252cd789bf17583f4419131402f37a4429c64a64b77844321aa2e253d530fd1c",
+    "baseline_sha256": "8071d9e6a6701d57e6217f83fd67b3cd39a0b378a1a41bc03c3467da09dcd86e"
+  },
+  {
+    "path": "apps/api/plane/radar/commands/rules.py",
+    "sha256": "822b09da0b84ed828a1851911ce5720940b1832e5b86690bf5257e00dd4c289f",
+    "baseline_sha256": null
+  },
+  {
+    "path": "apps/api/plane/radar/commands/runtime_control.py",
+    "sha256": "dc39f562f5de9c1bcedca4e521ce4fca62bbc444215286a2200f6a25ecf22da1",
+    "baseline_sha256": "0d3f34d0438171fe9ebf10869aa1c27f0b8ddeccc8a064f839472315d6282f3d"
+  },
+  {
+    "path": "apps/api/plane/radar/migrations/0011_objecttype_rules.py",
+    "sha256": "e9a5517f73cb13d9be0f02472ba4b8e36e995adbfab474df5e3245a86ca69636",
+    "baseline_sha256": null
+  },
+  {
+    "path": "apps/api/plane/radar/models/core.py",
+    "sha256": "84d65413c15aa459a3b2359c4dfaa35e378fcaea128aa57a69d69e0e3139523b",
+    "baseline_sha256": "543ab0fc2f749c6cdce4711353415c8075c3d8aaee46f9c2fb353710103b65d2"
+  },
+  {
+    "path": "apps/api/plane/radar/models/semantic.py",
+    "sha256": "23c99e7e75eea7f7540885f5e14da9cd1a080f91cb8891bc87c24ca28a3f1a31",
+    "baseline_sha256": "c7679ee95ff658d81fbbc2a95871edb2bb3ad64a3f6ace3ced313b37a3268107"
+  },
+  {
+    "path": "apps/api/plane/radar/mutation.py",
+    "sha256": "1fb80cb62e0a1ec3f05424e0934d578a58c9e4a5391708f20025415212ec7237",
+    "baseline_sha256": "ca1a680e2a92e8257077966a7d1f80ce8b780dc3df9df6362e7b3644a94e4456"
+  },
+  {
+    "path": "apps/api/plane/radar/risk_review.py",
+    "sha256": "7247dbb14d4037c2dcbe5c4242e65649ff4f95f66b8bc18600faa59f479cf6ce",
+    "baseline_sha256": "a8f316afdc11bbcfa2fd4e023f82684ff8c853249d3366608f5fd540cf162dcb"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/fixture_writes.py",
+    "sha256": "9687ef0c083d9301b59769219bc71d3855995a677b88b391f1a356cbbbbc1d5d",
+    "baseline_sha256": null
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_agent_config.py",
+    "sha256": "b81591c3af4cc1ed9b5dfd0db729082657dafadc7d0d8cd0614bfed04cf1e24a",
+    "baseline_sha256": "0766b7d2b6ea88186fcb4f62c9f458e9f62d76ebace5b78a2b562ddc9c54387b"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_agent_runtime.py",
+    "sha256": "fed1d1898669284264ada82e4dc9a54c192d44fd8750af1e11ca68d509c70b55",
+    "baseline_sha256": "8be214b302f42ca93e81f73855dad7fd7a7f91f5260bf86dfabfe9565acf17c8"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_collaboration.py",
+    "sha256": "bd19ad963d3a8a36d83b476dadfe2c7e665d2ef7c4ae1d8d1a96fc8d607d8b6a",
+    "baseline_sha256": "9abe4db47466d4e68cad96369058b9185630b8eaba700c818441c05215b5e212"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_commands.py",
+    "sha256": "feca382da821d9c088ea90a3158becb81d9be8e0767ddc8c75dce40845e1bbf6",
+    "baseline_sha256": "b2e9d617628c49253b43f07e1af2c0445edfe39ee570172a5e529eab10aa0568"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_context_bounds.py",
+    "sha256": "ca9d60f158906d179de4720cbc4e59fb6f986d73d0bfdeb591be33907e66ed18",
+    "baseline_sha256": "2d5a3d1882ff081e0757e9ed7cf8ae5ef2caf355b860e88e767695997ae191ea"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_core.py",
+    "sha256": "c87d349ce42830aad8d7415bbe7923ecd37f87d1f94b9b9c7a50cec2d03873f3",
+    "baseline_sha256": "cf8f43eb6eb2ec6016ca10bd9741aeada74213cf28d18207fd3a25e015b32aa7"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_core_u0.py",
+    "sha256": "7be8b1dec28b3a6434f74cb19b7412f951d263c8d93417baf093174f94b998af",
+    "baseline_sha256": null
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_governance.py",
+    "sha256": "1c22150c54fb01c1eaeb6be274bb69b7d4dd54952e181daa8ea1bcc5ee4a729d",
+    "baseline_sha256": "a0d067aac7fc50dbcd4f354ca26935e11755be0c0bf3b8291f420764146eb3f8"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_risk_review.py",
+    "sha256": "d2ae40c28ead090254b129784680d5f385400c319d363205b051806243574a60",
+    "baseline_sha256": "fc2f9453f2b1e16553a2d90a61d9a7fce97da485aeca879317ba9e7a5afb11c0"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_runtime_contract.py",
+    "sha256": "0191eec1cd13c055fc4055d0638dc7f104cbee979eac63716e3e136030096ad7",
+    "baseline_sha256": "92d99817c6cbfa984b54bc031150b9c19a7fecf1e33eadaceb404a64168b8694"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_semantic.py",
+    "sha256": "12abb7768c0bde594cfd02f9c27ed73331f07ae9b01ab697394258d051ae1a4f",
+    "baseline_sha256": "545173f609c3370ac883445e7e4cccda607817153428e77b32d847d94f95790f"
+  },
+  {
+    "path": "apps/api/plane/radar/tests/test_today.py",
+    "sha256": "dac2f7c89ab98f8eb3cfa31477f5ba6a7ce199df17a5b7ea4b914a25263f5fe9",
+    "baseline_sha256": "93d14f5b5aaf99b6569ad1530dd348bf3e161d4d50ac99cbb7cbd4180ede9f1a"
+  },
+  {
+    "path": "apps/web/components/radar/semantic-utils.test.ts",
+    "sha256": "b7132bf3557f647bddf5c31dc5efef8ffe2a0120a728484f6da6452c1e8f2bb8",
+    "baseline_sha256": "e18770859763313d80718d957d648b54683c80203355bbb2afa9bacb4ba2930e"
+  },
+  {
+    "path": "apps/web/components/radar/semantic-utils.ts",
+    "sha256": "cac199fd860ce339614362007f8018a04cdb080a262e3517faa6463a7f3a5e0d",
+    "baseline_sha256": "785a7d8cc19d0a061a6945de02ba68fc4520b0c3ea5a088468c5c5d3efad76ec"
+  },
+  {
+    "path": "apps/web/services/radar/types.ts",
+    "sha256": "da1c169ca1e2ee637aed50f21a98546651d4b0d586063892cf99724fa20644ed",
+    "baseline_sha256": "afa850c058b70059a04b6383dc72d9c761dabe606476704955da26b2c2c55128"
+  }
+]
