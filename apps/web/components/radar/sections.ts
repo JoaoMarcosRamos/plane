@@ -8,8 +8,6 @@
 export const RADAR_SECTIONS = [
   { key: "today", label: "Today" },
   { key: "objects", label: "Objects" },
-  { key: "decisions", label: "Decisions" },
-  { key: "risks", label: "Risks" },
   { key: "risk-review", label: "Risk Review" },
   { key: "agent-config", label: "Agent configuration" },
 ] as const;
@@ -17,3 +15,10 @@ export const RADAR_SECTIONS = [
 export type TRadarSectionKey = (typeof RADAR_SECTIONS)[number]["key"];
 
 export const getRadarSection = (key: string | undefined) => RADAR_SECTIONS.find((section) => section.key === key);
+
+/** Type routes have their own namespace, so a type named today never shadows a function. */
+export const radarTypeSection = (key: string) => `type-${key}`;
+export const radarTypeKey = (section: string) =>
+  section.startsWith("type-")
+    ? section.slice(5)
+    : ({ decisions: "decision", risks: "risk" } as Record<string, string>)[section];

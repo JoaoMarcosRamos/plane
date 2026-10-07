@@ -1,0 +1,102 @@
+- generic [ref=e122]:
+  - link "All objects" [ref=e123] [cursor=pointer]:
+    - /url: /pending-browser-81886026/radar/objects/
+  - generic [ref=e124]:
+    - paragraph [ref=e125]: Service tickets
+    - generic [ref=e126]:
+      - generic [ref=e128]:
+        - text: Title
+        - generic [aria-hidden] [ref=e129]: "*"
+      - textbox "Title" [ref=e132]: Integrated UI ticket
+    - generic [ref=e134]:
+      - generic [ref=e135]:
+        - generic [ref=e136]: Summary
+        - textbox "Summary" [ref=e140]: Created from the configured required field
+      - generic [ref=e141]:
+        - generic [ref=e142]: Saved
+        - button "Save Summary" [disabled] [ref=e144]:
+          - generic [ref=e145]: Save
+    - generic [ref=e146]:
+      - heading "Notes" [level=2] [ref=e147]
+      - paragraph [ref=e148]: Complementary notes. The main narrative is summary.
+      - generic:
+        - paragraph
+    - generic [ref=e149]:
+      - term [ref=e150]: Created by
+      - definition [ref=e151]: "Human: pending-bdb667d3"
+      - term [ref=e152]: Updated by
+      - definition [ref=e153]: "Human: pending-bdb667d3"
+      - term [ref=e154]: Version
+      - definition [ref=e155]: "1"
+    - button "Save title and notes" [disabled] [ref=e156]
+  - generic [ref=e158]:
+    - region [ref=e159]:
+      - heading "Lifecycle" [level=2] [ref=e160]
+      - generic [ref=e161]:
+        - generic [ref=e162]:
+          - generic [ref=e163]:
+            - generic [ref=e164]: Status
+            - combobox "Status" [disabled] [ref=e165]:
+              - generic "Open" [ref=e166]
+            - textbox [disabled] [aria-hidden] [ref=e170]: open
+          - paragraph [ref=e171]: Changes follow this type's lifecycle.
+          - generic [ref=e172]: Saved
+        - generic [ref=e174]:
+          - generic [ref=e175]:
+            - generic [ref=e176]: Closed at
+            - textbox "Closed at" [disabled] [ref=e180]
+          - paragraph [ref=e181]: Recorded automatically when the status changes.
+          - generic [ref=e182]: Not set
+    - region [ref=e184]:
+      - generic [ref=e185]:
+        - heading "Relations" [level=2] [ref=e186]
+        - button "Add relation" [ref=e187] [cursor=pointer]
+      - list
+      - paragraph [ref=e189]: No outgoing relations.
+    - region [ref=e190]:
+      - heading "Backlinks" [level=2] [ref=e191]
+      - list
+      - paragraph [ref=e192]: No incoming relations.
+  - region [ref=e193]:
+    - generic [ref=e194]:
+      - heading "Collaboration" [level=2] [ref=e195]
+      - button "Reload" [ref=e196] [cursor=pointer]
+    - generic [ref=e198]:
+      - heading "Comments" [level=3] [ref=e199]
+      - paragraph [ref=e200]: No comments yet.
+      - generic [ref=e201]:
+        - generic [ref=e202]:
+          - generic [ref=e204]:
+            - text: New comment
+            - generic [aria-hidden] [ref=e205]: "*"
+          - textbox "New comment" [ref=e208]
+        - button "Add comment" [disabled] [ref=e209]
+    - generic [ref=e211]:
+      - heading "Attachments" [level=3] [ref=e212]
+      - paragraph [ref=e213]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+      - paragraph [ref=e214]: No attachments yet.
+      - generic [ref=e215]:
+        - generic [ref=e216]: Supporting file
+        - button "Supporting file" [ref=e217]
+        - paragraph [ref=e218]: Choose a nonempty file. A failed request keeps your selection for retry.
+        - button "Upload attachment" [disabled] [ref=e219]
+    - generic [ref=e221]:
+      - heading "Activity" [level=3] [ref=e222]
+      - list [ref=e223]:
+        - listitem [ref=e224]:
+          - paragraph [ref=e225]: Create Object · executed
+          - paragraph [ref=e226]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=e227]: 07/10/2026, 08:33:56
+          - paragraph [ref=e228]: Create object · radar.session-api
+  - region "Histórico operacional" [ref=e229]:
+    - generic [ref=e230]:
+      - heading "Histórico operacional" [level=2] [ref=e231]
+      - button "Atualizar histórico" [ref=e232] [cursor=pointer]
+    - generic [ref=e234]:
+      - generic [ref=e235]: Filtrar histórico
+      - combobox "Filtrar histórico" [ref=e236] [cursor=pointer]:
+        - generic "Todos" [ref=e237]
+      - textbox [aria-hidden] [ref=e241]: all
+    - paragraph [ref=e242]: Nenhum registro operacional.
+    - list

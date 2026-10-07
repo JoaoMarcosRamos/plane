@@ -276,13 +276,22 @@ export const RadarSemanticPanel = observer(function RadarSemanticPanel({
           <p className="text-13 text-secondary">No incoming relations.</p>
         )}
       </section>
-      {adding && relations && (
-        <RadarRelationDialog
-          object={object}
-          relations={relations}
-          onCreate={createRelation}
-          onClose={() => setAdding(false)}
+      {store.relationSnapshots.get(object.id)?.next_cursor && (
+        <Button
+          label="More relations"
+          variant="secondary"
+          size="sm"
+          stretch="auto"
+          disabled={busy || stale}
+          onClick={() => {
+            void store
+              .loadRelations(object.id, store.relationSnapshots.get(object.id)?.next_cursor ?? undefined)
+              .catch((cause: unknown) => setError(semanticError(cause)));
+          }}
         />
+      )}
+      {adding && relations && (
+        <RadarRelationDialog object={object} onCreate={createRelation} onClose={() => setAdding(false)} />
       )}
       {removing && (
         <Dialog

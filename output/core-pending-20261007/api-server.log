@@ -1,0 +1,113 @@
+ Container radar-core-pending-test-minio-1 Running 
+ Container radar-core-pending-test-db-1 Running 
+ Container radar-core-pending-test-redis-1 Running 
+ Container radar-core-pending-test-mq-1 Running 
+ Container radar-core-pending-test-redis-1 Waiting 
+ Container radar-core-pending-test-mq-1 Waiting 
+ Container radar-core-pending-test-minio-1 Waiting 
+ Container radar-core-pending-test-db-1 Waiting 
+ Container radar-core-pending-test-redis-1 Healthy 
+ Container radar-core-pending-test-db-1 Healthy 
+ Container radar-core-pending-test-mq-1 Healthy 
+ Container radar-core-pending-test-minio-1 Healthy 
+ Container radar-core-pending-browser-api Creating 
+ Container radar-core-pending-browser-api Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+CORE_PENDING_BROWSER_READY
+192.168.65.1 - - [07/Oct/2026 11:32:33] "GET /fixture/info/ HTTP/1.1" 200 243
+192.168.65.1 - - [07/Oct/2026 11:32:49] "GET /fixture/login/admin/ HTTP/1.1" 302 0
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:32:52] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9931
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:32:52] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9955
+GET - /api/workspaces/pending-browser-81886026/radar/objects/?q=&object_type=63418c56-a4f1-4a3f-936d-8313a56a8b00 of Queries: 13
+192.168.65.1 - - [07/Oct/2026 11:32:52] "GET /api/workspaces/pending-browser-81886026/radar/objects/?q=&object_type=63418c56-a4f1-4a3f-936d-8313a56a8b00 HTTP/1.1" 200 520
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:32:53] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9980
+GET - /api/workspaces/pending-browser-81886026/radar/objects/?q=&object_type=63418c56-a4f1-4a3f-936d-8313a56a8b00 of Queries: 13
+192.168.65.1 - - [07/Oct/2026 11:32:53] "GET /api/workspaces/pending-browser-81886026/radar/objects/?q=&object_type=63418c56-a4f1-4a3f-936d-8313a56a8b00 HTTP/1.1" 200 461
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:33:22] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 10003
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:33:52] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 10000
+POST - /api/workspaces/pending-browser-81886026/radar/objects/ of Queries: 134
+192.168.65.1 - - [07/Oct/2026 11:33:56] "POST /api/workspaces/pending-browser-81886026/radar/objects/ HTTP/1.1" 201 648
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9951
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ of Queries: 17
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ HTTP/1.1" 200 1094
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ of Queries: 16
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ HTTP/1.1" 200 768
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ of Queries: 57
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ HTTP/1.1" 200 647
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ of Queries: 14
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ HTTP/1.1" 200 431
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia HTTP/1.1" 200 201
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [07/Oct/2026 11:33:56] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 HTTP/1.1" 200 121
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:34:22] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 10027
+GET - /api/workspaces/pending-browser-81886026/radar/objects/?relation_type=30ff1996-6538-445d-8b6a-8d17c6241b58&object_id=6e9e7148-7b55-4ece-87c7-b9fa229eaf80&direction=outgoing&q= of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:34:29] "GET /api/workspaces/pending-browser-81886026/radar/objects/?relation_type=30ff1996-6538-445d-8b6a-8d17c6241b58&object_id=6e9e7148-7b55-4ece-87c7-b9fa229eaf80&direction=outgoing&q= HTTP/1.1" 200 3059
+GET - /api/workspaces/pending-browser-81886026/radar/objects/?relation_type=30ff1996-6538-445d-8b6a-8d17c6241b58&object_id=6e9e7148-7b55-4ece-87c7-b9fa229eaf80&direction=outgoing&q=Objective+110 of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:34:48] "GET /api/workspaces/pending-browser-81886026/radar/objects/?relation_type=30ff1996-6538-445d-8b6a-8d17c6241b58&object_id=6e9e7148-7b55-4ece-87c7-b9fa229eaf80&direction=outgoing&q=Objective+110 HTTP/1.1" 200 394
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:34:52] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9935
+GET - /api/workspaces/pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000456/ of Queries: 12
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000456/ HTTP/1.1" 200 769
+POST - /api/workspaces/pending-browser-81886026/radar/relations/ of Queries: 126
+192.168.65.1 - - [07/Oct/2026 11:35:18] "POST /api/workspaces/pending-browser-81886026/radar/relations/ HTTP/1.1" 201 1334
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ of Queries: 14
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ HTTP/1.1" 200 510
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia HTTP/1.1" 200 201
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 HTTP/1.1" 200 121
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ of Queries: 17
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ HTTP/1.1" 200 1181
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ HTTP/1.1" 200 1136
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ of Queries: 84
+192.168.65.1 - - [07/Oct/2026 11:35:18] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ HTTP/1.1" 200 589
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:35:22] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9987
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:35:52] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 10011
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:36:22] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9959
+PUT - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/a5c630df-6fb4-4e16-92d8-ad50453735a3/ of Queries: 173
+192.168.65.1 - - [07/Oct/2026 11:36:24] "PUT /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/a5c630df-6fb4-4e16-92d8-ad50453735a3/ HTTP/1.1" 200 1138
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ of Queries: 14
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/collaboration/ HTTP/1.1" 200 642
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operations/?timezone=America%2FBahia HTTP/1.1" 200 201
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/operational-history/?limit=20 HTTP/1.1" 200 121
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ of Queries: 17
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/properties/ HTTP/1.1" 200 1130
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/relations/ HTTP/1.1" 200 1151
+GET - /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ of Queries: 89
+192.168.65.1 - - [07/Oct/2026 11:36:24] "GET /api/workspaces/pending-browser-81886026/radar/objects/6e9e7148-7b55-4ece-87c7-b9fa229eaf80/capabilities/ HTTP/1.1" 200 624
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9936
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 10000
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/properties/ of Queries: 17
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/properties/ HTTP/1.1" 200 1128
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/capabilities/ of Queries: 194
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/capabilities/ HTTP/1.1" 200 2012
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/relations/ of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/relations/ HTTP/1.1" 200 6510
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/collaboration/ of Queries: 14
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/collaboration/ HTTP/1.1" 200 3105
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/operations/?timezone=America%2FBahia of Queries: 19
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/operations/?timezone=America%2FBahia HTTP/1.1" 200 168
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/operational-history/?limit=20 of Queries: 12
+192.168.65.1 - - [07/Oct/2026 11:36:35] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/operational-history/?limit=20 HTTP/1.1" 200 122
+GET - /api/workspaces/pending-browser-81886026/radar/schema/ of Queries: 15
+192.168.65.1 - - [07/Oct/2026 11:37:05] "GET /api/workspaces/pending-browser-81886026/radar/schema/ HTTP/1.1" 200 9940
+GET - /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/relations/?cursor=eyJzY29wZSI6eyJ3b3Jrc3BhY2UiOiJmZmJiYmU1OC1jZDRlLTQwOGQtOThjMy03Nzg2OTJiZTM0NjQiLCJyZXZpc2lvbiI6NSwib2JqZWN0IjoiNzMyOTQ1MmItZmFkOC00Zjc4LWExMTgtOWNlZWJmMTI1NzhiIiwidmVyc2lvbiI6NTcsImRpcmVjdGlvbiI6ImJvdGgifSwiaWQiOiJlOTBhZDJmZS0yZjgyLTQ0MWEtODMwNy00Y2UxY2I3MDU4YmUifQ:1xEPwp:hFtrF7yUhzki1crbOcjQodz5jCn13Oa_h-bMoKYhKMA of Queries: 18
+192.168.65.1 - - [07/Oct/2026 11:37:09] "GET /api/workspaces/pending-browser-81886026/radar/objects/7329452b-fad8-4f78-a118-9ceebf12578b/relations/?cursor=eyJzY29wZSI6eyJ3b3Jrc3BhY2UiOiJmZmJiYmU1OC1jZDRlLTQwOGQtOThjMy03Nzg2OTJiZTM0NjQiLCJyZXZpc2lvbiI6NSwib2JqZWN0IjoiNzMyOTQ1MmItZmFkOC00Zjc4LWExMTgtOWNlZWJmMTI1NzhiIiwidmVyc2lvbiI6NTcsImRpcmVjdGlvbiI6ImJvdGgifSwiaWQiOiJlOTBhZDJmZS0yZjgyLTQ0MWEtODMwNy00Y2UxY2I3MDU4YmUifQ:1xEPwp:hFtrF7yUhzki1crbOcjQodz5jCn13Oa_h-bMoKYhKMA HTTP/1.1" 200 1783
+

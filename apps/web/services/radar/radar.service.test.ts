@@ -221,3 +221,29 @@ describe("C18 scoped operational reads", () => {
     expect(transport.post).not.toHaveBeenCalled();
   });
 });
+
+it("transports bounded search filters and exposed page cursors", async () => {
+  const data = [{ id: "remote", title: "Remote", version: 4 }];
+  transport.get.mockResolvedValueOnce({
+    data,
+    headers: { "x-radar-schema-revision": "7", "x-radar-next-cursor": "signed" },
+  });
+  const query = {
+    relation_type: "kind",
+    object_id: "object",
+    direction: "incoming" as const,
+    q: "Remote",
+    limit: 5,
+    cursor: "before",
+  };
+  const result = await new RadarService().listObjects("team/a", query);
+  expect(transport.get).toHaveBeenCalledWith("/api/workspaces/team%2Fa/radar/objects/", { params: query });
+  expect(result.schema_revision).toBe(7);
+  expect(result.next_cursor).toBe("signed");
+  expect(result[0].schema_revision).toBe(7);
+  transport.get.mockResolvedValueOnce({ data: { relations: [], next_cursor: null } });
+  await new RadarService().getRelations("team/a", "object/a", "signed");
+  expect(transport.get).toHaveBeenLastCalledWith("/api/workspaces/team%2Fa/radar/objects/object%2Fa/relations/", {
+    params: { cursor: "signed" },
+  });
+});

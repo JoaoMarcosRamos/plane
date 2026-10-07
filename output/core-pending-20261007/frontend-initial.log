@@ -1,0 +1,41 @@
+$ vitest run --config vitest.radar.config.ts
+
+ RUN  v4.1.11 /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web
+
+(node:85902) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/postcss.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/packages/tailwind-config/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ❯ store/radar/root.store.test.ts (25 tests | 1 failed) 43ms
+     × loads schema, related objects and consistent property/relation versions 6ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  store/radar/root.store.test.ts > RADAR page aggregate snapshots > loads schema, related objects and consistent property/relation versions
+AssertionError: expected [] to have a length of 1 but got +0
+
+- Expected
++ Received
+
+- 1
++ 0
+
+ ❯ store/radar/root.store.test.ts:217:33
+    215|     expect(store.propertiesFor(object.id)).toEqual([]);
+    216|     expect(store.relationsFor(object.id)).toEqual([]);
+    217|     expect(store.listedObjects).toHaveLength(1);
+       |                                 ^
+    218|   });
+    219|   it("recovers when a concurrent write crosses property and relation r…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 146 passed (147)
+   Start at  08:24:19
+   Duration  838ms (transform 692ms, setup 0ms, import 1.78s, tests 328ms, environment 1ms)
+
+/Users/joaomarcosramos/Documents/Github/plane-radar-phase-0-spike/apps/web:
+[ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL] web@1.4.2 test:radar: `vitest run --config vitest.radar.config.ts`
+Exit status 1

@@ -74,6 +74,16 @@ class ObjectSerializer(serializers.ModelSerializer):
         read_only_fields = fields
 
 
+class ObjectSummarySerializer(ObjectSerializer):
+    """No narrative or per-row type descriptors in list/candidate/endpoint payloads."""
+
+    object_type_detail = None
+
+    class Meta(ObjectSerializer.Meta):
+        fields = [field for field in ObjectSerializer.Meta.fields if field not in {"content", "object_type_detail"}]
+        read_only_fields = fields
+
+
 class ObjectInputSerializer(StrictSerializer):
     object_type = serializers.UUIDField()
     title = serializers.CharField(max_length=255)

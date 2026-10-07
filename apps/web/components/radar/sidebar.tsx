@@ -9,13 +9,7 @@ import { useState } from "react";
 import { observer } from "mobx-react";
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
-import {
-  CalendarOutline,
-  CubeOutline,
-  FlagOutline,
-  SandboxOutline,
-  WarningTriangleOutline,
-} from "@makeplane/propel/icons";
+import { CalendarOutline, CubeOutline, SandboxOutline, WarningTriangleOutline } from "@makeplane/propel/icons";
 import { SIDEBAR_WIDTH } from "@plane/constants";
 import { useLocalStorage } from "@plane/hooks";
 // components
@@ -26,13 +20,12 @@ import { SidebarWrapper } from "@/components/sidebar/sidebar-wrapper";
 import { useAppTheme } from "@/hooks/store/use-app-theme";
 // local imports
 import type { TRadarSectionKey } from "./sections";
-import { RADAR_SECTIONS } from "./sections";
+import { useRadarStore } from "@/store/radar/provider";
+import { RADAR_SECTIONS, radarTypeSection } from "./sections";
 
 const SECTION_ICONS: Record<TRadarSectionKey, ReactNode> = {
   today: <CalendarOutline className="size-4" />,
   objects: <CubeOutline className="size-4" />,
-  decisions: <FlagOutline className="size-4" />,
-  risks: <WarningTriangleOutline className="size-4" />,
   "risk-review": <WarningTriangleOutline className="size-4" />,
   "agent-config": <SandboxOutline className="size-4" />,
 };
@@ -70,6 +63,7 @@ const RadarSidebarLink = observer(function RadarSidebarLink({ href, label, icon 
  */
 export const RadarAppSidebar = observer(function RadarAppSidebar() {
   const { workspaceSlug } = useParams();
+  const store = useRadarStore();
   const { sidebarCollapsed, toggleSidebar, sidebarPeek, toggleSidebarPeek, isAnySidebarDropdownOpen } = useAppTheme();
   const { storedValue, setValue } = useLocalStorage("sidebarWidth", SIDEBAR_WIDTH);
   const [sidebarWidth, setSidebarWidth] = useState<number>(storedValue ?? SIDEBAR_WIDTH);
@@ -103,6 +97,16 @@ export const RadarAppSidebar = observer(function RadarAppSidebar() {
           ))}
         </nav>
         <div className="mx-2 border-t border-subtle" />
+        <nav className="flex flex-col gap-0.5" aria-label="Object types">
+          {store.objectTypes.map((type) => (
+            <RadarSidebarLink
+              key={type.id}
+              href={`${radarBasePath}/${radarTypeSection(type.key)}/`}
+              label={type.name}
+              icon={<CubeOutline className="size-4" />}
+            />
+          ))}
+        </nav>
         <nav className="flex flex-col gap-0.5" aria-label="RADAR spike">
           <RadarSidebarLink
             href={`${radarBasePath}/spike/`}

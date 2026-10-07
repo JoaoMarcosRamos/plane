@@ -1,0 +1,93 @@
+{
+  "date": "2026-10-07",
+  "backend": {
+    "total": 562,
+    "passed": 559,
+    "skipped": 3,
+    "failures": 0,
+    "errors": 0
+  },
+  "radar_passed": 557,
+  "plane_passed": 2,
+  "new_backend_cases": 15,
+  "frontend": {
+    "passed": 154,
+    "files": 21,
+    "new_cases": 7
+  },
+  "workspace_check": {
+    "passed": 56,
+    "total": 56
+  },
+  "python_checks": "passed",
+  "schema_check": "no_changes",
+  "migration": {
+    "roundtrip": true,
+    "objects_preserved": 112,
+    "relations_preserved": 56,
+    "index_installed": true
+  },
+  "browser": {
+    "created": "6e9e7148-7b55-4ece-87c7-b9fa229eaf80",
+    "version": 3,
+    "summary": "Created from the configured required field",
+    "status": "working",
+    "related_title": "Objective 110",
+    "created_actor": "human",
+    "pages_after_removal": [50, 5],
+    "capability_pages": [50, 5],
+    "removed_relation": "fff914d0-80ee-4409-bda0-fbba7c806dc4",
+    "provenance": "1656d684-f3e2-4377-a539-614ee0d425ef"
+  },
+  "baselines": {
+    "C13_BASELINE": [
+      {
+        "fixture": 10,
+        "rows": 5,
+        "bytes": 3301,
+        "queries": 10,
+        "elapsed_ms": 6.6156249995401595
+      },
+      {
+        "fixture": 110,
+        "rows": 5,
+        "bytes": 3301,
+        "queries": 10,
+        "elapsed_ms": 4.018375002488028
+      },
+      {
+        "fixture": 1010,
+        "rows": 5,
+        "bytes": 3301,
+        "queries": 10,
+        "elapsed_ms": 4.177167000307236
+      }
+    ],
+    "C14_BASELINE": [
+      {
+        "operation": "other_workspace",
+        "wait_ms": 1.1924169994017575,
+        "held_ms": 0.11262499901931733,
+        "outcome": "committed"
+      },
+      {
+        "operation": "baseline_hold",
+        "wait_ms": 1.5213749975373503,
+        "held_ms": 202.61254200158874,
+        "outcome": "committed"
+      },
+      {
+        "operation": "same_workspace",
+        "wait_ms": 203.13912499841535,
+        "held_ms": 0.29491600071196444,
+        "outcome": "committed"
+      }
+    ]
+  },
+  "findings": {
+    "C13": "corrected",
+    "C23": "corrected",
+    "C14": "instrumented_and_measured_workspace_lock_retained"
+  },
+  "deploy": false
+}

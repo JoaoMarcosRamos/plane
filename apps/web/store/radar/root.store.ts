@@ -5,6 +5,8 @@ import type {
   CreateRadarObject,
   RadarObject,
   RadarObjectCollection,
+  RadarObjectSummary,
+  RadarObjectQuery,
   RadarObjectType,
   UpdateRadarObject,
   RadarPropertyDefinition,
@@ -50,6 +52,8 @@ export class RadarRootStore {
   objectTypes: RadarObjectType[] = [];
   objects = new Map<string, RadarObject>();
   listIds: string[] = [];
+  listCursor: string | null = null;
+  private listRequest = 0;
   propertyDefinitions: RadarPropertyDefinition[] = [];
   relationTypes: RadarRelationType[] = [];
   capabilities: Record<string, RadarCapabilityContract> = {};
@@ -73,8 +77,32 @@ export class RadarRootStore {
   }
   private cache(object: RadarObject) {
     const previous = this.objects.get(object.id);
-    if ((object.schema_revision ?? this.schemaRevision) < this.schemaRevision) return;
+    if (
+      this.authorityRevision === "unavailable" ||
+      (object.schema_revision ?? this.schemaRevision) < this.schemaRevision
+    )
+      return;
     if (!previous || previous.version <= object.version) this.objects.set(object.id, object);
+  }
+  private cacheSummary(summary: RadarObjectSummary) {
+    const type = this.objectTypes.find((item) => item.id === summary.object_type) ?? summary.object_type_detail;
+    if (!type) return;
+    const previous = this.objects.get(summary.id);
+    this.cache({
+      ...summary,
+      object_type_detail: type,
+      content: summary.content ?? (previous?.version === summary.version ? previous.content : ""),
+    });
+  }
+  async searchObjects(query: RadarObjectQuery) {
+    const rows = await this.service.listObjects(this.workspaceSlug, query);
+    if ((rows.schema_revision ?? 0) > this.schemaRevision) await this.loadSchema();
+    if (
+      this.authorityRevision === "unavailable" ||
+      (rows.schema_revision ?? this.schemaRevision) !== this.schemaRevision
+    )
+      throw new Error("Workspace definitions changed. Search again.");
+    return rows;
   }
   private async runMutation<Input, Result>(
     slot: string,
@@ -109,6 +137,7 @@ export class RadarRootStore {
       return;
     if (catalog.schema_revision !== this.schemaRevision || catalog.authority_revision !== this.authorityRevision) {
       this.relations.clear();
+      this.capacitySnapshots.clear();
     }
     this.schemaRevision = catalog.schema_revision;
     this.authorityRevision = catalog.authority_revision;
@@ -138,6 +167,17 @@ export class RadarRootStore {
         runInAction(() => {
           this.canWrite = false;
           this.authorityRevision = "unavailable";
+          this.objects.clear();
+          this.listIds = [];
+          this.listCursor = null;
+          this.relations.clear();
+          this.propertySnapshots.clear();
+          this.relationSnapshots.clear();
+          this.capacitySnapshots.clear();
+          this.objectTypes = [];
+          this.propertyDefinitions = [];
+          this.relationTypes = [];
+          this.listRequest++;
         });
       }
       throw cause;
@@ -150,14 +190,23 @@ export class RadarRootStore {
       this.objectTypes = types;
     });
   }
-  async loadList() {
-    const objects = await this.service.listObjects(this.workspaceSlug);
+  async loadList(query?: RadarObjectQuery, append = false) {
+    const request = ++this.listRequest;
+    const objects = await (query
+      ? this.service.listObjects(this.workspaceSlug, query)
+      : this.service.listObjects(this.workspaceSlug));
+    if ((objects.schema_revision ?? 0) > this.schemaRevision) await this.loadSchema();
     runInAction(() => {
-      if (((objects as RadarObjectCollection).schema_revision ?? this.schemaRevision) < this.schemaRevision) return;
-      objects.forEach((object) => this.cache(object));
-      this.listIds = objects
-        .filter((object) => (object.schema_revision ?? this.schemaRevision) >= this.schemaRevision)
-        .map((object) => object.id);
+      if (
+        this.authorityRevision === "unavailable" ||
+        request !== this.listRequest ||
+        (objects.schema_revision ?? this.schemaRevision) !== this.schemaRevision
+      )
+        return;
+      objects.forEach((object) => this.cacheSummary(object));
+      const ids = objects.filter((object) => this.objects.has(object.id)).map((object) => object.id);
+      this.listIds = append ? Array.from(new Set([...this.listIds, ...ids])) : ids;
+      this.listCursor = objects.next_cursor ?? null;
     });
   }
   async getObject(id: string) {
@@ -210,14 +259,22 @@ export class RadarRootStore {
       ? snapshot
       : undefined;
   }
-  async loadCapacities(id: string) {
+  async loadCapacities(id: string, relationIds?: string[]) {
     if (!this.service.getCapacities) return undefined;
-    const snapshot = await this.service.getCapacities(this.workspaceSlug, id);
+    const snapshot = await (relationIds
+      ? this.service.getCapacities(this.workspaceSlug, id, relationIds)
+      : this.service.getCapacities(this.workspaceSlug, id));
     if (snapshot.schema_revision > this.schemaRevision) await this.loadSchema();
     runInAction(() => {
-      if (snapshot.schema_revision !== this.schemaRevision) return;
+      if (this.authorityRevision === "unavailable" || snapshot.schema_revision !== this.schemaRevision) return;
       if ((this.objects.get(id)?.version ?? 0) > snapshot.object.version) return;
-      this.capacitySnapshots.set(id, snapshot);
+      const previous = this.capacitiesFor(id);
+      this.capacitySnapshots.set(
+        id,
+        relationIds && previous
+          ? { ...snapshot, relations: { ...previous.relations, ...snapshot.relations } }
+          : snapshot
+      );
     });
     return snapshot;
   }
@@ -257,7 +314,7 @@ export class RadarRootStore {
     return result;
   }
   private cacheProperties(snapshot: RadarPropertySnapshot) {
-    if ((snapshot.schema_revision ?? 0) !== this.schemaRevision) return;
+    if (this.authorityRevision === "unavailable" || (snapshot.schema_revision ?? 0) !== this.schemaRevision) return;
     if ((this.objects.get(snapshot.object.id)?.version ?? 0) > snapshot.object.version) return;
     this.cache(snapshot.object);
     this.propertySnapshots.set(snapshot.object.id, snapshot);
@@ -324,24 +381,49 @@ export class RadarRootStore {
     throw new Error("Object changed while loading. Please refresh.");
   }
   async loadObjectPage(id: string) {
-    await Promise.all([this.loadObjectSemantics(id), this.loadSemanticTypes(), this.loadList()]);
-    // A list fetched concurrently may carry a newer aggregate version.
+    if (this.service.getSchema) await this.loadSemanticTypes();
+    else await Promise.all([this.loadTypes(), this.loadSemanticTypes()]);
+    await this.loadObjectSemantics(id);
+    // Concurrent reads may carry different aggregate versions.
     if (!this.propertiesFor(id) || !this.relationsFor(id) || (this.service.getCapacities && !this.capacitiesFor(id)))
       await this.loadObjectSemantics(id);
   }
-  async loadRelations(id: string) {
-    const snapshot = await this.service.getRelations(this.workspaceSlug, id);
+  async loadRelations(id: string, cursor?: string) {
+    const snapshot = await (cursor
+      ? this.service.getRelations(this.workspaceSlug, id, cursor)
+      : this.service.getRelations(this.workspaceSlug, id));
     if ((snapshot.schema_revision ?? 0) > this.schemaRevision) await this.loadSchema();
     runInAction(() => {
-      if ((snapshot.schema_revision ?? 0) !== this.schemaRevision) return;
+      if (this.authorityRevision === "unavailable" || (snapshot.schema_revision ?? 0) !== this.schemaRevision) return;
       if ((this.objects.get(id)?.version ?? 0) > snapshot.object.version) return;
       this.cache(snapshot.object);
-      this.relationSnapshots.set(id, snapshot);
+      const previous = this.relationSnapshots.get(id);
+      if (cursor && (previous?.next_cursor !== cursor || previous.object.version !== snapshot.object.version)) return;
+      snapshot.endpoints?.forEach((endpoint) => this.cacheSummary(endpoint));
+      this.relationSnapshots.set(
+        id,
+        cursor && previous
+          ? {
+              ...snapshot,
+              relations: Array.from(
+                new Map([...previous.relations, ...snapshot.relations].map((edge) => [edge.id, edge])).values()
+              ),
+            }
+          : snapshot
+      );
       snapshot.relations.forEach((relation) => this.relations.set(relation.id, relation));
     });
+    if (cursor)
+      await this.loadCapacities(
+        id,
+        snapshot.relations.map((edge) => edge.id)
+      );
     return snapshot;
   }
   async createRelation(payload: CreateRadarRelation) {
+    await Promise.all(
+      [payload.source, payload.target].filter((id) => !this.propertySnapshots.has(id)).map((id) => this.getObject(id))
+    );
     const result = await this.runMutation(
       `createRelation:${payload.source}`,
       payload,
@@ -357,6 +439,11 @@ export class RadarRootStore {
   async removeRelation(id: string) {
     const relation = this.relations.get(id);
     if (!relation) throw new Error("Load the relation before removing it.");
+    await Promise.all(
+      [relation.source, relation.target]
+        .filter((endpoint) => !this.propertySnapshots.has(endpoint))
+        .map((endpoint) => this.getObject(endpoint))
+    );
     const result = await this.runMutation(
       `removeRelation:${id}`,
       {},

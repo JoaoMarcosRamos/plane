@@ -18,6 +18,7 @@ import type {
   CreateRadarObject,
   RadarObject,
   RadarObjectCollection,
+  RadarObjectQuery,
   RadarObjectType,
   UpdateRadarObject,
   RadarPropertyDefinition,
@@ -105,8 +106,10 @@ export class RadarService extends APIService {
       ).data
     );
   }
-  async getCapacities(slug: string, id: string): Promise<RadarObjectCapacities> {
-    return (await this.get(`${this.path(slug)}/objects/${encodeURIComponent(id)}/capabilities/`)).data;
+  async getCapacities(slug: string, id: string, relationIds?: string[]): Promise<RadarObjectCapacities> {
+    const path = `${this.path(slug)}/objects/${encodeURIComponent(id)}/capabilities/`;
+    return (await (relationIds ? this.get(path, { params: { relation_ids: relationIds.join(",") } }) : this.get(path)))
+      .data;
   }
 
   async getSchema(slug: string): Promise<RadarSchemaCatalog> {
@@ -214,12 +217,13 @@ export class RadarService extends APIService {
   async listObjectTypes(slug: string): Promise<RadarObjectType[]> {
     return (await this.get(`${this.path(slug)}/object-types/`)).data;
   }
-  async listObjects(slug: string): Promise<RadarObjectCollection> {
-    const response = await this.get(`${this.path(slug)}/objects/`);
+  async listObjects(slug: string, query?: RadarObjectQuery): Promise<RadarObjectCollection> {
+    const response = await this.get(`${this.path(slug)}/objects/`, query ? { params: query } : undefined);
     const schema_revision = Number(response.headers?.["x-radar-schema-revision"] ?? 0);
     for (const object of response.data as RadarObject[]) object.schema_revision = schema_revision;
     const objects: RadarObjectCollection = response.data;
     objects.schema_revision = schema_revision;
+    objects.next_cursor = response.headers?.["x-radar-next-cursor"] || null;
     return objects;
   }
   async getObject(slug: string, id: string): Promise<RadarObject> {
@@ -304,8 +308,9 @@ export class RadarService extends APIService {
   async listRelationTypes(slug: string): Promise<RadarRelationType[]> {
     return (await this.get(`${this.path(slug)}/relation-types/`)).data;
   }
-  async getRelations(slug: string, id: string): Promise<RadarRelationSnapshot> {
-    return (await this.get(`${this.path(slug)}/objects/${encodeURIComponent(id)}/relations/`)).data;
+  async getRelations(slug: string, id: string, cursor?: string): Promise<RadarRelationSnapshot> {
+    const path = `${this.path(slug)}/objects/${encodeURIComponent(id)}/relations/`;
+    return (await (cursor ? this.get(path, { params: { cursor } }) : this.get(path))).data;
   }
   async createRelation(
     slug: string,

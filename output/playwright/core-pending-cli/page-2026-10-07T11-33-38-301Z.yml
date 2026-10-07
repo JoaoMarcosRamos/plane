@@ -1,0 +1,50 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading [level=1] [ref=e28]: Service tickets
+      - button [ref=e29] [cursor=pointer]:
+        - generic [ref=e7]: Create object
+    - generic [ref=e8]:
+      - generic [ref=e9]: Search objects
+      - textbox [ref=e30]
+    - paragraph [ref=e16]: 1 objects loaded
+    - generic [ref=e20]:
+      - button [ref=e31] [cursor=pointer]:
+        - generic [ref=e23]: Service tickets
+        - generic [ref=e24]: "1"
+      - button [ref=e32] [cursor=pointer]: Existing ticket
+  - dialog [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "Create object" [level=2] [ref=e41]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - text: Type
+            - combobox [expanded] [ref=e63] [cursor=pointer]:
+              - generic [ref=e64]: Select a type
+            - dialog "Options" [ref=e70]:
+              - generic [ref=e72]:
+                - status
+                - status
+                - listbox "Options" [active] [ref=e73]:
+                  - option "Action" [ref=e74]
+                  - option "Case" [ref=e77]
+                  - option "Commitment" [ref=e80]
+                  - option "Decision" [ref=e83]
+                  - option "Document" [ref=e86]
+                  - option "Indicator" [ref=e89]
+                  - option "ManagementItem" [ref=e92]
+                  - option "Objective" [ref=e95]
+                  - option "Person" [ref=e98]
+                  - option "Project" [ref=e101]
+                  - option "Risk" [ref=e104]
+                  - option "Service tickets" [ref=e107]
+            - textbox [aria-hidden] [ref=e112]
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - text: Title
+              - generic [aria-hidden] [ref=e53]: "*"
+            - textbox "Title" [ref=e56]
+      - generic [ref=e57]:
+        - button "Cancel" [ref=e58] [cursor=pointer]
+        - button "Create" [disabled] [ref=e60]

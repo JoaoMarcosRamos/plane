@@ -1,0 +1,31 @@
+- generic [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - heading [level=1] [ref=e28]: Service tickets
+      - button [ref=e29] [cursor=pointer]:
+        - generic [ref=e7]: Create object
+    - generic [ref=e8]:
+      - generic [ref=e9]: Search objects
+      - textbox [ref=e30]
+    - paragraph [ref=e16]: 1 objects loaded
+    - generic [ref=e20]:
+      - button [ref=e31] [cursor=pointer]:
+        - generic [ref=e23]: Service tickets
+        - generic [ref=e24]: "1"
+      - button [ref=e32] [cursor=pointer]: Existing ticket
+  - dialog [ref=e36]:
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "Create object" [level=2] [ref=e41]
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - text: Type
+            - button "Select a type" [active] [ref=e45] [cursor=pointer]
+          - generic [ref=e50]:
+            - generic [ref=e52]:
+              - text: Title
+              - generic [aria-hidden] [ref=e53]: "*"
+            - textbox "Title" [ref=e56]
+      - generic [ref=e57]:
+        - button "Cancel" [ref=e58] [cursor=pointer]
+        - button "Create" [disabled] [ref=e60]

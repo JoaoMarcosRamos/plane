@@ -1,0 +1,71 @@
+ Container radar-core-pending-test-mq-1 Running 
+ Container radar-core-pending-test-minio-1 Running 
+ Container radar-core-pending-test-db-1 Running 
+ Container radar-core-pending-test-redis-1 Running 
+ Container radar-core-pending-test-minio-1 Waiting 
+ Container radar-core-pending-test-db-1 Waiting 
+ Container radar-core-pending-test-redis-1 Waiting 
+ Container radar-core-pending-test-mq-1 Waiting 
+ Container radar-core-pending-test-mq-1 Healthy 
+ Container radar-core-pending-test-redis-1 Healthy 
+ Container radar-core-pending-test-db-1 Healthy 
+ Container radar-core-pending-test-minio-1 Healthy 
+ Container radar-core-pending-api-tests-run-e7487c03455a Creating 
+ Container radar-core-pending-api-tests-run-e7487c03455a Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2 files reformatted, 1 file left unchanged
+All checks passed!
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 39 items
+
+plane/radar/tests/test_core_pending.py::test_summary_pages_search_stable_order_and_scope Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[0] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[101] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[bad] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[-1] PASSED
+plane/radar/tests/test_core_pending.py::test_cursor_invalidated_by_schema_change_and_other_workspace PASSED
+plane/radar/tests/test_core_pending.py::test_relation_candidates_cardinality_pairs_direction_and_authority PASSED
+plane/radar/tests/test_core_pending.py::test_relation_pages_include_only_scoped_endpoint_summaries PASSED
+plane/radar/tests/test_core_pending.py::test_creation_capability_filter_and_invalid_query PASSED
+plane/radar/tests/test_core_pending.py::test_payload_and_selected_rows_bounded_with_growing_fixture C13_BASELINE=[{"fixture": 10, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 4.396374999487307}, {"fixture": 110, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 4.36124999760068}, {"fixture": 1010, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 5.7042499975068495}]
+PASSED
+plane/radar/tests/test_core_pending.py::test_lock_observation_success_rollback_and_nested PASSED
+plane/radar/tests/test_core_pending.py::test_integrated_custom_type_configuration_facts_lifecycle_runtime_and_replay PASSED
+plane/radar/tests/test_core_pending.py::test_relation_capacities_are_bounded_and_scoped PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_reference_inputs_publish_the_object_types_they_accept PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_package_presentations_are_valid_and_migration_freezes_them PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_two_types_share_the_page_with_distinct_sections_and_a_documented_fallback PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation0] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation1] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation2] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation3] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation4] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation5] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation6] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation7] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation8] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation9] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_presentations_are_refused_when_edited[presentation10] PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_retiring_a_referenced_property_degrades_layout_without_copying_narratives PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_derived_stamp_and_lifecycle_fields_are_not_free_inputs PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_terminal_state_exposes_no_free_options_or_completion PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_guarded_transition_and_approval_are_probed_with_the_real_guards PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_decided_decision_fields_and_relations_follow_the_shared_restrictions PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_measurement_relations_and_review_requirements PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_readers_get_read_only_capacities_without_probes PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_invalid_metadata_is_distinguished_from_current_unavailability PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_capacities_endpoint_is_scoped_to_workspace_members PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_presentation_data_migration_preserves_local_layouts PASSED
+plane/radar/tests/test_core_u1_phase04.py::test_capacities_follow_the_actor_specific_approver_identity PASSED
+plane/radar/tests/test_core_pending.py::test_workspace_lock_concurrency_baseline C14_BASELINE=[{"operation": "other_workspace", "wait_ms": 1.2551660001918208, "held_ms": 0.14708399976370856, "outcome": "committed"}, {"operation": "baseline_hold", "wait_ms": 3.159707997838268, "held_ms": 204.1491260024486, "outcome": "committed"}, {"operation": "same_workspace", "wait_ms": 204.28741700015962, "held_ms": 0.12833399887313135, "outcome": "committed"}]
+PASSED
+
+---------- generated xml file: /code/output/core-pending-directed.xml ----------
+======================== 39 passed in 75.24s (0:01:15) =========================

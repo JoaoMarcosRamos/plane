@@ -1,0 +1,44 @@
+ Container radar-core-pending-test-mq-1 Running 
+ Container radar-core-pending-test-minio-1 Running 
+ Container radar-core-pending-test-db-1 Running 
+ Container radar-core-pending-test-redis-1 Running 
+ Container radar-core-pending-test-redis-1 Waiting 
+ Container radar-core-pending-test-mq-1 Waiting 
+ Container radar-core-pending-test-minio-1 Waiting 
+ Container radar-core-pending-test-db-1 Waiting 
+ Container radar-core-pending-test-minio-1 Healthy 
+ Container radar-core-pending-test-redis-1 Healthy 
+ Container radar-core-pending-test-db-1 Healthy 
+ Container radar-core-pending-test-mq-1 Healthy 
+ Container radar-core-pending-api-tests-run-97d4e095ebb4 Creating 
+ Container radar-core-pending-api-tests-run-97d4e095ebb4 Created 
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable.It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2 files reformatted
+============================= test session starts ==============================
+platform linux -- Python 3.12.5, pytest-9.0.3, pluggy-1.6.0 -- /usr/local/bin/python
+cachedir: .pytest_cache
+django: version: 5.2.15, settings: plane.settings.test (from env)
+rootdir: /code
+configfile: pytest.ini
+plugins: xdist-3.3.1, mock-3.11.1, django-4.12.0, cov-4.1.0, anyio-4.15.1, Faker-25.0.0
+collecting ... collected 13 items
+
+plane/radar/tests/test_core_pending.py::test_summary_pages_search_stable_order_and_scope Using existing test database for alias 'default'...
+PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[0] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[101] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[bad] PASSED
+plane/radar/tests/test_core_pending.py::test_invalid_page_limits[-1] PASSED
+plane/radar/tests/test_core_pending.py::test_cursor_invalidated_by_schema_change_and_other_workspace PASSED
+plane/radar/tests/test_core_pending.py::test_relation_candidates_cardinality_pairs_direction_and_authority PASSED
+plane/radar/tests/test_core_pending.py::test_relation_pages_include_only_scoped_endpoint_summaries PASSED
+plane/radar/tests/test_core_pending.py::test_creation_capability_filter_and_invalid_query PASSED
+plane/radar/tests/test_core_pending.py::test_payload_and_selected_rows_bounded_with_growing_fixture C13_BASELINE=[{"fixture": 10, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 3.7946669981465675}, {"fixture": 110, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 3.565292001439957}, {"fixture": 1010, "rows": 5, "bytes": 3301, "queries": 10, "elapsed_ms": 4.109208002773812}]
+PASSED
+plane/radar/tests/test_core_pending.py::test_lock_observation_success_rollback_and_nested PASSED
+plane/radar/tests/test_core_pending.py::test_integrated_custom_type_configuration_facts_lifecycle_runtime_and_replay PASSED
+plane/radar/tests/test_core_pending.py::test_workspace_lock_concurrency_baseline C14_BASELINE=[{"operation": "other_workspace", "wait_ms": 1.3607500004582107, "held_ms": 0.10629199823597446, "outcome": "committed"}, {"operation": "baseline_hold", "wait_ms": 1.2630829987756442, "held_ms": 205.6602090015076, "outcome": "committed"}, {"operation": "same_workspace", "wait_ms": 205.92608399965684, "held_ms": 0.185500000952743, "outcome": "committed"}]
+PASSED
+
+---------- generated xml file: /code/output/core-pending-directed.xml ----------
+============================== 13 passed in 5.20s ==============================

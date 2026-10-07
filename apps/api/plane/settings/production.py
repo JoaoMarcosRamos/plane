@@ -60,6 +60,7 @@ LOGGING = {
         },
     },
     "loggers": {
+        "plane.radar.locks": {"level": "INFO", "handlers": ["console"], "propagate": False},
         "plane.api.request": {
             "level": "DEBUG" if DEBUG else "INFO",
             "handlers": ["console"],

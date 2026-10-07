@@ -1,0 +1,13 @@
+### Result
+187. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/schema/ => [200] OK
+188. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/schema/ => [200] OK
+207. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/properties/ => [200] OK
+208. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/relations/ => [200] OK
+209. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/capabilities/ => [200] OK
+210. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/collaboration/ => [200] OK
+211. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/operations/?timezone=America%2FBahia => [200] OK
+212. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/operational-history/?limit=20 => [200] OK
+213. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/relations/?cursor=eyJzY29wZSI6eyJ3b3Jrc3BhY2UiOiJmYjgxNWY2MC0wMzU4LTRkYzUtOTljNy0yZDk4NjRhODQzOWQiLCJyZXZpc2lvbiI6NSwib2JqZWN0IjoiZWUxMDc1MTEtMzk3NS00OTc2LTk3MDAtYWViODlkNzY3NTYxIiwidmVyc2lvbiI6NTcsImRpcmVjdGlvbiI6ImJvdGgifSwiaWQiOiJkNzIxZjEyNS1kZDU1LTQ5MTktODAxOS04MTU1YTFjYTA5OTUifQ:1xEQ0N:VryvgBldmAZ13wwA9esMxIteXYANfL3RcFa_ee2ERmU => [200] OK
+214. [GET] http://127.0.0.1:3058/api/workspaces/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/capabilities/?relation_ids=d9b6a28f-18b8-427c-8c81-c59d28e68688,de899eaf-be87-495a-bca4-58f840c95c0c,e4fc9776-9406-48a4-bad6-67fc5b7d7f18,f96f4ded-8260-4ae9-a545-540c37fe4801,fb6da1e8-5f06-4f0b-afdf-b8cf8dbee917,fff914d0-80ee-4409-bda0-fbba7c806dc4 => [200] OK
+
+Note: 204 static requests not shown, run with --static option to see them.

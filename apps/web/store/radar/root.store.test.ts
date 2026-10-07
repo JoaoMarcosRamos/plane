@@ -214,7 +214,9 @@ describe("RADAR page aggregate snapshots", () => {
     await store.loadObjectPage(object.id);
     expect(store.propertiesFor(object.id)).toEqual([]);
     expect(store.relationsFor(object.id)).toEqual([]);
-    expect(store.listedObjects).toHaveLength(1);
+    expect(store.listedObjects).toHaveLength(0);
+    expect(service.listObjects).not.toHaveBeenCalled();
+    expect(store.objects.get(object.id)).toMatchObject(object);
   });
   it("recovers when a concurrent write crosses property and relation reads", async () => {
     const service = client();
@@ -453,5 +455,72 @@ describe("C20 capacities and governed commands", () => {
     expect(executeCommand.mock.calls[1][3].approval_id).toBe("approval");
     expect(executeCommand.mock.calls[1][3].idempotency_key).toBe(executeCommand.mock.calls[0][3].idempotency_key);
     expect(service.getCapacities).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe("bounded queries", () => {
+  it("loads endpoint summaries without listing unrelated Objects", async () => {
+    const service = client();
+    const endpoint = { ...object, id: "target", title: "Backlink", content: undefined, object_type_detail: undefined };
+    vi.mocked(service.getRelations).mockResolvedValue({
+      object,
+      relations: [relation],
+      endpoints: [endpoint],
+      next_cursor: "next",
+    });
+    const store = new RadarRootStore("tenant", service);
+    await store.loadObjectPage(object.id);
+    expect(service.listObjects).not.toHaveBeenCalled();
+    expect(store.objects.get("target")?.title).toBe("Backlink");
+    expect(store.relationSnapshots.get(object.id)?.next_cursor).toBe("next");
+    vi.mocked(service.getRelations).mockResolvedValue({
+      object,
+      relations: [{ ...relation, id: "second" }],
+      next_cursor: null,
+    });
+    await store.loadRelations(object.id, "next");
+    expect(store.relationsFor(object.id)?.map((row) => row.id)).toEqual(["edge", "second"]);
+    expect(service.getRelations).toHaveBeenLastCalledWith("tenant", object.id, "next");
+  });
+  it("finds server candidates beyond the first page without replacing the list", async () => {
+    const service = client();
+    const store = new RadarRootStore("tenant", service);
+    await store.loadTypes();
+    await store.loadList();
+    const query = {
+      relation_type: "kind",
+      object_id: "object",
+      direction: "incoming" as const,
+      q: "remote",
+      cursor: "page2",
+    };
+    vi.mocked(service.listObjects).mockResolvedValue([{ ...object, id: "remote" }]);
+    expect((await store.searchObjects(query))[0].id).toBe("remote");
+    expect(service.listObjects).toHaveBeenLastCalledWith("tenant", query);
+    expect(store.listIds).toEqual(["object"]);
+  });
+  it("discards late list filters and appends pages without duplicates", async () => {
+    const service = client();
+    const store = new RadarRootStore("tenant", service);
+    await store.loadTypes();
+    let resolve!: (objects: RadarObject[]) => void;
+    vi.mocked(service.listObjects)
+      .mockReturnValueOnce(
+        new Promise((r) => {
+          resolve = r;
+        })
+      )
+      .mockResolvedValueOnce([{ ...object, id: "new" }]);
+    const stale = store.loadList({ q: "old" });
+    await store.loadList({ q: "new" });
+    resolve([object]);
+    await stale;
+    expect(store.listIds).toEqual(["new"]);
+    vi.mocked(service.listObjects).mockResolvedValue([
+      { ...object, id: "new" },
+      { ...object, id: "page2" },
+    ]);
+    await store.loadList({ q: "new", cursor: "next" }, true);
+    expect(store.listIds).toEqual(["new", "page2"]);
   });
 });

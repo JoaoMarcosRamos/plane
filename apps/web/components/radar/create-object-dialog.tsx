@@ -163,7 +163,6 @@ export const RadarCreateObjectDialog = observer(function RadarCreateObjectDialog
                     field={field}
                     value={parameters[field.key] ?? (field.kind === "objects" ? [] : "")}
                     onChange={(value) => setParameters((current) => ({ ...current, [field.key]: value }))}
-                    objects={store.listedObjects}
                     disabled={saving}
                   />
                 ))}

@@ -9,7 +9,6 @@ from typing import Callable
 from uuid import UUID, uuid4
 
 from django.apps import apps
-from django.db import transaction
 from django.utils import timezone
 from rest_framework.exceptions import APIException, NotFound, PermissionDenied, ValidationError
 
@@ -27,6 +26,7 @@ from plane.radar.models import (
 )
 from plane.radar.mutation import MutationContext, current_mutation, json_value
 from plane.radar.ontology.schema import load_schema
+from plane.radar.locks import lock_workspace, observed_atomic
 from .actor import Actor
 from .access import require_human_membership
 from .inputs import CommandInput, INPUTS
@@ -250,7 +250,7 @@ def emit(name: str, payload: dict) -> None:
     context.events.append((name, payload))
 
 
-@transaction.atomic
+@observed_atomic
 def run_internal(*, actor: Actor, workspace: Workspace, name: str, operation: Callable, read=False):
     """Audited human schema/control command; not an agent tool or a public raw writer."""
     parent = current_mutation.get()
@@ -259,7 +259,7 @@ def run_internal(*, actor: Actor, workspace: Workspace, name: str, operation: Ca
             raise PermissionDenied("Nested commands must preserve their Actor and workspace.")
         return operation()
     authorize(actor, workspace, name, read=read)
-    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    lock_workspace(workspace, operation=name)
     context = MutationContext(actor, workspace.pk, name)
     token = current_mutation.set(context)
     try:
@@ -304,7 +304,7 @@ def _result(context, execution, data, provenance, events, before):
     )
 
 
-@transaction.atomic
+@observed_atomic
 def preview_command(*, actor, workspace, name, data, expected_schema_revision, evidence_ids=()):
     """Authorized planning without a ledger entry, provenance or persisted facts."""
     from plane.radar.workspace_schema import require_schema, check_schema_revision, schema_revision
@@ -312,7 +312,7 @@ def preview_command(*, actor, workspace, name, data, expected_schema_revision, e
     from .handlers import requires_human_review
 
     authorize(actor, workspace, name)
-    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    lock_workspace(workspace, operation=name)
     grant = authorize(actor, workspace, name)
     if grant is not None and actor.on_behalf_of is None:
         actor = replace(actor, on_behalf_of=grant.delegator_id)
@@ -334,7 +334,7 @@ def preview_command(*, actor, workspace, name, data, expected_schema_revision, e
     }
 
 
-@transaction.atomic
+@observed_atomic
 def execute_command(*, actor: Actor, workspace: Workspace, envelope: dict, upload=None) -> dict:
     """Actor is authenticated by the caller, never reconstructed from arbitrary JSON."""
     from .handlers import dispatch, references, requires_human_review
@@ -367,7 +367,7 @@ def execute_command(*, actor: Actor, workspace: Workspace, envelope: dict, uploa
     grant = authorize(actor, workspace, name)
     # A workspace lock also serializes changes to grants, schema and approval authority.
     # Object locks below still enforce exact revisions. No lock spans another workspace.
-    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    lock_workspace(workspace, operation=name)
     grant = authorize(actor, workspace, name)
     if grant is not None and actor.on_behalf_of is None:
         actor = replace(actor, on_behalf_of=grant.delegator_id)

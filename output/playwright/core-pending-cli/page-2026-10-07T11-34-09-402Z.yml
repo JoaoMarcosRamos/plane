@@ -1,0 +1,124 @@
+- generic [ref=e1]:
+  - generic [ref=e122]:
+    - link [ref=e243] [cursor=pointer]:
+      - /url: /pending-browser-81886026/radar/objects/
+      - text: All objects
+    - generic [ref=e124]:
+      - paragraph [ref=e125]: Service tickets
+      - generic [ref=e126]:
+        - generic [ref=e128]:
+          - text: Title
+          - generic [aria-hidden] [ref=e129]: "*"
+        - textbox [ref=e244]: Integrated UI ticket
+      - generic [ref=e134]:
+        - generic [ref=e135]:
+          - generic [ref=e136]: Summary
+          - textbox [ref=e245]: Created from the configured required field
+        - generic [ref=e141]:
+          - generic [ref=e142]: Saved
+          - button [disabled] [ref=e246]:
+            - generic [ref=e145]: Save
+      - generic [ref=e146]:
+        - heading [level=2] [ref=e247]: Notes
+        - paragraph [ref=e148]: Complementary notes. The main narrative is summary.
+      - generic [ref=e149]:
+        - term [ref=e150]: Created by
+        - definition [ref=e151]: "Human: pending-bdb667d3"
+        - term [ref=e152]: Updated by
+        - definition [ref=e153]: "Human: pending-bdb667d3"
+        - term [ref=e154]: Version
+        - definition [ref=e155]: "1"
+      - button [disabled] [ref=e248]:
+        - generic [ref=e157]: Save title and notes
+    - generic [ref=e158]:
+      - region [ref=e249]:
+        - heading [level=2] [ref=e250]: Lifecycle
+        - generic [ref=e161]:
+          - generic [ref=e162]:
+            - generic [ref=e163]:
+              - generic [ref=e164]: Status
+              - combobox [disabled] [ref=e251]:
+                - generic [ref=e252]: Open
+              - textbox [disabled] [aria-hidden] [ref=e170]: open
+            - paragraph [ref=e171]: Changes follow this type's lifecycle.
+            - generic [ref=e172]: Saved
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - generic [ref=e176]: Closed at
+              - textbox [disabled] [ref=e253]
+            - paragraph [ref=e181]: Recorded automatically when the status changes.
+            - generic [ref=e182]: Not set
+      - region [ref=e254]:
+        - generic [ref=e185]:
+          - heading [level=2] [ref=e255]: Relations
+          - button [ref=e256] [cursor=pointer]:
+            - generic [ref=e188]: Add relation
+        - paragraph [ref=e189]: No outgoing relations.
+      - region [ref=e257]:
+        - heading [level=2] [ref=e258]: Backlinks
+        - paragraph [ref=e192]: No incoming relations.
+    - region [ref=e259]:
+      - generic [ref=e194]:
+        - heading [level=2] [ref=e260]: Collaboration
+        - button [ref=e261] [cursor=pointer]:
+          - generic [ref=e197]: Reload
+      - generic [ref=e198]:
+        - heading [level=3] [ref=e262]: Comments
+        - paragraph [ref=e200]: No comments yet.
+        - generic [ref=e201]:
+          - generic [ref=e202]:
+            - generic [ref=e204]:
+              - text: New comment
+              - generic [aria-hidden] [ref=e205]: "*"
+            - textbox [ref=e263]
+          - button [disabled] [ref=e264]:
+            - generic [ref=e210]: Add comment
+      - generic [ref=e211]:
+        - heading [level=3] [ref=e265]: Attachments
+        - paragraph [ref=e213]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+        - paragraph [ref=e214]: No attachments yet.
+        - generic [ref=e215]:
+          - generic [ref=e216]: Supporting file
+          - button [ref=e266]
+          - paragraph [ref=e218]: Choose a nonempty file. A failed request keeps your selection for retry.
+          - button [disabled] [ref=e267]:
+            - generic [ref=e220]: Upload attachment
+      - generic [ref=e221]:
+        - heading [level=3] [ref=e268]: Activity
+        - list [ref=e223]:
+          - listitem [ref=e224]:
+            - paragraph [ref=e225]: Create Object · executed
+            - paragraph [ref=e226]:
+              - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+              - time [ref=e227]: 07/10/2026, 08:33:56
+            - paragraph [ref=e228]: Create object · radar.session-api
+    - region [ref=e269]:
+      - generic [ref=e230]:
+        - heading [level=2] [ref=e270]: Histórico operacional
+        - button [ref=e271] [cursor=pointer]:
+          - generic [ref=e233]: Atualizar histórico
+      - generic [ref=e234]:
+        - generic [ref=e235]: Filtrar histórico
+        - combobox [ref=e272] [cursor=pointer]:
+          - generic [ref=e273]: Todos
+        - textbox [aria-hidden] [ref=e241]: all
+      - paragraph [ref=e242]: Nenhum registro operacional.
+  - dialog [ref=e277]:
+    - generic [ref=e278]:
+      - generic [ref=e279]:
+        - heading "Add relation" [level=2] [ref=e282]
+        - generic [ref=e284]:
+          - paragraph [ref=e285]: Integrated UI ticket
+          - generic [ref=e286]:
+            - generic [ref=e287]: Direction
+            - combobox "Direction" [active] [ref=e288] [cursor=pointer]:
+              - generic "From this object" [ref=e289]
+            - textbox [aria-hidden] [ref=e293]: outgoing
+          - generic [ref=e294]:
+            - generic [ref=e295]: Relation
+            - combobox "Relation" [ref=e296] [cursor=pointer]:
+              - generic "Select…" [ref=e297]
+            - textbox [aria-hidden] [ref=e301]
+      - generic [ref=e302]:
+        - button "Cancel" [ref=e303] [cursor=pointer]
+        - button "Add relation" [disabled] [ref=e305]

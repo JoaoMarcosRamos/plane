@@ -11,21 +11,20 @@ import {
   DialogMain,
   DialogTitle,
 } from "@makeplane/propel/components/dialog";
-import type { CreateRadarRelation, RadarObject, RadarRelation } from "@/services/radar/types";
+import type { CreateRadarRelation, RadarObject } from "@/services/radar/types";
 import { useRadarStore } from "@/store/radar/provider";
 import { RadarChoiceField } from "./choice-field";
 import { RadarSchemaReview, useRadarSchemaReview } from "./schema-review";
-import { relationCandidates, semanticError, semanticLabel } from "./semantic-utils";
+import { RadarObjectPicker } from "./object-picker";
+import { semanticError, semanticLabel } from "./semantic-utils";
 import type { RelationDirection } from "./semantic-utils";
 
 export const RadarRelationDialog = observer(function RadarRelationDialog({
   object,
-  relations,
   onCreate,
   onClose,
 }: {
   object: RadarObject;
-  relations: RadarRelation[];
   onCreate: (payload: CreateRadarRelation) => Promise<void>;
   onClose: () => void;
 }) {
@@ -36,22 +35,21 @@ export const RadarRelationDialog = observer(function RadarRelationDialog({
   const [otherId, setOtherId] = useState("");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const kinds = store.relationTypes.filter(
-    (kind) => relationCandidates(kind, object, store.listedObjects, direction, relations).length > 0
-  );
+  const kinds = store.relationTypes.filter((kind) => {
+    const keys = direction === "outgoing" ? kind.source_types : kind.target_types;
+    return kind.is_active && (keys.includes("*") || keys.includes(object.object_type_detail.key));
+  });
   const kind = kinds.find((item) => item.id === kindId);
-  const candidates = kind ? relationCandidates(kind, object, store.listedObjects, direction, relations) : [];
-  const other = candidates.find((item) => item.id === otherId);
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
-    if (!schemaReview.canWrite || !kind || !other || saving) return;
+    if (!schemaReview.canWrite || !kind || !otherId || saving) return;
     setSaving(true);
     setError(null);
     try {
       await onCreate({
         relation_type: kind.id,
-        source: direction === "outgoing" ? object.id : other.id,
-        target: direction === "outgoing" ? other.id : object.id,
+        source: direction === "outgoing" ? object.id : otherId,
+        target: direction === "outgoing" ? otherId : object.id,
       });
       onClose();
     } catch (cause) {
@@ -107,17 +105,17 @@ export const RadarRelationDialog = observer(function RadarRelationDialog({
                     setOtherId("");
                   }}
                 />
-                <RadarChoiceField
-                  id="radar-relation-object"
-                  label="Related object"
-                  value={other?.id ?? ""}
-                  disabled={saving || !kind}
-                  options={candidates.map((item) => ({
-                    value: item.id,
-                    label: `${item.object_type_detail.name} · ${item.title}`,
-                  }))}
-                  onChange={setOtherId}
-                />
+                {kind && (
+                  <RadarObjectPicker
+                    key={`${kind.id}:${direction}:${store.schemaRevision}`}
+                    id="radar-relation-object"
+                    label="Related object"
+                    value={otherId}
+                    onChange={(value) => setOtherId(Array.isArray(value) ? (value[0] ?? "") : value)}
+                    query={{ relation_type: kind.id, object_id: object.id, direction }}
+                    disabled={saving}
+                  />
+                )}
                 {!kinds.length && (
                   <p role="status" className="text-13 text-secondary">
                     No available relations in this direction. Create a compatible object or remove an existing relation
@@ -141,7 +139,7 @@ export const RadarRelationDialog = observer(function RadarRelationDialog({
               stretch="auto"
               type="submit"
               label={saving ? "Adding…" : "Add relation"}
-              disabled={saving || !schemaReview.canWrite || !kind || !other}
+              disabled={saving || !schemaReview.canWrite || !kind || !otherId}
             />
           </DialogActions>
         </form>

@@ -1,0 +1,20 @@
+### Page
+- Page URL: http://127.0.0.1:3058/pending-browser-aa0578a3/radar/type-objective/
+- Page Title: RADAR Core pending acceptance
+- Console: 0 errors, 22 warnings
+### Snapshot
+```yaml
+- generic [ref=f5e3]:
+  - generic [ref=f5e4]:
+    - heading "Objective" [level=1] [ref=f5e15]
+    - button "Create object" [ref=f5e6] [cursor=pointer]
+  - generic [ref=f5e8]:
+    - generic [ref=f5e9]: Search objects
+    - textbox "Search objects" [active] [ref=f5e13]: Objective 110
+  - paragraph [ref=f5e229]: 1 objects loaded
+  - generic [ref=f5e233]:
+    - button "Objective 1" [ref=f5e235] [cursor=pointer]:
+      - generic [ref=f5e236]: Objective
+      - generic [ref=f5e237]: "1"
+    - button "Objective 110" [ref=f5e240] [cursor=pointer]
+```

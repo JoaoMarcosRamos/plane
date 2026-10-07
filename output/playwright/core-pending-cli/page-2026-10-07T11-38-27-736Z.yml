@@ -1,0 +1,8 @@
+- generic [ref=f2e3]:
+  - generic [ref=f2e4]:
+    - heading "Objects" [level=1] [ref=f2e5]
+    - button "Create object" [disabled] [ref=f2e6]
+  - generic [ref=f2e8]:
+    - generic [ref=f2e9]: Search objects
+    - textbox "Search objects" [ref=f2e13]
+  - status [ref=f2e14]: Loading objects…

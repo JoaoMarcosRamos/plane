@@ -79,7 +79,6 @@ const ActionCard = observer(function ActionCard({
               setDrafts((current) => ({ ...current, [field.key]: value }));
               setPreview(null);
             }}
-            objects={store.listedObjects}
             exclude={object.id}
             disabled={blocked}
           />

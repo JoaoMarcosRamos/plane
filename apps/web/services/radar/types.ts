@@ -74,7 +74,23 @@ export type RadarObject = {
   updated_actor?: RadarActorSummary;
 };
 
-export type RadarObjectCollection = RadarObject[] & { schema_revision?: number };
+export type RadarObjectSummary = Omit<RadarObject, "content" | "object_type_detail"> & {
+  content?: string;
+  object_type_detail?: RadarObjectType;
+};
+export type RadarObjectQuery = {
+  q?: string;
+  object_type?: string;
+  type_keys?: string;
+  exclude?: string;
+  capability?: string;
+  relation_type?: string;
+  object_id?: string;
+  direction?: "outgoing" | "incoming";
+  cursor?: string;
+  limit?: number;
+};
+export type RadarObjectCollection = RadarObjectSummary[] & { schema_revision?: number; next_cursor?: string | null };
 
 export type CreateRadarObject = {
   object_type: string;
@@ -176,7 +192,13 @@ export type RadarRelation = {
   updated_at: string;
 };
 export type CreateRadarRelation = { relation_type: string; source: string; target: string };
-export type RadarRelationSnapshot = { schema_revision?: number; object: RadarObject; relations: RadarRelation[] };
+export type RadarRelationSnapshot = {
+  schema_revision?: number;
+  object: RadarObject;
+  relations: RadarRelation[];
+  endpoints?: RadarObjectSummary[];
+  next_cursor?: string | null;
+};
 export type RadarRelationMutation = { relation: RadarRelation; objects: RadarObject[] };
 
 export type RadarSchemaCatalog = {

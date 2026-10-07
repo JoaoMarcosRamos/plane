@@ -143,5 +143,15 @@ class Object(RadarBaseModel):
     class Meta(RadarBaseModel.Meta):
         db_table = "radar_objects"
         ordering = ["-created_at", "id"]
-        indexes = [models.Index(fields=["workspace", "object_type"], name="radar_object_ws_type_idx")]
+        indexes = [
+            models.Index(fields=["workspace", "object_type"], name="radar_object_ws_type_idx"),
+            models.Index(
+                fields=["workspace", "id"], condition=Q(deleted_at__isnull=True), name="radar_object_ws_page_idx"
+            ),
+            models.Index(
+                fields=["workspace", "object_type", "id"],
+                condition=Q(deleted_at__isnull=True),
+                name="radar_object_type_page_idx",
+            ),
+        ]
         constraints = [models.CheckConstraint(condition=Q(version__gte=1), name="radar_object_version_positive")]

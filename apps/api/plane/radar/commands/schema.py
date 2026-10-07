@@ -2,7 +2,7 @@
 
 from copy import deepcopy
 from types import SimpleNamespace
-from django.db import transaction
+from plane.radar.locks import observed_atomic
 from django.db.models import Count
 from rest_framework.exceptions import ValidationError, NotFound
 from plane.radar.models import Object, ObjectType, PropertyValue, Relation, WorkspaceSchemaState, SchemaUpgrade
@@ -154,7 +154,7 @@ def create_definition(workspace, key, spec, user_id):
     return MODELS[group].objects.create(**args)
 
 
-@transaction.atomic
+@observed_atomic
 def install_schema(*, actor, workspace):
     def operation():
         require_workspace_admin(actor, workspace)
@@ -261,7 +261,7 @@ def upgrade_plan(workspace, definitions):
     }
 
 
-@transaction.atomic
+@observed_atomic
 def preview_upgrade(*, actor, workspace, expected_revision, definitions=None):
     require_workspace_admin(actor, workspace)
     lock_schema(workspace)
@@ -270,7 +270,7 @@ def preview_upgrade(*, actor, workspace, expected_revision, definitions=None):
     return upgrade_plan(workspace, definitions or package_definitions())
 
 
-@transaction.atomic
+@observed_atomic
 def upgrade_schema(*, actor, workspace, expected_revision, reviewed_hash, definitions=None, version=None):
     definitions = deepcopy(definitions if definitions is not None else package_definitions())
     version = version or load_schema()["version"]
@@ -322,7 +322,7 @@ def upgrade_schema(*, actor, workspace, expected_revision, reviewed_hash, defini
     return state
 
 
-@transaction.atomic
+@observed_atomic
 def update_metadata(*, actor, workspace, group, definition_id, patch, expected_revision):
     def operation():
         require_workspace_admin(actor, workspace)

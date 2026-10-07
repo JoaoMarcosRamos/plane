@@ -23,7 +23,9 @@ def schema_revision(workspace):
 
 
 def lock_schema(workspace):
-    Workspace.objects.select_for_update().get(pk=workspace.pk)
+    from plane.radar.locks import lock_workspace
+
+    lock_workspace(workspace, operation="schema_snapshot")
     return schema_revision(workspace)
 
 

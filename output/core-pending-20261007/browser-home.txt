@@ -1,0 +1,45 @@
+### Page
+- Page URL: http://127.0.0.1:3058/pending-browser-aa0578a3/radar/
+- Page Title: RADAR Core pending acceptance
+- Console: 0 errors, 22 warnings
+### Snapshot
+```yaml
+- generic [ref=f6e3]:
+  - banner [ref=f6e4]:
+    - heading "RADAR" [level=1] [ref=f6e5]
+    - paragraph [ref=f6e6]: Human–Agent Operating System
+  - navigation "Workspace tools" [ref=f6e7]:
+    - link "Today" [ref=f6e8] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/today/
+    - link "Objects" [ref=f6e9] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/objects/
+    - link "Risk Review" [ref=f6e10] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/risk-review/
+    - link "Agent configuration" [ref=f6e11] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/agent-config/
+  - navigation "Object types" [ref=f6e13]:
+    - link "Action" [ref=f6e14] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-action/
+    - link "Case" [ref=f6e15] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-case/
+    - link "Commitment" [ref=f6e16] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-commitment/
+    - link "Decision" [ref=f6e17] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-decision/
+    - link "Document" [ref=f6e18] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-document/
+    - link "Indicator" [ref=f6e19] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-indicator/
+    - link "ManagementItem" [ref=f6e20] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-management_item/
+    - link "Objective" [ref=f6e21] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-objective/
+    - link "Person" [ref=f6e22] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-person/
+    - link "Project" [ref=f6e23] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-project/
+    - link "Risk" [ref=f6e24] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-risk/
+    - link "Service tickets" [ref=f6e25] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/type-ticket/
+```

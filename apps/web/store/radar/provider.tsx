@@ -30,6 +30,7 @@ function RadarSessionProvider({ workspaceSlug, children }: { workspaceSlug: stri
     const refresh = () => {
       void store.loadSchema().catch((cause: unknown) => console.error("RADAR schema refresh failed", cause));
     };
+    refresh();
     window.addEventListener("focus", refresh);
     const interval = window.setInterval(refresh, 30_000);
     return () => {

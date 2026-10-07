@@ -1,0 +1,920 @@
+### Page
+- Page URL: http://127.0.0.1:3058/pending-browser-aa0578a3/radar/objects/ee107511-3975-4976-9700-aeb89d767561/
+- Page Title: RADAR Core pending acceptance
+- Console: 0 errors, 22 warnings
+### Snapshot
+```yaml
+- generic [ref=f4e1]:
+  - generic [ref=f4e3]:
+    - link [ref=f4e767] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/objects/
+      - text: All objects
+    - generic [ref=f4e6]:
+      - paragraph [ref=f4e7]: Service tickets
+      - generic [ref=f4e8]:
+        - generic [ref=f4e10]:
+          - text: Title
+          - generic [aria-hidden] [ref=f4e11]: "*"
+        - textbox [ref=f4e768]: Existing ticket
+      - generic [ref=f4e16]:
+        - generic [ref=f4e17]:
+          - generic [ref=f4e18]: Summary
+          - textbox [ref=f4e769]: Narrative from metadata
+        - generic [ref=f4e23]:
+          - generic [ref=f4e24]: Saved
+          - button [disabled] [ref=f4e770]:
+            - generic [ref=f4e27]: Save
+      - generic [ref=f4e28]:
+        - heading [level=2] [ref=f4e771]: Notes
+        - paragraph [ref=f4e30]: Complementary notes. The main narrative is summary.
+      - generic [ref=f4e31]:
+        - term [ref=f4e32]: Created by
+        - definition [ref=f4e33]: "Human: pending-1d37a056"
+        - term [ref=f4e34]: Updated by
+        - definition [ref=f4e35]: "Human: pending-1d37a056"
+        - term [ref=f4e36]: Version
+        - definition [ref=f4e37]: "57"
+      - button [disabled] [ref=f4e772]:
+        - generic [ref=f4e39]: Save title and notes
+    - generic [ref=f4e40]:
+      - region [ref=f4e773]:
+        - heading [level=2] [ref=f4e774]: Lifecycle
+        - generic [ref=f4e43]:
+          - generic [ref=f4e44]:
+            - generic [ref=f4e45]:
+              - generic [ref=f4e46]: Status
+              - combobox [ref=f4e775] [cursor=pointer]:
+                - generic [ref=f4e776]: Open
+              - textbox [aria-hidden] [ref=f4e52]: open
+            - generic [ref=f4e53]:
+              - generic [ref=f4e54]: Saved
+              - button [disabled] [ref=f4e777]:
+                - generic [ref=f4e57]: Save
+          - generic [ref=f4e58]:
+            - generic [ref=f4e59]:
+              - generic [ref=f4e60]: Closed at
+              - textbox [disabled] [ref=f4e778]
+            - paragraph [ref=f4e65]: Recorded automatically when the status changes.
+            - generic [ref=f4e66]: Not set
+      - region [ref=f4e779]:
+        - generic [ref=f4e69]:
+          - heading [level=2] [ref=f4e780]: Relations
+          - button [ref=f4e781] [cursor=pointer]:
+            - generic [ref=f4e72]: Add relation
+        - list [ref=f4e73]:
+          - listitem [ref=f4e74]:
+            - generic [aria-hidden] [ref=f4e75]: →
+            - generic [ref=f4e76]: References
+            - link [ref=f4e782] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003e8/
+              - text: Objective 000
+            - generic [ref=f4e78]: Objective
+            - generic [ref=f4e79]: Required relation. It cannot be removed on its own.
+      - region [ref=f4e783]:
+        - heading [level=2] [ref=f4e784]: Backlinks
+        - list [ref=f4e82]:
+          - listitem [ref=f4e83]:
+            - generic [aria-hidden] [ref=f4e84]: ←
+            - generic [ref=f4e85]: Linked from
+            - link [ref=f4e785] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000417/
+              - text: Objective 047
+            - generic [ref=f4e87]: Objective
+            - button [ref=f4e786] [cursor=pointer]:
+              - generic [ref=f4e89]: Remove
+          - listitem [ref=f4e90]:
+            - generic [aria-hidden] [ref=f4e91]: ←
+            - generic [ref=f4e92]: Linked from
+            - link [ref=f4e787] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000405/
+              - text: Objective 029
+            - generic [ref=f4e94]: Objective
+            - button [ref=f4e788] [cursor=pointer]:
+              - generic [ref=f4e96]: Remove
+          - listitem [ref=f4e97]:
+            - generic [aria-hidden] [ref=f4e98]: ←
+            - generic [ref=f4e99]: Linked from
+            - link [ref=f4e789] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000401/
+              - text: Objective 025
+            - generic [ref=f4e101]: Objective
+            - button [ref=f4e790] [cursor=pointer]:
+              - generic [ref=f4e103]: Remove
+          - listitem [ref=f4e104]:
+            - generic [aria-hidden] [ref=f4e105]: ←
+            - generic [ref=f4e106]: Linked from
+            - link [ref=f4e791] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000404/
+              - text: Objective 028
+            - generic [ref=f4e108]: Objective
+            - button [ref=f4e792] [cursor=pointer]:
+              - generic [ref=f4e110]: Remove
+          - listitem [ref=f4e111]:
+            - generic [aria-hidden] [ref=f4e112]: ←
+            - generic [ref=f4e113]: Linked from
+            - link [ref=f4e793] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000408/
+              - text: Objective 032
+            - generic [ref=f4e115]: Objective
+            - button [ref=f4e794] [cursor=pointer]:
+              - generic [ref=f4e117]: Remove
+          - listitem [ref=f4e118]:
+            - generic [aria-hidden] [ref=f4e119]: ←
+            - generic [ref=f4e120]: Linked from
+            - link [ref=f4e795] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040a/
+              - text: Objective 034
+            - generic [ref=f4e122]: Objective
+            - button [ref=f4e796] [cursor=pointer]:
+              - generic [ref=f4e124]: Remove
+          - listitem [ref=f4e125]:
+            - generic [aria-hidden] [ref=f4e126]: ←
+            - generic [ref=f4e127]: Linked from
+            - link [ref=f4e797] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003fd/
+              - text: Objective 021
+            - generic [ref=f4e129]: Objective
+            - button [ref=f4e798] [cursor=pointer]:
+              - generic [ref=f4e131]: Remove
+          - listitem [ref=f4e132]:
+            - generic [aria-hidden] [ref=f4e133]: ←
+            - generic [ref=f4e134]: Linked from
+            - link [ref=f4e799] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003fb/
+              - text: Objective 019
+            - generic [ref=f4e136]: Objective
+            - button [ref=f4e800] [cursor=pointer]:
+              - generic [ref=f4e138]: Remove
+          - listitem [ref=f4e139]:
+            - generic [aria-hidden] [ref=f4e140]: ←
+            - generic [ref=f4e141]: Linked from
+            - link [ref=f4e801] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000412/
+              - text: Objective 042
+            - generic [ref=f4e143]: Objective
+            - button [ref=f4e802] [cursor=pointer]:
+              - generic [ref=f4e145]: Remove
+          - listitem [ref=f4e146]:
+            - generic [aria-hidden] [ref=f4e147]: ←
+            - generic [ref=f4e148]: Linked from
+            - link [ref=f4e803] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003e9/
+              - text: Objective 001
+            - generic [ref=f4e150]: Objective
+            - button [ref=f4e804] [cursor=pointer]:
+              - generic [ref=f4e152]: Remove
+          - listitem [ref=f4e153]:
+            - generic [aria-hidden] [ref=f4e154]: ←
+            - generic [ref=f4e155]: Linked from
+            - link [ref=f4e805] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040d/
+              - text: Objective 037
+            - generic [ref=f4e157]: Objective
+            - button [ref=f4e806] [cursor=pointer]:
+              - generic [ref=f4e159]: Remove
+          - listitem [ref=f4e160]:
+            - generic [aria-hidden] [ref=f4e161]: ←
+            - generic [ref=f4e162]: Linked from
+            - link [ref=f4e807] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000041a/
+              - text: Objective 050
+            - generic [ref=f4e164]: Objective
+            - button [ref=f4e808] [cursor=pointer]:
+              - generic [ref=f4e166]: Remove
+          - listitem [ref=f4e167]:
+            - generic [aria-hidden] [ref=f4e168]: ←
+            - generic [ref=f4e169]: Linked from
+            - link [ref=f4e809] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f2/
+              - text: Objective 010
+            - generic [ref=f4e171]: Objective
+            - button [ref=f4e810] [cursor=pointer]:
+              - generic [ref=f4e173]: Remove
+          - listitem [ref=f4e174]:
+            - generic [aria-hidden] [ref=f4e175]: ←
+            - generic [ref=f4e176]: Linked from
+            - link [ref=f4e811] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003fc/
+              - text: Objective 020
+            - generic [ref=f4e178]: Objective
+            - button [ref=f4e812] [cursor=pointer]:
+              - generic [ref=f4e180]: Remove
+          - listitem [ref=f4e181]:
+            - generic [aria-hidden] [ref=f4e182]: ←
+            - generic [ref=f4e183]: Linked from
+            - link [ref=f4e813] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ff/
+              - text: Objective 023
+            - generic [ref=f4e185]: Objective
+            - button [ref=f4e814] [cursor=pointer]:
+              - generic [ref=f4e187]: Remove
+          - listitem [ref=f4e188]:
+            - generic [aria-hidden] [ref=f4e189]: ←
+            - generic [ref=f4e190]: Linked from
+            - link [ref=f4e815] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000416/
+              - text: Objective 046
+            - generic [ref=f4e192]: Objective
+            - button [ref=f4e816] [cursor=pointer]:
+              - generic [ref=f4e194]: Remove
+          - listitem [ref=f4e195]:
+            - generic [aria-hidden] [ref=f4e196]: ←
+            - generic [ref=f4e197]: Linked from
+            - link [ref=f4e817] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000411/
+              - text: Objective 041
+            - generic [ref=f4e199]: Objective
+            - button [ref=f4e818] [cursor=pointer]:
+              - generic [ref=f4e201]: Remove
+          - listitem [ref=f4e202]:
+            - generic [aria-hidden] [ref=f4e203]: ←
+            - generic [ref=f4e204]: Linked from
+            - link [ref=f4e819] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003fa/
+              - text: Objective 018
+            - generic [ref=f4e206]: Objective
+            - button [ref=f4e820] [cursor=pointer]:
+              - generic [ref=f4e208]: Remove
+          - listitem [ref=f4e209]:
+            - generic [aria-hidden] [ref=f4e210]: ←
+            - generic [ref=f4e211]: Linked from
+            - link [ref=f4e821] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f1/
+              - text: Objective 009
+            - generic [ref=f4e213]: Objective
+            - button [ref=f4e822] [cursor=pointer]:
+              - generic [ref=f4e215]: Remove
+          - listitem [ref=f4e216]:
+            - generic [aria-hidden] [ref=f4e217]: ←
+            - generic [ref=f4e218]: Linked from
+            - link [ref=f4e823] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ef/
+              - text: Objective 007
+            - generic [ref=f4e220]: Objective
+            - button [ref=f4e824] [cursor=pointer]:
+              - generic [ref=f4e222]: Remove
+          - listitem [ref=f4e223]:
+            - generic [aria-hidden] [ref=f4e224]: ←
+            - generic [ref=f4e225]: Linked from
+            - link [ref=f4e825] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000400/
+              - text: Objective 024
+            - generic [ref=f4e227]: Objective
+            - button [ref=f4e826] [cursor=pointer]:
+              - generic [ref=f4e229]: Remove
+          - listitem [ref=f4e230]:
+            - generic [aria-hidden] [ref=f4e231]: ←
+            - generic [ref=f4e232]: Linked from
+            - link [ref=f4e827] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000413/
+              - text: Objective 043
+            - generic [ref=f4e234]: Objective
+            - button [ref=f4e828] [cursor=pointer]:
+              - generic [ref=f4e236]: Remove
+          - listitem [ref=f4e237]:
+            - generic [aria-hidden] [ref=f4e238]: ←
+            - generic [ref=f4e239]: Linked from
+            - link [ref=f4e829] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003fe/
+              - text: Objective 022
+            - generic [ref=f4e241]: Objective
+            - button [ref=f4e830] [cursor=pointer]:
+              - generic [ref=f4e243]: Remove
+          - listitem [ref=f4e244]:
+            - generic [aria-hidden] [ref=f4e245]: ←
+            - generic [ref=f4e246]: Linked from
+            - link [ref=f4e831] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003eb/
+              - text: Objective 003
+            - generic [ref=f4e248]: Objective
+            - button [ref=f4e832] [cursor=pointer]:
+              - generic [ref=f4e250]: Remove
+          - listitem [ref=f4e251]:
+            - generic [aria-hidden] [ref=f4e252]: ←
+            - generic [ref=f4e253]: Linked from
+            - link [ref=f4e833] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ea/
+              - text: Objective 002
+            - generic [ref=f4e255]: Objective
+            - button [ref=f4e834] [cursor=pointer]:
+              - generic [ref=f4e257]: Remove
+          - listitem [ref=f4e258]:
+            - generic [aria-hidden] [ref=f4e259]: ←
+            - generic [ref=f4e260]: Linked from
+            - link [ref=f4e835] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000410/
+              - text: Objective 040
+            - generic [ref=f4e262]: Objective
+            - button [ref=f4e836] [cursor=pointer]:
+              - generic [ref=f4e264]: Remove
+          - listitem [ref=f4e265]:
+            - generic [aria-hidden] [ref=f4e266]: ←
+            - generic [ref=f4e267]: Linked from
+            - link [ref=f4e837] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ec/
+              - text: Objective 004
+            - generic [ref=f4e269]: Objective
+            - button [ref=f4e838] [cursor=pointer]:
+              - generic [ref=f4e271]: Remove
+          - listitem [ref=f4e272]:
+            - generic [aria-hidden] [ref=f4e273]: ←
+            - generic [ref=f4e274]: Linked from
+            - link [ref=f4e839] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f7/
+              - text: Objective 015
+            - generic [ref=f4e276]: Objective
+            - button [ref=f4e840] [cursor=pointer]:
+              - generic [ref=f4e278]: Remove
+          - listitem [ref=f4e279]:
+            - generic [aria-hidden] [ref=f4e280]: ←
+            - generic [ref=f4e281]: Linked from
+            - link [ref=f4e841] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000419/
+              - text: Objective 049
+            - generic [ref=f4e283]: Objective
+            - button [ref=f4e842] [cursor=pointer]:
+              - generic [ref=f4e285]: Remove
+          - listitem [ref=f4e286]:
+            - generic [aria-hidden] [ref=f4e287]: ←
+            - generic [ref=f4e288]: Linked from
+            - link [ref=f4e843] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000418/
+              - text: Objective 048
+            - generic [ref=f4e290]: Objective
+            - button [ref=f4e844] [cursor=pointer]:
+              - generic [ref=f4e292]: Remove
+          - listitem [ref=f4e293]:
+            - generic [aria-hidden] [ref=f4e294]: ←
+            - generic [ref=f4e295]: Linked from
+            - link [ref=f4e845] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000415/
+              - text: Objective 045
+            - generic [ref=f4e297]: Objective
+            - button [ref=f4e846] [cursor=pointer]:
+              - generic [ref=f4e299]: Remove
+          - listitem [ref=f4e300]:
+            - generic [aria-hidden] [ref=f4e301]: ←
+            - generic [ref=f4e302]: Linked from
+            - link [ref=f4e847] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f8/
+              - text: Objective 016
+            - generic [ref=f4e304]: Objective
+            - button [ref=f4e848] [cursor=pointer]:
+              - generic [ref=f4e306]: Remove
+          - listitem [ref=f4e307]:
+            - generic [aria-hidden] [ref=f4e308]: ←
+            - generic [ref=f4e309]: Linked from
+            - link [ref=f4e849] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040e/
+              - text: Objective 038
+            - generic [ref=f4e311]: Objective
+            - button [ref=f4e850] [cursor=pointer]:
+              - generic [ref=f4e313]: Remove
+          - listitem [ref=f4e314]:
+            - generic [aria-hidden] [ref=f4e315]: ←
+            - generic [ref=f4e316]: Linked from
+            - link [ref=f4e851] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000402/
+              - text: Objective 026
+            - generic [ref=f4e318]: Objective
+            - button [ref=f4e852] [cursor=pointer]:
+              - generic [ref=f4e320]: Remove
+          - listitem [ref=f4e321]:
+            - generic [aria-hidden] [ref=f4e322]: ←
+            - generic [ref=f4e323]: Linked from
+            - link [ref=f4e853] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000041b/
+              - text: Objective 051
+            - generic [ref=f4e325]: Objective
+            - button [ref=f4e854] [cursor=pointer]:
+              - generic [ref=f4e327]: Remove
+          - listitem [ref=f4e328]:
+            - generic [aria-hidden] [ref=f4e329]: ←
+            - generic [ref=f4e330]: Linked from
+            - link [ref=f4e855] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f9/
+              - text: Objective 017
+            - generic [ref=f4e332]: Objective
+            - button [ref=f4e856] [cursor=pointer]:
+              - generic [ref=f4e334]: Remove
+          - listitem [ref=f4e335]:
+            - generic [aria-hidden] [ref=f4e336]: ←
+            - generic [ref=f4e337]: Linked from
+            - link [ref=f4e857] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000041c/
+              - text: Objective 052
+            - generic [ref=f4e339]: Objective
+            - button [ref=f4e858] [cursor=pointer]:
+              - generic [ref=f4e341]: Remove
+          - listitem [ref=f4e342]:
+            - generic [aria-hidden] [ref=f4e343]: ←
+            - generic [ref=f4e344]: Linked from
+            - link [ref=f4e859] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000414/
+              - text: Objective 044
+            - generic [ref=f4e346]: Objective
+            - button [ref=f4e860] [cursor=pointer]:
+              - generic [ref=f4e348]: Remove
+          - listitem [ref=f4e349]:
+            - generic [aria-hidden] [ref=f4e350]: ←
+            - generic [ref=f4e351]: Linked from
+            - link [ref=f4e861] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f3/
+              - text: Objective 011
+            - generic [ref=f4e353]: Objective
+            - button [ref=f4e862] [cursor=pointer]:
+              - generic [ref=f4e355]: Remove
+          - listitem [ref=f4e356]:
+            - generic [aria-hidden] [ref=f4e357]: ←
+            - generic [ref=f4e358]: Linked from
+            - link [ref=f4e863] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000403/
+              - text: Objective 027
+            - generic [ref=f4e360]: Objective
+            - button [ref=f4e864] [cursor=pointer]:
+              - generic [ref=f4e362]: Remove
+          - listitem [ref=f4e363]:
+            - generic [aria-hidden] [ref=f4e364]: ←
+            - generic [ref=f4e365]: Linked from
+            - link [ref=f4e865] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f4/
+              - text: Objective 012
+            - generic [ref=f4e367]: Objective
+            - button [ref=f4e866] [cursor=pointer]:
+              - generic [ref=f4e369]: Remove
+          - listitem [ref=f4e370]:
+            - generic [aria-hidden] [ref=f4e371]: ←
+            - generic [ref=f4e372]: Linked from
+            - link [ref=f4e867] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000041d/
+              - text: Objective 053
+            - generic [ref=f4e374]: Objective
+            - button [ref=f4e868] [cursor=pointer]:
+              - generic [ref=f4e376]: Remove
+          - listitem [ref=f4e377]:
+            - generic [aria-hidden] [ref=f4e378]: ←
+            - generic [ref=f4e379]: Linked from
+            - link [ref=f4e869] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040c/
+              - text: Objective 036
+            - generic [ref=f4e381]: Objective
+            - button [ref=f4e870] [cursor=pointer]:
+              - generic [ref=f4e383]: Remove
+          - listitem [ref=f4e384]:
+            - generic [aria-hidden] [ref=f4e385]: ←
+            - generic [ref=f4e386]: Linked from
+            - link [ref=f4e871] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f0/
+              - text: Objective 008
+            - generic [ref=f4e388]: Objective
+            - button [ref=f4e872] [cursor=pointer]:
+              - generic [ref=f4e390]: Remove
+          - listitem [ref=f4e391]:
+            - generic [aria-hidden] [ref=f4e392]: ←
+            - generic [ref=f4e393]: Linked from
+            - link [ref=f4e873] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000407/
+              - text: Objective 031
+            - generic [ref=f4e395]: Objective
+            - button [ref=f4e874] [cursor=pointer]:
+              - generic [ref=f4e397]: Remove
+          - listitem [ref=f4e398]:
+            - generic [aria-hidden] [ref=f4e399]: ←
+            - generic [ref=f4e400]: Linked from
+            - link [ref=f4e875] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000041e/
+              - text: Objective 054
+            - generic [ref=f4e402]: Objective
+            - button [ref=f4e876] [cursor=pointer]:
+              - generic [ref=f4e404]: Remove
+          - listitem [ref=f4e405]:
+            - generic [aria-hidden] [ref=f4e406]: ←
+            - generic [ref=f4e407]: Linked from
+            - link [ref=f4e877] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f6/
+              - text: Objective 014
+            - generic [ref=f4e409]: Objective
+            - button [ref=f4e878] [cursor=pointer]:
+              - generic [ref=f4e411]: Remove
+          - listitem [ref=f4e412]:
+            - generic [aria-hidden] [ref=f4e413]: ←
+            - generic [ref=f4e414]: Linked from
+            - link [ref=f4e879] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000409/
+              - text: Objective 033
+            - generic [ref=f4e416]: Objective
+            - button [ref=f4e880] [cursor=pointer]:
+              - generic [ref=f4e418]: Remove
+          - listitem [ref=f4e419]:
+            - generic [aria-hidden] [ref=f4e420]: ←
+            - generic [ref=f4e421]: Linked from
+            - link [ref=f4e881] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003f5/
+              - text: Objective 013
+            - generic [ref=f4e423]: Objective
+            - button [ref=f4e882] [cursor=pointer]:
+              - generic [ref=f4e425]: Remove
+          - listitem [ref=f4e725]:
+            - generic [aria-hidden] [ref=f4e726]: ←
+            - generic [ref=f4e727]: Linked from
+            - link [ref=f4e883] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003e8/
+              - text: Objective 000
+            - generic [ref=f4e729]: Objective
+            - button [ref=f4e884] [cursor=pointer]:
+              - generic [ref=f4e731]: Remove
+          - listitem [ref=f4e732]:
+            - generic [aria-hidden] [ref=f4e733]: ←
+            - generic [ref=f4e734]: Linked from
+            - link [ref=f4e885] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ed/
+              - text: Objective 005
+            - generic [ref=f4e736]: Objective
+            - button [ref=f4e886] [cursor=pointer]:
+              - generic [ref=f4e738]: Remove
+          - listitem [ref=f4e739]:
+            - generic [aria-hidden] [ref=f4e740]: ←
+            - generic [ref=f4e741]: Linked from
+            - link [ref=f4e887] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040b/
+              - text: Objective 035
+            - generic [ref=f4e743]: Objective
+            - button [ref=f4e888] [cursor=pointer]:
+              - generic [ref=f4e745]: Remove
+          - listitem [ref=f4e746]:
+            - generic [aria-hidden] [ref=f4e747]: ←
+            - generic [ref=f4e748]: Linked from
+            - link [ref=f4e889] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-00000000040f/
+              - text: Objective 039
+            - generic [ref=f4e750]: Objective
+            - button [ref=f4e890] [cursor=pointer]:
+              - generic [ref=f4e752]: Remove
+          - listitem [ref=f4e753]:
+            - generic [aria-hidden] [ref=f4e754]: ←
+            - generic [ref=f4e755]: Linked from
+            - link [ref=f4e891] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-0000000003ee/
+              - text: Objective 006
+            - generic [ref=f4e757]: Objective
+            - button [ref=f4e892] [cursor=pointer]:
+              - generic [ref=f4e759]: Remove
+          - listitem [ref=f4e760]:
+            - generic [aria-hidden] [ref=f4e761]: ←
+            - generic [ref=f4e762]: Linked from
+            - link [ref=f4e893] [cursor=pointer]:
+              - /url: /pending-browser-aa0578a3/radar/objects/46cc063c-7583-4e97-0000-000000000406/
+              - text: Objective 030
+            - generic [ref=f4e764]: Objective
+            - button [ref=f4e894] [cursor=pointer]:
+              - generic [ref=f4e766]: Remove
+    - region [ref=f4e895]:
+      - generic [ref=f4e429]:
+        - heading [level=2] [ref=f4e896]: Collaboration
+        - button [ref=f4e897] [cursor=pointer]:
+          - generic [ref=f4e432]: Reload
+      - generic [ref=f4e433]:
+        - heading [level=3] [ref=f4e898]: Comments
+        - paragraph [ref=f4e435]: No comments yet.
+        - generic [ref=f4e436]:
+          - generic [ref=f4e437]:
+            - generic [ref=f4e439]:
+              - text: New comment
+              - generic [aria-hidden] [ref=f4e440]: "*"
+            - textbox [ref=f4e899]
+          - button [disabled] [ref=f4e900]:
+            - generic [ref=f4e445]: Add comment
+      - generic [ref=f4e446]:
+        - heading [level=3] [ref=f4e901]: Attachments
+        - paragraph [ref=f4e448]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+        - paragraph [ref=f4e449]: No attachments yet.
+        - generic [ref=f4e450]:
+          - generic [ref=f4e451]: Supporting file
+          - button [ref=f4e902]
+          - paragraph [ref=f4e453]: Choose a nonempty file. A failed request keeps your selection for retry.
+          - button [disabled] [ref=f4e903]:
+            - generic [ref=f4e455]: Upload attachment
+      - generic [ref=f4e456]:
+        - heading [level=3] [ref=f4e904]: Activity
+        - list [ref=f4e458]:
+          - listitem [ref=f4e459]:
+            - paragraph [ref=f4e460]: Link Objects · executed
+            - paragraph [ref=f4e461]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e462]: 07/10/2026, 08:37:46
+            - paragraph [ref=f4e463]: Core acceptance · fixture.browser
+          - listitem [ref=f4e464]:
+            - paragraph [ref=f4e465]: Link Objects · executed
+            - paragraph [ref=f4e466]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e467]: 07/10/2026, 08:37:46
+            - paragraph [ref=f4e468]: Core acceptance · fixture.browser
+          - listitem [ref=f4e469]:
+            - paragraph [ref=f4e470]: Link Objects · executed
+            - paragraph [ref=f4e471]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e472]: 07/10/2026, 08:37:45
+            - paragraph [ref=f4e473]: Core acceptance · fixture.browser
+          - listitem [ref=f4e474]:
+            - paragraph [ref=f4e475]: Link Objects · executed
+            - paragraph [ref=f4e476]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e477]: 07/10/2026, 08:37:45
+            - paragraph [ref=f4e478]: Core acceptance · fixture.browser
+          - listitem [ref=f4e479]:
+            - paragraph [ref=f4e480]: Link Objects · executed
+            - paragraph [ref=f4e481]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e482]: 07/10/2026, 08:37:45
+            - paragraph [ref=f4e483]: Core acceptance · fixture.browser
+          - listitem [ref=f4e484]:
+            - paragraph [ref=f4e485]: Link Objects · executed
+            - paragraph [ref=f4e486]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e487]: 07/10/2026, 08:37:45
+            - paragraph [ref=f4e488]: Core acceptance · fixture.browser
+          - listitem [ref=f4e489]:
+            - paragraph [ref=f4e490]: Link Objects · executed
+            - paragraph [ref=f4e491]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e492]: 07/10/2026, 08:37:45
+            - paragraph [ref=f4e493]: Core acceptance · fixture.browser
+          - listitem [ref=f4e494]:
+            - paragraph [ref=f4e495]: Link Objects · executed
+            - paragraph [ref=f4e496]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e497]: 07/10/2026, 08:37:44
+            - paragraph [ref=f4e498]: Core acceptance · fixture.browser
+          - listitem [ref=f4e499]:
+            - paragraph [ref=f4e500]: Link Objects · executed
+            - paragraph [ref=f4e501]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e502]: 07/10/2026, 08:37:44
+            - paragraph [ref=f4e503]: Core acceptance · fixture.browser
+          - listitem [ref=f4e504]:
+            - paragraph [ref=f4e505]: Link Objects · executed
+            - paragraph [ref=f4e506]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e507]: 07/10/2026, 08:37:44
+            - paragraph [ref=f4e508]: Core acceptance · fixture.browser
+          - listitem [ref=f4e509]:
+            - paragraph [ref=f4e510]: Link Objects · executed
+            - paragraph [ref=f4e511]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e512]: 07/10/2026, 08:37:44
+            - paragraph [ref=f4e513]: Core acceptance · fixture.browser
+          - listitem [ref=f4e514]:
+            - paragraph [ref=f4e515]: Link Objects · executed
+            - paragraph [ref=f4e516]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e517]: 07/10/2026, 08:37:44
+            - paragraph [ref=f4e518]: Core acceptance · fixture.browser
+          - listitem [ref=f4e519]:
+            - paragraph [ref=f4e520]: Link Objects · executed
+            - paragraph [ref=f4e521]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e522]: 07/10/2026, 08:37:43
+            - paragraph [ref=f4e523]: Core acceptance · fixture.browser
+          - listitem [ref=f4e524]:
+            - paragraph [ref=f4e525]: Link Objects · executed
+            - paragraph [ref=f4e526]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e527]: 07/10/2026, 08:37:43
+            - paragraph [ref=f4e528]: Core acceptance · fixture.browser
+          - listitem [ref=f4e529]:
+            - paragraph [ref=f4e530]: Link Objects · executed
+            - paragraph [ref=f4e531]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e532]: 07/10/2026, 08:37:43
+            - paragraph [ref=f4e533]: Core acceptance · fixture.browser
+          - listitem [ref=f4e534]:
+            - paragraph [ref=f4e535]: Link Objects · executed
+            - paragraph [ref=f4e536]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e537]: 07/10/2026, 08:37:43
+            - paragraph [ref=f4e538]: Core acceptance · fixture.browser
+          - listitem [ref=f4e539]:
+            - paragraph [ref=f4e540]: Link Objects · executed
+            - paragraph [ref=f4e541]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e542]: 07/10/2026, 08:37:43
+            - paragraph [ref=f4e543]: Core acceptance · fixture.browser
+          - listitem [ref=f4e544]:
+            - paragraph [ref=f4e545]: Link Objects · executed
+            - paragraph [ref=f4e546]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e547]: 07/10/2026, 08:37:42
+            - paragraph [ref=f4e548]: Core acceptance · fixture.browser
+          - listitem [ref=f4e549]:
+            - paragraph [ref=f4e550]: Link Objects · executed
+            - paragraph [ref=f4e551]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e552]: 07/10/2026, 08:37:42
+            - paragraph [ref=f4e553]: Core acceptance · fixture.browser
+          - listitem [ref=f4e554]:
+            - paragraph [ref=f4e555]: Link Objects · executed
+            - paragraph [ref=f4e556]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e557]: 07/10/2026, 08:37:42
+            - paragraph [ref=f4e558]: Core acceptance · fixture.browser
+          - listitem [ref=f4e559]:
+            - paragraph [ref=f4e560]: Link Objects · executed
+            - paragraph [ref=f4e561]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e562]: 07/10/2026, 08:37:42
+            - paragraph [ref=f4e563]: Core acceptance · fixture.browser
+          - listitem [ref=f4e564]:
+            - paragraph [ref=f4e565]: Link Objects · executed
+            - paragraph [ref=f4e566]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e567]: 07/10/2026, 08:37:42
+            - paragraph [ref=f4e568]: Core acceptance · fixture.browser
+          - listitem [ref=f4e569]:
+            - paragraph [ref=f4e570]: Link Objects · executed
+            - paragraph [ref=f4e571]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e572]: 07/10/2026, 08:37:41
+            - paragraph [ref=f4e573]: Core acceptance · fixture.browser
+          - listitem [ref=f4e574]:
+            - paragraph [ref=f4e575]: Link Objects · executed
+            - paragraph [ref=f4e576]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e577]: 07/10/2026, 08:37:41
+            - paragraph [ref=f4e578]: Core acceptance · fixture.browser
+          - listitem [ref=f4e579]:
+            - paragraph [ref=f4e580]: Link Objects · executed
+            - paragraph [ref=f4e581]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e582]: 07/10/2026, 08:37:41
+            - paragraph [ref=f4e583]: Core acceptance · fixture.browser
+          - listitem [ref=f4e584]:
+            - paragraph [ref=f4e585]: Link Objects · executed
+            - paragraph [ref=f4e586]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e587]: 07/10/2026, 08:37:41
+            - paragraph [ref=f4e588]: Core acceptance · fixture.browser
+          - listitem [ref=f4e589]:
+            - paragraph [ref=f4e590]: Link Objects · executed
+            - paragraph [ref=f4e591]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e592]: 07/10/2026, 08:37:41
+            - paragraph [ref=f4e593]: Core acceptance · fixture.browser
+          - listitem [ref=f4e594]:
+            - paragraph [ref=f4e595]: Link Objects · executed
+            - paragraph [ref=f4e596]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e597]: 07/10/2026, 08:37:40
+            - paragraph [ref=f4e598]: Core acceptance · fixture.browser
+          - listitem [ref=f4e599]:
+            - paragraph [ref=f4e600]: Link Objects · executed
+            - paragraph [ref=f4e601]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e602]: 07/10/2026, 08:37:40
+            - paragraph [ref=f4e603]: Core acceptance · fixture.browser
+          - listitem [ref=f4e604]:
+            - paragraph [ref=f4e605]: Link Objects · executed
+            - paragraph [ref=f4e606]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e607]: 07/10/2026, 08:37:40
+            - paragraph [ref=f4e608]: Core acceptance · fixture.browser
+          - listitem [ref=f4e609]:
+            - paragraph [ref=f4e610]: Link Objects · executed
+            - paragraph [ref=f4e611]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e612]: 07/10/2026, 08:37:40
+            - paragraph [ref=f4e613]: Core acceptance · fixture.browser
+          - listitem [ref=f4e614]:
+            - paragraph [ref=f4e615]: Link Objects · executed
+            - paragraph [ref=f4e616]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e617]: 07/10/2026, 08:37:40
+            - paragraph [ref=f4e618]: Core acceptance · fixture.browser
+          - listitem [ref=f4e619]:
+            - paragraph [ref=f4e620]: Link Objects · executed
+            - paragraph [ref=f4e621]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e622]: 07/10/2026, 08:37:39
+            - paragraph [ref=f4e623]: Core acceptance · fixture.browser
+          - listitem [ref=f4e624]:
+            - paragraph [ref=f4e625]: Link Objects · executed
+            - paragraph [ref=f4e626]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e627]: 07/10/2026, 08:37:39
+            - paragraph [ref=f4e628]: Core acceptance · fixture.browser
+          - listitem [ref=f4e629]:
+            - paragraph [ref=f4e630]: Link Objects · executed
+            - paragraph [ref=f4e631]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e632]: 07/10/2026, 08:37:39
+            - paragraph [ref=f4e633]: Core acceptance · fixture.browser
+          - listitem [ref=f4e634]:
+            - paragraph [ref=f4e635]: Link Objects · executed
+            - paragraph [ref=f4e636]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e637]: 07/10/2026, 08:37:38
+            - paragraph [ref=f4e638]: Core acceptance · fixture.browser
+          - listitem [ref=f4e639]:
+            - paragraph [ref=f4e640]: Link Objects · executed
+            - paragraph [ref=f4e641]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e642]: 07/10/2026, 08:37:38
+            - paragraph [ref=f4e643]: Core acceptance · fixture.browser
+          - listitem [ref=f4e644]:
+            - paragraph [ref=f4e645]: Link Objects · executed
+            - paragraph [ref=f4e646]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e647]: 07/10/2026, 08:37:38
+            - paragraph [ref=f4e648]: Core acceptance · fixture.browser
+          - listitem [ref=f4e649]:
+            - paragraph [ref=f4e650]: Link Objects · executed
+            - paragraph [ref=f4e651]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e652]: 07/10/2026, 08:37:38
+            - paragraph [ref=f4e653]: Core acceptance · fixture.browser
+          - listitem [ref=f4e654]:
+            - paragraph [ref=f4e655]: Link Objects · executed
+            - paragraph [ref=f4e656]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e657]: 07/10/2026, 08:37:37
+            - paragraph [ref=f4e658]: Core acceptance · fixture.browser
+          - listitem [ref=f4e659]:
+            - paragraph [ref=f4e660]: Link Objects · executed
+            - paragraph [ref=f4e661]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e662]: 07/10/2026, 08:37:37
+            - paragraph [ref=f4e663]: Core acceptance · fixture.browser
+          - listitem [ref=f4e664]:
+            - paragraph [ref=f4e665]: Link Objects · executed
+            - paragraph [ref=f4e666]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e667]: 07/10/2026, 08:37:37
+            - paragraph [ref=f4e668]: Core acceptance · fixture.browser
+          - listitem [ref=f4e669]:
+            - paragraph [ref=f4e670]: Link Objects · executed
+            - paragraph [ref=f4e671]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e672]: 07/10/2026, 08:37:37
+            - paragraph [ref=f4e673]: Core acceptance · fixture.browser
+          - listitem [ref=f4e674]:
+            - paragraph [ref=f4e675]: Link Objects · executed
+            - paragraph [ref=f4e676]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e677]: 07/10/2026, 08:37:37
+            - paragraph [ref=f4e678]: Core acceptance · fixture.browser
+          - listitem [ref=f4e679]:
+            - paragraph [ref=f4e680]: Link Objects · executed
+            - paragraph [ref=f4e681]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e682]: 07/10/2026, 08:37:36
+            - paragraph [ref=f4e683]: Core acceptance · fixture.browser
+          - listitem [ref=f4e684]:
+            - paragraph [ref=f4e685]: Link Objects · executed
+            - paragraph [ref=f4e686]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e687]: 07/10/2026, 08:37:36
+            - paragraph [ref=f4e688]: Core acceptance · fixture.browser
+          - listitem [ref=f4e689]:
+            - paragraph [ref=f4e690]: Link Objects · executed
+            - paragraph [ref=f4e691]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e692]: 07/10/2026, 08:37:36
+            - paragraph [ref=f4e693]: Core acceptance · fixture.browser
+          - listitem [ref=f4e694]:
+            - paragraph [ref=f4e695]: Link Objects · executed
+            - paragraph [ref=f4e696]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e697]: 07/10/2026, 08:37:36
+            - paragraph [ref=f4e698]: Core acceptance · fixture.browser
+          - listitem [ref=f4e699]:
+            - paragraph [ref=f4e700]: Link Objects · executed
+            - paragraph [ref=f4e701]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e702]: 07/10/2026, 08:37:35
+            - paragraph [ref=f4e703]: Core acceptance · fixture.browser
+          - listitem [ref=f4e704]:
+            - paragraph [ref=f4e705]: Link Objects · executed
+            - paragraph [ref=f4e706]:
+              - text: "human: cac61d62-c4dd-450f-98bb-fb0afaf79036 ·"
+              - time [ref=f4e707]: 07/10/2026, 08:37:35
+            - paragraph [ref=f4e708]: Core acceptance · fixture.browser
+        - button [ref=f4e905] [cursor=pointer]:
+          - generic [ref=f4e710]: Older activity
+    - region [ref=f4e906]:
+      - generic [ref=f4e712]:
+        - heading [level=2] [ref=f4e907]: Histórico operacional
+        - button [ref=f4e908] [cursor=pointer]:
+          - generic [ref=f4e715]: Atualizar histórico
+      - generic [ref=f4e716]:
+        - generic [ref=f4e717]: Filtrar histórico
+        - combobox [ref=f4e909] [cursor=pointer]:
+          - generic [ref=f4e910]: Todos
+        - textbox [aria-hidden] [ref=f4e723]: all
+      - paragraph [ref=f4e724]: Nenhum registro operacional.
+  - dialog [ref=f4e914]:
+    - generic [ref=f4e915]:
+      - heading "Remove relation?" [level=2] [ref=f4e918]
+      - paragraph [ref=f4e920]: Remove this connection? Both objects will remain available.
+    - generic [ref=f4e921]:
+      - button "Cancel" [active] [ref=f4e922] [cursor=pointer]
+      - button "Remove relation" [ref=f4e924] [cursor=pointer]
+```

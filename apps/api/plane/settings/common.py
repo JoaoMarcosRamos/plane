@@ -581,4 +581,8 @@ CORS_ALLOW_HEADERS = [
 ]
 
 # Versioned RADAR list/detail adapters consume this metadata revision across origins.
-CORS_EXPOSE_HEADERS = [*globals().get("CORS_EXPOSE_HEADERS", []), "X-Radar-Schema-Revision"]
+CORS_EXPOSE_HEADERS = [
+    *globals().get("CORS_EXPOSE_HEADERS", []),
+    "X-Radar-Schema-Revision",
+    "X-Radar-Next-Cursor",
+]

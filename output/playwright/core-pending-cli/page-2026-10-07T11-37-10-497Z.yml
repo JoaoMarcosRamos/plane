@@ -1,0 +1,844 @@
+- generic [ref=f1e3]:
+  - link "All objects" [ref=f1e4] [cursor=pointer]:
+    - /url: /pending-browser-81886026/radar/objects/
+  - generic [ref=f1e6]:
+    - paragraph [ref=f1e7]: Service tickets
+    - generic [ref=f1e8]:
+      - generic [ref=f1e10]:
+        - text: Title
+        - generic [aria-hidden] [ref=f1e11]: "*"
+      - textbox "Title" [ref=f1e14]: Existing ticket
+    - generic [ref=f1e16]:
+      - generic [ref=f1e17]:
+        - generic [ref=f1e18]: Summary
+        - textbox "Summary" [ref=f1e22]: Narrative from metadata
+      - generic [ref=f1e23]:
+        - generic [ref=f1e24]: Saved
+        - button "Save Summary" [disabled] [ref=f1e26]:
+          - generic [ref=f1e27]: Save
+    - generic [ref=f1e28]:
+      - heading "Notes" [level=2] [ref=f1e29]
+      - paragraph [ref=f1e30]: Complementary notes. The main narrative is summary.
+      - generic:
+        - paragraph
+    - generic [ref=f1e31]:
+      - term [ref=f1e32]: Created by
+      - definition [ref=f1e33]: "Human: pending-bdb667d3"
+      - term [ref=f1e34]: Updated by
+      - definition [ref=f1e35]: "Human: pending-bdb667d3"
+      - term [ref=f1e36]: Version
+      - definition [ref=f1e37]: "57"
+    - button "Save title and notes" [disabled] [ref=f1e38]
+  - generic [ref=f1e40]:
+    - region [ref=f1e41]:
+      - heading "Lifecycle" [level=2] [ref=f1e42]
+      - generic [ref=f1e43]:
+        - generic [ref=f1e44]:
+          - generic [ref=f1e45]:
+            - generic [ref=f1e46]: Status
+            - combobox "Status" [ref=f1e47] [cursor=pointer]:
+              - generic "Open" [ref=f1e48]
+            - textbox [aria-hidden] [ref=f1e52]: open
+          - generic [ref=f1e53]:
+            - generic [ref=f1e54]: Saved
+            - button "Save Status" [disabled] [ref=f1e56]:
+              - generic [ref=f1e57]: Save
+        - generic [ref=f1e58]:
+          - generic [ref=f1e59]:
+            - generic [ref=f1e60]: Closed at
+            - textbox "Closed at" [disabled] [ref=f1e64]
+          - paragraph [ref=f1e65]: Recorded automatically when the status changes.
+          - generic [ref=f1e66]: Not set
+    - region [ref=f1e68]:
+      - generic [ref=f1e69]:
+        - heading "Relations" [level=2] [ref=f1e70]
+        - button "Add relation" [ref=f1e71] [cursor=pointer]
+      - list [ref=f1e726]:
+        - listitem [ref=f1e727]:
+          - generic [aria-hidden] [ref=f1e728]: →
+          - generic [ref=f1e729]: References
+          - link "Objective 000" [ref=f1e730] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003e8/
+          - generic [ref=f1e731]: Objective
+          - generic [ref=f1e732]: Required relation. It cannot be removed on its own.
+    - region [ref=f1e74]:
+      - heading "Backlinks" [level=2] [ref=f1e75]
+      - list [ref=f1e76]:
+        - listitem [ref=f1e77]:
+          - generic [aria-hidden] [ref=f1e78]: ←
+          - generic [ref=f1e79]: Linked from
+          - link "Objective 039" [ref=f1e80] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040f/
+          - generic [ref=f1e81]: Objective
+          - button "Remove Links ticket relation with Objective 039" [ref=f1e82] [cursor=pointer]:
+            - generic [ref=f1e83]: Remove
+        - listitem [ref=f1e84]:
+          - generic [aria-hidden] [ref=f1e85]: ←
+          - generic [ref=f1e86]: Linked from
+          - link "Objective 028" [ref=f1e87] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000404/
+          - generic [ref=f1e88]: Objective
+          - button "Remove Links ticket relation with Objective 028" [ref=f1e89] [cursor=pointer]:
+            - generic [ref=f1e90]: Remove
+        - listitem [ref=f1e91]:
+          - generic [aria-hidden] [ref=f1e92]: ←
+          - generic [ref=f1e93]: Linked from
+          - link "Objective 015" [ref=f1e94] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f7/
+          - generic [ref=f1e95]: Objective
+          - button "Remove Links ticket relation with Objective 015" [ref=f1e96] [cursor=pointer]:
+            - generic [ref=f1e97]: Remove
+        - listitem [ref=f1e98]:
+          - generic [aria-hidden] [ref=f1e99]: ←
+          - generic [ref=f1e100]: Linked from
+          - link "Objective 041" [ref=f1e101] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000411/
+          - generic [ref=f1e102]: Objective
+          - button "Remove Links ticket relation with Objective 041" [ref=f1e103] [cursor=pointer]:
+            - generic [ref=f1e104]: Remove
+        - listitem [ref=f1e105]:
+          - generic [aria-hidden] [ref=f1e106]: ←
+          - generic [ref=f1e107]: Linked from
+          - link "Objective 046" [ref=f1e108] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000416/
+          - generic [ref=f1e109]: Objective
+          - button "Remove Links ticket relation with Objective 046" [ref=f1e110] [cursor=pointer]:
+            - generic [ref=f1e111]: Remove
+        - listitem [ref=f1e112]:
+          - generic [aria-hidden] [ref=f1e113]: ←
+          - generic [ref=f1e114]: Linked from
+          - link "Objective 008" [ref=f1e115] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f0/
+          - generic [ref=f1e116]: Objective
+          - button "Remove Links ticket relation with Objective 008" [ref=f1e117] [cursor=pointer]:
+            - generic [ref=f1e118]: Remove
+        - listitem [ref=f1e119]:
+          - generic [aria-hidden] [ref=f1e120]: ←
+          - generic [ref=f1e121]: Linked from
+          - link "Objective 025" [ref=f1e122] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000401/
+          - generic [ref=f1e123]: Objective
+          - button "Remove Links ticket relation with Objective 025" [ref=f1e124] [cursor=pointer]:
+            - generic [ref=f1e125]: Remove
+        - listitem [ref=f1e126]:
+          - generic [aria-hidden] [ref=f1e127]: ←
+          - generic [ref=f1e128]: Linked from
+          - link "Objective 050" [ref=f1e129] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000041a/
+          - generic [ref=f1e130]: Objective
+          - button "Remove Links ticket relation with Objective 050" [ref=f1e131] [cursor=pointer]:
+            - generic [ref=f1e132]: Remove
+        - listitem [ref=f1e133]:
+          - generic [aria-hidden] [ref=f1e134]: ←
+          - generic [ref=f1e135]: Linked from
+          - link "Objective 001" [ref=f1e136] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003e9/
+          - generic [ref=f1e137]: Objective
+          - button "Remove Links ticket relation with Objective 001" [ref=f1e138] [cursor=pointer]:
+            - generic [ref=f1e139]: Remove
+        - listitem [ref=f1e140]:
+          - generic [aria-hidden] [ref=f1e141]: ←
+          - generic [ref=f1e142]: Linked from
+          - link "Objective 009" [ref=f1e143] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f1/
+          - generic [ref=f1e144]: Objective
+          - button "Remove Links ticket relation with Objective 009" [ref=f1e145] [cursor=pointer]:
+            - generic [ref=f1e146]: Remove
+        - listitem [ref=f1e147]:
+          - generic [aria-hidden] [ref=f1e148]: ←
+          - generic [ref=f1e149]: Linked from
+          - link "Objective 053" [ref=f1e150] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000041d/
+          - generic [ref=f1e151]: Objective
+          - button "Remove Links ticket relation with Objective 053" [ref=f1e152] [cursor=pointer]:
+            - generic [ref=f1e153]: Remove
+        - listitem [ref=f1e154]:
+          - generic [aria-hidden] [ref=f1e155]: ←
+          - generic [ref=f1e156]: Linked from
+          - link "Objective 005" [ref=f1e157] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ed/
+          - generic [ref=f1e158]: Objective
+          - button "Remove Links ticket relation with Objective 005" [ref=f1e159] [cursor=pointer]:
+            - generic [ref=f1e160]: Remove
+        - listitem [ref=f1e161]:
+          - generic [aria-hidden] [ref=f1e162]: ←
+          - generic [ref=f1e163]: Linked from
+          - link "Objective 043" [ref=f1e164] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000413/
+          - generic [ref=f1e165]: Objective
+          - button "Remove Links ticket relation with Objective 043" [ref=f1e166] [cursor=pointer]:
+            - generic [ref=f1e167]: Remove
+        - listitem [ref=f1e168]:
+          - generic [aria-hidden] [ref=f1e169]: ←
+          - generic [ref=f1e170]: Linked from
+          - link "Objective 000" [ref=f1e171] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003e8/
+          - generic [ref=f1e172]: Objective
+          - button "Remove Links ticket relation with Objective 000" [ref=f1e173] [cursor=pointer]:
+            - generic [ref=f1e174]: Remove
+        - listitem [ref=f1e175]:
+          - generic [aria-hidden] [ref=f1e176]: ←
+          - generic [ref=f1e177]: Linked from
+          - link "Objective 018" [ref=f1e178] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003fa/
+          - generic [ref=f1e179]: Objective
+          - button "Remove Links ticket relation with Objective 018" [ref=f1e180] [cursor=pointer]:
+            - generic [ref=f1e181]: Remove
+        - listitem [ref=f1e182]:
+          - generic [aria-hidden] [ref=f1e183]: ←
+          - generic [ref=f1e184]: Linked from
+          - link "Objective 032" [ref=f1e185] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000408/
+          - generic [ref=f1e186]: Objective
+          - button "Remove Links ticket relation with Objective 032" [ref=f1e187] [cursor=pointer]:
+            - generic [ref=f1e188]: Remove
+        - listitem [ref=f1e189]:
+          - generic [aria-hidden] [ref=f1e190]: ←
+          - generic [ref=f1e191]: Linked from
+          - link "Objective 030" [ref=f1e192] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000406/
+          - generic [ref=f1e193]: Objective
+          - button "Remove Links ticket relation with Objective 030" [ref=f1e194] [cursor=pointer]:
+            - generic [ref=f1e195]: Remove
+        - listitem [ref=f1e196]:
+          - generic [aria-hidden] [ref=f1e197]: ←
+          - generic [ref=f1e198]: Linked from
+          - link "Objective 026" [ref=f1e199] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000402/
+          - generic [ref=f1e200]: Objective
+          - button "Remove Links ticket relation with Objective 026" [ref=f1e201] [cursor=pointer]:
+            - generic [ref=f1e202]: Remove
+        - listitem [ref=f1e203]:
+          - generic [aria-hidden] [ref=f1e204]: ←
+          - generic [ref=f1e205]: Linked from
+          - link "Objective 024" [ref=f1e206] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000400/
+          - generic [ref=f1e207]: Objective
+          - button "Remove Links ticket relation with Objective 024" [ref=f1e208] [cursor=pointer]:
+            - generic [ref=f1e209]: Remove
+        - listitem [ref=f1e210]:
+          - generic [aria-hidden] [ref=f1e211]: ←
+          - generic [ref=f1e212]: Linked from
+          - link "Objective 042" [ref=f1e213] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000412/
+          - generic [ref=f1e214]: Objective
+          - button "Remove Links ticket relation with Objective 042" [ref=f1e215] [cursor=pointer]:
+            - generic [ref=f1e216]: Remove
+        - listitem [ref=f1e217]:
+          - generic [aria-hidden] [ref=f1e218]: ←
+          - generic [ref=f1e219]: Linked from
+          - link "Objective 020" [ref=f1e220] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003fc/
+          - generic [ref=f1e221]: Objective
+          - button "Remove Links ticket relation with Objective 020" [ref=f1e222] [cursor=pointer]:
+            - generic [ref=f1e223]: Remove
+        - listitem [ref=f1e224]:
+          - generic [aria-hidden] [ref=f1e225]: ←
+          - generic [ref=f1e226]: Linked from
+          - link "Objective 017" [ref=f1e227] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f9/
+          - generic [ref=f1e228]: Objective
+          - button "Remove Links ticket relation with Objective 017" [ref=f1e229] [cursor=pointer]:
+            - generic [ref=f1e230]: Remove
+        - listitem [ref=f1e231]:
+          - generic [aria-hidden] [ref=f1e232]: ←
+          - generic [ref=f1e233]: Linked from
+          - link "Objective 044" [ref=f1e234] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000414/
+          - generic [ref=f1e235]: Objective
+          - button "Remove Links ticket relation with Objective 044" [ref=f1e236] [cursor=pointer]:
+            - generic [ref=f1e237]: Remove
+        - listitem [ref=f1e238]:
+          - generic [aria-hidden] [ref=f1e239]: ←
+          - generic [ref=f1e240]: Linked from
+          - link "Objective 052" [ref=f1e241] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000041c/
+          - generic [ref=f1e242]: Objective
+          - button "Remove Links ticket relation with Objective 052" [ref=f1e243] [cursor=pointer]:
+            - generic [ref=f1e244]: Remove
+        - listitem [ref=f1e245]:
+          - generic [aria-hidden] [ref=f1e246]: ←
+          - generic [ref=f1e247]: Linked from
+          - link "Objective 051" [ref=f1e248] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000041b/
+          - generic [ref=f1e249]: Objective
+          - button "Remove Links ticket relation with Objective 051" [ref=f1e250] [cursor=pointer]:
+            - generic [ref=f1e251]: Remove
+        - listitem [ref=f1e252]:
+          - generic [aria-hidden] [ref=f1e253]: ←
+          - generic [ref=f1e254]: Linked from
+          - link "Objective 012" [ref=f1e255] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f4/
+          - generic [ref=f1e256]: Objective
+          - button "Remove Links ticket relation with Objective 012" [ref=f1e257] [cursor=pointer]:
+            - generic [ref=f1e258]: Remove
+        - listitem [ref=f1e259]:
+          - generic [aria-hidden] [ref=f1e260]: ←
+          - generic [ref=f1e261]: Linked from
+          - link "Objective 019" [ref=f1e262] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003fb/
+          - generic [ref=f1e263]: Objective
+          - button "Remove Links ticket relation with Objective 019" [ref=f1e264] [cursor=pointer]:
+            - generic [ref=f1e265]: Remove
+        - listitem [ref=f1e266]:
+          - generic [aria-hidden] [ref=f1e267]: ←
+          - generic [ref=f1e268]: Linked from
+          - link "Objective 037" [ref=f1e269] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040d/
+          - generic [ref=f1e270]: Objective
+          - button "Remove Links ticket relation with Objective 037" [ref=f1e271] [cursor=pointer]:
+            - generic [ref=f1e272]: Remove
+        - listitem [ref=f1e273]:
+          - generic [aria-hidden] [ref=f1e274]: ←
+          - generic [ref=f1e275]: Linked from
+          - link "Objective 048" [ref=f1e276] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000418/
+          - generic [ref=f1e277]: Objective
+          - button "Remove Links ticket relation with Objective 048" [ref=f1e278] [cursor=pointer]:
+            - generic [ref=f1e279]: Remove
+        - listitem [ref=f1e280]:
+          - generic [aria-hidden] [ref=f1e281]: ←
+          - generic [ref=f1e282]: Linked from
+          - link "Objective 036" [ref=f1e283] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040c/
+          - generic [ref=f1e284]: Objective
+          - button "Remove Links ticket relation with Objective 036" [ref=f1e285] [cursor=pointer]:
+            - generic [ref=f1e286]: Remove
+        - listitem [ref=f1e287]:
+          - generic [aria-hidden] [ref=f1e288]: ←
+          - generic [ref=f1e289]: Linked from
+          - link "Objective 016" [ref=f1e290] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f8/
+          - generic [ref=f1e291]: Objective
+          - button "Remove Links ticket relation with Objective 016" [ref=f1e292] [cursor=pointer]:
+            - generic [ref=f1e293]: Remove
+        - listitem [ref=f1e294]:
+          - generic [aria-hidden] [ref=f1e295]: ←
+          - generic [ref=f1e296]: Linked from
+          - link "Objective 003" [ref=f1e297] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003eb/
+          - generic [ref=f1e298]: Objective
+          - button "Remove Links ticket relation with Objective 003" [ref=f1e299] [cursor=pointer]:
+            - generic [ref=f1e300]: Remove
+        - listitem [ref=f1e301]:
+          - generic [aria-hidden] [ref=f1e302]: ←
+          - generic [ref=f1e303]: Linked from
+          - link "Objective 022" [ref=f1e304] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003fe/
+          - generic [ref=f1e305]: Objective
+          - button "Remove Links ticket relation with Objective 022" [ref=f1e306] [cursor=pointer]:
+            - generic [ref=f1e307]: Remove
+        - listitem [ref=f1e308]:
+          - generic [aria-hidden] [ref=f1e309]: ←
+          - generic [ref=f1e310]: Linked from
+          - link "Objective 021" [ref=f1e311] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003fd/
+          - generic [ref=f1e312]: Objective
+          - button "Remove Links ticket relation with Objective 021" [ref=f1e313] [cursor=pointer]:
+            - generic [ref=f1e314]: Remove
+        - listitem [ref=f1e315]:
+          - generic [aria-hidden] [ref=f1e316]: ←
+          - generic [ref=f1e317]: Linked from
+          - link "Objective 014" [ref=f1e318] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f6/
+          - generic [ref=f1e319]: Objective
+          - button "Remove Links ticket relation with Objective 014" [ref=f1e320] [cursor=pointer]:
+            - generic [ref=f1e321]: Remove
+        - listitem [ref=f1e322]:
+          - generic [aria-hidden] [ref=f1e323]: ←
+          - generic [ref=f1e324]: Linked from
+          - link "Objective 013" [ref=f1e325] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f5/
+          - generic [ref=f1e326]: Objective
+          - button "Remove Links ticket relation with Objective 013" [ref=f1e327] [cursor=pointer]:
+            - generic [ref=f1e328]: Remove
+        - listitem [ref=f1e329]:
+          - generic [aria-hidden] [ref=f1e330]: ←
+          - generic [ref=f1e331]: Linked from
+          - link "Objective 027" [ref=f1e332] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000403/
+          - generic [ref=f1e333]: Objective
+          - button "Remove Links ticket relation with Objective 027" [ref=f1e334] [cursor=pointer]:
+            - generic [ref=f1e335]: Remove
+        - listitem [ref=f1e336]:
+          - generic [aria-hidden] [ref=f1e337]: ←
+          - generic [ref=f1e338]: Linked from
+          - link "Objective 047" [ref=f1e339] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000417/
+          - generic [ref=f1e340]: Objective
+          - button "Remove Links ticket relation with Objective 047" [ref=f1e341] [cursor=pointer]:
+            - generic [ref=f1e342]: Remove
+        - listitem [ref=f1e343]:
+          - generic [aria-hidden] [ref=f1e344]: ←
+          - generic [ref=f1e345]: Linked from
+          - link "Objective 054" [ref=f1e346] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000041e/
+          - generic [ref=f1e347]: Objective
+          - button "Remove Links ticket relation with Objective 054" [ref=f1e348] [cursor=pointer]:
+            - generic [ref=f1e349]: Remove
+        - listitem [ref=f1e350]:
+          - generic [aria-hidden] [ref=f1e351]: ←
+          - generic [ref=f1e352]: Linked from
+          - link "Objective 029" [ref=f1e353] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000405/
+          - generic [ref=f1e354]: Objective
+          - button "Remove Links ticket relation with Objective 029" [ref=f1e355] [cursor=pointer]:
+            - generic [ref=f1e356]: Remove
+        - listitem [ref=f1e357]:
+          - generic [aria-hidden] [ref=f1e358]: ←
+          - generic [ref=f1e359]: Linked from
+          - link "Objective 004" [ref=f1e360] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ec/
+          - generic [ref=f1e361]: Objective
+          - button "Remove Links ticket relation with Objective 004" [ref=f1e362] [cursor=pointer]:
+            - generic [ref=f1e363]: Remove
+        - listitem [ref=f1e364]:
+          - generic [aria-hidden] [ref=f1e365]: ←
+          - generic [ref=f1e366]: Linked from
+          - link "Objective 002" [ref=f1e367] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ea/
+          - generic [ref=f1e368]: Objective
+          - button "Remove Links ticket relation with Objective 002" [ref=f1e369] [cursor=pointer]:
+            - generic [ref=f1e370]: Remove
+        - listitem [ref=f1e371]:
+          - generic [aria-hidden] [ref=f1e372]: ←
+          - generic [ref=f1e373]: Linked from
+          - link "Objective 045" [ref=f1e374] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000415/
+          - generic [ref=f1e375]: Objective
+          - button "Remove Links ticket relation with Objective 045" [ref=f1e376] [cursor=pointer]:
+            - generic [ref=f1e377]: Remove
+        - listitem [ref=f1e378]:
+          - generic [aria-hidden] [ref=f1e379]: ←
+          - generic [ref=f1e380]: Linked from
+          - link "Objective 033" [ref=f1e381] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000409/
+          - generic [ref=f1e382]: Objective
+          - button "Remove Links ticket relation with Objective 033" [ref=f1e383] [cursor=pointer]:
+            - generic [ref=f1e384]: Remove
+        - listitem [ref=f1e385]:
+          - generic [aria-hidden] [ref=f1e386]: ←
+          - generic [ref=f1e387]: Linked from
+          - link "Objective 011" [ref=f1e388] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f3/
+          - generic [ref=f1e389]: Objective
+          - button "Remove Links ticket relation with Objective 011" [ref=f1e390] [cursor=pointer]:
+            - generic [ref=f1e391]: Remove
+        - listitem [ref=f1e392]:
+          - generic [aria-hidden] [ref=f1e393]: ←
+          - generic [ref=f1e394]: Linked from
+          - link "Objective 010" [ref=f1e395] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003f2/
+          - generic [ref=f1e396]: Objective
+          - button "Remove Links ticket relation with Objective 010" [ref=f1e397] [cursor=pointer]:
+            - generic [ref=f1e398]: Remove
+        - listitem [ref=f1e399]:
+          - generic [aria-hidden] [ref=f1e400]: ←
+          - generic [ref=f1e401]: Linked from
+          - link "Objective 034" [ref=f1e402] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040a/
+          - generic [ref=f1e403]: Objective
+          - button "Remove Links ticket relation with Objective 034" [ref=f1e404] [cursor=pointer]:
+            - generic [ref=f1e405]: Remove
+        - listitem [ref=f1e406]:
+          - generic [aria-hidden] [ref=f1e407]: ←
+          - generic [ref=f1e408]: Linked from
+          - link "Objective 038" [ref=f1e409] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040e/
+          - generic [ref=f1e410]: Objective
+          - button "Remove Links ticket relation with Objective 038" [ref=f1e411] [cursor=pointer]:
+            - generic [ref=f1e412]: Remove
+        - listitem [ref=f1e413]:
+          - generic [aria-hidden] [ref=f1e414]: ←
+          - generic [ref=f1e415]: Linked from
+          - link "Objective 049" [ref=f1e416] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000419/
+          - generic [ref=f1e417]: Objective
+          - button "Remove Links ticket relation with Objective 049" [ref=f1e418] [cursor=pointer]:
+            - generic [ref=f1e419]: Remove
+        - listitem [ref=f1e420]:
+          - generic [aria-hidden] [ref=f1e421]: ←
+          - generic [ref=f1e422]: Linked from
+          - link "Objective 035" [ref=f1e423] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-00000000040b/
+          - generic [ref=f1e424]: Objective
+          - button "Remove Links ticket relation with Objective 035" [ref=f1e425] [cursor=pointer]:
+            - generic [ref=f1e426]: Remove
+        - listitem [ref=f1e733]:
+          - generic [aria-hidden] [ref=f1e734]: ←
+          - generic [ref=f1e735]: Linked from
+          - link "Objective 031" [ref=f1e736] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000407/
+          - generic [ref=f1e737]: Objective
+          - button "Remove Links ticket relation with Objective 031" [ref=f1e738] [cursor=pointer]:
+            - generic [ref=f1e739]: Remove
+        - listitem [ref=f1e740]:
+          - generic [aria-hidden] [ref=f1e741]: ←
+          - generic [ref=f1e742]: Linked from
+          - link "Objective 006" [ref=f1e743] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ee/
+          - generic [ref=f1e744]: Objective
+          - button "Remove Links ticket relation with Objective 006" [ref=f1e745] [cursor=pointer]:
+            - generic [ref=f1e746]: Remove
+        - listitem [ref=f1e747]:
+          - generic [aria-hidden] [ref=f1e748]: ←
+          - generic [ref=f1e749]: Linked from
+          - link "Objective 007" [ref=f1e750] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ef/
+          - generic [ref=f1e751]: Objective
+          - button "Remove Links ticket relation with Objective 007" [ref=f1e752] [cursor=pointer]:
+            - generic [ref=f1e753]: Remove
+        - listitem [ref=f1e754]:
+          - generic [aria-hidden] [ref=f1e755]: ←
+          - generic [ref=f1e756]: Linked from
+          - link "Objective 023" [ref=f1e757] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-0000000003ff/
+          - generic [ref=f1e758]: Objective
+          - button "Remove Links ticket relation with Objective 023" [ref=f1e759] [cursor=pointer]:
+            - generic [ref=f1e760]: Remove
+        - listitem [ref=f1e761]:
+          - generic [aria-hidden] [ref=f1e762]: ←
+          - generic [ref=f1e763]: Linked from
+          - link "Objective 040" [ref=f1e764] [cursor=pointer]:
+            - /url: /pending-browser-81886026/radar/objects/00000000-0000-0000-0000-000000000410/
+          - generic [ref=f1e765]: Objective
+          - button "Remove Links ticket relation with Objective 040" [ref=f1e766] [cursor=pointer]:
+            - generic [ref=f1e767]: Remove
+  - region [ref=f1e429]:
+    - generic [ref=f1e430]:
+      - heading "Collaboration" [level=2] [ref=f1e431]
+      - button "Reload" [ref=f1e432] [cursor=pointer]
+    - generic [ref=f1e434]:
+      - heading "Comments" [level=3] [ref=f1e435]
+      - paragraph [ref=f1e436]: No comments yet.
+      - generic [ref=f1e437]:
+        - generic [ref=f1e438]:
+          - generic [ref=f1e440]:
+            - text: New comment
+            - generic [aria-hidden] [ref=f1e441]: "*"
+          - textbox "New comment" [ref=f1e444]
+        - button "Add comment" [disabled] [ref=f1e445]
+    - generic [ref=f1e447]:
+      - heading "Attachments" [level=3] [ref=f1e448]
+      - paragraph [ref=f1e449]: Private supporting files, up to 2 MiB each. Files do not automatically become decision evidence.
+      - paragraph [ref=f1e450]: No attachments yet.
+      - generic [ref=f1e451]:
+        - generic [ref=f1e452]: Supporting file
+        - button "Supporting file" [ref=f1e453]
+        - paragraph [ref=f1e454]: Choose a nonempty file. A failed request keeps your selection for retry.
+        - button "Upload attachment" [disabled] [ref=f1e455]
+    - generic [ref=f1e457]:
+      - heading "Activity" [level=3] [ref=f1e458]
+      - list [ref=f1e459]:
+        - listitem [ref=f1e460]:
+          - paragraph [ref=f1e461]: Link Objects · executed
+          - paragraph [ref=f1e462]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e463]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e464]: Core acceptance · fixture.browser
+        - listitem [ref=f1e465]:
+          - paragraph [ref=f1e466]: Link Objects · executed
+          - paragraph [ref=f1e467]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e468]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e469]: Core acceptance · fixture.browser
+        - listitem [ref=f1e470]:
+          - paragraph [ref=f1e471]: Link Objects · executed
+          - paragraph [ref=f1e472]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e473]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e474]: Core acceptance · fixture.browser
+        - listitem [ref=f1e475]:
+          - paragraph [ref=f1e476]: Link Objects · executed
+          - paragraph [ref=f1e477]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e478]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e479]: Core acceptance · fixture.browser
+        - listitem [ref=f1e480]:
+          - paragraph [ref=f1e481]: Link Objects · executed
+          - paragraph [ref=f1e482]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e483]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e484]: Core acceptance · fixture.browser
+        - listitem [ref=f1e485]:
+          - paragraph [ref=f1e486]: Link Objects · executed
+          - paragraph [ref=f1e487]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e488]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e489]: Core acceptance · fixture.browser
+        - listitem [ref=f1e490]:
+          - paragraph [ref=f1e491]: Link Objects · executed
+          - paragraph [ref=f1e492]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e493]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e494]: Core acceptance · fixture.browser
+        - listitem [ref=f1e495]:
+          - paragraph [ref=f1e496]: Link Objects · executed
+          - paragraph [ref=f1e497]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e498]: 07/10/2026, 08:32:29
+          - paragraph [ref=f1e499]: Core acceptance · fixture.browser
+        - listitem [ref=f1e500]:
+          - paragraph [ref=f1e501]: Link Objects · executed
+          - paragraph [ref=f1e502]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e503]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e504]: Core acceptance · fixture.browser
+        - listitem [ref=f1e505]:
+          - paragraph [ref=f1e506]: Link Objects · executed
+          - paragraph [ref=f1e507]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e508]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e509]: Core acceptance · fixture.browser
+        - listitem [ref=f1e510]:
+          - paragraph [ref=f1e511]: Link Objects · executed
+          - paragraph [ref=f1e512]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e513]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e514]: Core acceptance · fixture.browser
+        - listitem [ref=f1e515]:
+          - paragraph [ref=f1e516]: Link Objects · executed
+          - paragraph [ref=f1e517]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e518]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e519]: Core acceptance · fixture.browser
+        - listitem [ref=f1e520]:
+          - paragraph [ref=f1e521]: Link Objects · executed
+          - paragraph [ref=f1e522]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e523]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e524]: Core acceptance · fixture.browser
+        - listitem [ref=f1e525]:
+          - paragraph [ref=f1e526]: Link Objects · executed
+          - paragraph [ref=f1e527]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e528]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e529]: Core acceptance · fixture.browser
+        - listitem [ref=f1e530]:
+          - paragraph [ref=f1e531]: Link Objects · executed
+          - paragraph [ref=f1e532]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e533]: 07/10/2026, 08:32:28
+          - paragraph [ref=f1e534]: Core acceptance · fixture.browser
+        - listitem [ref=f1e535]:
+          - paragraph [ref=f1e536]: Link Objects · executed
+          - paragraph [ref=f1e537]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e538]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e539]: Core acceptance · fixture.browser
+        - listitem [ref=f1e540]:
+          - paragraph [ref=f1e541]: Link Objects · executed
+          - paragraph [ref=f1e542]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e543]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e544]: Core acceptance · fixture.browser
+        - listitem [ref=f1e545]:
+          - paragraph [ref=f1e546]: Link Objects · executed
+          - paragraph [ref=f1e547]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e548]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e549]: Core acceptance · fixture.browser
+        - listitem [ref=f1e550]:
+          - paragraph [ref=f1e551]: Link Objects · executed
+          - paragraph [ref=f1e552]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e553]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e554]: Core acceptance · fixture.browser
+        - listitem [ref=f1e555]:
+          - paragraph [ref=f1e556]: Link Objects · executed
+          - paragraph [ref=f1e557]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e558]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e559]: Core acceptance · fixture.browser
+        - listitem [ref=f1e560]:
+          - paragraph [ref=f1e561]: Link Objects · executed
+          - paragraph [ref=f1e562]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e563]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e564]: Core acceptance · fixture.browser
+        - listitem [ref=f1e565]:
+          - paragraph [ref=f1e566]: Link Objects · executed
+          - paragraph [ref=f1e567]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e568]: 07/10/2026, 08:32:27
+          - paragraph [ref=f1e569]: Core acceptance · fixture.browser
+        - listitem [ref=f1e570]:
+          - paragraph [ref=f1e571]: Link Objects · executed
+          - paragraph [ref=f1e572]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e573]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e574]: Core acceptance · fixture.browser
+        - listitem [ref=f1e575]:
+          - paragraph [ref=f1e576]: Link Objects · executed
+          - paragraph [ref=f1e577]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e578]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e579]: Core acceptance · fixture.browser
+        - listitem [ref=f1e580]:
+          - paragraph [ref=f1e581]: Link Objects · executed
+          - paragraph [ref=f1e582]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e583]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e584]: Core acceptance · fixture.browser
+        - listitem [ref=f1e585]:
+          - paragraph [ref=f1e586]: Link Objects · executed
+          - paragraph [ref=f1e587]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e588]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e589]: Core acceptance · fixture.browser
+        - listitem [ref=f1e590]:
+          - paragraph [ref=f1e591]: Link Objects · executed
+          - paragraph [ref=f1e592]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e593]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e594]: Core acceptance · fixture.browser
+        - listitem [ref=f1e595]:
+          - paragraph [ref=f1e596]: Link Objects · executed
+          - paragraph [ref=f1e597]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e598]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e599]: Core acceptance · fixture.browser
+        - listitem [ref=f1e600]:
+          - paragraph [ref=f1e601]: Link Objects · executed
+          - paragraph [ref=f1e602]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e603]: 07/10/2026, 08:32:26
+          - paragraph [ref=f1e604]: Core acceptance · fixture.browser
+        - listitem [ref=f1e605]:
+          - paragraph [ref=f1e606]: Link Objects · executed
+          - paragraph [ref=f1e607]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e608]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e609]: Core acceptance · fixture.browser
+        - listitem [ref=f1e610]:
+          - paragraph [ref=f1e611]: Link Objects · executed
+          - paragraph [ref=f1e612]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e613]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e614]: Core acceptance · fixture.browser
+        - listitem [ref=f1e615]:
+          - paragraph [ref=f1e616]: Link Objects · executed
+          - paragraph [ref=f1e617]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e618]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e619]: Core acceptance · fixture.browser
+        - listitem [ref=f1e620]:
+          - paragraph [ref=f1e621]: Link Objects · executed
+          - paragraph [ref=f1e622]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e623]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e624]: Core acceptance · fixture.browser
+        - listitem [ref=f1e625]:
+          - paragraph [ref=f1e626]: Link Objects · executed
+          - paragraph [ref=f1e627]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e628]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e629]: Core acceptance · fixture.browser
+        - listitem [ref=f1e630]:
+          - paragraph [ref=f1e631]: Link Objects · executed
+          - paragraph [ref=f1e632]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e633]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e634]: Core acceptance · fixture.browser
+        - listitem [ref=f1e635]:
+          - paragraph [ref=f1e636]: Link Objects · executed
+          - paragraph [ref=f1e637]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e638]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e639]: Core acceptance · fixture.browser
+        - listitem [ref=f1e640]:
+          - paragraph [ref=f1e641]: Link Objects · executed
+          - paragraph [ref=f1e642]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e643]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e644]: Core acceptance · fixture.browser
+        - listitem [ref=f1e645]:
+          - paragraph [ref=f1e646]: Link Objects · executed
+          - paragraph [ref=f1e647]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e648]: 07/10/2026, 08:32:25
+          - paragraph [ref=f1e649]: Core acceptance · fixture.browser
+        - listitem [ref=f1e650]:
+          - paragraph [ref=f1e651]: Link Objects · executed
+          - paragraph [ref=f1e652]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e653]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e654]: Core acceptance · fixture.browser
+        - listitem [ref=f1e655]:
+          - paragraph [ref=f1e656]: Link Objects · executed
+          - paragraph [ref=f1e657]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e658]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e659]: Core acceptance · fixture.browser
+        - listitem [ref=f1e660]:
+          - paragraph [ref=f1e661]: Link Objects · executed
+          - paragraph [ref=f1e662]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e663]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e664]: Core acceptance · fixture.browser
+        - listitem [ref=f1e665]:
+          - paragraph [ref=f1e666]: Link Objects · executed
+          - paragraph [ref=f1e667]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e668]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e669]: Core acceptance · fixture.browser
+        - listitem [ref=f1e670]:
+          - paragraph [ref=f1e671]: Link Objects · executed
+          - paragraph [ref=f1e672]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e673]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e674]: Core acceptance · fixture.browser
+        - listitem [ref=f1e675]:
+          - paragraph [ref=f1e676]: Link Objects · executed
+          - paragraph [ref=f1e677]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e678]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e679]: Core acceptance · fixture.browser
+        - listitem [ref=f1e680]:
+          - paragraph [ref=f1e681]: Link Objects · executed
+          - paragraph [ref=f1e682]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e683]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e684]: Core acceptance · fixture.browser
+        - listitem [ref=f1e685]:
+          - paragraph [ref=f1e686]: Link Objects · executed
+          - paragraph [ref=f1e687]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e688]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e689]: Core acceptance · fixture.browser
+        - listitem [ref=f1e690]:
+          - paragraph [ref=f1e691]: Link Objects · executed
+          - paragraph [ref=f1e692]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e693]: 07/10/2026, 08:32:24
+          - paragraph [ref=f1e694]: Core acceptance · fixture.browser
+        - listitem [ref=f1e695]:
+          - paragraph [ref=f1e696]: Link Objects · executed
+          - paragraph [ref=f1e697]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e698]: 07/10/2026, 08:32:23
+          - paragraph [ref=f1e699]: Core acceptance · fixture.browser
+        - listitem [ref=f1e700]:
+          - paragraph [ref=f1e701]: Link Objects · executed
+          - paragraph [ref=f1e702]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e703]: 07/10/2026, 08:32:23
+          - paragraph [ref=f1e704]: Core acceptance · fixture.browser
+        - listitem [ref=f1e705]:
+          - paragraph [ref=f1e706]: Link Objects · executed
+          - paragraph [ref=f1e707]:
+            - text: "human: 8b71be12-d548-4752-9dfd-a342e9495ee8 ·"
+            - time [ref=f1e708]: 07/10/2026, 08:32:23
+          - paragraph [ref=f1e709]: Core acceptance · fixture.browser
+      - button "Older activity" [ref=f1e710] [cursor=pointer]
+  - region "Histórico operacional" [ref=f1e712]:
+    - generic [ref=f1e713]:
+      - heading "Histórico operacional" [level=2] [ref=f1e714]
+      - button "Atualizar histórico" [ref=f1e715] [cursor=pointer]
+    - generic [ref=f1e717]:
+      - generic [ref=f1e718]: Filtrar histórico
+      - combobox "Filtrar histórico" [ref=f1e719] [cursor=pointer]:
+        - generic "Todos" [ref=f1e720]
+      - textbox [aria-hidden] [ref=f1e724]: all
+    - paragraph [ref=f1e725]: Nenhum registro operacional.
+    - list

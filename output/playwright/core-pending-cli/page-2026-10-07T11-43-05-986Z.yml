@@ -1,0 +1,14 @@
+- generic [ref=f6e3]:
+  - banner [ref=f6e4]:
+    - heading "RADAR" [level=1] [ref=f6e5]
+    - paragraph [ref=f6e6]: Human–Agent Operating System
+  - navigation "Workspace tools" [ref=f6e7]:
+    - link "Today" [ref=f6e8] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/today/
+    - link "Objects" [ref=f6e9] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/objects/
+    - link "Risk Review" [ref=f6e10] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/risk-review/
+    - link "Agent configuration" [ref=f6e11] [cursor=pointer]:
+      - /url: /pending-browser-aa0578a3/radar/agent-config/
+  - status [ref=f6e12]: A workspace admin must install the workspace schema to use Objects.

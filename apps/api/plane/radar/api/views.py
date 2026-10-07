@@ -1,6 +1,6 @@
 import json
 from uuid import uuid4
-from django.db import transaction
+from plane.radar.locks import observed_atomic
 from django.shortcuts import get_object_or_404
 from rest_framework import status
 from rest_framework.response import Response
@@ -14,7 +14,7 @@ from plane.radar.commands import create_object, update_object
 from plane.radar.active import active_objects, active_types
 from plane.radar.workspace_schema import lock_schema, schema_revision
 from plane.radar.commands.compatibility import PendingCommand, legacy_confirmed_intent
-from .serializers import ObjectInputSerializer, ObjectSerializer, ObjectTypeSerializer
+from .serializers import ObjectInputSerializer, ObjectSerializer, ObjectTypeSerializer, ObjectSummarySerializer
 
 
 class RadarAPIView(BaseAPIView):
@@ -70,7 +70,7 @@ class RadarAPIView(BaseAPIView):
 
 
 class ObjectTypesView(RadarAPIView):
-    @transaction.atomic
+    @observed_atomic
     def get(self, request, slug):
         workspace = self.workspace()
         revision = lock_schema(workspace)
@@ -81,14 +81,24 @@ class ObjectTypesView(RadarAPIView):
 
 
 class ObjectsView(RadarAPIView):
-    @transaction.atomic
+    @observed_atomic
     def get(self, request, slug):
         workspace = self.workspace()
         revision = lock_schema(workspace)
-        objects = active_objects(workspace).select_related("object_type")
-        return Response(ObjectSerializer(objects, many=True).data, headers={"X-Radar-Schema-Revision": str(revision)})
+        from .object_queries import object_query
+        from .pagination import page
+        from plane.radar.authorship import AUTHOR_RELATIONS
 
-    @transaction.atomic
+        objects, scope = object_query(self, workspace, revision)
+        rows, cursor = page(
+            objects.select_related(*AUTHOR_RELATIONS).defer("content"), request.query_params, scope=scope
+        )
+        return Response(
+            ObjectSummarySerializer(rows, many=True).data,
+            headers={"X-Radar-Schema-Revision": str(revision), "X-Radar-Next-Cursor": cursor or ""},
+        )
+
+    @observed_atomic
     def post(self, request, slug):
         serializer = ObjectInputSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -109,14 +119,14 @@ class ObjectsView(RadarAPIView):
 
 
 class ObjectDetailView(RadarAPIView):
-    @transaction.atomic
+    @observed_atomic
     def get(self, request, slug, object_id):
         workspace = self.workspace()
         revision = lock_schema(workspace)
         result = get_object_or_404(active_objects(workspace).select_related("object_type"), pk=object_id)
         return Response(ObjectSerializer(result).data, headers={"X-Radar-Schema-Revision": str(revision)})
 
-    @transaction.atomic
+    @observed_atomic
     def patch(self, request, slug, object_id):
         serializer = ObjectInputSerializer(data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)

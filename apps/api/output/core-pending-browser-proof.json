@@ -1,0 +1,18 @@
+{
+  "created": "6e9e7148-7b55-4ece-87c7-b9fa229eaf80",
+  "version": 3,
+  "summary": "Created from the configured required field",
+  "status": "working",
+  "related_title": "Objective 110",
+  "created_actor": "human",
+  "pages_after_removal": [
+    50,
+    5
+  ],
+  "capability_pages": [
+    50,
+    5
+  ],
+  "removed_relation": "fff914d0-80ee-4409-bda0-fbba7c806dc4",
+  "provenance": "1656d684-f3e2-4377-a539-614ee0d425ef"
+}

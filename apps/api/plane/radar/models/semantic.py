@@ -112,4 +112,14 @@ class Relation(RadarBaseModel):
         indexes = [
             models.Index(fields=["workspace", "source"], name="radar_relation_ws_source_idx"),
             models.Index(fields=["workspace", "target"], name="radar_relation_ws_target_idx"),
+            models.Index(
+                fields=["workspace", "source", "id"],
+                condition=Q(deleted_at__isnull=True),
+                name="radar_rel_source_page_idx",
+            ),
+            models.Index(
+                fields=["workspace", "target", "id"],
+                condition=Q(deleted_at__isnull=True),
+                name="radar_rel_target_page_idx",
+            ),
         ]

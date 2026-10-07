@@ -1,14 +1,14 @@
 # RADAR Core — Auditoria 2.1
 
-**Auditoria inicial:** 05/10/2026, America/Bahia. **Atualização:** 06/10/2026. **Entrega:** prompt 2.1 de [radar_prompts_por_fase.md](../../../DOCS_PROJETO_RADAR_COMPLETO/radar_prompts_por_fase.md), com acompanhamento das correções U0 e das fases 0–5 do plano U1 posteriormente autorizadas.
+**Auditoria inicial:** 05/10/2026, America/Bahia. **Atualização:** 07/10/2026. **Entrega:** prompt 2.1 de [radar_prompts_por_fase.md](../../../DOCS_PROJETO_RADAR_COMPLETO/radar_prompts_por_fase.md), com acompanhamento das correções U0 e das fases 0–6 do plano U1 e das pendências U2 posteriormente autorizadas.
 
-> **Estado atual:** os 5 U0 e C01, C02, C03, C07, C09, C11, C12, C15, C16, C17, C18, C19, C20, C21 e C22 (U1) foram corrigidos no código. As fases 3 e 4 estão concluídas: registro de capabilities e planejamento de efeitos (3A), criação por capability e lifecycle declarativo (3B/3C), e criação, edição e apresentação orientadas pelo contrato (4). A entrega 5A conclui identidade/contexto por descritor (C19) e 5B conclui fatos canônicos/histórico paginável (C18). Permanecem **1 U1 e 2 U2**. As migrations 0011–0016 foram validadas em banco isolado; nenhum ambiente publicado foi ativado. Ver [U0](CORE_U0_REPORT.md), [fases 0/1](CORE_U1_PHASE_01_REPORT.md), [fase 2](CORE_U1_PHASE_02_REPORT.md), [3A](CORE_U1_PHASE_03_REPORT.md), [3B/3C](CORE_U1_PHASE_03BC_REPORT.md), [fase 4](CORE_U1_PHASE_04_REPORT.md), [5A](CORE_U1_PHASE_05A_REPORT.md) e [5B](CORE_U1_PHASE_05B_REPORT.md).
+> **Estado atual (07/10/2026):** os 5 U0 e os 16 U1 foram corrigidos no código, incluindo C13/fase 6. C23 foi corrigido com navegação e views pelo catálogo de tipos. C14 recebeu medição de concorrência e instrumentação de espera/retenção; **a coordenação conservadora por workspace permanece como limite arquitetural medido**, sem otimização de granularidade. Saldo: **22 achados corrigidos e 1 limite U2 medido**. A migration 0017 acrescenta índices para paginação, validada por ida/volta/reaplicação em banco descartável; nenhuma ativação ou homologação de ambiente publicado. O aceite integrado local combina configuração, criação/UI, relação obrigatória, lifecycle, runtime, autoria, revisão e replay, com limites descritos no [relatório das pendências](CORE_PENDING_REPORT.md). As entregas anteriores conservam sua evidência nos relatórios [U0](CORE_U0_REPORT.md), [0/1](CORE_U1_PHASE_01_REPORT.md), [2](CORE_U1_PHASE_02_REPORT.md), [3A](CORE_U1_PHASE_03_REPORT.md), [3B/3C](CORE_U1_PHASE_03BC_REPORT.md), [4](CORE_U1_PHASE_04_REPORT.md), [5A](CORE_U1_PHASE_05A_REPORT.md) e [5B](CORE_U1_PHASE_05B_REPORT.md).
 
 ## Conclusão
 
-O RADAR já possui persistência independente de WorkItem: `Object`, `ObjectType`, propriedades e relações têm models, tabelas e commands próprios. Não há FK para Project ou Issue do Plane nesses models. A genericidade, entretanto, ainda não percorre toda a aplicação: a navegação por tipo ainda depende de nomes conhecidos em código. Os registros operacionais permanecem especializações tipadas, com fontes canônicas e histórico explícito desde 5B. Identidade e elegibilidade de runtime passaram a descritores do workspace na entrega 5A. O dispatcher e a autoridade de efeitos consomem o registro/plano comum desde a entrega 3A. Desde a 3B/3C, a seleção de criação e as transições são descritores do workspace sobre capabilities e guards registrados. Desde a fase 4, o formulário de criação, o editor e a apresentação da Object Page derivam desses descritores e de capacidades calculadas pelo servidor.
+O RADAR já possui persistência independente de WorkItem: `Object`, `ObjectType`, propriedades e relações têm models, tabelas e commands próprios. Não há FK para Project ou Issue do Plane nesses models. A navegação por tipo usa o catálogo ativo do workspace, com views genéricas filtradas no servidor. Os registros operacionais permanecem especializações tipadas, com fontes canônicas e histórico explícito desde 5B. Identidade e elegibilidade de runtime passaram a descritores do workspace na entrega 5A. O dispatcher e a autoridade de efeitos consomem o registro/plano comum desde a entrega 3A. Desde a 3B/3C, a seleção de criação e as transições são descritores do workspace sobre capabilities e guards registrados. Desde a fase 4, o formulário de criação, o editor e a apresentação da Object Page derivam desses descritores e de capacidades calculadas pelo servidor.
 
-O Core permite criar um tipo adicional com criação, lifecycle e apresentação configurados por commands auditados, criá-lo na UI com seus campos obrigatórios e operá-lo com transições governadas, sem branch por nome. A entrega 5A demonstra acesso de tipo customizado pelo runtime autorizado com opt-in e binding explícitos. **Fatos operacionais canônicos e histórico paginável foram entregues em C18/5B**; a fase 6 trata consultas delimitadas e a homologação integrada. Não há homologação do ambiente publicado.
+O Core permite criar um tipo adicional com criação, lifecycle e apresentação configurados por commands auditados, criá-lo na UI com seus campos obrigatórios e operá-lo com transições governadas, sem branch por nome. A entrega 5A demonstra acesso de tipo customizado pelo runtime autorizado com opt-in e binding explícitos. **Fatos operacionais canônicos e histórico paginável foram entregues em C18/5B**; a fase 6 entrega consultas delimitadas e aceite integrado local em 07/10/2026. Não há homologação do ambiente publicado.
 
 Dos **23 achados**, os **5 U0 foram corrigidos**: restrições de domínio passaram a ter escopo de tipo; escrita e derivação de propriedades usam uma implementação compartilhada; invariantes do workspace e contrato de implementação integram o fingerprint de aprovação; relações obrigatórias têm validação genérica em momentos definidos; e os models do Core bloqueiam escrita ORM fora do contexto de command. A regressão final teve **301 testes backend aprovados, 4 opt-in ignorados e 93 testes frontend aprovados**, incluindo 33 casos U0 novos.
 
@@ -16,7 +16,7 @@ As fases 0/1 do [plano U1](CORE_U1_IMPLEMENTATION_PLAN.md) corrigiram autoria po
 
 A fase 2 do plano U1 entregou instalação/upgrade de schema por workspace (C07), leitura operacional uniforme (C11), revisão de metadata em snapshots/cache/formulários (C12) e o registro estrutural de kinds/config/relações (parte de C17). A regressão teve **356 backend aprovados, 4 opt-in ignorados e 114 frontend aprovados**; os 5 testes de transporte foram reexecutados após o ajuste de CORS, sem somar a contagem. A migration 0012 passou por ida, volta e reaplicação. O navegador confirmou preservação de rascunhos, revisão explícita e persistência sob schema revision 2.
 
-A entrega 3A concluiu C09/C17: registro único de capabilities, planos transacionais completos e verificação de autoridade/versões/efeitos na revisão e execução. As entregas 3B/3C concluíram C02/C01: criação pelo descritor do tipo, separando propriedades de parâmetros compostos, e lifecycle explícito aplicado no writer comum de propriedades. A regressão final teve **452 backend aprovados e 4 opt-in ignorados**. A fase 4 concluiu C03/C20/C21: formulário de criação por metadata, editor por capacidades efetivas e apresentação com narrativa principal; a regressão teve **477 backend aprovados, 4 opt-in ignorados e 132 frontend aprovados**, com prova de navegador sobre API e PostgreSQL reais. A entrega 5A concluiu C19, com identidade e contexto por descritor validado, mantendo grants, review, histórico e provisioning explícitos. A entrega 5B concluiu C18 com prazo/executores canônicos, histórico imutável paginado e backfill explícito. O saldo dos **23 achados é de 20 corrigidos e 3 pendentes**: **1 U1 e 2 U2**. As correções não equivalem a builders completos com UI nem a fatos operacionais inteiramente configuráveis por metadata. A entrega não demonstra homologação em produção: a ativação exige disponibilizar o app RADAR, aplicar sua cadeia de migrations e instalar/atualizar explicitamente o schema dos workspaces no ambiente alvo.
+A entrega 3A concluiu C09/C17: registro único de capabilities, planos transacionais completos e verificação de autoridade/versões/efeitos na revisão e execução. As entregas 3B/3C concluíram C02/C01: criação pelo descritor do tipo, separando propriedades de parâmetros compostos, e lifecycle explícito aplicado no writer comum de propriedades. A regressão final teve **452 backend aprovados e 4 opt-in ignorados**. A fase 4 concluiu C03/C20/C21: formulário de criação por metadata, editor por capacidades efetivas e apresentação com narrativa principal; a regressão teve **477 backend aprovados, 4 opt-in ignorados e 132 frontend aprovados**, com prova de navegador sobre API e PostgreSQL reais. A entrega 5A concluiu C19, com identidade e contexto por descritor validado, mantendo grants, review, histórico e provisioning explícitos. A entrega 5B concluiu C18 com prazo/executores canônicos, histórico imutável paginado e backfill explícito. Após a entrega de 07/10/2026, o saldo dos **23 achados é de 22 corrigidos e 1 limite U2 medido** (C14). As correções não equivalem a builders completos com UI nem a fatos operacionais inteiramente configuráveis por metadata. A entrega não demonstra homologação em produção: a ativação exige disponibilizar o app RADAR, aplicar sua cadeia de migrations e instalar/atualizar explicitamente o schema dos workspaces no ambiente alvo.
 
 ## Escopo e método
 
@@ -41,31 +41,31 @@ A entrega 3A concluiu C09/C17: registro único de capabilities, planos transacio
 
 Impacto, urgência e risco conservam a **classificação original** para rastreabilidade. A coluna Status indica o trabalho ainda aberto; um achado corrigido não representa um problema ainda presente no código. A aplicação da migration é uma condição de ativação comum à entrega, não uma confirmação de implantação.
 
-| ID  | Problema                                                                 | Categorias                       | Impacto | Urgência | Risco | Status              |
-| --- | ------------------------------------------------------------------------ | -------------------------------- | ------- | -------- | ----- | ------------------- |
-| C01 | Ciclo de vida fechado por tipo em Python                                 | Tipos; hardcoded; metadata       | Alto    | U1       | Alto  | Corrigido U1 3C     |
-| C02 | CreateObject redireciona tipos conhecidos para contratos fechados        | Tipos; acoplamento; hardcoded    | Alto    | U1       | Médio | Corrigido U1 3B     |
-| C03 | Formulário de criação não deriva campos de PropertyDefinition            | Duplicação; tipos; metadata      | Alto    | U1       | Médio | Corrigido U1 fase 4 |
-| C04 | Nomes de campos/estados reservados globalmente sem escopo de tipo        | Hardcoded; acoplamento           | Alto    | U0       | Alto  | Corrigido no código |
-| C05 | Duas implementações de escrita/invariantes semânticos                    | Duplicação; acoplamento          | Alto    | U0       | Alto  | Corrigido no código |
-| C06 | Invariantes e regras executáveis fora do schema efetivo de workspace     | Metadata; acoplamento            | Alto    | U0       | Alto  | Corrigido no código |
-| C07 | Seed sem evolução/versionamento por workspace                            | Acoplamento; metadata            | Alto    | U1       | Alto  | Corrigido U1 fase 2 |
-| C08 | Cardinalidade 1..1 incompleta e divergente na UI                         | Duplicação; metadata             | Alto    | U0       | Alto  | Corrigido no código |
-| C09 | Membership e papéis repetidos; efeitos autorizados por listas manuais    | Duplicação; hardcoded; metadata  | Alto    | U1       | Alto  | Corrigido U1 3A     |
-| C10 | Model/queryset do Core não exigem contexto de command para toda escrita  | Acoplamento; integridade         | Alto    | U0       | Alto  | Corrigido no código |
-| C11 | Visibilidade de tipos/propriedades/relações inativos é inconsistente     | Duplicação; acoplamento          | Alto    | U1       | Alto  | Corrigido U1 fase 2 |
-| C12 | Object.version não cobre mudanças de metadata                            | Acoplamento; metadata            | Alto    | U1       | Alto  | Corrigido U1 fase 2 |
-| C13 | Object Page e seletores carregam todo o workspace                        | Acoplamento; escala              | Médio   | U1       | Médio | Pendente            |
-| C14 | Writes e inicialização de schema serializam o workspace inteiro          | Acoplamento; escala              | Médio   | U2       | Médio | Pendente            |
-| C15 | Defaults internos e retries não têm o mesmo contrato de idempotência     | Duplicação; acoplamento          | Médio   | U1       | Médio | Corrigido no código |
-| C16 | Domain handlers dependem de serializers HTTP e funções privadas          | Acoplamento                      | Médio   | U1       | Médio | Corrigido no código |
-| C17 | Catálogo e contratos estruturais repetidos manualmente                   | Duplicação; hardcoded; metadata  | Médio   | U1       | Médio | Corrigido U1 3A     |
-| C18 | OperationalRecord cria metadata operacional paralela                     | Hardcoded; acoplamento; WorkItem | Alto    | U1       | Alto  | Corrigido U1 5B     |
-| C19 | Tipo criado no workspace não ganha identidade/contexto de runtime        | Tipos; acoplamento; metadata     | Alto    | U1       | Médio | Corrigido U1 5A     |
-| C20 | Editor genérico não conhece campos derivados, guards e ações disponíveis | Metadata; WorkItem               | Alto    | U1       | Médio | Corrigido U1 fase 4 |
-| C21 | Página universal de título/conteúdo e descrição concorrente              | Hardcoded; WorkItem              | Médio   | U1       | Médio | Corrigido U1 fase 4 |
-| C22 | Autoria resumida da página ainda pressupõe User humano                   | Acoplamento; WorkItem            | Médio   | U1       | Médio | Corrigido no código |
-| C23 | Navegação por tipos é estática e contém placeholders                     | Tipos; hardcoded; metadata       | Médio   | U2       | Baixo | Pendente            |
+| ID  | Problema                                                                 | Categorias                       | Impacto | Urgência | Risco | Status               |
+| --- | ------------------------------------------------------------------------ | -------------------------------- | ------- | -------- | ----- | -------------------- |
+| C01 | Ciclo de vida fechado por tipo em Python                                 | Tipos; hardcoded; metadata       | Alto    | U1       | Alto  | Corrigido U1 3C      |
+| C02 | CreateObject redireciona tipos conhecidos para contratos fechados        | Tipos; acoplamento; hardcoded    | Alto    | U1       | Médio | Corrigido U1 3B      |
+| C03 | Formulário de criação não deriva campos de PropertyDefinition            | Duplicação; tipos; metadata      | Alto    | U1       | Médio | Corrigido U1 fase 4  |
+| C04 | Nomes de campos/estados reservados globalmente sem escopo de tipo        | Hardcoded; acoplamento           | Alto    | U0       | Alto  | Corrigido no código  |
+| C05 | Duas implementações de escrita/invariantes semânticos                    | Duplicação; acoplamento          | Alto    | U0       | Alto  | Corrigido no código  |
+| C06 | Invariantes e regras executáveis fora do schema efetivo de workspace     | Metadata; acoplamento            | Alto    | U0       | Alto  | Corrigido no código  |
+| C07 | Seed sem evolução/versionamento por workspace                            | Acoplamento; metadata            | Alto    | U1       | Alto  | Corrigido U1 fase 2  |
+| C08 | Cardinalidade 1..1 incompleta e divergente na UI                         | Duplicação; metadata             | Alto    | U0       | Alto  | Corrigido no código  |
+| C09 | Membership e papéis repetidos; efeitos autorizados por listas manuais    | Duplicação; hardcoded; metadata  | Alto    | U1       | Alto  | Corrigido U1 3A      |
+| C10 | Model/queryset do Core não exigem contexto de command para toda escrita  | Acoplamento; integridade         | Alto    | U0       | Alto  | Corrigido no código  |
+| C11 | Visibilidade de tipos/propriedades/relações inativos é inconsistente     | Duplicação; acoplamento          | Alto    | U1       | Alto  | Corrigido U1 fase 2  |
+| C12 | Object.version não cobre mudanças de metadata                            | Acoplamento; metadata            | Alto    | U1       | Alto  | Corrigido U1 fase 2  |
+| C13 | Object Page e seletores carregam todo o workspace                        | Acoplamento; escala              | Médio   | U1       | Médio | Corrigido U1 fase 6  |
+| C14 | Writes e inicialização de schema serializam o workspace inteiro          | Acoplamento; escala              | Médio   | U2       | Médio | Medido; lock mantido |
+| C15 | Defaults internos e retries não têm o mesmo contrato de idempotência     | Duplicação; acoplamento          | Médio   | U1       | Médio | Corrigido no código  |
+| C16 | Domain handlers dependem de serializers HTTP e funções privadas          | Acoplamento                      | Médio   | U1       | Médio | Corrigido no código  |
+| C17 | Catálogo e contratos estruturais repetidos manualmente                   | Duplicação; hardcoded; metadata  | Médio   | U1       | Médio | Corrigido U1 3A      |
+| C18 | OperationalRecord cria metadata operacional paralela                     | Hardcoded; acoplamento; WorkItem | Alto    | U1       | Alto  | Corrigido U1 5B      |
+| C19 | Tipo criado no workspace não ganha identidade/contexto de runtime        | Tipos; acoplamento; metadata     | Alto    | U1       | Médio | Corrigido U1 5A      |
+| C20 | Editor genérico não conhece campos derivados, guards e ações disponíveis | Metadata; WorkItem               | Alto    | U1       | Médio | Corrigido U1 fase 4  |
+| C21 | Página universal de título/conteúdo e descrição concorrente              | Hardcoded; WorkItem              | Médio   | U1       | Médio | Corrigido U1 fase 4  |
+| C22 | Autoria resumida da página ainda pressupõe User humano                   | Acoplamento; WorkItem            | Médio   | U1       | Médio | Corrigido no código  |
+| C23 | Navegação por tipos é estática e contém placeholders                     | Tipos; hardcoded; metadata       | Médio   | U2       | Baixo | Corrigido U2         |
 
 ## Evidências e consequências
 
@@ -229,6 +229,8 @@ A navegação de uma entidade e seus backlinks depende do volume total do worksp
 
 **Direção futura:** paginação, busca de candidatos por relation/type/capability e resolução dos endpoints necessários ao detalhe. Manter tenant/autoridade na consulta do servidor.
 
+**Correção C13/fase 6 (07/10/2026):** lista/candidatos são resumos de 50 itens por padrão (máximo 100), com busca e filtros server-side, cursor assinado vinculado ao tenant/filtros/schema e política de relação nas duas direções. Object Page carrega snapshots e resumos apenas dos endpoints da página de relações; permissões de remoção também são paginadas. Seletores de relações/capabilities fazem busca remota; o endpoint é lido com versão antes da mutação. Índices parciais em 0017 apoiam as páginas. Fixtures crescentes demonstram payload/queries/objetos materializados delimitados; busca textual não tem custo de varredura constante presumido. Detalhes, benchmark local, testes e prova de navegador no [relatório](CORE_PENDING_REPORT.md).
+
 ### C14 — Lock global de workspace
 
 **Impacto médio · Urgência U2 · Risco médio.**
@@ -238,6 +240,8 @@ A navegação de uma entidade e seus backlinks depende do volume total do worksp
 O lock protege mudanças de schema/grants e é uma escolha conservadora válida no MVP. Seu custo é serializar mutações independentes do mesmo tenant, inclusive com validação/preview no percurso. Não foi medido throughput nem demonstrado deadlock.
 
 **Direção futura:** medir concorrência e tempo dos locks antes de alterar a estratégia; preservar a atomicidade de schema, autoridade e replay ao propor granularidade menor.
+
+**Medição e decisão C14 (07/10/2026):** logger JSON observa `wait_ms`, `held_ms`, operação, resultado e escopo de transação nos commands/schema/snapshots. Teste concorrente PostgreSQL com retenção deliberada de 200 ms confirma aproximadamente 205 ms de espera no mesmo workspace e 1–2 ms em outro tenant. Commit/rollback/nesting preservados. A instrumentação não altera autoridade, replay ou atomicidade. O diagnóstico pendente foi entregue; a serialização continua um **limite arquitetural medido**, mantido até haver workload que justifique e valide uma estratégia menor. Isso não é benchmark de throughput nem otimização de locks. [Decisão e limites](CORE_PENDING_REPORT.md).
 
 ### C15 — Defaults internos e retry de intenção
 
@@ -301,7 +305,7 @@ Um ObjectType adicional no PostgreSQL pode funcionar na API genérica, mas não 
 
 **Correção U1 5A (06/10/2026):** `ObjectType.rules.runtime` seleciona estratégia registrada, prefixo e categorias de contexto; ausência é desabilitada. Writers de binding e geração usam a mesma política. Tipo customizado pode ser habilitado pelo command auditado de metadata, receber binding explícito e ser lido/revisado no runtime sem alterar o snapshot global. Contextos Plane/Telegram e capabilities filtram elegibilidade ativa, revisão efetiva, grants e escopo. Revogação conserva identidades; mudanças incompatíveis com bindings são recusadas. Migration 0015 preserva IDs, timestamps, opt-outs e base de upgrade. Registro/DTO têm checagem de paridade em CI. [Relatório](CORE_U1_PHASE_05A_REPORT.md), [ADR](CORE_U1_PHASE_05A_ADR.md).
 
-**Limites:** habilitação não cria autoridade/binding; provisioning é administrativo. CoS permanece no protocolo v1, sem mudanças de código. C18 foi entregue em 5B; C13 e homologação integrada continuam pendentes; rollback antigo perde a política nova e exige exportação prévia dos descritores.
+**Limites:** habilitação não cria autoridade/binding; provisioning é administrativo. CoS permanece no protocolo v1, sem mudanças de código. C18 foi entregue em 5B e C13/aceite integrado local em 6; rollback antigo perde a política nova e exige exportação prévia dos descritores.
 
 ### C20 — Editor de campos não conhece capabilities/guards
 
@@ -349,6 +353,8 @@ A lista Objects agrupa os tipos recebidos da API, o que é genérico. A navegaç
 
 **Direção futura:** views/navegação de tipos orientadas por metadata, separadas das entradas funcionais Today/configuração/skills. Remover placeholders somente em etapa autorizada de implementação.
 
+**Correção C23 (07/10/2026):** sidebar/home derivam entradas de tipos ativos do catálogo; `type-<key>` abre uma lista genérica filtrada no servidor. Ferramentas funcionais conservam namespace separado. Bookmarks Decisions/Risks são aliases para views reais. Placeholders e o status fixo `Agent: not_implemented` foram removidos. Renomeação/inativação acompanha schema; tipo customizado aparece sem branch ou tela dedicada. Builder de navegação com ordenação/ocultação personalizada permanece fora desta correção. [Relatório](CORE_PENDING_REPORT.md).
+
 ## Onde Object ainda se comporta como WorkItem
 
 Não foi encontrada dependência estrutural `Workspace → Plane Project → Issue` no Core. Os seguintes comportamentos são **semelhanças de contrato e UX**, não herança de WorkItem:
@@ -359,7 +365,7 @@ Não foi encontrada dependência estrutural `Workspace → Plane Project → Iss
 | Status tratado como dropdown de propriedade editável    | C01, C20, corrigidos     | Estado limitado às transições permitidas; ações governadas com preview.                     |
 | Assignee/prazo/status de execução em estrutura dedicada | C18                      | Legítimo para Action; não deve se tornar estado oculto de todo Object.                      |
 | Autoria antes resumida como db.User                     | C22, corrigido           | Resumo por provenance/actor entregue; FKs User permanecem para compatibilidade.             |
-| Tipos conhecidos controlam formulário/rotas             | C02, C03 corrigidos; C23 | Formulário por metadata entregue; rotas/navegação por tipo continuam estáticas (C23).       |
+| Tipos conhecidos controlam formulário/rotas             | C02, C03 corrigidos; C23 | Formulário e navegação pelo catálogo entregues; views filtradas genéricas (C23).            |
 | Relação de Decision com Project em input especializado  | C02                      | `project_id` é opcional e aponta a Object RADAR; não é FK nem requisito de Plane Project.   |
 
 List layout, design system, workspace membership e rich text do Plane são reutilizações legítimas. O store [RadarRootStore](../../apps/web/store/radar/root.store.ts) não recebe Issue/Project stores. Comments/attachments são models RADAR ligados a Object, não adapters de Issue. Não há justificativa nesta auditoria para substituir essas fronteiras já isoladas.
@@ -381,20 +387,21 @@ List layout, design system, workspace membership e rich text do Plane são reuti
 
 `DecisionApproval`, `ActionCompletion` e `EvidenceRecord` são registros operacionais/auditáveis específicos ([models/commands.py](../../apps/api/plane/radar/models/commands.py), linhas 111–166), não models separados de ObjectType. Sua existência não viola automaticamente o modelo genérico. A fase 3 do plano U1 registrou as capabilities e as transições que os utilizam, sem apagar histórico nem nivelar todos os tipos ao workflow de Action.
 
-## Ativação e ordem recomendada das pendências
+## Ativação e estado das pendências
 
-**Entregas concluídas:** U0, fases 0–5 de U1, com 5A (C19) e 5B (C18). Segue fase 6 (C13 e aceite integrado), conforme o [plano U1](CORE_U1_IMPLEMENTATION_PLAN.md).
+**Entregas concluídas:** U0, fases 0–6 de U1 e C23. O aceite integrado é local, com API/PostgreSQL/commands e UI real em harness delimitado. Não equivale a homologação de produção ou entrega completa dos builders 2.2–2.6.
 
-| Próxima etapa                         | Complexidade                     | Achados ainda abertos           | Resultado necessário                                                                                   |
-| ------------------------------------- | -------------------------------- | ------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| Fase 6 — consultas e aceite integrado | Média para C13                   | C13 e homologação dos fluxos U1 | Detalhe/candidatos paginados e cenário integrado de configuração, criação, edição, lifecycle e runtime |
-| Posterior a U1                        | U2; avaliar com evidência de uso | C14, C23                        | Medir locks antes de otimizar; navegação configurável e remoção de placeholders                        |
+| Frente     | Estado                                      | Limite/próximo trabalho                                                                       |
+| ---------- | ------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| C13/fase 6 | Corrigido; aceite integrado local           | Monitorar queries/payload/latência com volume real; provider e shell completo não homologados |
+| C23        | Corrigido                                   | Ordenação/ocultação personalizada de navegação e builders completos são produto adicional     |
+| C14        | Instrumentado e medido; coordenação mantida | Granularidade menor exige workload e prova de concorrência de schema/grants/replay            |
 
-Há **1 achado U1 aberto**: C13. **C14 e C23 são os 2 U2**. C13 depende da fase 2 para consultas; o aceite integrado depende da fase 5. A fase 5 depende do contrato de capabilities da fase 3 e integra sua UI à experiência da fase 4, ambas entregues.
+Não há achado U1 pendente. C14 é um limite U2 explicitamente mantido após a medição; não foi declarado otimizado. A migration **0017_query_page_indexes** é condição para ativar os índices no ambiente alvo, além da cadeia 0011–0016 e instalação/upgrade explícito do schema.
 
 **Condição de ativação:** disponibilizar o app RADAR no ambiente alvo, aplicar a cadeia de migrations incluindo `0011_objecttype_rules`, `0012_workspace_schema` e `0013_type_descriptors`, verificar o baseline legado e instalar/atualizar o schema por commands administrativos explícitos; após a 0013, o upgrade explícito apenas alinha o hash do pacote. As migrations foram validadas em banco isolado; não foram aplicadas ao stack Plane em uso nem publicadas. Não há UI de builder ativada nem migração automática de fatos incompatíveis.
 
-As fases 2 e 3 estão concluídas e validadas localmente, o que satisfaz o primeiro gate do plano para escrita dos builders. As correções do Core não constituem a entrega integral dos prompts 2.2–2.6; o aceite final de U1 continua nas fases 4–6.
+As fases 2 e 3 estão concluídas e validadas localmente, o que satisfaz o primeiro gate do plano para escrita dos builders. As correções do Core não constituem a entrega integral dos prompts 2.2–2.6; o aceite integrado local de U1 foi registrado na fase 6, sem ativação de ambiente publicado.
 
 ## Validação e limites
 
@@ -433,4 +440,6 @@ O navegador usou ObjectPage, store/service/provider, sessão, API, commands, led
 
 **Validação 5A de 06/10:** C19 concluído. Regressão em processo novo com **516 RADAR e 2 Plane aprovados**, incluindo 38 casos novos e o adapter CoS real com transporte in-process; 3 opt-ins desativados. Frontend: 132 aprovados; `pnpm check`: 56/56; Ruff/formatação/migrations aprovados. Migration 0015 verificada por ida, volta, reaplicação e idempotência, com IDs/timestamps/fatos/opt-out preservados e upgrade sem conflitos. Contexto Plane/Telegram e capabilities consomem elegibilidade/revisão/grants do workspace. Sem deploy, provider externo ou nova prova de navegador. Escopo, reprodução e limites em [CORE_U1_PHASE_05A_REPORT.md](CORE_U1_PHASE_05A_REPORT.md) e [evidências](../../output/core-u1-phase-05a-20261006/README.md). Naquele momento, seguiam C18 (5B), C13 e homologação integrada (6); C18 foi entregue em 5B.
 
-**Validação mais recente — 5B de 06/10:** C18 concluído. Regressão final com **542 RADAR + 2 Plane aprovados**, 26 casos novos e 3 opt-ins HTTP CoS desativados; contratos dirigidos com 41 aprovados e adapter CoS real in-process. Frontend: 147 aprovados em 20 arquivos; `pnpm check`: 56/56; Ruff/formatação/migrations aprovados. Upgrade 0015→0016 e backfill revisado/idempotente verificados em banco descartável, preservando arquivo/timestamps/precisão/evidência/customizações; export verificado e reversão destrutiva bloqueada. Navegador confirmou fontes canônicas, conflitos, filtro/páginas, guest e descarte do histórico após perda de acesso, com prova independente no PostgreSQL. Inventário somente leitura do stack em uso encontrou tabela legada ausente. Sem deploy ou homologação integral. [Relatório](CORE_U1_PHASE_05B_REPORT.md), [decisões](CORE_U1_PHASE_05B_ADR.md), [evidências](../../output/core-u1-phase-05b-20261006/README.md). Seguem C13 e aceite integrado na fase 6, além de C14/C23 (U2).
+**Validação histórica — 5B de 06/10:** C18 concluído. Regressão final com **542 RADAR + 2 Plane aprovados**, 26 casos novos e 3 opt-ins HTTP CoS desativados; contratos dirigidos com 41 aprovados e adapter CoS real in-process. Frontend: 147 aprovados em 20 arquivos; `pnpm check`: 56/56; Ruff/formatação/migrations aprovados. Upgrade 0015→0016 e backfill revisado/idempotente verificados em banco descartável, preservando arquivo/timestamps/precisão/evidência/customizações; export verificado e reversão destrutiva bloqueada. Navegador confirmou fontes canônicas, conflitos, filtro/páginas, guest e descarte do histórico após perda de acesso, com prova independente no PostgreSQL. Inventário somente leitura do stack em uso encontrou tabela legada ausente. Sem deploy ou homologação integral. [Relatório](CORE_U1_PHASE_05B_REPORT.md), [decisões](CORE_U1_PHASE_05B_ADR.md), [evidências](../../output/core-u1-phase-05b-20261006/README.md). Naquela entrega, seguiam C13/fase 6 e C14/C23; o estado de 07/10 está registrado abaixo.
+
+**Validação de 07/10/2026 — C13/fase 6, C23 e medição C14:** C13/C23 concluídos no código; locks conservadores observados/medidos e mantidos. Frontend: **154 aprovados**; workspace: **56/56 checks**; Ruff/formato/schema aprovados. Migration 0017 com ida/volta/reaplicação e fatos preservados. Navegador confirmou criação customizada/required, candidato fora da primeira página, relação obrigatória, lifecycle, backlinks/permissões/remoção, lista filtrada e navegação pelo catálogo; prova independente no PostgreSQL. Backend final: **557 RADAR + 2 Plane aprovados**, 3 opt-ins ignorados, 15 casos novos. Limites completos no [relatório](CORE_PENDING_REPORT.md), com [evidências reproduzíveis](../../output/core-pending-20261007/README.md). Sem deploy, provider externo ou homologação do shell completo.

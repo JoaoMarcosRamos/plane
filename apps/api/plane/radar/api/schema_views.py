@@ -2,7 +2,7 @@
 
 import hashlib
 import json
-from django.db import transaction
+from plane.radar.locks import observed_atomic
 from rest_framework import serializers
 from rest_framework.response import Response
 from plane.db.models import WorkspaceMember
@@ -47,11 +47,11 @@ def schema_catalog(workspace, actor):
 
 
 class WorkspaceSchemaView(RadarAPIView):
-    @transaction.atomic
+    @observed_atomic
     def get(self, request, slug):
         return Response(schema_catalog(self.workspace(), self.actor("Read workspace schema")))
 
-    @transaction.atomic
+    @observed_atomic
     def post(self, request, slug):
         parsed = SchemaOperationInput(data=request.data)
         parsed.is_valid(raise_exception=True)

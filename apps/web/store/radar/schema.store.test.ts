@@ -150,3 +150,23 @@ it("does not replace the current list with a delayed empty list from an older sc
   await store.loadList();
   expect(store.listedObjects).toHaveLength(1);
 });
+
+it("discards inflight snapshots and endpoint summaries after access is lost", async () => {
+  const { store, service } = setup();
+  await store.loadSchema();
+  await store.loadList();
+  let resolve!: (value: { object: typeof object; properties: []; schema_revision: number }) => void;
+  vi.mocked(service.getProperties).mockReturnValueOnce(
+    new Promise((r) => {
+      resolve = r;
+    })
+  );
+  const pending = store.loadProperties(object.id);
+  vi.mocked(service.getSchema!).mockRejectedValueOnce({ response: { status: 403 } });
+  await expect(store.loadSchema()).rejects.toBeDefined();
+  resolve({ object, properties: [], schema_revision: 1 });
+  await pending;
+  expect(store.objects.size).toBe(0);
+  expect(store.propertySnapshots.size).toBe(0);
+  expect(store.listedObjects).toEqual([]);
+});

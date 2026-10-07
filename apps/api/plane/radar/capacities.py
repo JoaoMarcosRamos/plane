@@ -63,7 +63,7 @@ def probe(actor, workspace, name, data) -> dict:
     return {"available": True, "reason": None, "detail": None, "requires_review": review}
 
 
-def object_capacities(*, actor, workspace, object_id) -> dict:
+def object_capacities(*, actor, workspace, object_id, relation_ids=None) -> dict:
     require_human_membership(actor, workspace, write=False)
     revision = lock_schema(workspace)
     obj = get_active_object(workspace, object_id)
@@ -169,6 +169,10 @@ def object_capacities(*, actor, workspace, object_id) -> dict:
         .filter(Q(source=obj) | Q(target=obj))
         .select_related("relation_type", "source__object_type", "target__object_type")
     )
+    if relation_ids is not None:
+        edges = edges.filter(pk__in=relation_ids)
+    else:
+        edges = edges.order_by("pk")[:50]
     for edge in edges:
         reason = readonly
         if reason is None and edge.relation_type.cardinality == "1..1":

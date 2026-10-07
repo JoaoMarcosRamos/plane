@@ -13,12 +13,17 @@ import { RadarObjectsList } from "@/components/radar/objects-list";
 import { RadarRiskReview } from "@/components/radar/risk-review";
 import { RadarToday } from "@/components/radar/today";
 import { RadarAgentConfig } from "@/components/radar/agent-config";
-import { getRadarSection } from "@/components/radar/sections";
+import { observer } from "mobx-react";
+import { useRadarStore } from "@/store/radar/provider";
+import { getRadarSection, radarTypeKey } from "@/components/radar/sections";
 import type { Route } from "./+types/page";
 
-export default function RadarSectionPage({ params }: Route.ComponentProps) {
+const RadarSectionPage = observer(function RadarSectionPage({ params }: Route.ComponentProps) {
+  const store = useRadarStore();
+  const typeKey = radarTypeKey(params.section);
+  const type = store.objectTypes.find((item) => item.key === typeKey);
   const section = getRadarSection(params.section);
-  const title = section?.label ?? "Not found";
+  const title = type?.name ?? section?.label ?? (typeKey ? "Objects" : "Not found");
 
   return (
     <>
@@ -27,8 +32,8 @@ export default function RadarSectionPage({ params }: Route.ComponentProps) {
         <PageHead title={`RADAR - ${title}`} />
         {params.section === "today" ? (
           <RadarToday key={params.workspaceSlug} />
-        ) : params.section === "objects" ? (
-          <RadarObjectsList />
+        ) : params.section === "objects" || typeKey ? (
+          <RadarObjectsList key={params.section} typeKey={typeKey} />
         ) : params.section === "risk-review" ? (
           <RadarRiskReview key={params.workspaceSlug} />
         ) : params.section === "agent-config" ? (
@@ -36,14 +41,11 @@ export default function RadarSectionPage({ params }: Route.ComponentProps) {
         ) : (
           <div className="mx-auto flex w-full max-w-3xl flex-col gap-2 p-6">
             <h1 className="text-20 font-semibold text-primary">{title}</h1>
-            <p className="text-13 text-secondary">
-              {section
-                ? "Placeholder. This view will list RADAR objects in a future slice."
-                : `There is no RADAR section called "${params.section}".`}
-            </p>
+            <p className="text-13 text-secondary">{`There is no RADAR section called "${params.section}".`}</p>
           </div>
         )}
       </ContentWrapper>
     </>
   );
-}
+});
+export default RadarSectionPage;
