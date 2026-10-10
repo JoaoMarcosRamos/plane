@@ -31,6 +31,18 @@ export const radarRoutes: RouteConfigEntry[] = [
         // Sidebar sections (placeholders until the RADAR Core exists)
         route(":workspaceSlug/radar/:section", "./(all)/[workspaceSlug]/(radar)/radar/[section]/page.tsx"),
       ]),
+      // RADAR_UX_VIEW mockups: proposed navigation and screens over mock data, own sidebar
+      layout("./(all)/[workspaceSlug]/(radar-mockups)/layout.tsx", [
+        route(":workspaceSlug/radar/mockups", "./(all)/[workspaceSlug]/(radar-mockups)/radar/mockups/page.tsx"),
+        route(
+          ":workspaceSlug/radar/mockups/projetos/:projectId",
+          "./(all)/[workspaceSlug]/(radar-mockups)/radar/mockups/projetos/[projectId]/page.tsx"
+        ),
+        route(
+          ":workspaceSlug/radar/mockups/:screen",
+          "./(all)/[workspaceSlug]/(radar-mockups)/radar/mockups/[screen]/page.tsx"
+        ),
+      ]),
     ]),
   ]),
 ];

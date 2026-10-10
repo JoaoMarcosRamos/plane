@@ -113,6 +113,11 @@ export const RadarAppSidebar = observer(function RadarAppSidebar() {
             label="Spike Components"
             icon={<SandboxOutline className="size-4" />}
           />
+          <RadarSidebarLink
+            href={`${radarBasePath}/mockups/hoje/`}
+            label="Mockups UX"
+            icon={<SandboxOutline className="size-4" />}
+          />
         </nav>
       </SidebarWrapper>
     </ResizableSidebar>
